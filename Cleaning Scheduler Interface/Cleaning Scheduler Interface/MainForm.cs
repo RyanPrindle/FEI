@@ -20,7 +20,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable cleanDBTable = new DataTable();
         private DataTable requestDBTable = new DataTable();
         private String cleaningPartsDBFullPath =@"\\hlsql01\Beamtech\Summit\Summit_Parts_Cleaning_be.mdb";
-        private String cleaningRequestsDBFullPath = @"\\hlsql01\Beamtech\Summit\Summit_Parts_Cleaning_Requests_be.mdb"; 
+        private String cleaningRequestsDBFullPath = @"\\hlsql01\Beamtech\\Cleaning Team\Cleaning Scheduler\CleaningRequestsDB.mdb"; 
         #endregion
 
         public MainForm()

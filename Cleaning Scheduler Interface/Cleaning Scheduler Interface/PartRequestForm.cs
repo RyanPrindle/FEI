@@ -22,9 +22,9 @@ namespace Cleaning_Scheduler_Interface
 
         }
 
-        private void LoadPartsComboBox()
+        private void LoadPartsComboBox(DataTable partTable)
         {
-
+            comboBoxPart.DataSource = partTable;
         }
         private void LoadContactsComboBox()
         {

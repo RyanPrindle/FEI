@@ -18,8 +18,8 @@ namespace Cleaning_Scheduler_Interface
 
         private OleDbConnection dBOleConnection { get; set; }
         private OleDbCommand dBOleDbCmd { get; set; }
-        public DB(String dBPath, String dBName):
-            this(dBPath + dBName){
+        public DB(String dBPath, String dBName):this(dBPath + dBName)
+        {
         }
         public DB(String dBPathName)
         {
