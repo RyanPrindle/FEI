@@ -40,7 +40,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnPartRequest = new System.Windows.Forms.Button();
             this.btnCleaning = new System.Windows.Forms.Button();
-            this.btnColumnRequest = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -193,13 +192,11 @@
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.Controls.Add(this.btnPartRequest, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCleaning, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnColumnRequest, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnPartRequest, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -213,10 +210,10 @@
             // 
             this.btnPartRequest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPartRequest.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPartRequest.Location = new System.Drawing.Point(558, 10);
+            this.btnPartRequest.Location = new System.Drawing.Point(413, 10);
             this.btnPartRequest.Margin = new System.Windows.Forms.Padding(10);
             this.btnPartRequest.Name = "btnPartRequest";
-            this.btnPartRequest.Size = new System.Drawing.Size(252, 65);
+            this.btnPartRequest.Size = new System.Drawing.Size(397, 65);
             this.btnPartRequest.TabIndex = 9;
             this.btnPartRequest.Text = "Request Part Clean";
             this.btnPartRequest.UseVisualStyleBackColor = true;
@@ -232,24 +229,11 @@
             this.btnCleaning.Location = new System.Drawing.Point(10, 10);
             this.btnCleaning.Margin = new System.Windows.Forms.Padding(10);
             this.btnCleaning.Name = "btnCleaning";
-            this.btnCleaning.Size = new System.Drawing.Size(250, 65);
+            this.btnCleaning.Size = new System.Drawing.Size(383, 65);
             this.btnCleaning.TabIndex = 7;
             this.btnCleaning.Text = "Cleaning";
             this.btnCleaning.UseVisualStyleBackColor = false;
             this.btnCleaning.Click += new System.EventHandler(this.btnCleaning_Click);
-            // 
-            // btnColumnRequest
-            // 
-            this.btnColumnRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnColumnRequest.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnRequest.Location = new System.Drawing.Point(280, 10);
-            this.btnColumnRequest.Margin = new System.Windows.Forms.Padding(10);
-            this.btnColumnRequest.Name = "btnColumnRequest";
-            this.btnColumnRequest.Size = new System.Drawing.Size(258, 65);
-            this.btnColumnRequest.TabIndex = 8;
-            this.btnColumnRequest.Text = "Request Column Clean";
-            this.btnColumnRequest.UseVisualStyleBackColor = true;
-            this.btnColumnRequest.Click += new System.EventHandler(this.btnColumnRequest_Click);
             // 
             // MainForm
             // 
@@ -301,7 +285,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnCleaning;
         private System.Windows.Forms.Button btnPartRequest;
-        private System.Windows.Forms.Button btnColumnRequest;
         private System.ComponentModel.BackgroundWorker bGWorkerFillTables;
     }
 }

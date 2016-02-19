@@ -14,7 +14,8 @@ namespace Cleaning_Scheduler_Interface
             //@"Provider=Microsoft Office 12.0 Access Database Engine OLE DB Provider;Data Source= " +
             //@"\\hlsql01\Beamtech\Summit\" +     //Path to DB
             //"Summit_Parts_Cleaning_be.mdb";     //DB Name
-        private static string CLEAN = "CLEAN";
+        private static string CLEANTABLE = "CLEAN";
+        private static string REQUESTTABLE = "RequestTable";
 
         private OleDbConnection dBOleConnection { get; set; }
         private OleDbCommand dBOleDbCmd { get; set; }
@@ -90,7 +91,8 @@ namespace Cleaning_Scheduler_Interface
                 if (openDB())
                 {
                     OleDbDataAdapter dAdapter = new OleDbDataAdapter(selectionString, dBConnString);
-                    dAdapter.Fill(dataSet);
+                    if (dAdapter != null) 
+                        dAdapter.Fill(dataSet);
                 }
             }
             catch (Exception ex)
@@ -104,14 +106,14 @@ namespace Cleaning_Scheduler_Interface
         public DataTable GetCleanTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + CLEAN;
+            cmd.CommandText = "SELECT * FROM " + CLEANTABLE;
             return GetDataTable(cmd);
         }
 
         public DataTable GetRequestsTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + CLEAN;
+            cmd.CommandText = "SELECT * FROM " + REQUESTTABLE;
             return GetDataTable(cmd);
         }
         

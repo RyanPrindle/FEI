@@ -16,7 +16,8 @@ namespace Cleaning_Scheduler_Interface
 
         private DB cleaningPartsDB;
         private DB cleaningRequestsDB;
-        private PartRequestForm requestForm = new PartRequestForm();
+        private DataSet CleaningDataSet;
+        private PartRequestForm requestForm;
         private DataTable cleanDBTable = new DataTable();
         private DataTable requestDBTable = new DataTable();
         private String cleaningPartsDBFullPath =@"\\hlsql01\Beamtech\Summit\Summit_Parts_Cleaning_be.mdb";
@@ -49,21 +50,22 @@ namespace Cleaning_Scheduler_Interface
 
         private void bGWorkerFillTables_DoWork(object sender, DoWorkEventArgs e)
         {
-            DataSet dTables = new DataSet();
+            DataSet CleaningDS = new DataSet();
             DataTable partTable = cleaningPartsDB.GetCleanTable();
             partTable.TableName = "part";
             DataTable requestTable = cleaningRequestsDB.GetRequestsTable();
             requestTable.TableName = "request";
-            dTables.Tables.Add(partTable);
-            dTables.Tables.Add(requestTable);
-            e.Result = dTables;
+            CleaningDS.Tables.Add(partTable);
+            CleaningDS.Tables.Add(requestTable);
+            e.Result = CleaningDS;
         }
 
         private void bGWorkerFillTables_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            DataSet allDBs = (DataSet)e.Result;
-            cleanDBTable = allDBs.Tables["part"];
-            requestDBTable = allDBs.Tables["request"];
+            DataSet CleaningDataSet = (DataSet)e.Result;
+            cleanDBTable = CleaningDataSet.Tables["part"];
+            requestDBTable = CleaningDataSet.Tables["request"];
+            requestForm = new PartRequestForm(CleaningDataSet);
             loadDGVData();                  
             //progressForm.Close();
         }
@@ -94,14 +96,11 @@ namespace Cleaning_Scheduler_Interface
 
         #region Event Handlers
 
-        private void btnColumnRequest_Click(object sender, EventArgs e)
-        {
-            //Open Parts Cleaning Request Form
-        }
-
         private void btnPartRequest_Click(object sender, EventArgs e)
         {
             //Open Column Cleaning Request Form
+            requestForm = new PartRequestForm();
+
         }
 
         private void btnCleaning_Click(object sender, EventArgs e)
