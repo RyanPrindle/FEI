@@ -13,43 +13,144 @@ namespace Cleaning_Scheduler_Interface
     public partial class PartRequestForm : Form
     {
         private static String ADDCONTACT = @"Add new contact..";
-        private DataSet CleaningDataSet = new DataSet;
-        public PartRequestForm(DataSet CleaningDS)
+        private DataTable mPartTable;
+        private DataTable mRequestsTable;
+        private DataTable mContactTable;
+        private int mContactID;
+        ProgressBarForm mProgress; 
+
+        public PartRequestForm()
         {
             InitializeComponent();
-            CleaningDataSet = CleaningDS;
-        }
-        private void RequestForm_Load(object sender, EventArgs e)
-        {
+            mContactID = 0;
         }
 
-        private void LoadPartsComboBox(DataTable partTable)
+        private void PartRequestForm_Load(object sender, EventArgs e)
         {
-            comboBoxPart.DataSource = partTable;
+            GetDataTables();
+           
+        }
+
+        #region BackGround Workers
+
+        private void GetDataTables()
+        {
+            mProgress = new ProgressBarForm();
+            bGWorkerGetData = new BackgroundWorker();
+            bGWorkerGetData.DoWork += new DoWorkEventHandler(bGWorkerGetData_DoWork);
+            bGWorkerGetData.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerGetData_RunWorkerCompleted);
+            bGWorkerGetData.RunWorkerAsync();
+            mProgress.ShowDialog();
+        }
+        private void bGWorkerGetData_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            PartsDB partsDB = new PartsDB();
+            RequestsDB requestDB = new RequestsDB();
+            List<DataTable> tables = new List<DataTable>();
+            tables.Add(partsDB.GetCleanTable());
+            tables.Add(requestDB.GetRequestsTable());
+            tables.Add(requestDB.GetContactTable());
+            e.Result = tables;
+        }
+        private void bGWorkerGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<DataTable> tables = (List<DataTable>)e.Result;
+            mPartTable = tables[0];
+            mRequestsTable = tables[1];
+            mContactTable = tables[2];
+            LoadPartsComboBox();
+            LoadContactsComboBox();
+            if (mContactID > 0)
+            {
+                DataRow[] rows = mContactTable.Select("ContactId = '" + mContactID + "'");
+                if (rows.Length > 0)
+                {
+                    comboBoxContact.SelectedIndex = mContactTable.Rows.IndexOf(rows[0]);
+                }
+            }
+            mProgress.Close();
+        }
+
+
+        private void AddContact(String email)
+        {
+            bGWorkerAddContact = new BackgroundWorker();
+            bGWorkerAddContact.DoWork += new DoWorkEventHandler(bGWorkerAddContact_DoWork);
+            bGWorkerAddContact.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerAddContact_RunWorkerCompleted);
+            bGWorkerAddContact.RunWorkerAsync(email);
+        }
+        private void bGWorkerAddContact_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String email = (String)e.Argument;
+            RequestsDB requestsDB = new RequestsDB();
+            int contactID = requestsDB.AddIfNewContact(email);
+            Tuple<String,int> result = new Tuple<string,int>(email,contactID);
+            e.Result = result;
+            
+        }
+        private void bGWorkerAddContact_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Tuple<String, int> result = (Tuple<String, int>)e.Result;
+            String eMail = result.Item1;
+            mContactID = result.Item2;
+            DataRow[] rows = mContactTable.Select("ContactId = '" + mContactID + "'");
+            if (rows.Length > 0)
+            {
+                comboBoxContact.SelectedIndex = mContactTable.Rows.IndexOf(rows[0]);
+            }
+            else
+            {
+                GetDataTables();
+            }
+        }
+    
+        #endregion
+
+
+        private void LoadPartsComboBox()
+        {
+            DataRow rowPheonix = mPartTable.NewRow();
+            rowPheonix[@"P/N"] = "Ion Pheonix Column";
+            DataRow rowTHawk = mPartTable.NewRow();
+            rowTHawk[@"P/N"] = "Ion Tomahawk Column";
+            DataRow rowSideWinder = mPartTable.NewRow();
+            rowSideWinder[@"P/N"] = "Ion SideWinder Column";
+            DataRow rowMagnum = mPartTable.NewRow();
+            rowMagnum[@"P/N"] = "Ion Magnum Column";
+            DataRow rowLegacy = mPartTable.NewRow();
+            rowLegacy[@"P/N"] = "Ion Legacy Column";
+            mPartTable.Rows.InsertAt(rowLegacy, 0);
+            mPartTable.Rows.InsertAt(rowMagnum, 0);
+            mPartTable.Rows.InsertAt(rowSideWinder, 0);
+            mPartTable.Rows.InsertAt(rowTHawk, 0);
+            mPartTable.Rows.InsertAt(rowPheonix, 0);
+            comboBoxPart.DataSource = mPartTable;
             comboBoxPart.DisplayMember = @"P/N";
             comboBoxPart.ValueMember = @"P/N";
         }
-        private void LoadContactsComboBox(DataTable contactTable)
+
+        private void LoadContactsComboBox()
         {
-            //Add addContact to contact email List
-            contactTable = new DataTable();            
+            //Add addContact to contact email List    
             //Create last row add for contact e-mail List
-            DataRow promptAddContactRow = contactTable.NewRow();
+            DataRow promptContactRow = mContactTable.NewRow();
+            promptContactRow["Email"] = "Optional...";
+            mContactTable.Rows.InsertAt(promptContactRow,0);       
+            DataRow promptAddContactRow = mContactTable.NewRow();
             promptAddContactRow["Email"] = ADDCONTACT;
-            promptAddContactRow["ContactID"] = -1;
-            contactTable.Rows.Add(promptAddContactRow);
-            comboBoxContact.DataSource = contactTable;
+            mContactTable.Rows.Add(promptAddContactRow);            
+            comboBoxContact.ValueMember = "Email";
             comboBoxContact.DisplayMember = "Email";
-            comboBoxContact.ValueMember = "ContactID";
-            
+            comboBoxContact.DataSource = mContactTable;
         }
+
+
+
         private void ComboBoxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = 0;
-            //ComboBox comboBox = (ComboBox)sender;
-            if (comboBoxContact.SelectedValue.ToString() == "-1")
+            if (comboBoxContact.SelectedValue.ToString() == ADDCONTACT)
             {
-                index = comboBoxContact.SelectedIndex;
                 //Open new window to add new contact email.                    
                 ContactBoxValidation validation = delegate(string val)
                 {
@@ -63,34 +164,25 @@ namespace Cleaning_Scheduler_Interface
                 string eMail = "@FEI.com";
                 if (ContactInputBox.Show("Enter email address to notify when complete.", "Email address:", ref eMail, validation) == DialogResult.OK)
                 {
-                    int conId = 0;
-                    // Add new contact to DB
-                    conId = cleaningRequestsDB.IsContact(eMail);
-                    if (conId == 0)
-                    {
-                        conId = outgasDB.AddIfNewContact(eMail);
-                        // Add email to each contactTable 
-                        foreach (DataTable contactTable in listOfContactsTable)
-                        {
-                            DataRow row = contactTable.NewRow();
-                            row["Email"] = eMail;
-                            row["ContactId"] = conId;
-                            //TODO Add row to list of contactstable tables
-                            contactTable.Rows.InsertAt(row, contactTable.Rows.Count - 1);
-                        }
-                        comboBoxContact.SelectedIndex = index;
-                        MessageBox.Show("Contact Email Saved");
-                    }
-                    else
-                    {
-                        DataRow[] rowArray = comboBoxContact.Select("ContactId = '" + conId + "'");
-                        if (rowArray.Length > 0)
-                        {
-                            listOfContactsComboBox[i].SelectedIndex = listOfContactsTable[i].Rows.IndexOf(rowArray[0]);
-                        }
-                    }
+                    AddContact(eMail);
+                }
+                else
+                {
+                    comboBoxContact.SelectedIndex = 0;
                 }
             }
         }
+
+        private void comboBoxPart_Leave(object sender, EventArgs e)
+        {
+            int index = comboBoxPart.FindString(comboBoxPart.Text);
+            if (index < 0)
+            {
+                MessageBox.Show("Part Number not in system.");
+                comboBoxPart.Focus();
+                return;
+            }
+        }
+       
     }
 }

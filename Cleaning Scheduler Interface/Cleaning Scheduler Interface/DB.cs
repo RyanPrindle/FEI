@@ -11,15 +11,15 @@ namespace Cleaning_Scheduler_Interface
     class DB
     {
         private String dBConnString { get; set; }
-            //@"Provider=Microsoft Office 12.0 Access Database Engine OLE DB Provider;Data Source= " +
-            //@"\\hlsql01\Beamtech\Summit\" +     //Path to DB
-            //"Summit_Parts_Cleaning_be.mdb";     //DB Name
-        private static string CLEANTABLE = "CLEAN";
-        private static string REQUESTTABLE = "RequestTable";
+        //@"Provider=Microsoft Office 12.0 Access Database Engine OLE DB Provider;Data Source= " +
+        //@"\\hlsql01\Beamtech\Summit\" +     //Path to DB
+        //"Summit_Parts_Cleaning_be.mdb";     //DB Name
+
 
         private OleDbConnection dBOleConnection { get; set; }
         private OleDbCommand dBOleDbCmd { get; set; }
-        public DB(String dBPath, String dBName):this(dBPath + dBName)
+        public DB(String dBPath, String dBName)
+            : this(dBPath + dBName)
         {
         }
         public DB(String dBPathName)
@@ -61,7 +61,7 @@ namespace Cleaning_Scheduler_Interface
             return true;
         }
 
-        private DataTable GetDataTable(OleDbCommand cmd)
+        public DataTable GetDataTable(OleDbCommand cmd)
         {
             DataTable dataTable = new DataTable();
             try
@@ -91,7 +91,7 @@ namespace Cleaning_Scheduler_Interface
                 if (openDB())
                 {
                     OleDbDataAdapter dAdapter = new OleDbDataAdapter(selectionString, dBConnString);
-                    if (dAdapter != null) 
+                    if (dAdapter != null)
                         dAdapter.Fill(dataSet);
                 }
             }
@@ -103,19 +103,54 @@ namespace Cleaning_Scheduler_Interface
             return dataSet;
         }
 
-        public DataTable GetCleanTable()
+        public int GetID(OleDbCommand cmd, String columnName)
         {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + CLEANTABLE;
-            return GetDataTable(cmd);
+            int iD = 0;
+            try
+            {
+                if (openDB())
+                {                    
+                    dBOleDbCmd = cmd;
+                    dBOleDbCmd.Connection = dBOleConnection;
+                    OleDbDataReader dBReader;
+                    dBReader = dBOleDbCmd.ExecuteReader();
+                    if (dBReader.Read())
+                    {
+                        iD = (int)dBReader[columnName];
+                        dBReader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            closeDB();
+            return iD;
         }
 
-        public DataTable GetRequestsTable()
+        public int AddReturnID(OleDbCommand cmd)
         {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + REQUESTTABLE;
-            return GetDataTable(cmd);
+            int iD = 0;
+            try
+            {
+                if (openDB())
+                {
+                    dBOleDbCmd = cmd;
+                    dBOleDbCmd.Connection = dBOleConnection;
+                    if (dBOleDbCmd.ExecuteNonQuery() != 0)
+                    {
+                        dBOleDbCmd.CommandText = "Select @@Identity";
+                        iD = (int)dBOleDbCmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            closeDB();
+            return iD;
         }
-        
     }
 }
