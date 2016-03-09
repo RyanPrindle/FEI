@@ -23,6 +23,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable inProcessTable = new DataTable();
         private DataTable finishedTable = new DataTable();
         private DataTable contactTable = new DataTable();
+        private Font dGVFont = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular);
         #endregion
 
         public MainForm()
@@ -67,6 +68,7 @@ namespace Cleaning_Scheduler_Interface
             requestTable.Columns["FinishedOn"].ColumnName = "Finished";
             requestTable.Columns["SerialNumber"].ColumnName = "Serial Number";
             requestTable.Columns["PartNumber"].ColumnName = "Part Number";
+            requestTable.Columns["Email"].ColumnName = "Contact";
 
             queueTable = requestTable.Clone();
             inProcessTable = requestTable.Clone();
@@ -104,6 +106,7 @@ namespace Cleaning_Scheduler_Interface
         {
             dGVCompleted.SuspendLayout();
             dGVCompleted.DataSource = finishedTable;
+            dGVCompleted.DefaultCellStyle.Font = dGVFont;
             dGVCompleted.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVCompleted.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVCompleted.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -113,6 +116,8 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["Type2"].Visible = false;
             dGVCompleted.Columns["Type3"].Visible = false;
             dGVCompleted.Columns["Type4"].Visible = false;
+            dGVCompleted.Columns["PO"].Visible = false;
+            dGVCompleted.Columns["Hot"].Visible = false;
             dGVCompleted.Columns["Serial Number"].Visible = false;
             dGVCompleted.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVCompleted.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -124,6 +129,7 @@ namespace Cleaning_Scheduler_Interface
         {
             dGVInProcess.SuspendLayout();
             dGVInProcess.DataSource = inProcessTable;
+            dGVInProcess.DefaultCellStyle.Font = dGVFont;
             dGVInProcess.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVInProcess.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVInProcess.Columns["RequestID"].Visible = false;
@@ -132,6 +138,7 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.Columns["Type2"].Visible = false;
             dGVInProcess.Columns["Type3"].Visible = false;
             dGVInProcess.Columns["Type4"].Visible = false;
+            dGVInProcess.Columns["PO"].Visible = false;         
             dGVInProcess.Columns["Serial Number"].Visible = false;
             dGVInProcess.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVInProcess.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -143,6 +150,7 @@ namespace Cleaning_Scheduler_Interface
         {
             dGVQueue.SuspendLayout();
             dGVQueue.DataSource = queueTable;
+            dGVQueue.DefaultCellStyle.Font = dGVFont;
             dGVQueue.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVQueue.Columns["RequestID"].Visible = false;
             dGVQueue.Columns["Started"].Visible = false;
@@ -151,6 +159,7 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["Type2"].Visible = false;
             dGVQueue.Columns["Type3"].Visible = false;
             dGVQueue.Columns["Type4"].Visible = false;
+            dGVQueue.Columns["PO"].Visible = false;
             dGVQueue.Columns["Serial Number"].Visible = false;
             dGVQueue.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVQueue.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

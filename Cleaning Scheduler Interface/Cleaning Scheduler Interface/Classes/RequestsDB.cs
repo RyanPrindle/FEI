@@ -22,7 +22,12 @@ namespace Cleaning_Scheduler_Interface
         public DataTable GetRequestsTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + REQUESTTABLE;
+            cmd.CommandText = //"SELECT * FROM " + REQUESTTABLE;
+            "SELECT RequestTable.RequestID, RequestTable.Requestor, RequestTable.RequestedOn, " +
+            "RequestTable.StartedOn, RequestTable.FinishedOn, RequestTable.PartNumber, RequestTable.Type1, " +
+            "RequestTable.Type2, RequestTable.Type3, RequestTable.Type4, ContactTable.Email, " +
+            "RequestTable.SerialNumber, RequestTable.PO, RequestTable.Hot FROM ContactTable " +
+            "INNER JOIN RequestTable ON ContactTable.ContactId = RequestTable.Contact";
             return requestDB.GetDataTable(cmd);
         }
 

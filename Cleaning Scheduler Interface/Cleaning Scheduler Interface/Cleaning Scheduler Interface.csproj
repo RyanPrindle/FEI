@@ -44,46 +44,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminForm.cs">
+    <Compile Include="Classes\ColumnRequest.cs" />
+    <Compile Include="Classes\PartRequest.cs" />
+    <Compile Include="Forms\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminForm.Designer.cs">
+    <Compile Include="Forms\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RequestsDB.cs" />
-    <Compile Include="ContactInputBox.cs" />
-    <Compile Include="DB.cs" />
-    <Compile Include="PartRequestForm.cs">
+    <Compile Include="Classes\RequestsDB.cs" />
+    <Compile Include="Classes\ContactInputBox.cs" />
+    <Compile Include="Classes\DB.cs" />
+    <Compile Include="Forms\PartRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartRequestForm.Designer.cs">
+    <Compile Include="Forms\PartRequestForm.Designer.cs">
       <DependentUpon>PartRequestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartsDB.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ProgressBarForm.cs">
+    <Compile Include="Classes\PartsDB.cs" />
+    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Forms\ProgressBarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressBarForm.Designer.cs">
+    <Compile Include="Forms\ProgressBarForm.Designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="adminForm.resx">
+    <EmbeddedResource Include="Forms\adminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartRequestForm.resx">
+    <EmbeddedResource Include="Forms\PartRequestForm.resx">
       <DependentUpon>PartRequestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressBarForm.resx">
+    <EmbeddedResource Include="Forms\ProgressBarForm.resx">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -183,6 +183,11 @@ namespace Cleaning_Scheduler_Interface
                 return;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
        
     }
 }
