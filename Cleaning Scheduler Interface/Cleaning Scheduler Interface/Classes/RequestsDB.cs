@@ -14,6 +14,7 @@ namespace Cleaning_Scheduler_Interface
         private DB requestDB;
         private static string REQUESTTABLE = "RequestTable";
         private static string CONTACTTABLE = "ContactTable";
+        private static string COLUMNTABLE = "ColumnTable";
 
         public RequestsDB()
         {
@@ -38,10 +39,12 @@ namespace Cleaning_Scheduler_Interface
             return requestDB.GetDataTable(cmd);
         }
 
+#region Contact
+
         public DataTable GetContactTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + CONTACTTABLE;
+            cmd.CommandText = "SELECT * FROM " + CONTACTTABLE + " ORDER BY ContactId";
             return requestDB.GetDataTable(cmd);
         }
 
@@ -50,7 +53,7 @@ namespace Cleaning_Scheduler_Interface
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandText = "SELECT * FROM " + CONTACTTABLE + " WHERE Email = @Email";
             cmd.Parameters.AddWithValue("@Email", email.ToLower());
-            return requestDB.GetID(cmd, "ContactID");
+            return requestDB.GetID(cmd, "ContactId");
         }
 
         public int AddIfNewContact(String email)
@@ -60,11 +63,50 @@ namespace Cleaning_Scheduler_Interface
             if (iD == 0)
             {
                 OleDbCommand cmd = new OleDbCommand();
-                cmd.CommandText = "Insert into " + CONTACTTABLE + " ([EMail]) values (@email)";
+                cmd.CommandText = "INSERT INTO " + CONTACTTABLE + " ([EMail]) VALUES (@email)";
                 cmd.Parameters.AddWithValue("@email", email.ToLower());
                 iD = requestDB.AddReturnID(cmd);
             }
             return iD;
         }
+
+#endregion
+#region Column
+
+        public DataTable GetColumnsTable()
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandText = "SELECT * FROM " + COLUMNTABLE + " ORDER BY Type";
+            return requestDB.GetDataTable(cmd);
+        }
+
+        public int AddColumnRequest(ColumnRequest request)
+        {
+            {
+                String now = DateTime.Now.ToShortDateString();
+                OleDbCommand cmd = new OleDbCommand();
+                if (request.mContactId < 1)
+                {
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot]) " +
+                                      "VALUES (@requestor, @requestedOn, @type, @comment, @serial, @hot)";                   
+                }
+                else
+                {
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @type, @comment,  @serial, @hot)";
+                    cmd.Parameters.AddWithValue("@contact", request.mContactId);
+                }
+                    cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
+                    cmd.Parameters.AddWithValue("@requestedOn", now);
+                    cmd.Parameters.AddWithValue("@type", request.mType);
+                    cmd.Parameters.AddWithValue("@comment", request.mComment);
+                    cmd.Parameters.AddWithValue("@serial", request.mSerial);
+                    cmd.Parameters.AddWithValue("@hot", request.mHot);                    
+                return requestDB.AddReturnID(cmd);
+            }
+        }
+
+#endregion
+
     }
 }

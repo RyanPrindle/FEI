@@ -15,7 +15,8 @@ namespace Cleaning_Scheduler_Interface
         #region Properties
 
         
-        private PartRequestForm requestForm;
+        private PartRequestForm requestPartForm;
+        private ColumnRequestForm requestColumnForm;
         private AdminForm adminForm;
         private ProgressBarForm progressForm;
         private DataTable requestTable = new DataTable();
@@ -111,7 +112,6 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVCompleted.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVCompleted.Columns["RequestID"].Visible = false;
-            dGVCompleted.Columns["Started"].Visible = false;
             dGVCompleted.Columns["Type1"].Visible = false;
             dGVCompleted.Columns["Type2"].Visible = false;
             dGVCompleted.Columns["Type3"].Visible = false;
@@ -142,6 +142,13 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.Columns["Serial Number"].Visible = false;
             dGVInProcess.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVInProcess.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (DataGridViewRow row in dGVInProcess.Rows)
+            {
+                if ((bool)row.Cells["Hot"].Value == true)
+                {
+                    row.Cells["Hot"].Style.BackColor = Color.Red;
+                }
+            }
             dGVInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVInProcess.ResumeLayout();
         }
@@ -163,6 +170,13 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["Serial Number"].Visible = false;
             dGVQueue.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVQueue.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (DataGridViewRow row in dGVQueue.Rows)
+            {
+                if ((bool)row.Cells["Hot"].Value == true)
+                {
+                    row.Cells["Hot"].Style.BackColor = Color.Red;
+                }
+            }
             dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVQueue.ResumeLayout();
         }
@@ -170,9 +184,9 @@ namespace Cleaning_Scheduler_Interface
         #region Event Handlers
 
         private void btnPartRequest_Click(object sender, EventArgs e)
-        {  //Open Cleaning Request Form
-            requestForm = new PartRequestForm();
-            requestForm.ShowDialog();
+        {  //Open Part Cleaning Request Form
+            requestPartForm = new PartRequestForm();
+            requestPartForm.ShowDialog();
         }
 
         private void btnCleaning_Click(object sender, EventArgs e)
@@ -186,6 +200,14 @@ namespace Cleaning_Scheduler_Interface
         }
 
         #endregion
+
+        private void buttonColumnRequest_Click(object sender, EventArgs e)
+        {
+            //Open Column Cleaning Request Form
+            requestColumnForm = new ColumnRequestForm();
+            requestColumnForm.ShowDialog();
+            FillDataTables();
+        }
 
     }
 }

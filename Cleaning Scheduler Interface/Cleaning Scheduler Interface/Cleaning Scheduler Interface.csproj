@@ -55,6 +55,12 @@
     <Compile Include="Classes\RequestsDB.cs" />
     <Compile Include="Classes\ContactInputBox.cs" />
     <Compile Include="Classes\DB.cs" />
+    <Compile Include="Forms\ColumnRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnRequestForm.Designer.cs">
+      <DependentUpon>ColumnRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PartRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\adminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColumnRequestForm.resx">
+      <DependentUpon>ColumnRequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PartRequestForm.resx">
       <DependentUpon>PartRequestForm.cs</DependentUpon>

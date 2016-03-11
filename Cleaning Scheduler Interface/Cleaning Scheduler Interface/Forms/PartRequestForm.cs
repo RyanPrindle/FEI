@@ -110,21 +110,6 @@ namespace Cleaning_Scheduler_Interface
 
         private void LoadPartsComboBox()
         {
-            DataRow rowPheonix = mPartTable.NewRow();
-            rowPheonix[@"P/N"] = "Ion Pheonix Column";
-            DataRow rowTHawk = mPartTable.NewRow();
-            rowTHawk[@"P/N"] = "Ion Tomahawk Column";
-            DataRow rowSideWinder = mPartTable.NewRow();
-            rowSideWinder[@"P/N"] = "Ion SideWinder Column";
-            DataRow rowMagnum = mPartTable.NewRow();
-            rowMagnum[@"P/N"] = "Ion Magnum Column";
-            DataRow rowLegacy = mPartTable.NewRow();
-            rowLegacy[@"P/N"] = "Ion Legacy Column";
-            mPartTable.Rows.InsertAt(rowLegacy, 0);
-            mPartTable.Rows.InsertAt(rowMagnum, 0);
-            mPartTable.Rows.InsertAt(rowSideWinder, 0);
-            mPartTable.Rows.InsertAt(rowTHawk, 0);
-            mPartTable.Rows.InsertAt(rowPheonix, 0);
             comboBoxPart.DataSource = mPartTable;
             comboBoxPart.DisplayMember = @"P/N";
             comboBoxPart.ValueMember = @"P/N";
@@ -187,7 +172,6 @@ namespace Cleaning_Scheduler_Interface
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-       
+        }       
     }
 }
