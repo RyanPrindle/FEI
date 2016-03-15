@@ -33,7 +33,15 @@ namespace Cleaning_Scheduler_Interface
            
         }
 
-        #region BackGround Workers
+        private void AddContact(String email)
+        {
+            mProgress = new ProgressBarForm();
+            bGWorkerAddContact = new BackgroundWorker();
+            bGWorkerAddContact.DoWork += new DoWorkEventHandler(bGWorkerAddContact_DoWork);
+            bGWorkerAddContact.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerAddContact_RunWorkerCompleted);
+            bGWorkerAddContact.RunWorkerAsync(email);
+            mProgress.ShowDialog();
+        }
 
         private void GetDataTables()
         {
@@ -44,6 +52,9 @@ namespace Cleaning_Scheduler_Interface
             bGWorkerGetData.RunWorkerAsync();
             mProgress.ShowDialog();
         }
+
+        #region BackGround Workers
+
         private void bGWorkerGetData_DoWork(object sender, DoWorkEventArgs e)
         {
             RequestsDB requestDB = new RequestsDB();
@@ -66,15 +77,6 @@ namespace Cleaning_Scheduler_Interface
         }
 
 
-        private void AddContact(String email)
-        {
-            mProgress = new ProgressBarForm();
-            bGWorkerAddContact = new BackgroundWorker();
-            bGWorkerAddContact.DoWork += new DoWorkEventHandler(bGWorkerAddContact_DoWork);
-            bGWorkerAddContact.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerAddContact_RunWorkerCompleted);
-            bGWorkerAddContact.RunWorkerAsync(email);
-            mProgress.ShowDialog();
-        }
         private void bGWorkerAddContact_DoWork(object sender, DoWorkEventArgs e)
         {
             String email = (String)e.Argument;

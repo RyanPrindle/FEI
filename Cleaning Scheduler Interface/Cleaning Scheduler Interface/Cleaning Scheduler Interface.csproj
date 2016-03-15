@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ColumnRequest.cs" />
-    <Compile Include="Classes\PartRequest.cs" />
     <Compile Include="Forms\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +80,7 @@
     <Compile Include="Forms\ProgressBarForm.Designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\PartRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\adminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
