@@ -10,7 +10,7 @@ namespace Cleaning_Scheduler_Interface
 {
     class PartsDB
     {
-        private String cleaningPartsDBFullPath = @"\\hlsql01\Beamtech\Summit\Summit_Parts_Cleaning_be.mdb";
+        private static String cleaningPartsDBFullPath = @"\\hlsql01\Beamtech\Summit\Summit_Parts_Cleaning_be.mdb";
         private DB partDB;
 
         public PartsDB()

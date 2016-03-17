@@ -17,14 +17,13 @@ namespace Cleaning_Scheduler_Interface
         private DataGridViewCellStyle dGVStyle = new DataGridViewCellStyle();
         private ProgressBarForm progressForm;
 
-
         public AdminForm( List<DataTable> tables)
         {
             InitializeComponent();
             mQueueTable = tables[0];
             mInProcessTable = tables[1];
         }
-
+       
         private void AdminForm_Load(object sender, EventArgs e)
         {
             LoadDGV();
@@ -33,8 +32,8 @@ namespace Cleaning_Scheduler_Interface
         private void LoadDGV()
         {
             SetDGVStyle();
-            InitQueueDGV();
-            InitInProcessDGV();
+            InitDGVAdminQueue();
+            InitDGVAdminInProcess();
         }
 
         private void SetDGVStyle()
@@ -42,10 +41,10 @@ namespace Cleaning_Scheduler_Interface
             dGVStyle.Padding = new Padding(3);
             dGVStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dGVStyle.ForeColor = SystemColors.ControlText;
-            dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;
+            dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;            
         }
 
-        private void InitQueueDGV()
+        private void InitDGVAdminQueue()
         {
             DataGridViewButtonColumn btnStartColumn = new DataGridViewButtonColumn();
             btnStartColumn.Name = "Start";
@@ -65,18 +64,30 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminQueue.Columns["RequestID"].Visible = false;
             dGVAdminQueue.Columns["Finished"].Visible = false;
             dGVAdminQueue.Columns["Started"].Visible = false;
-            dGVAdminQueue.Columns["Type1"].Visible = false;
-            dGVAdminQueue.Columns["Type2"].Visible = false;
-            dGVAdminQueue.Columns["Type3"].Visible = false;
-            dGVAdminQueue.Columns["Type4"].Visible = false;
+            dGVAdminQueue.Columns["Decon"].Visible = false;
+            dGVAdminQueue.Columns["Dishwasher"].Visible = false;
+            dGVAdminQueue.Columns["WaterPik"].Visible = false;
+            dGVAdminQueue.Columns["Ultrasound"].Visible = false;
+            dGVAdminQueue.Columns["Crest10"].Visible = false;
+            dGVAdminQueue.Columns["Crest20"].Visible = false;
+            dGVAdminQueue.Columns["CrestLong"].Visible = false;
             dGVAdminQueue.Columns["Serial Number"].Visible = false;
-            dGVAdminQueue.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dGVAdminQueue.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dGVAdminQueue.Columns["Contact"].Visible = false;
+            dGVAdminQueue.Columns["Comment"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (DataGridViewRow row in dGVAdminQueue.Rows)
+            {
+                if ((bool)row.Cells["Hot"].Value == true)
+                {
+                    row.Cells["Hot"].Style.BackColor = Color.Red;
+                    row.Cells["Hot"].Style.SelectionBackColor = Color.Red;
+                }
+            }
             dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminQueue.ResumeLayout();
         }
 
-        private void InitInProcessDGV()
+        private void InitDGVAdminInProcess()
         {
             DataGridViewButtonColumn btnFinishColumn = new DataGridViewButtonColumn();
             btnFinishColumn.Name = "Finish";
@@ -96,14 +107,26 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminInProcess.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVAdminInProcess.Columns["RequestID"].Visible = false;
             dGVAdminInProcess.Columns["Finished"].Visible = false;
-            dGVAdminInProcess.Columns["Type1"].Visible = false;
-            dGVAdminInProcess.Columns["Type2"].Visible = false;
-            dGVAdminInProcess.Columns["Type3"].Visible = false;
-            dGVAdminInProcess.Columns["Type4"].Visible = false;
+            dGVAdminInProcess.Columns["Decon"].Visible = false;
+            dGVAdminInProcess.Columns["Dishwasher"].Visible = false;
+            dGVAdminInProcess.Columns["WaterPik"].Visible = false;
+            dGVAdminInProcess.Columns["Ultrasound"].Visible = false;
+            dGVAdminInProcess.Columns["Crest10"].Visible = false;
+            dGVAdminInProcess.Columns["Crest20"].Visible = false;
+            dGVAdminInProcess.Columns["CrestLong"].Visible = false;
             dGVAdminInProcess.Columns["Serial Number"].Visible = false;
-            dGVAdminInProcess.Columns["Contact"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dGVAdminInProcess.Columns["Part Number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dGVAdminInProcess.Columns["Contact"].Visible = false;
+            dGVAdminInProcess.Columns["Comment"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (DataGridViewRow row in dGVAdminInProcess.Rows)
+            {
+                if ((bool)row.Cells["Hot"].Value == true)
+                {
+                    row.Cells["Hot"].Style.BackColor = Color.Red;
+                    row.Cells["Hot"].Style.SelectionBackColor = Color.Red;
+                }
+            }
             dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically; 
             dGVAdminInProcess.ResumeLayout();
         }
 
@@ -117,7 +140,6 @@ namespace Cleaning_Scheduler_Interface
                 if (e.ColumnIndex == dGVAdminQueue.Columns["Start"].Index)
                 {
                     //Start Cleaning
-                    MessageBox.Show("Start Cleaning " + reqId);
                     StartCleaning(reqId);
                 }
             }
@@ -134,9 +156,19 @@ namespace Cleaning_Scheduler_Interface
                 {
                     //Finish Cleaning
                     MessageBox.Show("Finish Cleaning " + reqId);
+                    FinishCleaning(reqId);
                 }
             }
         }
+
+        private void FinishCleaning(int reqId)
+        {
+            FinishForm finishForm = new FinishForm(reqId);
+            finishForm.ShowDialog();
+            RefreshTables();
+        }
+
+#region BackGround Workers
 
         private void StartCleaning(int reqId)
         {
@@ -144,19 +176,85 @@ namespace Cleaning_Scheduler_Interface
             bGWStartCleaning = new BackgroundWorker();
             bGWStartCleaning.DoWork += new DoWorkEventHandler(bGWStartCleaning_DoWork);
             bGWStartCleaning.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWStartCleaning_RunWorkerCompleted);
-            bGWStartCleaning.RunWorkerAsync();
+            bGWStartCleaning.RunWorkerAsync(reqId);
             progressForm.ShowDialog();
         }
 
         private void bGWStartCleaning_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            int reqId = (int)e.Argument;
+            RequestsDB requestsDB = new RequestsDB();
+            e.Result = requestsDB.StartCleaning(reqId);
         }
 
         private void bGWStartCleaning_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            int result = (int)e.Result;
+            progressForm.Close();
+            if (result == 0)
+            {
+                MessageBox.Show("Request not started.");
+            }
+            RefreshTables();
+        }
 
+        public void RefreshTables()
+        {
+            progressForm = new ProgressBarForm();
+            bGWorkerRefreshTables = new BackgroundWorker();
+            bGWorkerRefreshTables.DoWork += new DoWorkEventHandler(bGWorkerRefreshTables_DoWork);
+            bGWorkerRefreshTables.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerRefreshTables_RunWorkerCompleted);
+            bGWorkerRefreshTables.RunWorkerAsync();
+            progressForm.ShowDialog();
+        }
+
+        private void bGWorkerRefreshTables_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RequestsDB cleaningRequestsDB = new RequestsDB();
+            DataTable requestTable = cleaningRequestsDB.GetRequestsTable();
+            DataTable contactTable = cleaningRequestsDB.GetContactTable();
+            List<DataTable> tables = new List<DataTable>();
+            tables.Add(requestTable);
+            tables.Add(contactTable);
+            e.Result = tables;
+        }
+
+        private void bGWorkerRefreshTables_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<DataTable> dBTable = (List<DataTable>)e.Result;
+            dBTable[0].Columns["RequestedOn"].ColumnName = "Requested";
+            dBTable[0].Columns["StartedOn"].ColumnName = "Started";
+            dBTable[0].Columns["FinishedOn"].ColumnName = "Finished";
+            dBTable[0].Columns["SerialNumber"].ColumnName = "Serial Number";
+            dBTable[0].Columns["PartNumber"].ColumnName = "Part Number";
+
+            mQueueTable = dBTable[0].Clone();
+            mInProcessTable = dBTable[0].Clone();
+            foreach (DataRow row in dBTable[0].Rows)
+            {
+                if (DBNull.Value.Equals(row["Started"]))
+                {
+                    mQueueTable.Rows.Add(row.ItemArray);
+                }
+                else if (DBNull.Value.Equals(row["Finished"]))
+                {
+                    mInProcessTable.Rows.Add(row.ItemArray);
+                }
+            }
+            LoadDGV();
             progressForm.Close();
         }
+
+#endregion
+        
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEditRequests_Click(object sender, EventArgs e)
+        {
+
+        }               
     }
 }

@@ -23,21 +23,20 @@ namespace Cleaning_Scheduler_Interface
         public DataTable GetRequestsTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = //"SELECT * FROM " + REQUESTTABLE;
-            "SELECT RequestTable.RequestID, RequestTable.Requestor, RequestTable.RequestedOn, " +
-            "RequestTable.StartedOn, RequestTable.FinishedOn, RequestTable.PartNumber, RequestTable.Type1, " +
-            "RequestTable.Type2, RequestTable.Type3, RequestTable.Type4, ContactTable.Email, " +
-            "RequestTable.SerialNumber, RequestTable.PO, RequestTable.Hot FROM ContactTable " +
-            "INNER JOIN RequestTable ON ContactTable.ContactId = RequestTable.Contact";
+            cmd.CommandText = "SELECT * FROM " + REQUESTTABLE;
             return requestDB.GetDataTable(cmd);
         }
 
-        public DataTable GetQueuedRequests()
+        public int StartCleaning(int reqId)
         {
+            String now = DateTime.Now.ToString();
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + REQUESTTABLE + " WHERE StartedOn = dbNull";
-            return requestDB.GetDataTable(cmd);
+            cmd.CommandText = "UPDATE " + REQUESTTABLE + " SET [StartedOn] = @date WHERE [RequestID] = @reqID";
+            cmd.Parameters.AddWithValue("@date", now);
+            cmd.Parameters.AddWithValue("@reqID", reqId);
+            return requestDB.Update(cmd);
         }
+             
 
 #region Contact
 
@@ -70,6 +69,25 @@ namespace Cleaning_Scheduler_Interface
             return iD;
         }
 
+        public int FinishClean(CleanProcedure reqCleanProcedures)
+        {
+            String now = DateTime.Now.ToString();
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandText = "UPDATE " + REQUESTTABLE + " SET [FinishedOn] = @date, [Decon] = @decon, [Dishwasher] = @dishwasher, " + 
+            "[WaterPik] = @waterpik, [Ultrasound] = @ultrasound, [Crest10] = @crest10, [Crest20] = @crest20, [CrestLong] = @crestlong WHERE [RequestID] = @reqID";
+            cmd.Parameters.AddWithValue("@date", now);
+            cmd.Parameters.AddWithValue("@decon", reqCleanProcedures.mDecon);
+            cmd.Parameters.AddWithValue("@dishwasher", reqCleanProcedures.mDishWasher);
+            cmd.Parameters.AddWithValue("@waterpik", reqCleanProcedures.mWaterPik);
+            cmd.Parameters.AddWithValue("@ultrasound", reqCleanProcedures.mUltrasonic);
+            cmd.Parameters.AddWithValue("@crest10", reqCleanProcedures.mCrest10);
+            cmd.Parameters.AddWithValue("@crest20", reqCleanProcedures.mCrest20);
+            cmd.Parameters.AddWithValue("@crestlong", reqCleanProcedures.mCrestLong);
+
+            cmd.Parameters.AddWithValue("@reqID", reqCleanProcedures.mReqID);
+            return requestDB.Update(cmd);
+        }
+
 #endregion
 #region Column
 
@@ -83,17 +101,17 @@ namespace Cleaning_Scheduler_Interface
         public int AddColumnRequest(ColumnRequest request)
         {
             {
-                String now = DateTime.Now.ToShortDateString();
+                String now = DateTime.Now.ToString();
                 OleDbCommand cmd = new OleDbCommand();
                 if (request.mContactId < 1)
                 {
-                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot]) " +
-                                      "VALUES (@requestor, @requestedOn, @type, @comment, @serial, @hot)";                   
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot], [Quantity]) " +
+                                      "VALUES (@requestor, @requestedOn, @type, @comment, @serial, @hot, @qty)";                   
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot]) " +
-                                      "VALUES (@contact, @requestor, @requestedOn, @type, @comment,  @serial, @hot)";
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Comment], [SerialNumber], [Hot], [Quantity]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @type, @comment,  @serial, @hot, @qty)";
                     cmd.Parameters.AddWithValue("@contact", request.mContactId);
                 }
                     cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
@@ -101,12 +119,47 @@ namespace Cleaning_Scheduler_Interface
                     cmd.Parameters.AddWithValue("@type", request.mType);
                     cmd.Parameters.AddWithValue("@comment", request.mComment);
                     cmd.Parameters.AddWithValue("@serial", request.mSerial);
-                    cmd.Parameters.AddWithValue("@hot", request.mHot);                    
+                    cmd.Parameters.AddWithValue("@hot", request.mHot);
+                    cmd.Parameters.AddWithValue("@qty", request.mQty);                   
                 return requestDB.AddReturnID(cmd);
             }
         }
 
 #endregion
-
+#region Part
+        public int AddPartRequest(PartRequest request)
+        {
+            {
+                String now = DateTime.Now.ToString();
+                OleDbCommand cmd = new OleDbCommand();
+                if (request.mContactId < 1)
+                {
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Comment], [PO], [SerialNumber], " +
+                                      "[Quantity], [Hot], [Site], [CleanRoomReady], [Cage], [Bulk]) " +
+                                      "VALUES (@requestor, @requestedOn, @type, @comment, @serial, @hot)";
+                }
+                else
+                {
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Comment], [PO], [SerialNumber], " +
+                                      "[Quantity], [Hot], [Site], [CleanRoomReady], [Cage], [Bulk]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @part, @comment, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk)";
+                    cmd.Parameters.AddWithValue("@contact", request.mContactId);
+                }
+                cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
+                cmd.Parameters.AddWithValue("@requestedOn", now);
+                cmd.Parameters.AddWithValue("@part", request.mPart);
+                cmd.Parameters.AddWithValue("@comment", request.mComment);
+                cmd.Parameters.AddWithValue("@po", request.mPO);
+                cmd.Parameters.AddWithValue("@serial", request.mSerial);
+                cmd.Parameters.AddWithValue("@qty", request.mQty);
+                cmd.Parameters.AddWithValue("@hot", request.mHot);
+                cmd.Parameters.AddWithValue("@site", request.mSite);
+                cmd.Parameters.AddWithValue("@cr", request.mCleanroomReady);
+                cmd.Parameters.AddWithValue("@cage", request.mCage);
+                cmd.Parameters.AddWithValue("@bulk", request.mBulk);
+                return requestDB.AddReturnID(cmd);
+            }
+        }
+#endregion
     }
 }

@@ -203,6 +203,9 @@
             this.comboBoxSite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSite.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSite.FormattingEnabled = true;
+            this.comboBoxSite.Items.AddRange(new object[] {
+            "30",
+            "50"});
             this.comboBoxSite.Location = new System.Drawing.Point(445, 294);
             this.comboBoxSite.Name = "comboBoxSite";
             this.comboBoxSite.Size = new System.Drawing.Size(73, 33);

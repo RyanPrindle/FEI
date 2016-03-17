@@ -152,5 +152,25 @@ namespace Cleaning_Scheduler_Interface
             closeDB();
             return iD;
         }
+
+        public int Update(OleDbCommand cmd)
+        {
+            int iD = 0;
+            try
+            {
+                if (openDB())
+                {
+                    dBOleDbCmd = cmd;
+                    dBOleDbCmd.Connection = dBOleConnection;
+                    iD = dBOleDbCmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            closeDB();
+            return iD;
+        }
     }
 }

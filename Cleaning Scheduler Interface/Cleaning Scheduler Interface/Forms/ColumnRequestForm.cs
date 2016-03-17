@@ -240,6 +240,7 @@ namespace Cleaning_Scheduler_Interface
             }
 
             mColumnRequest.mType = comboBoxColumn.SelectedValue.ToString();
+            mColumnRequest.mQty = 1;
 
             if (submittable)
             {

@@ -12,8 +12,8 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class PartRequestForm : Form
     {
-        private const String ADDCONTACT = "Add new contact...";
-        private const String OPTIONAL = "Optional...";
+        private static String ADDCONTACT = "Add new contact...";
+        private static String OPTIONAL = "Optional...";
         private PartRequest mPartRequest;
         private DataTable mPartTable;
         private DataTable mRequestsTable;
@@ -30,7 +30,7 @@ namespace Cleaning_Scheduler_Interface
         private void PartRequestForm_Load(object sender, EventArgs e)
         {
             GetDataTables();
-
+            comboBoxSite.SelectedIndex = 0;
         }
 
         private void GetDataTables()
@@ -108,12 +108,19 @@ namespace Cleaning_Scheduler_Interface
 
         private void bGWorkerAddPart_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            RequestsDB requestsDB = new RequestsDB();
+            e.Result = requestsDB.AddPartRequest((PartRequest)e.Argument);
         }
 
         private void bGWorkerAddPart_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            int result = (int)e.Result;
+            mProgress.Close();
+            if (result == 0)
+            {
+                MessageBox.Show("Request not created.");
+            }
+            this.Close();
         }
 
         #endregion
@@ -190,48 +197,16 @@ namespace Cleaning_Scheduler_Interface
             errorProviderPartRequestForm.Clear();
             mPartRequest = new PartRequest();
             bool submittable = true;
+
             if (textBoxRequestor.Text == "" || textBoxRequestor.Text == null)
             {
                 errorProviderPartRequestForm.SetError(textBoxRequestor, "Enter Your Name");
+                textBoxRequestor.Focus();
                 submittable = false;
             }
             else
             {
                 mPartRequest.mRequestor = textBoxRequestor.Text.Trim().ToString();
-            }
-
-            if (comboBoxContact.SelectedIndex == 0)
-            {
-                mPartRequest.mContactId = 1;
-            }
-            else
-            {
-                mPartRequest.mContactId = int.Parse(comboBoxContact.SelectedValue.ToString());
-            }
-            if (!(textBoxComment.Text.ToString() == "" || textBoxComment.Text.ToString() == null))
-            {
-                mPartRequest.mComment = textBoxComment.Text.Trim().ToString();
-            }
-            else
-            {
-                mPartRequest.mComment = "";
-            }
-            if (!(textBoxSerialNumber.Text.Trim().ToString() == "" || textBoxSerialNumber.Text.Trim().ToString() == null))
-            {
-                mPartRequest.mSerial = textBoxSerialNumber.Text.Trim().ToString();
-            }
-            else
-            {
-                mPartRequest.mSerial = "";
-            }
-
-            if (checkBoxHot.Checked)
-            {
-                mPartRequest.mHot = true;
-            }
-            else
-            {
-                mPartRequest.mHot = false;
             }
 
             if (comboBoxPart.SelectedIndex == 0)
@@ -252,6 +227,55 @@ namespace Cleaning_Scheduler_Interface
                     mPartRequest.mPart = comboBoxPart.SelectedValue.ToString();
                 }
             }
+
+            if (!(textBoxComment.Text.ToString() == "" || textBoxComment.Text.ToString() == null))
+            {
+                mPartRequest.mComment = textBoxComment.Text.Trim().ToString();
+            }
+            else
+            {
+                mPartRequest.mComment = "";
+            }
+
+            if (comboBoxContact.SelectedIndex == 0)
+            {
+                mPartRequest.mContactId = 1;
+            }
+            else
+            {
+                mPartRequest.mContactId = int.Parse(comboBoxContact.SelectedValue.ToString());
+            }
+
+            if (!(textBoxPO.Text.ToString() == "" || textBoxPO.Text.ToString() == null))
+            {
+                mPartRequest.mPO = textBoxPO.Text.Trim().ToString();
+            }
+            else
+            {
+                mPartRequest.mPO = "";
+            }
+            if (!(textBoxSerialNumber.Text.Trim().ToString() == "" || textBoxSerialNumber.Text.Trim().ToString() == null))
+            {
+                mPartRequest.mSerial = textBoxSerialNumber.Text.Trim().ToString();
+            }
+            else
+            {
+                mPartRequest.mSerial = "";
+            }
+
+            mPartRequest.mQty = (int)numericUpDownQty.Value;
+
+            if (checkBoxHot.Checked)
+            {
+                mPartRequest.mHot = true;
+            }
+            else
+            {
+                mPartRequest.mHot = false;
+            }
+
+            mPartRequest.mSite = comboBoxSite.SelectedItem.ToString();
+
             if (radioButtonCRYes.Checked == true || radioButtonCRNo.Checked == true)
             {
                 if (radioButtonCRYes.Checked == true)
@@ -284,16 +308,17 @@ namespace Cleaning_Scheduler_Interface
                 errorProviderPartRequestForm.SetError(groupBoxCR, "Yes or No");
                 submittable = false;
             }
+
             if (submittable)
             {
                 AddPart(mPartRequest);
             }
-
         }
 
         private void radioButtonCRYes_Click(object sender, EventArgs e)
         {
             groupBoxSL.Enabled = true;
+            groupBoxSL.Focus();
         }
 
         private void radioButtonCRNo_Click(object sender, EventArgs e)

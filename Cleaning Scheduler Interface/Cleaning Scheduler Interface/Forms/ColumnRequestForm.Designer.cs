@@ -122,9 +122,11 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.comboBoxColumn);
             this.panel2.Location = new System.Drawing.Point(10, 13);
+            this.panel2.MaximumSize = new System.Drawing.Size(541, 266);
+            this.panel2.MinimumSize = new System.Drawing.Size(541, 266);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(541, 244);
+            this.panel2.Size = new System.Drawing.Size(541, 266);
             this.panel2.TabIndex = 48;
             // 
             // textBoxColumnSerial
