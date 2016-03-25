@@ -230,11 +230,11 @@ namespace Cleaning_Scheduler_Interface
 
             if (!(textBoxComment.Text.ToString() == "" || textBoxComment.Text.ToString() == null))
             {
-                mPartRequest.mComment = textBoxComment.Text.Trim().ToString();
+                mPartRequest.mInstructions = textBoxComment.Text.Trim().ToString();
             }
             else
             {
-                mPartRequest.mComment = "";
+                mPartRequest.mInstructions = "";
             }
 
             if (comboBoxContact.SelectedIndex == 0)

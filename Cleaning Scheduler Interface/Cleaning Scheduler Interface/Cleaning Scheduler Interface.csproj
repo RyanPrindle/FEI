@@ -45,11 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ColumnRequest.cs" />
-    <Compile Include="CleanProcedure.cs" />
-    <Compile Include="FinishForm.cs">
+    <Compile Include="Classes\CleanProcedure.cs" />
+    <Compile Include="Forms\FinishForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FinishForm.Designer.cs">
+    <Compile Include="Forms\FinishForm.Designer.cs">
       <DependentUpon>FinishForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AdminForm.cs">
@@ -88,8 +88,14 @@
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\PartRequest.cs" />
+    <Compile Include="Forms\HistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistoryForm.Designer.cs">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FinishForm.resx">
+    <EmbeddedResource Include="Forms\FinishForm.resx">
       <DependentUpon>FinishForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\adminForm.resx">
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgressBarForm.resx">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistoryForm.resx">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

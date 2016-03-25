@@ -316,11 +316,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(107, 88);
+            this.label4.Location = new System.Drawing.Point(16, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 25);
+            this.label4.Size = new System.Drawing.Size(188, 25);
             this.label4.TabIndex = 38;
-            this.label4.Text = "Comment:";
+            this.label4.Text = "Special Instructions:";
             // 
             // textBoxComment
             // 

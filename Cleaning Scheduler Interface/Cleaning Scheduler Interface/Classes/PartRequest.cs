@@ -12,7 +12,7 @@ namespace Cleaning_Scheduler_Interface
         public String mPart { get; set; }
         public int mContactId { get; set; }
         public int mQty { get; set; }
-        public String mComment { get; set; }
+        public String mInstructions { get; set; }
         public String mSerial { get; set; }
         public String mSite { get; set; }
         public String mPO { get; set; }

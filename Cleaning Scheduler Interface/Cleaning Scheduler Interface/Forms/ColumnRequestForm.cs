@@ -214,11 +214,11 @@ namespace Cleaning_Scheduler_Interface
 
             if (!(textBoxComment.Text.ToString() == "" || textBoxComment.Text.ToString() == null))
             {
-                mColumnRequest.mComment = textBoxComment.Text.Trim().ToString();
+                mColumnRequest.mInstructions = textBoxComment.Text.Trim().ToString();
             }
             else
             {
-                mColumnRequest.mComment = "";
+                mColumnRequest.mInstructions = "";
             }
 
             if (!(textBoxColumnSerial.Text.Trim().ToString() == "" || textBoxColumnSerial.Text.Trim().ToString() == null))
