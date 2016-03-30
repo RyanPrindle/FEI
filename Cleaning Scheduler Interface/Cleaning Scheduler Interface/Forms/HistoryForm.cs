@@ -102,6 +102,7 @@ namespace Cleaning_Scheduler_Interface
         private void InitHistoryDGV()
         {
             dGVHistory.SuspendLayout();
+            dGVHistory.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVHistory.DataSource = null;
             dGVHistory.Rows.Clear();
             dGVHistory.Columns.Clear();
@@ -109,6 +110,7 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.Columns["RequestID"].Visible = false;
             dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
             FormatDGVChecksAndHot(dGVHistory);
+            dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
             dGVHistory.ResumeLayout();
         }
 
@@ -294,6 +296,29 @@ namespace Cleaning_Scheduler_Interface
         private void comboBoxRequestor_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterTableByRequestor();
+        }
+
+        private void dGV_MouseWheel(object sender, MouseEventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            int currentIndex = dGV.FirstDisplayedScrollingRowIndex;
+            int scrollLines = SystemInformation.MouseWheelScrollLines;
+
+            if (e.Delta > 0)
+            {
+                dGV.FirstDisplayedScrollingRowIndex = Math.Max(0, currentIndex - scrollLines);
+            }
+            else if (e.Delta < 0)
+            {
+                if (dGV.Rows.Count > (currentIndex + scrollLines))
+                    dGV.FirstDisplayedScrollingRowIndex = currentIndex + scrollLines;
+            }
+        }
+
+        private void dGV_MouseEnter(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            dGV.Focus();
         }
     }
 }

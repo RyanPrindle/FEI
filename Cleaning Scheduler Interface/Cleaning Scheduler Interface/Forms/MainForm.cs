@@ -29,14 +29,15 @@ namespace Cleaning_Scheduler_Interface
         #endregion
 
         public MainForm()
-        {
+        {         
             InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            FormatButtons();
             FillDataTables();            
-        }
+        }              
 
         private void FillDataTables()
         {
@@ -115,6 +116,7 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.DataSource = null;
             dGVCompleted.Rows.Clear();
             dGVCompleted.Columns.Clear();
+            dGVCompleted.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVCompleted.DataSource = finishedTable;
             dGVCompleted.DefaultCellStyle.Font = dGVFont;
             dGVCompleted.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -128,15 +130,16 @@ namespace Cleaning_Scheduler_Interface
             FormatDGVChecksAndHot(dGVCompleted);
             dGVCompleted.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVCompleted.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dGVCompleted.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVCompleted.ResumeLayout();
         }
-
         
         private void InitInProcessDGV()
         {
             DataGridViewTextBoxColumn checkedColumn = new DataGridViewTextBoxColumn();
 
             dGVInProcess.SuspendLayout();
+            dGVInProcess.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVInProcess.DataSource = inProcessTable;
             dGVInProcess.DefaultCellStyle.Font = dGVFont;
             dGVInProcess.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -161,12 +164,14 @@ namespace Cleaning_Scheduler_Interface
             FormatDGVChecksAndHot(dGVInProcess);
             dGVInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dGVInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVInProcess.ResumeLayout();
         }
 
         private void InitQueueDGV()
         {
             dGVQueue.SuspendLayout();
+            dGVQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVQueue.DataSource = queueTable;
             dGVQueue.DefaultCellStyle.Font = dGVFont;
             dGVQueue.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -188,6 +193,7 @@ namespace Cleaning_Scheduler_Interface
             FormatDGVChecksAndHot(dGVQueue);
             dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dGVQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVQueue.ResumeLayout();
         }
 
@@ -234,7 +240,7 @@ namespace Cleaning_Scheduler_Interface
 #region Event Handlers
 
         private void btnPartRequest_Click(object sender, EventArgs e)
-        {  //Open Part Cleaning Request Form
+        { 
             requestPartForm = new PartRequestForm();
             requestPartForm.ShowDialog();
             FillDataTables();
@@ -242,7 +248,6 @@ namespace Cleaning_Scheduler_Interface
         
         private void buttonColumnRequest_Click(object sender, EventArgs e)
         {
-            //Open Column Cleaning Request Form
             requestColumnForm = new ColumnRequestForm();
             requestColumnForm.ShowDialog();
             FillDataTables();
@@ -250,7 +255,6 @@ namespace Cleaning_Scheduler_Interface
 
         private void btnCleaning_Click(object sender, EventArgs e)
         {
-            //Open Cleaning Area Operator Interface
             adminForm = new AdminForm();
             adminForm.ShowDialog();
             FillDataTables();
@@ -260,7 +264,52 @@ namespace Cleaning_Scheduler_Interface
         {
             this.Close();
         }
+
+        private void dGV_MouseWheel(object sender, MouseEventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            int currentIndex = dGV.FirstDisplayedScrollingRowIndex;
+            int scrollLines = SystemInformation.MouseWheelScrollLines;
+
+            if (e.Delta > 0)
+            {
+                dGV.FirstDisplayedScrollingRowIndex = Math.Max(0, currentIndex - scrollLines);
+            }
+            else if (e.Delta < 0)
+            {
+                if (dGV.Rows.Count > (currentIndex + scrollLines))
+                    dGV.FirstDisplayedScrollingRowIndex = currentIndex + scrollLines;
+            }
+        }
+
+        private void dGV_MouseEnter(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            dGV.Focus();
+        }
+        
 #endregion
 
+        private void FormatButtons()
+        { 
+            int padding = 10;
+            int btnHeight = (splitContainer1.Height - (btnQuit.Height + pnlLegend.Height + 4*padding)) / 3;
+            int btnWidth = (splitContainer1.Panel2.Width + 10 - (2 * padding));
+            btnColumnRequest.Location = new Point(padding - 10, btnColumnRequest.Location.Y);
+            btnColumnRequest.Height = btnHeight;
+            btnColumnRequest.Width = btnWidth;
+            btnPartRequest.Location = new Point(padding - 10, btnHeight + padding);
+            btnPartRequest.Height = btnHeight;
+            btnPartRequest.Width = btnWidth;
+            pnlLegend.Location = new Point(padding - 10, 2 * (btnHeight + padding));
+            pnlLegend.Width = btnWidth;
+            btnCleaning.Location = new Point(padding - 10, 2 * (btnHeight + padding) + pnlLegend.Height + padding);
+            btnCleaning.Height = btnHeight;
+            btnCleaning.Width = btnWidth;
+            btnQuit.Location = new Point(padding - 10, btnCleaning.Location.Y + btnHeight + padding);
+            btnQuit.Width = btnWidth;
+        }
+    
+    
     }
 }

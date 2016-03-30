@@ -36,6 +36,14 @@ namespace Cleaning_Scheduler_Interface
             return requestDB.GetDataTable(cmd);
         }
 
+        public DataTable GetRequest(int reqID)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandText = "SELECT * FROM " + REQUEST + " WHERE [RequestID] = @reqID";
+            cmd.Parameters.AddWithValue("@reqID", reqID);
+            return requestDB.GetDataTable(cmd);
+        }
+
         public int StartCleaning(int reqId)
         {
             String now = DateTime.Now.ToString();

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +28,16 @@ namespace Cleaning_Scheduler_Interface
        
         private void AdminForm_Load(object sender, EventArgs e)
         {
+            int pad = 10;
+            int btnWidth = (pnlButtons.Width - 4 * pad) / 3;
+            btnEditRequests.Location = new Point(pad - 1, pad);
+            btnEditRequests.Width = btnWidth;
+            btnHistory.Location = new Point(btnWidth + 2*pad - 1,pad);
+            btnHistory.Width = btnWidth;
+            btnHistory.Visible = true;
+            btnExit.Location = new Point(2 * btnWidth + 3 * pad - 1, pad);
+            btnExit.Width = btnWidth;
+
             RefreshTables();
         }
 
@@ -59,6 +70,7 @@ namespace Cleaning_Scheduler_Interface
             btnDeleteColumn.UseColumnTextForButtonValue = true;
 
             dGVAdminQueue.SuspendLayout();
+            dGVAdminQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);            
             dGVAdminQueue.DataSource = mQueueTable;
             dGVAdminQueue.DefaultCellStyle = dGVStyle;
 
@@ -107,6 +119,7 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
             FormatDGVChecksAndHot(dGVAdminQueue);
+            dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
             dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminQueue.ResumeLayout();
@@ -132,6 +145,8 @@ namespace Cleaning_Scheduler_Interface
 
 
             dGVAdminInProcess.SuspendLayout();
+            dGVAdminInProcess.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
+            
             dGVAdminInProcess.DataSource = mQueueTable;
             dGVAdminInProcess.DefaultCellStyle = dGVStyle;
 
@@ -187,6 +202,7 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
             FormatDGVChecksAndHot(dGVAdminInProcess);
+            dGVAdminInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically; 
             dGVAdminInProcess.ResumeLayout();
@@ -246,9 +262,9 @@ namespace Cleaning_Scheduler_Interface
                         StartCleaning(reqId);
                     }
                 }
-                if (dGVAdminQueue.Columns.Contains("Edit"))
+                if (dGVAdminQueue.Columns.Contains("Delete"))
                 {
-                    if (e.ColumnIndex == dGVAdminQueue.Columns["Edit"].Index)
+                    if (e.ColumnIndex == dGVAdminQueue.Columns["Delete"].Index)
                     {
                         //Start Cleaning
                         DeleteRequest(reqId);
@@ -450,12 +466,27 @@ namespace Cleaning_Scheduler_Interface
             HistoryForm historyForm = new HistoryForm();
             historyForm.ShowDialog();
         }
-
-        private void EditEnableDGVAdminQueue()
+        private void dGV_MouseWheel(object sender, MouseEventArgs e)
         {
-            
+            DataGridView dGV = (DataGridView)sender;
+            int currentIndex = dGV.FirstDisplayedScrollingRowIndex;
+            int scrollLines = SystemInformation.MouseWheelScrollLines;
+
+            if (e.Delta > 0)
+            {
+                dGV.FirstDisplayedScrollingRowIndex = Math.Max(0, currentIndex - scrollLines);
+            }
+            else if (e.Delta < 0)
+            {
+                if (dGV.Rows.Count > (currentIndex + scrollLines))
+                    dGV.FirstDisplayedScrollingRowIndex = currentIndex + scrollLines;
+            }
         }
 
-       
+        private void dGV_MouseEnter(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            dGV.Focus();
+        }
     }
 }

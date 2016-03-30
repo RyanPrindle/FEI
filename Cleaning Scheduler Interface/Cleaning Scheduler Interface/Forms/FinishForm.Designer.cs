@@ -218,6 +218,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FinishForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cleaning Process Logging";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
