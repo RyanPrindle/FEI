@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dTPickerRequestedFrom = new System.Windows.Forms.DateTimePicker();
             this.dTPickerRequestedTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             this.dTPickerRequestedFrom.Name = "dTPickerRequestedFrom";
             this.dTPickerRequestedFrom.Size = new System.Drawing.Size(155, 29);
             this.dTPickerRequestedFrom.TabIndex = 1;
-            this.dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerRequestedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // dTPickerRequestedTo
@@ -86,7 +86,7 @@
             this.dTPickerRequestedTo.Name = "dTPickerRequestedTo";
             this.dTPickerRequestedTo.Size = new System.Drawing.Size(155, 29);
             this.dTPickerRequestedTo.TabIndex = 2;
-            this.dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerRequestedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label2
@@ -130,8 +130,7 @@
             // 
             this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(128)))));
-            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonExit.BackColor = System.Drawing.Color.Silver;
             this.buttonExit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExit.ForeColor = System.Drawing.Color.Black;
             this.buttonExit.Location = new System.Drawing.Point(1392, 506);
@@ -210,7 +209,7 @@
             this.comboBoxRequestor.Name = "comboBoxRequestor";
             this.comboBoxRequestor.Size = new System.Drawing.Size(211, 31);
             this.comboBoxRequestor.TabIndex = 34;
-            this.comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxRequestor_SelectedIndexChanged);
+            this.comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
             // 
             // groupBox3
             // 
@@ -237,7 +236,7 @@
             this.dTPickerStartedFrom.Name = "dTPickerStartedFrom";
             this.dTPickerStartedFrom.Size = new System.Drawing.Size(155, 29);
             this.dTPickerStartedFrom.TabIndex = 1;
-            this.dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerStartedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label8
@@ -259,7 +258,7 @@
             this.dTPickerStartedTo.Name = "dTPickerStartedTo";
             this.dTPickerStartedTo.Size = new System.Drawing.Size(155, 29);
             this.dTPickerStartedTo.TabIndex = 2;
-            this.dTPickerStartedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerStartedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerStartedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label9
@@ -301,7 +300,7 @@
             this.dTPickerFinishedFrom.Name = "dTPickerFinishedFrom";
             this.dTPickerFinishedFrom.Size = new System.Drawing.Size(155, 29);
             this.dTPickerFinishedFrom.TabIndex = 1;
-            this.dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerFinishedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label6
@@ -323,7 +322,7 @@
             this.dTPickerFinishedTo.Name = "dTPickerFinishedTo";
             this.dTPickerFinishedTo.Size = new System.Drawing.Size(155, 29);
             this.dTPickerFinishedTo.TabIndex = 2;
-            this.dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            this.dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             this.dTPickerFinishedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label7
@@ -363,7 +362,7 @@
             this.comboBoxPartFilter.Name = "comboBoxPartFilter";
             this.comboBoxPartFilter.Size = new System.Drawing.Size(212, 31);
             this.comboBoxPartFilter.TabIndex = 30;
-            this.comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilterPart_SelectedIndexChanged);
+            this.comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
             // 
             // label4
             // 
@@ -403,31 +402,31 @@
             this.dGVHistory.AllowUserToDeleteRows = false;
             this.dGVHistory.AllowUserToOrderColumns = true;
             this.dGVHistory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
-            this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVHistory.Location = new System.Drawing.Point(12, 37);
             this.dGVHistory.Name = "dGVHistory";
             this.dGVHistory.RowHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVHistory.RowTemplate.Height = 45;
             this.dGVHistory.Size = new System.Drawing.Size(1542, 407);
             this.dGVHistory.TabIndex = 27;

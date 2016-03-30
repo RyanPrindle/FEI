@@ -311,7 +311,7 @@ namespace Cleaning_Scheduler_Interface
             btnQuit.Width = btnWidth;
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)/4;
-            splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2 / 5;
+            splitContainer3.SplitterDistance = (splitContainer3.Height - padding)/ 3;
         }
     
     

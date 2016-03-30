@@ -53,22 +53,22 @@ namespace Cleaning_Scheduler_Interface
         {
             mHistoryTable = new DataTable();
             mHistoryTable = (DataTable)e.Result;
-            ResetFilteredTable();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
             ResetDateFilters();
+            InitHistoryDGV();
+            LoadPartComboBox();
+            LoadRequestorComboBox();            
             InitHistoryDGV();
             mProgress.Close();
         }
 
         private void ResetDateFilters()
         {
-            dTPickerRequestedFrom.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerRequestedTo.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerStartedFrom.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerStartedTo.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerFinishedFrom.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerFinishedTo.ValueChanged -= new System.EventHandler(this.dTPicker_ValueChanged);
+            dTPickerRequestedFrom.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerRequestedTo.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerStartedFrom.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerStartedTo.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerFinishedFrom.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerFinishedTo.ValueChanged -= new System.EventHandler(this.Filter_ValueChanged);
 
             dTPickerRequestedFrom.MinDate = beginDate;
             dTPickerRequestedFrom.Value = DateTime.Today.AddDays(-30).Date;
@@ -91,12 +91,12 @@ namespace Cleaning_Scheduler_Interface
             dTPickerFinishedTo.MinDate = dTPickerFinishedFrom.Value;
             dTPickerFinishedFrom.MaxDate = dTPickerFinishedTo.Value;
 
-            dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerStartedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
-            dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
+            dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerStartedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
+            dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
         }
 
         private void InitHistoryDGV()
@@ -106,6 +106,8 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.DataSource = null;
             dGVHistory.Rows.Clear();
             dGVHistory.Columns.Clear();
+            mFilteredTable = new DataTable();
+            mFilteredTable = mHistoryTable.Copy();
             dGVHistory.DataSource = mFilteredTable;
             dGVHistory.Columns["RequestID"].Visible = false;
             dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -153,13 +155,8 @@ namespace Cleaning_Scheduler_Interface
             }
         }
 
-        private void ResetFilteredTable()
-        {
-            mFilteredTable = new DataTable();
-            mFilteredTable = mHistoryTable.Copy();
-        }
 
-        private void FilterTableByDate()
+        private void FilterTable()
         {
             dGVHistory.SuspendLayout();
             int rowCount = mFilteredTable.Rows.Count;
@@ -176,10 +173,26 @@ namespace Cleaning_Scheduler_Interface
                     row--;
                     rowCount--;
                 }
+                if (!(comboBoxPartFilter.SelectedItem.ToString() == "All"))
+                {
+                    if (!(mFilteredTable.Rows[row].Field<string>("PartNumber").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
+                    {
+                        mFilteredTable.Rows.RemoveAt(row);
+                        row--;
+                        rowCount--;
+                    }
+                }
+                if (!(comboBoxRequestor.SelectedItem.ToString() == "All"))
+                {
+                    if (!(mFilteredTable.Rows[row].Field<string>("Requestor").ToString() == comboBoxRequestor.SelectedItem.ToString()))
+                    {
+                        mFilteredTable.Rows.RemoveAt(row);
+                            row--;
+                            rowCount--;
+                    }
+                }
             }          
             dGVHistory.ResumeLayout();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
         }
 
         private void FilterTableByPart()
@@ -199,7 +212,6 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
             dGVHistory.ResumeLayout();
-            LoadRequestorComboBox();
         }
 
         private void FilterTableByRequestor()
@@ -219,12 +231,11 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
             dGVHistory.ResumeLayout();
-            LoadPartComboBox();
         }
-        
+
         private void LoadRequestorComboBox()
         {
-            comboBoxRequestor.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilterPart_SelectedIndexChanged);           
+            comboBoxRequestor.SelectedIndexChanged -= new System.EventHandler(this.Filter_ValueChanged);
             List<String> requestorList = new List<string>();
             requestorList.Add("All");
             foreach (DataRow row in mFilteredTable.Rows)
@@ -235,12 +246,12 @@ namespace Cleaning_Scheduler_Interface
             }
             mRequestorList = requestorList.Distinct().ToList();
             comboBoxRequestor.DataSource = mRequestorList;
-            comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilterPart_SelectedIndexChanged);  
+            comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
         }
 
         private void LoadPartComboBox()
         {
-            comboBoxPartFilter.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilterPart_SelectedIndexChanged);
+            comboBoxPartFilter.SelectedIndexChanged -= new System.EventHandler(this.Filter_ValueChanged);
             List<String> partList = new List<string>();
             partList.Add("All");
             foreach (DataRow row in mFilteredTable.Rows)
@@ -251,31 +262,21 @@ namespace Cleaning_Scheduler_Interface
             }
             mPartList = partList.Distinct().ToList();
             comboBoxPartFilter.DataSource = mPartList;
-            comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilterPart_SelectedIndexChanged);           
+            comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
         }
 
-        private void dTPicker_ValueChanged(object sender, EventArgs e)
+        private void Filter_ValueChanged(object sender, EventArgs e)
         {
-            dTPickerFinishedFrom.MaxDate = dTPickerFinishedTo.Value;
-            dTPickerFinishedFrom.MinDate = dTPickerFinishedFrom.Value;
-            dTPickerFinishedTo.MinDate = dTPickerFinishedFrom.Value;
-            dTPickerRequestedFrom.MaxDate = dTPickerRequestedTo.Value;
-            dTPickerRequestedFrom.MinDate = dTPickerRequestedFrom.Value;
-            dTPickerRequestedTo.MinDate = dTPickerRequestedFrom.Value;
-            dTPickerStartedFrom.MaxDate = dTPickerStartedTo.Value;
-            dTPickerStartedFrom.MinDate = dTPickerStartedFrom.Value;
-            dTPickerStartedTo.MinDate = dTPickerStartedFrom.Value;
-
-            FilterTableByDate();
-        }
+            InitHistoryDGV();
+            FilterTable();
+        }   
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
             ResetDateFilters();
-            ResetFilteredTable();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
             InitHistoryDGV();
+            comboBoxPartFilter.SelectedIndex = 0;
+            comboBoxRequestor.SelectedIndex = 0;
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -286,16 +287,6 @@ namespace Cleaning_Scheduler_Interface
         private void dTPicker_Enter(object sender, EventArgs e)
         {
             buttonReset.Focus();
-        }
-
-        private void comboBoxFilterPart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FilterTableByPart();
-        }
-
-        private void comboBoxRequestor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FilterTableByRequestor();
         }
 
         private void dGV_MouseWheel(object sender, MouseEventArgs e)
