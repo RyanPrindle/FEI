@@ -49,14 +49,14 @@
             this.dGVInProcess = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.dGVCompleted = new System.Windows.Forms.DataGridView();
+            this.pnlLegend = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnQuit = new System.Windows.Forms.Button();
             this.btnColumnRequest = new System.Windows.Forms.Button();
             this.btnCleaning = new System.Windows.Forms.Button();
             this.btnPartRequest = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
-            this.pnlLegend = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -95,7 +95,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnCleaning);
             this.splitContainer1.Panel2.Controls.Add(this.btnPartRequest);
             this.splitContainer1.Size = new System.Drawing.Size(929, 452);
-            this.splitContainer1.SplitterDistance = 708;
+            this.splitContainer1.SplitterDistance = 702;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -119,7 +119,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(142)))));
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(708, 452);
+            this.splitContainer2.Size = new System.Drawing.Size(702, 452);
             this.splitContainer2.SplitterDistance = 149;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
@@ -163,7 +163,7 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(202)))));
             this.dGVQueue.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVQueue.RowTemplate.Height = 40;
-            this.dGVQueue.Size = new System.Drawing.Size(679, 95);
+            this.dGVQueue.Size = new System.Drawing.Size(673, 95);
             this.dGVQueue.TabIndex = 0;
             this.dGVQueue.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
@@ -195,12 +195,12 @@
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.splitContainer3.Panel2.Controls.Add(this.label3);
             this.splitContainer3.Panel2.Controls.Add(this.dGVCompleted);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer3.Size = new System.Drawing.Size(708, 293);
-            this.splitContainer3.SplitterDistance = 120;
+            this.splitContainer3.Size = new System.Drawing.Size(702, 293);
+            this.splitContainer3.SplitterDistance = 119;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -251,7 +251,7 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
             this.dGVInProcess.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVInProcess.RowTemplate.Height = 40;
-            this.dGVInProcess.Size = new System.Drawing.Size(678, 65);
+            this.dGVInProcess.Size = new System.Drawing.Size(672, 64);
             this.dGVInProcess.TabIndex = 3;
             this.dGVInProcess.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
@@ -271,8 +271,8 @@
             this.dGVCompleted.AllowUserToDeleteRows = false;
             this.dGVCompleted.AllowUserToResizeColumns = false;
             this.dGVCompleted.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
             this.dGVCompleted.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dGVCompleted.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -299,13 +299,45 @@
             this.dGVCompleted.Name = "dGVCompleted";
             this.dGVCompleted.ReadOnly = true;
             this.dGVCompleted.RowHeadersVisible = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(222)))), ((int)(((byte)(222)))));
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
             this.dGVCompleted.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVCompleted.RowTemplate.Height = 40;
-            this.dGVCompleted.Size = new System.Drawing.Size(678, 108);
+            this.dGVCompleted.Size = new System.Drawing.Size(672, 103);
             this.dGVCompleted.TabIndex = 3;
             this.dGVCompleted.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
+            // 
+            // pnlLegend
+            // 
+            this.pnlLegend.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlLegend.Controls.Add(this.label4);
+            this.pnlLegend.Controls.Add(this.panel1);
+            this.pnlLegend.Location = new System.Drawing.Point(5, 230);
+            this.pnlLegend.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlLegend.Name = "pnlLegend";
+            this.pnlLegend.Size = new System.Drawing.Size(201, 66);
+            this.pnlLegend.TabIndex = 22;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(53, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 25);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "High Priority";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Location = new System.Drawing.Point(17, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(30, 25);
+            this.panel1.TabIndex = 0;
             // 
             // btnQuit
             // 
@@ -373,38 +405,6 @@
             this.btnPartRequest.Text = "Request Part Cleaning";
             this.btnPartRequest.UseVisualStyleBackColor = true;
             this.btnPartRequest.Click += new System.EventHandler(this.btnPartRequest_Click);
-            // 
-            // pnlLegend
-            // 
-            this.pnlLegend.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlLegend.Controls.Add(this.label4);
-            this.pnlLegend.Controls.Add(this.panel1);
-            this.pnlLegend.Location = new System.Drawing.Point(5, 230);
-            this.pnlLegend.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlLegend.Name = "pnlLegend";
-            this.pnlLegend.Size = new System.Drawing.Size(201, 66);
-            this.pnlLegend.TabIndex = 22;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.Location = new System.Drawing.Point(17, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(30, 25);
-            this.panel1.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(53, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 25);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "High Priority";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 

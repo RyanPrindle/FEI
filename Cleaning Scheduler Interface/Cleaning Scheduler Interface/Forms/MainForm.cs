@@ -35,8 +35,9 @@ namespace Cleaning_Scheduler_Interface
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            FormatButtons();
-            FillDataTables();            
+            FormatLayout();
+            FillDataTables(); 
+            
         }              
 
         private void FillDataTables()
@@ -290,7 +291,7 @@ namespace Cleaning_Scheduler_Interface
         
 #endregion
 
-        private void FormatButtons()
+        private void FormatLayout()
         { 
             int padding = 10;
             int btnHeight = (splitContainer1.Height - (btnQuit.Height + pnlLegend.Height + 4*padding)) / 3;
@@ -308,6 +309,9 @@ namespace Cleaning_Scheduler_Interface
             btnCleaning.Width = btnWidth;
             btnQuit.Location = new Point(padding - 10, btnCleaning.Location.Y + btnHeight + padding);
             btnQuit.Width = btnWidth;
+            splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
+            splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)/4;
+            splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2 / 5;
         }
     
     
