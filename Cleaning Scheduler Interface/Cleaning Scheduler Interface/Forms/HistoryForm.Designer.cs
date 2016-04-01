@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dTPickerRequestedFrom = new System.Windows.Forms.DateTimePicker();
             this.dTPickerRequestedTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonExit = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.panelFilter = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.comboBoxRequestor = new System.Windows.Forms.ComboBox();
@@ -58,8 +58,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dGVHistory = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonQuit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelFilter.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -93,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 30);
+            this.label2.Location = new System.Drawing.Point(9, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 23);
             this.label2.TabIndex = 5;
@@ -103,7 +104,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 64);
+            this.label1.Location = new System.Drawing.Point(15, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 23);
             this.label1.TabIndex = 6;
@@ -118,7 +119,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
             this.groupBox1.Size = new System.Drawing.Size(238, 112);
@@ -126,41 +127,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Date Requested";
             // 
-            // buttonExit
+            // buttonBack
             // 
-            this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonExit.BackColor = System.Drawing.Color.Silver;
-            this.buttonExit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExit.ForeColor = System.Drawing.Color.Black;
-            this.buttonExit.Location = new System.Drawing.Point(1392, 506);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(5);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Padding = new System.Windows.Forms.Padding(10);
-            this.buttonExit.Size = new System.Drawing.Size(187, 136);
-            this.buttonExit.TabIndex = 23;
-            this.buttonExit.Text = "Return to Admin Control";
-            this.buttonExit.UseVisualStyleBackColor = false;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.ForeColor = System.Drawing.Color.Black;
+            this.buttonBack.Location = new System.Drawing.Point(1394, 506);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(187, 87);
+            this.buttonBack.TabIndex = 23;
+            this.buttonBack.Text = "Return to Admin Control";
+            this.buttonBack.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelFilter
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.buttonReset);
-            this.panel1.Controls.Add(this.comboBoxRequestor);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.comboBoxPartFilter);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(10, 506);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(1374, 136);
-            this.panel1.TabIndex = 24;
+            this.panelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(255)))));
+            this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelFilter.Controls.Add(this.label10);
+            this.panelFilter.Controls.Add(this.buttonReset);
+            this.panelFilter.Controls.Add(this.comboBoxRequestor);
+            this.panelFilter.Controls.Add(this.groupBox3);
+            this.panelFilter.Controls.Add(this.groupBox2);
+            this.panelFilter.Controls.Add(this.label5);
+            this.panelFilter.Controls.Add(this.comboBoxPartFilter);
+            this.panelFilter.Controls.Add(this.groupBox1);
+            this.panelFilter.Location = new System.Drawing.Point(10, 506);
+            this.panelFilter.Name = "panelFilter";
+            this.panelFilter.Padding = new System.Windows.Forms.Padding(10);
+            this.panelFilter.Size = new System.Drawing.Size(1374, 136);
+            this.panelFilter.TabIndex = 24;
             // 
             // label10
             // 
@@ -181,7 +180,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(128)))));
-            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonReset.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReset.ForeColor = System.Drawing.Color.Black;
             this.buttonReset.Location = new System.Drawing.Point(1101, 10);
@@ -191,7 +190,7 @@
             this.buttonReset.Size = new System.Drawing.Size(259, 112);
             this.buttonReset.TabIndex = 25;
             this.buttonReset.Text = "Reset";
-            this.buttonReset.UseVisualStyleBackColor = false;
+            this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // comboBoxRequestor
@@ -214,6 +213,7 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
             this.groupBox3.Controls.Add(this.dTPickerStartedFrom);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.dTPickerStartedTo);
@@ -393,7 +393,7 @@
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(1571, 456);
+            this.panel2.Size = new System.Drawing.Size(1571, 462);
             this.panel2.TabIndex = 25;
             // 
             // dGVHistory
@@ -402,33 +402,33 @@
             this.dGVHistory.AllowUserToDeleteRows = false;
             this.dGVHistory.AllowUserToOrderColumns = true;
             this.dGVHistory.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
-            this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dGVHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVHistory.Location = new System.Drawing.Point(12, 37);
             this.dGVHistory.Name = "dGVHistory";
             this.dGVHistory.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVHistory.RowTemplate.Height = 45;
-            this.dGVHistory.Size = new System.Drawing.Size(1542, 407);
+            this.dGVHistory.Size = new System.Drawing.Size(1542, 408);
             this.dGVHistory.TabIndex = 27;
             this.dGVHistory.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
@@ -442,6 +442,21 @@
             this.label3.TabIndex = 26;
             this.label3.Text = "Completed Requests";
             // 
+            // buttonQuit
+            // 
+            this.buttonQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonQuit.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonQuit.ForeColor = System.Drawing.Color.Black;
+            this.buttonQuit.Location = new System.Drawing.Point(1394, 607);
+            this.buttonQuit.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonQuit.Name = "buttonQuit";
+            this.buttonQuit.Size = new System.Drawing.Size(187, 35);
+            this.buttonQuit.TabIndex = 26;
+            this.buttonQuit.Text = "Quit";
+            this.buttonQuit.UseVisualStyleBackColor = false;
+            // 
             // HistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -449,10 +464,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1594, 655);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.buttonExit);
+            this.Controls.Add(this.panelFilter);
+            this.Controls.Add(this.buttonBack);
             this.Name = "HistoryForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "HistoryForm";
@@ -460,8 +476,8 @@
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelFilter.ResumeLayout(false);
+            this.panelFilter.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -481,8 +497,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonExit;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxPartFilter;
@@ -503,5 +519,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dGVHistory;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonQuit;
     }
 }

@@ -28,6 +28,9 @@ namespace Cleaning_Scheduler_Interface
 
         private void HistoryForm_Load(object sender, EventArgs e)
         {
+            buttonBack.DialogResult = DialogResult.OK;
+            buttonQuit.DialogResult = DialogResult.Cancel;
+            buttonBack.Height = panelFilter.Height - (buttonQuit.Height + 10);
             GetHistoryData();
         }
 
@@ -277,11 +280,6 @@ namespace Cleaning_Scheduler_Interface
             InitHistoryDGV();
             comboBoxPartFilter.SelectedIndex = 0;
             comboBoxRequestor.SelectedIndex = 0;
-        }
-
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
         
         private void dTPicker_Enter(object sender, EventArgs e)

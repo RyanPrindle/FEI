@@ -29,14 +29,20 @@ namespace Cleaning_Scheduler_Interface
         private void AdminForm_Load(object sender, EventArgs e)
         {
             int pad = 10;
-            int btnWidth = (pnlButtons.Width - 4 * pad) / 3;
+            pnlButtons.Width = pnlControl.Width = (splitContainer1.Panel1.Width - pad) / 2;
+            pnlControl.Location = new Point(pnlButtons.Width + 2 * pad, pnlButtons.Location.Y);
+            int btnWidth = (pnlButtons.Width - 3 * pad) / 2;
             btnEditRequests.Location = new Point(pad - 1, pad);
             btnEditRequests.Width = btnWidth;
             btnHistory.Location = new Point(btnWidth + 2*pad - 1,pad);
             btnHistory.Width = btnWidth;
             btnHistory.Visible = true;
-            btnExit.Location = new Point(2 * btnWidth + 3 * pad - 1, pad);
-            btnExit.Width = btnWidth;
+            btnReturn.Location = new Point(pad - 1, pad);
+            btnReturn.Width = btnWidth;
+            btnReturn.DialogResult = DialogResult.OK;
+            btnQuit.Location = new Point(btnWidth + 2 * pad, pad);
+            btnQuit.Width = btnWidth;
+            btnQuit.DialogResult = DialogResult.Cancel;
 
             RefreshTables();
         }
@@ -130,7 +136,7 @@ namespace Cleaning_Scheduler_Interface
             DataGridViewButtonColumn btnFinishColumn = new DataGridViewButtonColumn();
             btnFinishColumn.Name = "Finish";
             btnFinishColumn.HeaderText = "Finish";
-            btnFinishColumn.Text = "Done";
+            btnFinishColumn.Text = "Complete";
             btnFinishColumn.UseColumnTextForButtonValue = true;
             DataGridViewButtonColumn btnDeleteColumn = new DataGridViewButtonColumn();
             btnDeleteColumn.Name = "Delete";
@@ -446,6 +452,7 @@ namespace Cleaning_Scheduler_Interface
         
         private void buttonExit_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -464,8 +471,12 @@ namespace Cleaning_Scheduler_Interface
         {
             //Open History Screen
             HistoryForm historyForm = new HistoryForm();
-            historyForm.ShowDialog();
+            if (historyForm.ShowDialog() == DialogResult.Cancel)
+            {
+                this.Close();
+            }
         }
+
         private void dGV_MouseWheel(object sender, MouseEventArgs e)
         {
             DataGridView dGV = (DataGridView)sender;
@@ -488,5 +499,6 @@ namespace Cleaning_Scheduler_Interface
             DataGridView dGV = (DataGridView)sender;
             dGV.Focus();
         }
+
     }
 }

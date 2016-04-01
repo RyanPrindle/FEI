@@ -257,8 +257,10 @@ namespace Cleaning_Scheduler_Interface
         private void btnCleaning_Click(object sender, EventArgs e)
         {
             adminForm = new AdminForm();
-            adminForm.ShowDialog();
-            FillDataTables();
+            if (adminForm.ShowDialog() == DialogResult.Cancel)
+            {
+                this.Close();
+            }
         }
 
         private void buttonQuit_Click(object sender, EventArgs e)
@@ -294,21 +296,18 @@ namespace Cleaning_Scheduler_Interface
         private void FormatLayout()
         { 
             int padding = 10;
-            int btnHeight = (splitContainer1.Height - (btnQuit.Height + pnlLegend.Height + 4*padding)) / 3;
-            int btnWidth = (splitContainer1.Panel2.Width + 10 - (2 * padding));
-            btnColumnRequest.Location = new Point(padding - 10, btnColumnRequest.Location.Y);
+            int btnHeight = 75;
+            int btnWidth = (pnlButtons.Width - (2 * padding));
+            btnColumnRequest.Location = new Point(padding -1, padding);
             btnColumnRequest.Height = btnHeight;
             btnColumnRequest.Width = btnWidth;
-            btnPartRequest.Location = new Point(padding - 10, btnHeight + padding);
+            btnPartRequest.Location = new Point(padding -1, btnHeight + 2*padding);
             btnPartRequest.Height = btnHeight;
             btnPartRequest.Width = btnWidth;
-            pnlLegend.Location = new Point(padding - 10, 2 * (btnHeight + padding));
-            pnlLegend.Width = btnWidth;
-            btnCleaning.Location = new Point(padding - 10, 2 * (btnHeight + padding) + pnlLegend.Height + padding);
-            btnCleaning.Height = btnHeight;
-            btnCleaning.Width = btnWidth;
-            btnQuit.Location = new Point(padding - 10, btnCleaning.Location.Y + btnHeight + padding);
-            btnQuit.Width = btnWidth;
+            pnlButtons.Height = splitContainer1.Height - btnCleaning.Height - btnQuit.Height - 2 * padding;
+            btnCleaning.Location = new Point(0, btnQuit.Location.Y - btnCleaning.Height - padding);
+            btnCleaning.Width = pnlButtons.Width;
+            btnQuit.Width = pnlButtons.Width;
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)/4;
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding)/ 3;
