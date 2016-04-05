@@ -20,12 +20,16 @@ namespace Cleaning_Scheduler_Interface
         private DataGridViewCellStyle dGVStyle = new DataGridViewCellStyle();
         private ProgressBarForm progressForm;
         private bool edit = false;
+        private MainForm mParent;
+        private Image infoIcon;
 
-        public AdminForm()
+        public AdminForm(MainForm parent)
         {
             InitializeComponent();
+            mParent = parent;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;          
         }
-       
+
         private void AdminForm_Load(object sender, EventArgs e)
         {
             int pad = 10;
@@ -34,7 +38,7 @@ namespace Cleaning_Scheduler_Interface
             int btnWidth = (pnlButtons.Width - 3 * pad) / 2;
             btnEditRequests.Location = new Point(pad - 1, pad);
             btnEditRequests.Width = btnWidth;
-            btnHistory.Location = new Point(btnWidth + 2*pad - 1,pad);
+            btnHistory.Location = new Point(btnWidth + 2 * pad - 1, pad);
             btnHistory.Width = btnWidth;
             btnHistory.Visible = true;
             btnReturn.Location = new Point(pad - 1, pad);
@@ -56,10 +60,32 @@ namespace Cleaning_Scheduler_Interface
 
         private void SetDGVStyle()
         {
-            dGVStyle.Padding = new Padding(3);
             dGVStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dGVStyle.ForeColor = SystemColors.ControlText;
-            dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;            
+            dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;
+            dGVStyle.Font = mParent.dGVRowFont;
+        }
+
+        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            
+            if (e.ColumnIndex == 0 && e.RowIndex > -1)
+            {
+                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
+
+                infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
+                DataGridView dGV = (DataGridView)sender;
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
+                //e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
+                //e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
+                e.PaintContent(e.CellBounds);
+                
+                if (e.ColumnIndex == dGV.Columns["Info"].Index)
+                {
+                    e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
+                }
+                e.Handled = true;
+            }
         }
 
         private void InitDGVAdminQueue()
@@ -74,33 +100,30 @@ namespace Cleaning_Scheduler_Interface
             btnDeleteColumn.HeaderText = "Remove";
             btnDeleteColumn.Text = "Delete";
             btnDeleteColumn.UseColumnTextForButtonValue = true;
+            btnDeleteColumn.FlatStyle = FlatStyle.Standard;
 
             dGVAdminQueue.SuspendLayout();
-            dGVAdminQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);            
+            dGVAdminQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVAdminQueue.DataSource = mQueueTable;
             dGVAdminQueue.DefaultCellStyle = dGVStyle;
+            dGVAdminQueue.ColumnHeadersDefaultCellStyle.Font = mParent.dGVHeaderFont;
 
             if (edit)
             {
                 if (dGVAdminQueue.Columns.Contains("Start"))
-                {
                     dGVAdminQueue.Columns.Remove("Start");
-                }
+
                 if (!(dGVAdminQueue.Columns.Contains("Delete")))
-                {
-                    dGVAdminQueue.Columns.Insert(0,btnDeleteColumn);
-                }
+                    dGVAdminQueue.Columns.Add(btnDeleteColumn);
             }
             else
             {
                 if (dGVAdminQueue.Columns.Contains("Delete"))
-                {
                     dGVAdminQueue.Columns.Remove("Delete");
-                } 
+
                 if (!(dGVAdminQueue.Columns.Contains("Start")))
-                {
                     dGVAdminQueue.Columns.Add(btnStartColumn);
-                }
+
             }
             dGVAdminQueue.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVAdminQueue.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -124,8 +147,8 @@ namespace Cleaning_Scheduler_Interface
                     row.DefaultCellStyle.SelectionBackColor = Color.Red;
                 }
             }
-            FormatDGVChecksAndHot(dGVAdminQueue);
-            dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
+            mParent.FormatDGVCheckboxInfoHot(dGVAdminQueue);
+            dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminQueue.ResumeLayout();
@@ -152,11 +175,12 @@ namespace Cleaning_Scheduler_Interface
 
             dGVAdminInProcess.SuspendLayout();
             dGVAdminInProcess.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
-            
+
             dGVAdminInProcess.DataSource = mQueueTable;
             dGVAdminInProcess.DefaultCellStyle = dGVStyle;
+            dGVAdminInProcess.ColumnHeadersDefaultCellStyle.Font = mParent.dGVHeaderFont;
 
-            
+
             if (edit)
             {
                 if (dGVAdminInProcess.Columns.Contains("Finish"))
@@ -165,8 +189,8 @@ namespace Cleaning_Scheduler_Interface
                 }
                 if (!(dGVAdminInProcess.Columns.Contains("Delete")))
                 {
-                    dGVAdminInProcess.Columns.Insert(0, btnDeleteColumn);
-                    dGVAdminInProcess.Columns.Insert(1, btnBackupColumn);
+                    dGVAdminInProcess.Columns.Add(btnBackupColumn);
+                    dGVAdminInProcess.Columns.Add(btnDeleteColumn);
                 }
             }
             else
@@ -197,7 +221,7 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminInProcess.Columns["Bulk"].Visible = false;
             dGVAdminInProcess.Columns["Cage"].Visible = false;
             dGVAdminInProcess.Columns["Site"].Visible = false;
-            dGVAdminInProcess.Columns["CleanRoomReady"].Visible = false;
+            dGVAdminInProcess.Columns["CR Ready"].Visible = false;
             dGVAdminInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewRow row in dGVAdminInProcess.Rows)
             {
@@ -207,51 +231,14 @@ namespace Cleaning_Scheduler_Interface
                     row.DefaultCellStyle.SelectionBackColor = Color.Red;
                 }
             }
-            FormatDGVChecksAndHot(dGVAdminInProcess);
+            mParent.FormatDGVCheckboxInfoHot(dGVAdminInProcess);
             dGVAdminInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
-            dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically; 
+            dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminInProcess.ResumeLayout();
         }
 
-        private void FormatDGVChecksAndHot(DataGridView dGV)
-        {
-            DataGridViewTextBoxColumn col;
-            foreach (String column in boolNames)
-            {
-                col = new DataGridViewTextBoxColumn();
-                col.Name = column + "X";
-                col.HeaderText = column;
-                if (dGV.Columns.Contains(column) && (dGV.Columns[column].Visible == true))
-                {
-                    dGV.Columns.Insert(dGV.Columns[column].Index, col);
-                    dGV.Columns[column].Visible = false;
-                }
-            }
-            foreach (DataGridViewRow row in dGV.Rows)
-            {
-                if ((bool)row.Cells["Hot"].Value == true)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Red;
-                }
-                foreach (String column in boolNames)
-                {
-                    if (dGV.Columns.Contains(column + "X"))
-                    {
-                        if ((bool)row.Cells[column].Value == true)
-                        {
-                            row.Cells[column + "X"].Value = "X";
-                            row.Cells[column + "X"].Style.Font = dGVCheckboxSize;
-                        }
-                        else
-                        {
-                            row.Cells[column + "X"].Value = "-";
-                        }
-                    }
-                }
-            }
-        }
+        #region Event Handlers
 
         private void dGVAdminQueue_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -321,7 +308,59 @@ namespace Cleaning_Scheduler_Interface
             RefreshTables();
         }
 
-#region BackGround Workers
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnEditRequests_Click(object sender, EventArgs e)
+        {
+            edit = !edit;
+            InitDGVAdminQueue();
+            InitDGVAdminInProcess();
+            if (edit)
+                btnEditRequests.Text = "Done Editing";
+            else
+                btnEditRequests.Text = "Edit Requests";
+        }
+
+        private void buttonHistory_Click(object sender, EventArgs e)
+        {
+            //Open History Screen
+            HistoryForm historyForm = new HistoryForm(mParent);
+            if (historyForm.ShowDialog() == DialogResult.Cancel)
+            {
+                this.Close();
+            }
+        }
+
+        private void dGV_MouseWheel(object sender, MouseEventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            int currentIndex = dGV.FirstDisplayedScrollingRowIndex;
+            int scrollLines = SystemInformation.MouseWheelScrollLines;
+
+            if (e.Delta > 0)
+            {
+                dGV.FirstDisplayedScrollingRowIndex = Math.Max(0, currentIndex - scrollLines);
+            }
+            else if (e.Delta < 0)
+            {
+                if (dGV.Rows.Count > (currentIndex + scrollLines))
+                    dGV.FirstDisplayedScrollingRowIndex = currentIndex + scrollLines;
+            }
+        }
+
+        private void dGV_MouseEnter(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            dGV.Focus();
+        }
+
+        #endregion
+
+        #region BackGround Workers
 
         private void StartCleaning(int reqId)
         {
@@ -376,7 +415,7 @@ namespace Cleaning_Scheduler_Interface
             requestTable.Columns["SerialNumber"].ColumnName = "Serial Number";
             requestTable.Columns["PartNumber"].ColumnName = "Part Number";
             requestTable.Columns["Email"].ColumnName = "Contact";
-            
+
 
             mQueueTable = requestTable.Clone();
             mInProcessTable = requestTable.Clone();
@@ -448,57 +487,7 @@ namespace Cleaning_Scheduler_Interface
         }
 
 
-#endregion
-        
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void btnEditRequests_Click(object sender, EventArgs e)
-        {
-            edit = !edit;
-            InitDGVAdminQueue();
-            InitDGVAdminInProcess();
-            if (edit)
-                btnEditRequests.Text = "Done Editing";
-            else
-                btnEditRequests.Text = "Edit Requests";
-        }
-
-        private void buttonHistory_Click(object sender, EventArgs e)
-        {
-            //Open History Screen
-            HistoryForm historyForm = new HistoryForm();
-            if (historyForm.ShowDialog() == DialogResult.Cancel)
-            {
-                this.Close();
-            }
-        }
-
-        private void dGV_MouseWheel(object sender, MouseEventArgs e)
-        {
-            DataGridView dGV = (DataGridView)sender;
-            int currentIndex = dGV.FirstDisplayedScrollingRowIndex;
-            int scrollLines = SystemInformation.MouseWheelScrollLines;
-
-            if (e.Delta > 0)
-            {
-                dGV.FirstDisplayedScrollingRowIndex = Math.Max(0, currentIndex - scrollLines);
-            }
-            else if (e.Delta < 0)
-            {
-                if (dGV.Rows.Count > (currentIndex + scrollLines))
-                    dGV.FirstDisplayedScrollingRowIndex = currentIndex + scrollLines;
-            }
-        }
-
-        private void dGV_MouseEnter(object sender, EventArgs e)
-        {
-            DataGridView dGV = (DataGridView)sender;
-            dGV.Focus();
-        }
+        #endregion
 
     }
 }

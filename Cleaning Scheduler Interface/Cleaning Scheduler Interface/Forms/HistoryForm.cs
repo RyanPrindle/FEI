@@ -20,10 +20,15 @@ namespace Cleaning_Scheduler_Interface
         private List<String> mRequestorList;
         private DataTable mFilteredTable;
         private static DateTime beginDate = new DateTime(2016, 2, 1);
+        private MainForm mMainForm;
+        private Image infoIcon;
 
-        public HistoryForm()
+        public HistoryForm(MainForm mainForm)
         {
             InitializeComponent();
+            mMainForm = mainForm;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            
         }
 
         private void HistoryForm_Load(object sender, EventArgs e)
@@ -56,6 +61,14 @@ namespace Cleaning_Scheduler_Interface
         {
             mHistoryTable = new DataTable();
             mHistoryTable = (DataTable)e.Result;
+            mHistoryTable.Columns["Quantity"].ColumnName = "Qty";
+            mHistoryTable.Columns["RequestedOn"].ColumnName = "Requested";
+            mHistoryTable.Columns["StartedOn"].ColumnName = "Started";
+            mHistoryTable.Columns["FinishedOn"].ColumnName = "Finished";
+            mHistoryTable.Columns["SerialNumber"].ColumnName = "Serial #";
+            mHistoryTable.Columns["PartNumber"].ColumnName = "Part #";
+            mHistoryTable.Columns["Email"].ColumnName = "Contact";
+            
             ResetDateFilters();
             InitHistoryDGV();
             LoadPartComboBox();
@@ -114,50 +127,13 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.DataSource = mFilteredTable;
             dGVHistory.Columns["RequestID"].Visible = false;
             dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
-            FormatDGVChecksAndHot(dGVHistory);
+            dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
+            dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
+            mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);
+            dGVHistory.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
             dGVHistory.ResumeLayout();
         }
-
-        private void FormatDGVChecksAndHot(DataGridView dGV)
-        {
-            DataGridViewTextBoxColumn col;
-            foreach (String column in boolNames)
-            {
-                col = new DataGridViewTextBoxColumn();
-                col.Name = column + "X";
-                col.HeaderText = column;
-                if (dGV.Columns.Contains(column) && (dGV.Columns[column].Visible == true))
-                {
-                    dGV.Columns.Insert(dGV.Columns[column].Index, col);
-                    dGV.Columns[column].Visible = false;
-                }
-            }
-            foreach (DataGridViewRow row in dGV.Rows)
-            {
-                if ((bool)row.Cells["Hot"].Value == true)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Red;
-                }
-                foreach (String column in boolNames)
-                {
-                    if (dGV.Columns.Contains(column + "X"))
-                    {
-                        if ((bool)row.Cells[column].Value == true)
-                        {
-                            row.Cells[column + "X"].Value = "X";
-                            row.Cells[column + "X"].Style.Font = dGVCheckboxSize;
-                        }
-                        else
-                        {
-                            row.Cells[column + "X"].Value = "-";
-                        }
-                    }
-                }
-            }
-        }
-
 
         private void FilterTable()
         {
@@ -165,27 +141,27 @@ namespace Cleaning_Scheduler_Interface
             int rowCount = mFilteredTable.Rows.Count;
             for (int row = 0; row < rowCount; row++)
             {
-                if (mFilteredTable.Rows[row].Field<DateTime>("RequestedOn") < dTPickerRequestedFrom.Value.Date ||
-                    mFilteredTable.Rows[row].Field<DateTime>("RequestedOn") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                    mFilteredTable.Rows[row].Field<DateTime>("StartedOn") < dTPickerStartedFrom.Value.Date ||
-                    mFilteredTable.Rows[row].Field<DateTime>("StartedOn") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                    mFilteredTable.Rows[row].Field<DateTime>("FinishedOn") < dTPickerFinishedFrom.Value.Date ||
-                    mFilteredTable.Rows[row].Field<DateTime>("FinishedOn") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
+                if (mFilteredTable.Rows[row].Field<DateTime>("Requested") < dTPickerRequestedFrom.Value.Date ||
+                    mFilteredTable.Rows[row].Field<DateTime>("Requested") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
+                    mFilteredTable.Rows[row].Field<DateTime>("Started") < dTPickerStartedFrom.Value.Date ||
+                    mFilteredTable.Rows[row].Field<DateTime>("Started") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
+                    mFilteredTable.Rows[row].Field<DateTime>("Finished") < dTPickerFinishedFrom.Value.Date ||
+                    mFilteredTable.Rows[row].Field<DateTime>("Finished") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
                 {
                     mFilteredTable.Rows.RemoveAt(row);
                     row--;
                     rowCount--;
                 }
-                if (!(comboBoxPartFilter.SelectedItem.ToString() == "All"))
+                if (!(comboBoxPartFilter.SelectedItem.ToString() == ("All")) && row >= 0)
                 {
-                    if (!(mFilteredTable.Rows[row].Field<string>("PartNumber").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
+                    if (!(mFilteredTable.Rows[row].Field<string>("Part #").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
                     {
                         mFilteredTable.Rows.RemoveAt(row);
                         row--;
                         rowCount--;
                     }
                 }
-                if (!(comboBoxRequestor.SelectedItem.ToString() == "All"))
+                if (!(comboBoxRequestor.SelectedItem.ToString() == "All") && row >= 0)
                 {
                     if (!(mFilteredTable.Rows[row].Field<string>("Requestor").ToString() == comboBoxRequestor.SelectedItem.ToString()))
                     {
@@ -206,7 +182,7 @@ namespace Cleaning_Scheduler_Interface
             {
                 for (int row = 0; row < rowCount; row++)
                 {
-                    if (!(mFilteredTable.Rows[row].Field<string>("PartNumber").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
+                    if (!(mFilteredTable.Rows[row].Field<string>("Part #").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
                     {
                         mFilteredTable.Rows.RemoveAt(row);
                         row--;
@@ -260,7 +236,7 @@ namespace Cleaning_Scheduler_Interface
             foreach (DataRow row in mFilteredTable.Rows)
             {
                 {
-                    partList.Add(row["PartNumber"].ToString());
+                    partList.Add(row["Part #"].ToString());
                 }
             }
             mPartList = partList.Distinct().ToList();
@@ -308,6 +284,27 @@ namespace Cleaning_Scheduler_Interface
         {
             DataGridView dGV = (DataGridView)sender;
             dGV.Focus();
+        }
+
+        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            
+            if (e.ColumnIndex == 0 && e.RowIndex > -1)
+            {
+                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
+                infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
+                DataGridView dGV = (DataGridView)sender;
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
+                //e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
+                //e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
+                e.PaintContent(e.CellBounds);
+
+                if (e.ColumnIndex == dGV.Columns["Info"].Index)
+                {
+                    e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
+                }
+                e.Handled = true;
+            }
         }
     }
 }
