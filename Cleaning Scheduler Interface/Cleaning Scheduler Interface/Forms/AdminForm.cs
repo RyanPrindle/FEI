@@ -72,12 +72,9 @@ namespace Cleaning_Scheduler_Interface
             if (e.ColumnIndex == 0 && e.RowIndex > -1)
             {
                 int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
-
                 infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
                 DataGridView dGV = (DataGridView)sender;
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border); 
                 e.PaintContent(e.CellBounds);
                 
                 if (e.ColumnIndex == dGV.Columns["Info"].Index)

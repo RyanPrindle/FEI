@@ -22,6 +22,8 @@ namespace Cleaning_Scheduler_Interface
         private static DateTime beginDate = new DateTime(2016, 2, 1);
         private MainForm mMainForm;
         private Image infoIcon;
+        private Font dTPFont = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        private String dTPFormat = "M / dd / yyyy";
 
         public HistoryForm(MainForm mainForm)
         {
@@ -72,8 +74,8 @@ namespace Cleaning_Scheduler_Interface
             ResetDateFilters();
             InitHistoryDGV();
             LoadPartComboBox();
-            LoadRequestorComboBox();            
-            InitHistoryDGV();
+            LoadRequestorComboBox();
+            //InitHistoryDGV();
             mProgress.Close();
         }
 
@@ -92,6 +94,12 @@ namespace Cleaning_Scheduler_Interface
             dTPickerRequestedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
             dTPickerRequestedTo.MinDate = dTPickerRequestedFrom.Value;
             dTPickerRequestedFrom.MaxDate = dTPickerRequestedTo.Value;
+            dTPickerRequestedFrom.CustomFormat = dTPFormat;
+            dTPickerRequestedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerRequestedFrom.Font = dTPFont;
+            dTPickerRequestedTo.CustomFormat = dTPFormat;
+            dTPickerRequestedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerRequestedTo.Font = dTPFont;
 
             dTPickerStartedFrom.MinDate = beginDate;
             dTPickerStartedFrom.Value = DateTime.Today.AddDays(-30).Date;
@@ -99,6 +107,12 @@ namespace Cleaning_Scheduler_Interface
             dTPickerStartedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
             dTPickerStartedTo.MinDate = dTPickerStartedFrom.Value;
             dTPickerStartedFrom.MaxDate = dTPickerStartedTo.Value;
+            dTPickerStartedFrom.CustomFormat = dTPFormat;
+            dTPickerStartedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerStartedFrom.Font = dTPFont;
+            dTPickerStartedTo.CustomFormat = dTPFormat;
+            dTPickerStartedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerStartedTo.Font = dTPFont;
 
             dTPickerFinishedFrom.MinDate = beginDate;
             dTPickerFinishedFrom.Value = DateTime.Today.AddDays(-30).Date;
@@ -106,6 +120,12 @@ namespace Cleaning_Scheduler_Interface
             dTPickerFinishedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
             dTPickerFinishedTo.MinDate = dTPickerFinishedFrom.Value;
             dTPickerFinishedFrom.MaxDate = dTPickerFinishedTo.Value;
+            dTPickerFinishedFrom.CustomFormat = dTPFormat;
+            dTPickerFinishedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerFinishedFrom.Font = dTPFont;
+            dTPickerFinishedTo.CustomFormat = dTPFormat;
+            dTPickerFinishedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerFinishedTo.Font = dTPFont;
 
             dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
             dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.Filter_ValueChanged);
@@ -172,45 +192,7 @@ namespace Cleaning_Scheduler_Interface
                 }
             }          
             dGVHistory.ResumeLayout();
-        }
-
-        private void FilterTableByPart()
-        {
-            dGVHistory.SuspendLayout();
-            int rowCount = mFilteredTable.Rows.Count;
-            if (!(comboBoxPartFilter.SelectedItem.ToString() == "All"))
-            {
-                for (int row = 0; row < rowCount; row++)
-                {
-                    if (!(mFilteredTable.Rows[row].Field<string>("Part #").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-                }
-            }
-            dGVHistory.ResumeLayout();
-        }
-
-        private void FilterTableByRequestor()
-        {
-            dGVHistory.SuspendLayout();
-            int rowCount = mFilteredTable.Rows.Count;
-            if (!(comboBoxRequestor.SelectedItem.ToString() == "All"))
-            {
-                for (int row = 0; row < rowCount; row++)
-                {
-                    if (!(mFilteredTable.Rows[row].Field<string>("Requestor").ToString() == comboBoxRequestor.SelectedItem.ToString()))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-                }
-            }
-            dGVHistory.ResumeLayout();
-        }
+        }       
 
         private void LoadRequestorComboBox()
         {
@@ -225,6 +207,7 @@ namespace Cleaning_Scheduler_Interface
             }
             mRequestorList = requestorList.Distinct().ToList();
             comboBoxRequestor.DataSource = mRequestorList;
+            comboBoxRequestor.Font = dTPFont;
             comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
         }
 
@@ -241,6 +224,7 @@ namespace Cleaning_Scheduler_Interface
             }
             mPartList = partList.Distinct().ToList();
             comboBoxPartFilter.DataSource = mPartList;
+            comboBoxPartFilter.Font = dTPFont;
             comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.Filter_ValueChanged);
         }
 
@@ -295,8 +279,6 @@ namespace Cleaning_Scheduler_Interface
                 infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
                 DataGridView dGV = (DataGridView)sender;
                 e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
                 e.PaintContent(e.CellBounds);
 
                 if (e.ColumnIndex == dGV.Columns["Info"].Index)
@@ -306,5 +288,6 @@ namespace Cleaning_Scheduler_Interface
                 e.Handled = true;
             }
         }
+
     }
 }

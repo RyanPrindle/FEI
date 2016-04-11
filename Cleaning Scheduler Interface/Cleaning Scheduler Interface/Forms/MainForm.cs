@@ -19,6 +19,7 @@ namespace Cleaning_Scheduler_Interface
         private ColumnRequestForm requestColumnForm;
         private AdminForm adminForm;
         private ProgressBarForm progressForm;
+        private DetailsForm detailsForm;
         private DataTable requestTable = new DataTable();
         private DataTable queueTable = new DataTable();
         private DataTable inProcessTable = new DataTable();
@@ -255,28 +256,7 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
         }
-
-        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
-
-            infoIcon = (Image)new Bitmap(infoIcon,new Size(shortSide,shortSide));
-            DataGridView dGV = (DataGridView)sender;
-            if (e.ColumnIndex == 0 && e.RowIndex > -1)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
-                e.PaintContent(e.CellBounds);
-                
-                if (e.ColumnIndex == dGV.Columns["Info"].Index)
-                {
-                    e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
-                }
-                e.Handled = true;
-            }
-        }
-
+        
 #region Event Handlers
 
         private void btnPartRequest_Click(object sender, EventArgs e)
@@ -330,7 +310,45 @@ namespace Cleaning_Scheduler_Interface
             DataGridView dGV = (DataGridView)sender;
             dGV.Focus();
         }
-        
+
+        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
+
+            infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
+            DataGridView dGV = (DataGridView)sender;
+            if (e.ColumnIndex == 0 && e.RowIndex > -1)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
+                e.PaintContent(e.CellBounds);
+
+                if (e.ColumnIndex == dGV.Columns["Info"].Index)
+                {
+                    e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            int reqId = 0;
+            if (e.RowIndex >= 0)
+            {
+                reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
+                if (dgv.Columns.Contains("Info"))
+                {
+                    if (e.ColumnIndex == dgv.Columns["Info"].Index)
+                    {
+                        //Show Details
+                        detailsForm = new DetailsForm(reqId);
+                        detailsForm.ShowDialog();
+                    }
+                }
+            }
+        }
+
 #endregion
 
         private void FormatLayout()
@@ -353,23 +371,5 @@ namespace Cleaning_Scheduler_Interface
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)*2/7;
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2/ 5;
         }
-        
-        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {            
-            DataGridView dgv = (DataGridView)sender;
-            int reqId = 0;
-            if (e.RowIndex >= 0)
-            {
-                reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                if (dgv.Columns.Contains("Info"))
-                {
-                    if (e.ColumnIndex == dgv.Columns["Info"].Index)
-                    {
-                        //Show Details
-                    }
-                }                
-            }
-        }   
-    
     }
 }

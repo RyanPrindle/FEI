@@ -42,8 +42,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.dGVQueue = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.dGVQueue = new System.Windows.Forms.DataGridView();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.dGVInProcess = new System.Windows.Forms.DataGridView();
@@ -59,7 +59,6 @@
             this.btnCleaning = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -77,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVCompleted)).BeginInit();
             this.panelHot.SuspendLayout();
             this.pnlButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -99,7 +97,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnCleaning);
             this.splitContainer1.Panel2.Controls.Add(this.btnQuit);
             this.splitContainer1.Size = new System.Drawing.Size(929, 564);
-            this.splitContainer1.SplitterDistance = 713;
+            this.splitContainer1.SplitterDistance = 701;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -124,10 +122,20 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(142)))));
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(713, 564);
+            this.splitContainer2.Size = new System.Drawing.Size(701, 564);
             this.splitContainer2.SplitterDistance = 152;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 24);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Queue";
             // 
             // dGVQueue
             // 
@@ -171,22 +179,12 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(202)))));
             this.dGVQueue.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVQueue.RowTemplate.Height = 40;
-            this.dGVQueue.Size = new System.Drawing.Size(683, 98);
+            this.dGVQueue.Size = new System.Drawing.Size(671, 98);
             this.dGVQueue.TabIndex = 0;
             this.dGVQueue.TabStop = false;
             this.dGVQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVQueue.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Queue";
             // 
             // splitContainer3
             // 
@@ -210,7 +208,7 @@
             this.splitContainer3.Panel2.Controls.Add(this.label3);
             this.splitContainer3.Panel2.Controls.Add(this.dGVCompleted);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer3.Size = new System.Drawing.Size(713, 402);
+            this.splitContainer3.Size = new System.Drawing.Size(701, 402);
             this.splitContainer3.SplitterDistance = 164;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
@@ -266,9 +264,10 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
             this.dGVInProcess.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVInProcess.RowTemplate.Height = 40;
-            this.dGVInProcess.Size = new System.Drawing.Size(683, 109);
+            this.dGVInProcess.Size = new System.Drawing.Size(671, 109);
             this.dGVInProcess.TabIndex = 3;
             this.dGVInProcess.TabStop = false;
+            this.dGVInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVInProcess.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
@@ -324,9 +323,10 @@
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
             this.dGVCompleted.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVCompleted.RowTemplate.Height = 40;
-            this.dGVCompleted.Size = new System.Drawing.Size(683, 173);
+            this.dGVCompleted.Size = new System.Drawing.Size(671, 161);
             this.dGVCompleted.TabIndex = 3;
             this.dGVCompleted.TabStop = false;
+            this.dGVCompleted.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVCompleted.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVCompleted.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
@@ -334,13 +334,12 @@
             // 
             this.panelHot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelHot.Controls.Add(this.pictureBox1);
             this.panelHot.Controls.Add(this.label5);
             this.panelHot.Controls.Add(this.label4);
             this.panelHot.Controls.Add(this.panel1);
-            this.panelHot.Location = new System.Drawing.Point(0, 226);
+            this.panelHot.Location = new System.Drawing.Point(0, 241);
             this.panelHot.Name = "panelHot";
-            this.panelHot.Size = new System.Drawing.Size(194, 210);
+            this.panelHot.Size = new System.Drawing.Size(209, 210);
             this.panelHot.TabIndex = 25;
             // 
             // label5
@@ -348,7 +347,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(91, 85);
+            this.label5.Location = new System.Drawing.Point(98, 85);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 25);
             this.label5.TabIndex = 25;
@@ -360,7 +359,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(91, 60);
+            this.label4.Location = new System.Drawing.Point(98, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 25);
             this.label4.TabIndex = 24;
@@ -372,7 +371,7 @@
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.Red;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(29, 62);
+            this.panel1.Location = new System.Drawing.Point(36, 62);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(56, 40);
             this.panel1.TabIndex = 23;
@@ -387,7 +386,7 @@
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(206, 233);
+            this.pnlButtons.Size = new System.Drawing.Size(218, 233);
             this.pnlButtons.TabIndex = 22;
             // 
             // btnColumnRequest
@@ -399,7 +398,7 @@
             this.btnColumnRequest.Location = new System.Drawing.Point(10, 10);
             this.btnColumnRequest.Margin = new System.Windows.Forms.Padding(0);
             this.btnColumnRequest.Name = "btnColumnRequest";
-            this.btnColumnRequest.Size = new System.Drawing.Size(172, 62);
+            this.btnColumnRequest.Size = new System.Drawing.Size(190, 62);
             this.btnColumnRequest.TabIndex = 1;
             this.btnColumnRequest.Text = "Request Column / Gun Cleaning";
             this.btnColumnRequest.UseVisualStyleBackColor = true;
@@ -416,7 +415,7 @@
             this.btnPartRequest.Location = new System.Drawing.Point(10, 136);
             this.btnPartRequest.Margin = new System.Windows.Forms.Padding(0);
             this.btnPartRequest.Name = "btnPartRequest";
-            this.btnPartRequest.Size = new System.Drawing.Size(184, 85);
+            this.btnPartRequest.Size = new System.Drawing.Size(196, 85);
             this.btnPartRequest.TabIndex = 2;
             this.btnPartRequest.Text = "Request Part Cleaning";
             this.btnPartRequest.UseVisualStyleBackColor = true;
@@ -456,15 +455,6 @@
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.buttonQuit_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
-            this.pictureBox1.Location = new System.Drawing.Point(49, 122);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,7 +489,6 @@
             this.panelHot.ResumeLayout(false);
             this.panelHot.PerformLayout();
             this.pnlButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -525,7 +514,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dGVQueue;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

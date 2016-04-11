@@ -105,7 +105,6 @@
             // 
             this.dGVAdminQueue.AllowUserToAddRows = false;
             this.dGVAdminQueue.AllowUserToDeleteRows = false;
-            this.dGVAdminQueue.AllowUserToOrderColumns = true;
             this.dGVAdminQueue.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
@@ -125,6 +124,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVAdminQueue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVAdminQueue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVAdminQueue.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dGVAdminQueue.Location = new System.Drawing.Point(13, 38);
             this.dGVAdminQueue.Margin = new System.Windows.Forms.Padding(0);
             this.dGVAdminQueue.Name = "dGVAdminQueue";
@@ -186,7 +186,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 188);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 212);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVAdminInProcess_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -234,7 +234,7 @@
             this.btnEditRequests.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnEditRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(188)))));
             this.btnEditRequests.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRequests.ForeColor = System.Drawing.Color.Maroon;
+            this.btnEditRequests.ForeColor = System.Drawing.Color.Navy;
             this.btnEditRequests.Location = new System.Drawing.Point(13, 10);
             this.btnEditRequests.Margin = new System.Windows.Forms.Padding(0);
             this.btnEditRequests.Name = "btnEditRequests";

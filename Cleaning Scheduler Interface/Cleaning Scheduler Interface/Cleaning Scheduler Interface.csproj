@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="Classes\ColumnRequest.cs" />
     <Compile Include="Classes\CleanProcedure.cs" />
+    <Compile Include="DetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForm.Designer.cs">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FinishForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DetailsForm.resx">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FinishForm.resx">
       <DependentUpon>FinishForm.cs</DependentUpon>
     </EmbeddedResource>
