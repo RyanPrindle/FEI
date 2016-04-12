@@ -150,7 +150,7 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
             dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
             mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);
-            dGVHistory.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVHistory.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
             dGVHistory.ResumeLayout();
         }
@@ -289,5 +289,9 @@ namespace Cleaning_Scheduler_Interface
             }
         }
 
+        private void dGVHistory_Sorted(object sender, EventArgs e)
+        {
+            mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);            
+        }
     }
 }

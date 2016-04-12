@@ -139,6 +139,7 @@
             this.dGVAdminQueue.TabIndex = 0;
             this.dGVAdminQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVAdminQueue_CellContentClick);
             this.dGVAdminQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
+            this.dGVAdminQueue.Sorted += new System.EventHandler(this.dGV_Sorted);
             // 
             // label1
             // 
@@ -186,10 +187,11 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 212);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 200);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVAdminInProcess_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
+            this.dGVAdminInProcess.Sorted += new System.EventHandler(this.dGV_Sorted);
             // 
             // bGWStartCleaning
             // 

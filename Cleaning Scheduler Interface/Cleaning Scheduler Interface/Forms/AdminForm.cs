@@ -486,5 +486,11 @@ namespace Cleaning_Scheduler_Interface
 
         #endregion
 
+        private void dGV_Sorted(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            mParent.FormatDGVCheckboxInfoHot(dGV);
+        }
+
     }
 }

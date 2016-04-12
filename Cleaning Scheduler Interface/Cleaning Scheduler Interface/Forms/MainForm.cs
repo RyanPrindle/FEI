@@ -134,10 +134,9 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["CrestLong"].Visible = false;
             dGVCompleted.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;            
             dGVCompleted.Sort(dGVCompleted.Columns["Finished"], ListSortDirection.Descending);
-            //DataGridViewTextBoxColumn checkedColumn = new DataGridViewTextBoxColumn();
 
             FormatDGVCheckboxInfoHot(dGVCompleted);
-            dGVCompleted.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVCompleted.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVCompleted.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVCompleted.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVCompleted.ResumeLayout();
@@ -172,7 +171,7 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVInProcess.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             FormatDGVCheckboxInfoHot(dGVInProcess);
-            dGVInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVInProcess.ResumeLayout();
@@ -202,7 +201,7 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             FormatDGVCheckboxInfoHot(dGVQueue);
-            dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVQueue.ResumeLayout();
@@ -370,6 +369,12 @@ namespace Cleaning_Scheduler_Interface
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)*2/7;
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2/ 5;
+        }
+
+        private void dGV_Sorted(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            FormatDGVCheckboxInfoHot(dGV);
         }
     }
 }
