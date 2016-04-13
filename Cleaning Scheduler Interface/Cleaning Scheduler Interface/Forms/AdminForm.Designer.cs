@@ -123,7 +123,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVAdminQueue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dGVAdminQueue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVAdminQueue.ColumnHeadersHeight = 40;
+            this.dGVAdminQueue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dGVAdminQueue.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dGVAdminQueue.Location = new System.Drawing.Point(13, 38);
             this.dGVAdminQueue.Margin = new System.Windows.Forms.Padding(0);
@@ -137,7 +138,7 @@
             this.dGVAdminQueue.RowTemplate.Height = 40;
             this.dGVAdminQueue.Size = new System.Drawing.Size(936, 191);
             this.dGVAdminQueue.TabIndex = 0;
-            this.dGVAdminQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVAdminQueue_CellContentClick);
+            this.dGVAdminQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVAdminQueue.Sorted += new System.EventHandler(this.dGV_Sorted);
             // 
@@ -175,7 +176,8 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVAdminInProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dGVAdminInProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVAdminInProcess.ColumnHeadersHeight = 40;
+            this.dGVAdminInProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dGVAdminInProcess.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dGVAdminInProcess.Location = new System.Drawing.Point(13, 38);
             this.dGVAdminInProcess.Margin = new System.Windows.Forms.Padding(0);
@@ -187,9 +189,9 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 200);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 194);
             this.dGVAdminInProcess.TabIndex = 1;
-            this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVAdminInProcess_CellContentClick);
+            this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVAdminInProcess.Sorted += new System.EventHandler(this.dGV_Sorted);
             // 

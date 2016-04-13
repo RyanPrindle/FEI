@@ -132,6 +132,12 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["Crest10"].Visible = false;
             dGVCompleted.Columns["Crest20"].Visible = false;
             dGVCompleted.Columns["CrestLong"].Visible = false;
+            dGVCompleted.Columns["Bulk"].Visible = false;
+            dGVCompleted.Columns["Cage"].Visible = false;
+            dGVCompleted.Columns["CR Ready"].Visible = false;
+            dGVCompleted.Columns["Site"].Visible = false;
+            dGVCompleted.Columns["PO"].Visible = false;
+            dGVCompleted.Columns["Serial #"].Visible = false;
             dGVCompleted.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;            
             dGVCompleted.Sort(dGVCompleted.Columns["Finished"], ListSortDirection.Descending);
 
@@ -312,7 +318,7 @@ namespace Cleaning_Scheduler_Interface
 
         private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
+            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 20;
 
             infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
             DataGridView dGV = (DataGridView)sender;
@@ -335,17 +341,23 @@ namespace Cleaning_Scheduler_Interface
             int reqId = 0;
             if (e.RowIndex >= 0)
             {
-                reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
                 if (dgv.Columns.Contains("Info"))
                 {
                     if (e.ColumnIndex == dgv.Columns["Info"].Index)
                     {
+                        reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());                
                         //Show Details
                         detailsForm = new DetailsForm(reqId);
                         detailsForm.ShowDialog();
                     }
                 }
             }
+        }
+        
+        private void dGV_Sorted(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            FormatDGVCheckboxInfoHot(dGV);
         }
 
 #endregion
@@ -371,10 +383,5 @@ namespace Cleaning_Scheduler_Interface
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2/ 5;
         }
 
-        private void dGV_Sorted(object sender, EventArgs e)
-        {
-            DataGridView dGV = (DataGridView)sender;
-            FormatDGVCheckboxInfoHot(dGV);
-        }
     }
 }

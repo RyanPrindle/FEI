@@ -21,6 +21,7 @@ namespace Cleaning_Scheduler_Interface
         private ProgressBarForm progressForm;
         private bool edit = false;
         private MainForm mParent;
+        private DetailsForm detailsForm;
         private Image infoIcon;
 
         public AdminForm(MainForm parent)
@@ -146,7 +147,7 @@ namespace Cleaning_Scheduler_Interface
             }
             mParent.FormatDGVCheckboxInfoHot(dGVAdminQueue);
             dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
-            dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminQueue.ResumeLayout();
         }
@@ -230,69 +231,73 @@ namespace Cleaning_Scheduler_Interface
             }
             mParent.FormatDGVCheckboxInfoHot(dGVAdminInProcess);
             dGVAdminInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
-            dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+            //dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminInProcess.ResumeLayout();
         }
 
         #region Event Handlers
 
-        private void dGVAdminQueue_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = (DataGridView)sender;
+            DataGridView dGV = (DataGridView)sender;
             int reqId = 0;
             if (e.RowIndex >= 0)
             {
-                reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                if (dGVAdminQueue.Columns.Contains("Start"))
+                if (dGV.Columns.Contains("Start"))
                 {
-                    if (e.ColumnIndex == dGVAdminQueue.Columns["Start"].Index)
+                    if (e.ColumnIndex == dGV.Columns["Start"].Index)
                     {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
                         //Start Cleaning
                         StartCleaning(reqId);
                     }
                 }
-                if (dGVAdminQueue.Columns.Contains("Delete"))
+                if (dGV.Columns.Contains("Delete"))
                 {
-                    if (e.ColumnIndex == dGVAdminQueue.Columns["Delete"].Index)
+                    if (e.ColumnIndex == dGV.Columns["Delete"].Index)
                     {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
                         //Start Cleaning
                         DeleteRequest(reqId);
                     }
                 }
-            }
-        }
 
-        private void dGVAdminInProcess_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView dgv = (DataGridView)sender;
-            int reqId = 0;
-            if (e.RowIndex >= 0)
-            {
-                reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-
-                if (dGVAdminInProcess.Columns.Contains("Finish"))
+                if (dGV.Columns.Contains("Finish"))
                 {
-                    if (e.ColumnIndex == dGVAdminInProcess.Columns["Finish"].Index)
+                    if (e.ColumnIndex == dGV.Columns["Finish"].Index)
                     {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
                         //Finish Cleaning
                         FinishCleaning(reqId);
                     }
                 }
-                if (dGVAdminInProcess.Columns.Contains("Delete"))
+                if (dGV.Columns.Contains("Delete"))
                 {
-                    if (e.ColumnIndex == dGVAdminInProcess.Columns["Delete"].Index)
+                    if (e.ColumnIndex == dGV.Columns["Delete"].Index)
                     {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
                         //Start Cleaning
                         DeleteRequest(reqId);
                     }
                 }
-                if (dGVAdminInProcess.Columns.Contains("Backup"))
+                if (dGV.Columns.Contains("Backup"))
                 {
-                    if (e.ColumnIndex == dGVAdminInProcess.Columns["Backup"].Index)
+                    if (e.ColumnIndex == dGV.Columns["Backup"].Index)
                     {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());                        
                         //Start Cleaning
                         BackUpRequest(reqId);
+                    }
+                }
+                if (dGV.Columns.Contains("Info"))
+                {
+                    if (e.ColumnIndex == dGV.Columns["Info"].Index)
+                    {
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
+                        //Show Details
+                        detailsForm = new DetailsForm(reqId);
+                        detailsForm.ShowDialog();
                     }
                 }
             }
@@ -353,6 +358,12 @@ namespace Cleaning_Scheduler_Interface
         {
             DataGridView dGV = (DataGridView)sender;
             dGV.Focus();
+        }
+
+        private void dGV_Sorted(object sender, EventArgs e)
+        {
+            DataGridView dGV = (DataGridView)sender;
+            mParent.FormatDGVCheckboxInfoHot(dGV);
         }
 
         #endregion
@@ -486,11 +497,7 @@ namespace Cleaning_Scheduler_Interface
 
         #endregion
 
-        private void dGV_Sorted(object sender, EventArgs e)
-        {
-            DataGridView dGV = (DataGridView)sender;
-            mParent.FormatDGVCheckboxInfoHot(dGV);
-        }
+        
 
     }
 }

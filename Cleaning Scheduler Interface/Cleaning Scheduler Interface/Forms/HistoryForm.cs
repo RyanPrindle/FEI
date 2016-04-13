@@ -21,6 +21,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable mFilteredTable;
         private static DateTime beginDate = new DateTime(2016, 2, 1);
         private MainForm mMainForm;
+        private DetailsForm detailsForm;        
         private Image infoIcon;
         private Font dTPFont = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private String dTPFormat = "M / dd / yyyy";
@@ -286,6 +287,25 @@ namespace Cleaning_Scheduler_Interface
                     e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
                 }
                 e.Handled = true;
+            }
+        }
+
+        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            int reqId = 0;
+            if (e.RowIndex >= 0)
+            {
+                if (dgv.Columns.Contains("Info"))
+                {
+                    if (e.ColumnIndex == dgv.Columns["Info"].Index)
+                    {
+                        reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
+                        //Show Details
+                        detailsForm = new DetailsForm(reqId);
+                        detailsForm.ShowDialog();
+                    }
+                }
             }
         }
 

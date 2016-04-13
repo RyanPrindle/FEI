@@ -84,10 +84,5 @@ namespace Cleaning_Scheduler_Interface
                 gBoxSite.Text = "Site: " + requestTable.Rows[0]["Site"].ToString();
             }
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

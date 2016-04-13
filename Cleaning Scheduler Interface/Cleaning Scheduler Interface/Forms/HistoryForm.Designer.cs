@@ -422,7 +422,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVHistory.ColumnHeadersHeight = 40;
+            this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dGVHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dGVHistory.Location = new System.Drawing.Point(12, 37);
             this.dGVHistory.Margin = new System.Windows.Forms.Padding(0);
@@ -437,6 +438,7 @@
             this.dGVHistory.RowTemplate.Height = 45;
             this.dGVHistory.Size = new System.Drawing.Size(1542, 408);
             this.dGVHistory.TabIndex = 27;
+            this.dGVHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVHistory.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVHistory.Sorted += new System.EventHandler(this.dGVHistory_Sorted);
             this.dGVHistory.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
