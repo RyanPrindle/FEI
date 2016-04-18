@@ -28,7 +28,8 @@ namespace Cleaning_Scheduler_Interface
         {
             InitializeComponent();
             mParent = parent;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;          
+            //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -164,11 +165,11 @@ namespace Cleaning_Scheduler_Interface
             btnDeleteColumn.HeaderText = "Remove";
             btnDeleteColumn.Text = "Delete";
             btnDeleteColumn.UseColumnTextForButtonValue = true;
-            DataGridViewButtonColumn btnBackupColumn = new DataGridViewButtonColumn();
-            btnBackupColumn.Name = "Backup";
-            btnBackupColumn.HeaderText = "Back Up";
-            btnBackupColumn.Text = "Move to Queue";
-            btnBackupColumn.UseColumnTextForButtonValue = true;
+            DataGridViewButtonColumn btnToQueueColumn = new DataGridViewButtonColumn();
+            btnToQueueColumn.Name = "MoveToQueue";
+            btnToQueueColumn.HeaderText = "Cancel Start";
+            btnToQueueColumn.Text = "Move to Queue";
+            btnToQueueColumn.UseColumnTextForButtonValue = true;
 
 
             dGVAdminInProcess.SuspendLayout();
@@ -187,7 +188,7 @@ namespace Cleaning_Scheduler_Interface
                 }
                 if (!(dGVAdminInProcess.Columns.Contains("Delete")))
                 {
-                    dGVAdminInProcess.Columns.Add(btnBackupColumn);
+                    dGVAdminInProcess.Columns.Add(btnToQueueColumn);
                     dGVAdminInProcess.Columns.Add(btnDeleteColumn);
                 }
             }
@@ -196,7 +197,7 @@ namespace Cleaning_Scheduler_Interface
                 if (dGVAdminInProcess.Columns.Contains("Delete"))
                 {
                     dGVAdminInProcess.Columns.Remove("Delete");
-                    dGVAdminInProcess.Columns.Remove("Backup");
+                    dGVAdminInProcess.Columns.Remove("MoveToQueue");
                 }
                 if (!(dGVAdminInProcess.Columns.Contains("Finish")))
                 {
@@ -281,13 +282,13 @@ namespace Cleaning_Scheduler_Interface
                         DeleteRequest(reqId);
                     }
                 }
-                if (dGV.Columns.Contains("Backup"))
+                if (dGV.Columns.Contains("MoveToQueue"))
                 {
-                    if (e.ColumnIndex == dGV.Columns["Backup"].Index)
+                    if (e.ColumnIndex == dGV.Columns["MoveToQueue"].Index)
                     {
                         reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());                        
                         //Start Cleaning
-                        BackUpRequest(reqId);
+                        MoveToQueueRequest(reqId);
                     }
                 }
                 if (dGV.Columns.Contains("Info"))
@@ -331,9 +332,15 @@ namespace Cleaning_Scheduler_Interface
         {
             //Open History Screen
             HistoryForm historyForm = new HistoryForm(mParent);
-            if (historyForm.ShowDialog() == DialogResult.Cancel)
+            historyForm.ShowDialog();
+            if (historyForm.DialogResult == DialogResult.Cancel)
             {
                 this.Close();
+            }
+            if (historyForm.DialogResult == DialogResult.Abort)
+            {
+                //show main screen
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -468,7 +475,7 @@ namespace Cleaning_Scheduler_Interface
             RefreshTables();
         }
 
-        private void BackUpRequest(int reqId)
+        private void MoveToQueueRequest(int reqId)
         {
             progressForm = new ProgressBarForm();
             bGWorkerBackUpRequest = new BackgroundWorker();
@@ -496,8 +503,5 @@ namespace Cleaning_Scheduler_Interface
 
 
         #endregion
-
-        
-
     }
 }

@@ -202,6 +202,9 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["Crest10"].Visible = false;
             dGVQueue.Columns["Crest20"].Visible = false;
             dGVQueue.Columns["CrestLong"].Visible = false;
+            dGVQueue.Columns["Bulk"].Visible = false;
+            dGVQueue.Columns["Cage"].Visible = false;
+            dGVQueue.Columns["Site"].Visible = false;
             dGVQueue.Columns["PO"].Visible = false;
             dGVQueue.Columns["Serial #"].Visible = false;      
             dGVQueue.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -318,7 +321,7 @@ namespace Cleaning_Scheduler_Interface
 
         private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 20;
+            int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
 
             infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
             DataGridView dGV = (DataGridView)sender;
@@ -364,7 +367,8 @@ namespace Cleaning_Scheduler_Interface
 
         private void FormatLayout()
         {
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            ////infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
             int padding = 10;
             int btnHeight = 60;
             int btnWidth = (pnlButtons.Width - (2 * padding));

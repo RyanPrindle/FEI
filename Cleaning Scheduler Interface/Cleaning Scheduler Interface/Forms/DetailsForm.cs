@@ -15,6 +15,8 @@ namespace Cleaning_Scheduler_Interface
         private int requestID;
         private RequestsDB requestsDB;
         private DataTable requestTable;
+        private DataTable columnTable;
+        private Image detailIcon;
         public DetailsForm(int reqId)
         {
             InitializeComponent();
@@ -25,10 +27,16 @@ namespace Cleaning_Scheduler_Interface
         {
             requestsDB = new RequestsDB();
             requestTable = requestsDB.GetRequest(requestID);
+            columnTable = requestsDB.GetColumnsTable();
             labelPart.Text = requestTable.Rows[0]["PartNumber"].ToString();
             labelDescription.Text = requestTable.Rows[0]["Description"].ToString();
             labelQty.Text = requestTable.Rows[0]["Quantity"].ToString();
             labelRequestedOn.Text = requestTable.Rows[0]["RequestedOn"].ToString();
+
+            detailIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.help_contents;
+            int shortSide = Math.Min(btnColumnDetails.Width, btnColumnDetails.Height) - 10;
+            detailIcon = (Image)new Bitmap(detailIcon, new Size(shortSide, shortSide));
+            btnColumnDetails.Image = detailIcon;
             
             labelRequestor.Text = requestTable.Rows[0]["Requestor"].ToString();
             labelContact.Text = requestTable.Rows[0]["Email"].ToString();
@@ -36,8 +44,7 @@ namespace Cleaning_Scheduler_Interface
             labelInstructions.Text = requestTable.Rows[0]["Instructions"].ToString();
             if (requestTable.Rows[0]["StartedOn"].Equals(DBNull.Value) || requestTable.Rows[0]["StartedOn"].Equals(""))
             {                
-                this.BackColor = panelProcedures.BackColor = Color.FromArgb(255, 255, 128);
-               
+                this.BackColor = Color.FromArgb(255, 255, 128);               
             }   
             else
                 labelStartedOn.Text = requestTable.Rows[0]["StartedOn"].ToString();
@@ -47,7 +54,7 @@ namespace Cleaning_Scheduler_Interface
             }
             else
             {
-                this.BackColor = panelProcedures.BackColor = Color.FromArgb(255, 192, 128);
+                this.BackColor = Color.FromArgb(255, 192, 128);
                 labelFinishedOn.Text = requestTable.Rows[0]["FinishedOn"].ToString();
                 if (requestTable.Rows[0]["Decon"].Equals(true))
                     rBtnDecon.Checked = true;
@@ -77,17 +84,25 @@ namespace Cleaning_Scheduler_Interface
                 rBtnCRR.Checked = true;
             if (requestTable.Rows[0]["Site"].Equals(DBNull.Value) || requestTable.Rows[0]["Site"].Equals("")) 
             {
-                gBoxSite.Visible = false;
+                pnlSite.Visible = false;
             }
             else
             {
                 gBoxSite.Text = "Site: " + requestTable.Rows[0]["Site"].ToString();
             }
+            foreach(DataRow row in columnTable.Rows)
+            {
+                if (requestTable.Rows[0]["PartNumber"].Equals(row["Type"].ToString()))
+                {
+                    btnColumnDetails.Visible = true;
+                }
+            }
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void btnColumnDetails_Click(object sender, EventArgs e)
         {
-
+            //Open Column/Gun Parts List Form
         }
+
     }
 }

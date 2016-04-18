@@ -63,6 +63,26 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blue_info_button_icon_24543 {
+            get {
+                object obj = ResourceManager.GetObject("blue-info-button-icon-24543", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help_contents {
+            get {
+                object obj = ResourceManager.GetObject("help-contents", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap info_icon_53629 {
             get {
                 object obj = ResourceManager.GetObject("info-icon-53629", resourceCulture);

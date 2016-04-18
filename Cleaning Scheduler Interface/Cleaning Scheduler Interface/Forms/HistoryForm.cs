@@ -30,7 +30,9 @@ namespace Cleaning_Scheduler_Interface
         {
             InitializeComponent();
             mMainForm = mainForm;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
+            
             
         }
 
@@ -38,7 +40,7 @@ namespace Cleaning_Scheduler_Interface
         {
             buttonBack.DialogResult = DialogResult.OK;
             buttonQuit.DialogResult = DialogResult.Cancel;
-            buttonBack.Height = panelFilter.Height - (buttonQuit.Height + 10);
+            btnMain.DialogResult = DialogResult.Abort;
             GetHistoryData();
         }
 
@@ -312,6 +314,11 @@ namespace Cleaning_Scheduler_Interface
         private void dGVHistory_Sorted(object sender, EventArgs e)
         {
             mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

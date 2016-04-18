@@ -59,6 +59,7 @@
             this.dGVHistory = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonQuit = new System.Windows.Forms.Button();
+            this.btnMain = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panelFilter.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -138,10 +139,10 @@
             this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
             this.buttonBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.Black;
-            this.buttonBack.Location = new System.Drawing.Point(1394, 506);
-            this.buttonBack.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonBack.Location = new System.Drawing.Point(1353, 506);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(10, 0, 0, 10);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(187, 87);
+            this.buttonBack.Size = new System.Drawing.Size(228, 39);
             this.buttonBack.TabIndex = 23;
             this.buttonBack.Text = "Return to Admin Control";
             this.buttonBack.UseVisualStyleBackColor = false;
@@ -162,7 +163,7 @@
             this.panelFilter.Location = new System.Drawing.Point(10, 506);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Padding = new System.Windows.Forms.Padding(10);
-            this.panelFilter.Size = new System.Drawing.Size(1374, 136);
+            this.panelFilter.Size = new System.Drawing.Size(1330, 136);
             this.panelFilter.TabIndex = 24;
             // 
             // label10
@@ -191,7 +192,7 @@
             this.buttonReset.Margin = new System.Windows.Forms.Padding(0);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Padding = new System.Windows.Forms.Padding(10);
-            this.buttonReset.Size = new System.Drawing.Size(259, 112);
+            this.buttonReset.Size = new System.Drawing.Size(215, 112);
             this.buttonReset.TabIndex = 25;
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
@@ -435,7 +436,7 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dGVHistory.RowTemplate.Height = 45;
+            this.dGVHistory.RowTemplate.Height = 40;
             this.dGVHistory.Size = new System.Drawing.Size(1542, 408);
             this.dGVHistory.TabIndex = 27;
             this.dGVHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -460,13 +461,29 @@
             this.buttonQuit.BackColor = System.Drawing.Color.Gray;
             this.buttonQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonQuit.ForeColor = System.Drawing.Color.Black;
-            this.buttonQuit.Location = new System.Drawing.Point(1394, 607);
-            this.buttonQuit.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonQuit.Location = new System.Drawing.Point(1353, 603);
+            this.buttonQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.buttonQuit.Name = "buttonQuit";
-            this.buttonQuit.Size = new System.Drawing.Size(187, 35);
+            this.buttonQuit.Size = new System.Drawing.Size(228, 39);
             this.buttonQuit.TabIndex = 26;
             this.buttonQuit.Text = "Quit";
             this.buttonQuit.UseVisualStyleBackColor = false;
+            // 
+            // btnMain
+            // 
+            this.btnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnMain.BackColor = System.Drawing.Color.DarkGray;
+            this.btnMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMain.ForeColor = System.Drawing.Color.Black;
+            this.btnMain.Location = new System.Drawing.Point(1353, 555);
+            this.btnMain.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMain.Name = "btnMain";
+            this.btnMain.Size = new System.Drawing.Size(228, 38);
+            this.btnMain.TabIndex = 27;
+            this.btnMain.Text = "Return to Main Screen";
+            this.btnMain.UseVisualStyleBackColor = false;
+            this.btnMain.Click += new System.EventHandler(this.button1_Click);
             // 
             // HistoryForm
             // 
@@ -474,12 +491,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1594, 655);
-            this.ControlBox = false;
+            this.Controls.Add(this.btnMain);
             this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.buttonBack);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HistoryForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "HistoryForm";
@@ -531,5 +550,6 @@
         private System.Windows.Forms.DataGridView dGVHistory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonQuit;
+        private System.Windows.Forms.Button btnMain;
     }
 }

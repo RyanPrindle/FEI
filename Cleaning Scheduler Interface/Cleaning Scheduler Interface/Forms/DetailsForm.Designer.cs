@@ -63,11 +63,14 @@
             this.rBtnBulk = new System.Windows.Forms.RadioButton();
             this.rBtnHot = new System.Windows.Forms.RadioButton();
             this.gBoxSite = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panelHot = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlSite = new System.Windows.Forms.Panel();
+            this.btnColumnDetails = new System.Windows.Forms.Button();
             this.panelProcedures.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gBoxSite.SuspendLayout();
@@ -75,6 +78,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlSite.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -116,7 +120,6 @@
             this.label5.Size = new System.Drawing.Size(108, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "Started On:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label7
             // 
@@ -200,11 +203,11 @@
             this.panelProcedures.Controls.Add(this.rBtnWP);
             this.panelProcedures.Controls.Add(this.rBtnDW);
             this.panelProcedures.Controls.Add(this.rBtnDecon);
-            this.panelProcedures.Location = new System.Drawing.Point(13, 219);
-            this.panelProcedures.Margin = new System.Windows.Forms.Padding(10);
+            this.panelProcedures.Location = new System.Drawing.Point(447, 13);
+            this.panelProcedures.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.panelProcedures.Name = "panelProcedures";
             this.panelProcedures.Padding = new System.Windows.Forms.Padding(5);
-            this.panelProcedures.Size = new System.Drawing.Size(153, 254);
+            this.panelProcedures.Size = new System.Drawing.Size(160, 254);
             this.panelProcedures.TabIndex = 13;
             // 
             // rBtnCLong
@@ -292,8 +295,7 @@
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(361, 101);
+            this.groupBox1.Size = new System.Drawing.Size(399, 91);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Instructions:";
@@ -302,9 +304,9 @@
             // 
             this.labelInstructions.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInstructions.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.labelInstructions.Location = new System.Drawing.Point(3, 35);
+            this.labelInstructions.Location = new System.Drawing.Point(13, 25);
             this.labelInstructions.Name = "labelInstructions";
-            this.labelInstructions.Size = new System.Drawing.Size(345, 59);
+            this.labelInstructions.Size = new System.Drawing.Size(376, 63);
             this.labelInstructions.TabIndex = 0;
             // 
             // labelPart
@@ -355,10 +357,10 @@
             // 
             this.labelSerial.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSerial.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.labelSerial.Location = new System.Drawing.Point(23, 194);
+            this.labelSerial.Location = new System.Drawing.Point(23, 185);
             this.labelSerial.Margin = new System.Windows.Forms.Padding(0);
             this.labelSerial.Name = "labelSerial";
-            this.labelSerial.Size = new System.Drawing.Size(305, 104);
+            this.labelSerial.Size = new System.Drawing.Size(376, 57);
             this.labelSerial.TabIndex = 24;
             // 
             // labelRequestedOn
@@ -415,7 +417,7 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(574, 420);
+            this.button1.Location = new System.Drawing.Point(447, 555);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 53);
             this.button1.TabIndex = 27;
@@ -429,10 +431,10 @@
             this.rBtnCRR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rBtnCRR.Location = new System.Drawing.Point(8, 86);
             this.rBtnCRR.Name = "rBtnCRR";
-            this.rBtnCRR.Size = new System.Drawing.Size(180, 29);
+            this.rBtnCRR.Size = new System.Drawing.Size(122, 29);
             this.rBtnCRR.TabIndex = 31;
             this.rBtnCRR.TabStop = true;
-            this.rBtnCRR.Text = "Cleanroom Ready";
+            this.rBtnCRR.Text = "Cleanroom";
             this.rBtnCRR.UseVisualStyleBackColor = true;
             // 
             // rBtnCage
@@ -474,23 +476,37 @@
             // 
             // gBoxSite
             // 
+            this.gBoxSite.Controls.Add(this.label6);
             this.gBoxSite.Controls.Add(this.rBtnBulk);
             this.gBoxSite.Controls.Add(this.rBtnCage);
             this.gBoxSite.Controls.Add(this.rBtnCRR);
             this.gBoxSite.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gBoxSite.ForeColor = System.Drawing.Color.Black;
-            this.gBoxSite.Location = new System.Drawing.Point(176, 212);
+            this.gBoxSite.Location = new System.Drawing.Point(10, 6);
+            this.gBoxSite.Margin = new System.Windows.Forms.Padding(10, 3, 10, 10);
             this.gBoxSite.Name = "gBoxSite";
-            this.gBoxSite.Size = new System.Drawing.Size(192, 123);
+            this.gBoxSite.Size = new System.Drawing.Size(136, 163);
             this.gBoxSite.TabIndex = 17;
             this.gBoxSite.TabStop = false;
             this.gBoxSite.Text = "Site: ";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(46, 117);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 25);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Ready";
+            // 
             // panelHot
             // 
+            this.panelHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panelHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelHot.Controls.Add(this.rBtnHot);
-            this.panelHot.Location = new System.Drawing.Point(574, 348);
+            this.panelHot.Location = new System.Drawing.Point(447, 476);
+            this.panelHot.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.panelHot.Name = "panelHot";
             this.panelHot.Padding = new System.Windows.Forms.Padding(10);
             this.panelHot.Size = new System.Drawing.Size(160, 66);
@@ -510,16 +526,17 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(13, 13);
+            this.panel1.Location = new System.Drawing.Point(11, 13);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.panel1.Size = new System.Drawing.Size(355, 193);
+            this.panel1.Size = new System.Drawing.Size(423, 193);
             this.panel1.TabIndex = 30;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnColumnDetails);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.labelSerial);
@@ -530,11 +547,11 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.labelQty);
             this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Location = new System.Drawing.Point(381, 13);
+            this.panel2.Location = new System.Drawing.Point(11, 219);
             this.panel2.Margin = new System.Windows.Forms.Padding(10);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(355, 322);
+            this.panel2.Size = new System.Drawing.Size(423, 261);
             this.panel2.TabIndex = 31;
             // 
             // groupBox2
@@ -544,7 +561,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(331, 149);
+            this.groupBox2.Size = new System.Drawing.Size(399, 88);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Serial Number:";
@@ -554,26 +571,46 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.groupBox1);
-            this.panel3.Location = new System.Drawing.Point(176, 348);
-            this.panel3.Margin = new System.Windows.Forms.Padding(10);
+            this.panel3.Location = new System.Drawing.Point(11, 493);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(385, 125);
+            this.panel3.Size = new System.Drawing.Size(423, 115);
             this.panel3.TabIndex = 32;
+            // 
+            // pnlSite
+            // 
+            this.pnlSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.pnlSite.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlSite.Controls.Add(this.gBoxSite);
+            this.pnlSite.Location = new System.Drawing.Point(447, 280);
+            this.pnlSite.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.pnlSite.Name = "pnlSite";
+            this.pnlSite.Size = new System.Drawing.Size(160, 183);
+            this.pnlSite.TabIndex = 33;
+            // 
+            // btnColumnDetails
+            // 
+            this.btnColumnDetails.Location = new System.Drawing.Point(42, 7);
+            this.btnColumnDetails.Name = "btnColumnDetails";
+            this.btnColumnDetails.Size = new System.Drawing.Size(40, 29);
+            this.btnColumnDetails.TabIndex = 28;
+            this.btnColumnDetails.UseVisualStyleBackColor = true;
+            this.btnColumnDetails.Click += new System.EventHandler(this.btnColumnDetails_Click);
             // 
             // DetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(747, 484);
+            this.ClientSize = new System.Drawing.Size(620, 614);
+            this.Controls.Add(this.pnlSite);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelProcedures);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelHot);
-            this.Controls.Add(this.gBoxSite);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DetailsForm";
@@ -593,6 +630,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.pnlSite.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -639,5 +677,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnlSite;
+        private System.Windows.Forms.Button btnColumnDetails;
     }
 }

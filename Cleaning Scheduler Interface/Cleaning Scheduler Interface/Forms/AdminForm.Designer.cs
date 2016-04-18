@@ -189,7 +189,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 194);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 182);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -306,11 +306,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(986, 608);
-            this.ControlBox = false;
             this.Controls.Add(this.pnlControl);
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AdminForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Cleaning Request Control";
