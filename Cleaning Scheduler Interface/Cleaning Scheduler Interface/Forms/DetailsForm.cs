@@ -17,6 +17,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable requestTable;
         private DataTable columnTable;
         private Image detailIcon;
+        private ColumnGunPartListForm columnGunForm;
         public DetailsForm(int reqId)
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace Cleaning_Scheduler_Interface
         {
             requestsDB = new RequestsDB();
             requestTable = requestsDB.GetRequest(requestID);
-            columnTable = requestsDB.GetColumnsTable();
+            columnTable = requestsDB.GetGunTable();
             labelPart.Text = requestTable.Rows[0]["PartNumber"].ToString();
             labelDescription.Text = requestTable.Rows[0]["Description"].ToString();
             labelQty.Text = requestTable.Rows[0]["Quantity"].ToString();
@@ -102,6 +103,8 @@ namespace Cleaning_Scheduler_Interface
         private void btnColumnDetails_Click(object sender, EventArgs e)
         {
             //Open Column/Gun Parts List Form
+            columnGunForm = new ColumnGunPartListForm(labelPart.Text);
+            columnGunForm.ShowDialog();
         }
 
     }

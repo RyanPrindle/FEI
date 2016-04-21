@@ -73,9 +73,9 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap help_contents {
+        internal static System.Drawing.Bitmap FEI_Logo_Spinner {
             get {
-                object obj = ResourceManager.GetObject("help-contents", resourceCulture);
+                object obj = ResourceManager.GetObject("FEI Logo Spinner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap info_icon_53629 {
+        internal static System.Drawing.Bitmap FEI_Logo_Spinner_2 {
             get {
-                object obj = ResourceManager.GetObject("info-icon-53629", resourceCulture);
+                object obj = ResourceManager.GetObject("FEI Logo Spinner 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help_contents {
+            get {
+                object obj = ResourceManager.GetObject("help-contents", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

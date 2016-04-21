@@ -189,7 +189,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 182);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 164);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -220,6 +220,7 @@
             this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHistory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnHistory.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.btnHistory.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistory.ForeColor = System.Drawing.Color.Maroon;
             this.btnHistory.Location = new System.Drawing.Point(385, 10);
@@ -230,7 +231,6 @@
             this.btnHistory.Text = "History";
             this.btnHistory.UseVisualStyleBackColor = true;
             this.btnHistory.Visible = false;
-            this.btnHistory.Click += new System.EventHandler(this.buttonHistory_Click);
             // 
             // btnEditRequests
             // 
@@ -253,6 +253,7 @@
             this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnQuit.BackColor = System.Drawing.Color.Gray;
+            this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.Black;
             this.btnQuit.Location = new System.Drawing.Point(255, 10);
@@ -262,13 +263,13 @@
             this.btnQuit.TabIndex = 24;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = false;
-            this.btnQuit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // btnReturn
             // 
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReturn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnReturn.BackColor = System.Drawing.Color.DarkGray;
+            this.btnReturn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReturn.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.ForeColor = System.Drawing.Color.Black;
             this.btnReturn.Location = new System.Drawing.Point(10, 10);
@@ -276,7 +277,7 @@
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(230, 35);
             this.btnReturn.TabIndex = 22;
-            this.btnReturn.Text = "Return to Main Screen";
+            this.btnReturn.Text = "Main Screen";
             this.btnReturn.UseVisualStyleBackColor = false;
             // 
             // bGWorkerDeleteRequest
@@ -314,6 +315,7 @@
             this.MinimizeBox = false;
             this.Name = "AdminForm";
             this.Padding = new System.Windows.Forms.Padding(10);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cleaning Request Control";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdminForm_Load);

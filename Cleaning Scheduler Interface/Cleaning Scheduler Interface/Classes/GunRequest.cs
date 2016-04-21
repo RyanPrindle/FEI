@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cleaning_Scheduler_Interface
 {
-    class ColumnRequest
+    class GunRequest
     {
         public String mRequestor { get; set; }
         public String mType { get; set; }

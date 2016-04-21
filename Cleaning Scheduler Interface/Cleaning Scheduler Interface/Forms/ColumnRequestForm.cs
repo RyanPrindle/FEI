@@ -19,7 +19,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable mContactTable;
         private int mContactID;
         ProgressBarForm mProgress;
-        private ColumnRequest mColumnRequest; 
+        private GunRequest mColumnRequest; 
 
         public ColumnRequestForm()
         {
@@ -59,7 +59,7 @@ namespace Cleaning_Scheduler_Interface
         {
             RequestsDB requestDB = new RequestsDB();
             List<DataTable> tables = new List<DataTable>();
-            tables.Add(requestDB.GetColumnsTable());
+            tables.Add(requestDB.GetGunTable());
             tables.Add(requestDB.GetRequestsTable());
             tables.Add(requestDB.GetContactTable());
             e.Result = tables;
@@ -95,7 +95,7 @@ namespace Cleaning_Scheduler_Interface
             GetDataTables();            
         }
 
-        private void AddColumn(ColumnRequest req)
+        private void AddColumn(GunRequest req)
         {
             mProgress = new ProgressBarForm();            
             bGWorkerAddColumn = new BackgroundWorker();
@@ -107,7 +107,7 @@ namespace Cleaning_Scheduler_Interface
         private void bGWorkerAddColumn_DoWork(object sender, DoWorkEventArgs e)
         {
             RequestsDB requestsDB = new RequestsDB();
-            e.Result = requestsDB.AddColumnRequest((ColumnRequest)e.Argument);
+            e.Result = requestsDB.AddGunRequest((GunRequest)e.Argument);
         }
         private void bGWorkerAddColumn_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -191,7 +191,7 @@ namespace Cleaning_Scheduler_Interface
         private void btnColumnCleanRequest_Click(object sender, EventArgs e)
         {
             errorProviderColumnRequestForm.Clear();
-            mColumnRequest = new ColumnRequest();
+            mColumnRequest = new GunRequest();
             bool submittable = true;
             if (textBoxRequestor.Text == "" || textBoxRequestor.Text == null)
             {

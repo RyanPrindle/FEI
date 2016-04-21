@@ -18,6 +18,7 @@ namespace Cleaning_Scheduler_Interface
         private PartRequestForm requestPartForm;
         private ColumnRequestForm requestColumnForm;
         private AdminForm adminForm;
+        private HistoryForm historyForm;
         private ProgressBarForm progressForm;
         private DetailsForm detailsForm;
         private DataTable requestTable = new DataTable();
@@ -264,6 +265,66 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
         }
+
+        private void FormatLayout()
+        {
+            ////infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
+            int padding = 10;
+            int btnHeight = 80;
+            int btnWidth = (pnlButtons.Width - (2 * padding));
+            btnColumnRequest.Location = new Point(padding - 1, padding);
+            btnColumnRequest.Height = btnPartRequest.Height = btnCleaning.Height = btnHistory.Height = btnQuit.Height = btnHeight;
+            btnColumnRequest.Width = btnWidth;
+            btnQuit.Location = new Point(0, splitContainer1.Height - btnHeight);
+            btnPartRequest.Location = new Point(padding - 1, btnHeight + 2 * padding);
+            btnPartRequest.Width = btnWidth;
+            pnlButtons.Height = btnColumnRequest.Height + btnPartRequest.Height + (3 * padding) + 4;
+            btnCleaning.Location = new Point(0, btnQuit.Location.Y - btnCleaning.Height - padding);
+            btnCleaning.Width = pnlButtons.Width;
+            btnHistory.Location = new Point(0, btnCleaning.Location.Y - btnHistory.Height - padding);
+            btnHistory.Width = pnlButtons.Width;
+            btnQuit.Width = pnlButtons.Width;
+            splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
+            splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding) / 3;
+            splitContainer3.SplitterDistance = (splitContainer3.Height - padding) / 2;
+        }
+
+        private void OpenAdminForm()
+        {
+            adminForm = new AdminForm(this);
+            adminForm.ShowDialog();
+            switch (adminForm.DialogResult)
+            {
+                case DialogResult.Cancel:
+                    this.Close();
+                    break;
+                case DialogResult.OK:
+                    FillDataTables();
+                    break;
+                case DialogResult.Abort:
+                    OpenHistoryForm();
+                    break;
+            }
+        }
+
+        private void OpenHistoryForm()
+        {
+            historyForm = new HistoryForm(this);
+            historyForm.ShowDialog();
+            switch (historyForm.DialogResult)
+            {
+                case DialogResult.Cancel:
+                    this.Close();
+                    break;
+                case DialogResult.OK:
+                    FillDataTables();
+                    break;
+                case DialogResult.Abort:
+                    OpenAdminForm();
+                    break;
+            }
+        }
         
 #region Event Handlers
 
@@ -283,12 +344,12 @@ namespace Cleaning_Scheduler_Interface
 
         private void btnCleaning_Click(object sender, EventArgs e)
         {
-            adminForm = new AdminForm(this);
-            if (adminForm.ShowDialog() == DialogResult.Cancel)
-            {
-                this.Close();
-            }
-            FillDataTables();
+            OpenAdminForm();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            OpenHistoryForm();
         }
 
         private void buttonQuit_Click(object sender, EventArgs e)
@@ -348,6 +409,7 @@ namespace Cleaning_Scheduler_Interface
                 {
                     if (e.ColumnIndex == dgv.Columns["Info"].Index)
                     {
+                        
                         reqId = Int32.Parse(dgv.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());                
                         //Show Details
                         detailsForm = new DetailsForm(reqId);
@@ -365,27 +427,7 @@ namespace Cleaning_Scheduler_Interface
 
 #endregion
 
-        private void FormatLayout()
-        {
-            ////infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
-            int padding = 10;
-            int btnHeight = 60;
-            int btnWidth = (pnlButtons.Width - (2 * padding));
-            btnColumnRequest.Location = new Point(padding -1, padding);
-            btnColumnRequest.Height = btnHeight;
-            btnColumnRequest.Width = btnWidth;
-            btnPartRequest.Location = new Point(padding -1, btnHeight + 2*padding);
-            btnPartRequest.Height = btnHeight;
-            btnPartRequest.Width = btnWidth;
-            pnlButtons.Height = btnColumnRequest.Height + btnPartRequest.Height + (3 * padding)+ 4;
-            btnCleaning.Location = new Point(0, btnQuit.Location.Y - btnCleaning.Height - padding);
-            btnCleaning.Width = pnlButtons.Width;
-            btnQuit.Width = pnlButtons.Width;
-            splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
-            splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding)*2/7;
-            splitContainer3.SplitterDistance = (splitContainer3.Height - padding)*2/ 5;
-        }
+        
 
     }
 }

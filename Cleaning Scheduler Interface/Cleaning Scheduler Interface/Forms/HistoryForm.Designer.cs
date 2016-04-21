@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryForm));
             this.dTPickerRequestedFrom = new System.Windows.Forms.DateTimePicker();
             this.dTPickerRequestedTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -137,6 +138,7 @@
             this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonBack.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.buttonBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBack.ForeColor = System.Drawing.Color.Black;
             this.buttonBack.Location = new System.Drawing.Point(1353, 506);
@@ -144,7 +146,7 @@
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(228, 39);
             this.buttonBack.TabIndex = 23;
-            this.buttonBack.Text = "Return to Admin Control";
+            this.buttonBack.Text = "Admin Control";
             this.buttonBack.UseVisualStyleBackColor = false;
             // 
             // panelFilter
@@ -459,6 +461,7 @@
             this.buttonQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonQuit.BackColor = System.Drawing.Color.Gray;
+            this.buttonQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonQuit.ForeColor = System.Drawing.Color.Black;
             this.buttonQuit.Location = new System.Drawing.Point(1353, 603);
@@ -474,6 +477,7 @@
             this.btnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnMain.BackColor = System.Drawing.Color.DarkGray;
+            this.btnMain.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMain.ForeColor = System.Drawing.Color.Black;
             this.btnMain.Location = new System.Drawing.Point(1353, 555);
@@ -481,9 +485,8 @@
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(228, 38);
             this.btnMain.TabIndex = 27;
-            this.btnMain.Text = "Return to Main Screen";
+            this.btnMain.Text = "Main Screen";
             this.btnMain.UseVisualStyleBackColor = false;
-            this.btnMain.Click += new System.EventHandler(this.button1_Click);
             // 
             // HistoryForm
             // 
@@ -497,11 +500,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.buttonBack);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HistoryForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "HistoryForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Completed Clean Request History";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             this.groupBox1.ResumeLayout(false);

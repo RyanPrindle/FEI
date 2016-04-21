@@ -38,9 +38,6 @@ namespace Cleaning_Scheduler_Interface
 
         private void HistoryForm_Load(object sender, EventArgs e)
         {
-            buttonBack.DialogResult = DialogResult.OK;
-            buttonQuit.DialogResult = DialogResult.Cancel;
-            btnMain.DialogResult = DialogResult.Abort;
             GetHistoryData();
         }
 
@@ -59,6 +56,13 @@ namespace Cleaning_Scheduler_Interface
             RequestsDB requestDB = new RequestsDB();
             DataTable table = new DataTable();
             table = requestDB.GetRequestHistoryTable();
+            table.Columns["Quantity"].ColumnName = "Qty";
+            table.Columns["RequestedOn"].ColumnName = "Requested";
+            table.Columns["StartedOn"].ColumnName = "Started";
+            table.Columns["FinishedOn"].ColumnName = "Finished";
+            table.Columns["SerialNumber"].ColumnName = "Serial #";
+            table.Columns["PartNumber"].ColumnName = "Part #";
+            table.Columns["Email"].ColumnName = "Contact";
             e.Result = table;
         }
 
@@ -66,14 +70,6 @@ namespace Cleaning_Scheduler_Interface
         {
             mHistoryTable = new DataTable();
             mHistoryTable = (DataTable)e.Result;
-            mHistoryTable.Columns["Quantity"].ColumnName = "Qty";
-            mHistoryTable.Columns["RequestedOn"].ColumnName = "Requested";
-            mHistoryTable.Columns["StartedOn"].ColumnName = "Started";
-            mHistoryTable.Columns["FinishedOn"].ColumnName = "Finished";
-            mHistoryTable.Columns["SerialNumber"].ColumnName = "Serial #";
-            mHistoryTable.Columns["PartNumber"].ColumnName = "Part #";
-            mHistoryTable.Columns["Email"].ColumnName = "Contact";
-            
             ResetDateFilters();
             InitHistoryDGV();
             LoadPartComboBox();
@@ -153,7 +149,6 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
             dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
             mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);
-            //dGVHistory.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
             dGVHistory.ResumeLayout();
         }
@@ -316,9 +311,6 @@ namespace Cleaning_Scheduler_Interface
             mMainForm.FormatDGVCheckboxInfoHot(dGVHistory);            
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

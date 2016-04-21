@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColumnRequestForm));
             this.buttonCancel = new System.Windows.Forms.Button();
             this.btnColumnCleanRequest = new System.Windows.Forms.Button();
             this.bGWorkerGetData = new System.ComponentModel.BackgroundWorker();
@@ -240,9 +241,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(561, 357);
-            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(577, 395);
             this.MinimizeBox = false;
@@ -250,7 +251,7 @@
             this.Name = "ColumnRequestForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ColumnRequestForm";
+            this.Text = "Column Clean Request";
             this.Load += new System.EventHandler(this.ColumnRequestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderColumnRequestForm)).EndInit();
             this.panel1.ResumeLayout(false);

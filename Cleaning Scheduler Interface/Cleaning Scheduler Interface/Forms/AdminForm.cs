@@ -310,13 +310,7 @@ namespace Cleaning_Scheduler_Interface
             finishForm.ShowDialog();
             RefreshTables();
         }
-
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
+       
         private void btnEditRequests_Click(object sender, EventArgs e)
         {
             edit = !edit;
@@ -326,22 +320,6 @@ namespace Cleaning_Scheduler_Interface
                 btnEditRequests.Text = "Done Editing";
             else
                 btnEditRequests.Text = "Edit Requests";
-        }
-
-        private void buttonHistory_Click(object sender, EventArgs e)
-        {
-            //Open History Screen
-            HistoryForm historyForm = new HistoryForm(mParent);
-            historyForm.ShowDialog();
-            if (historyForm.DialogResult == DialogResult.Cancel)
-            {
-                this.Close();
-            }
-            if (historyForm.DialogResult == DialogResult.Abort)
-            {
-                //show main screen
-                this.DialogResult = DialogResult.OK;
-            }
         }
 
         private void dGV_MouseWheel(object sender, MouseEventArgs e)

@@ -14,7 +14,8 @@ namespace Cleaning_Scheduler_Interface
         private DB requestDB;
         private static string REQUESTTABLE = "RequestTable";
         private static string CONTACTTABLE = "ContactTable";
-        private static string COLUMNTABLE = "ColumnTable";
+        private static string GUNTABLE = "GunTable";
+        private static string GUNPARTTABLE = "GunPartTable";
         private static string HISTORY = "HistoryQuery";
         private static string REQUEST = "RequestQuery";
 
@@ -122,16 +123,16 @@ namespace Cleaning_Scheduler_Interface
         }
 
 #endregion
-#region Column
+#region Gun
 
-        public DataTable GetColumnsTable()
+        public DataTable GetGunTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + COLUMNTABLE + " ORDER BY Type";
+            cmd.CommandText = "SELECT * FROM " + GUNTABLE + " ORDER BY Type";
             return requestDB.GetDataTable(cmd);
         }
 
-        public int AddColumnRequest(ColumnRequest request)
+        public int AddGunRequest(GunRequest request)
         {
             {
                 String now = DateTime.Now.ToString();
@@ -156,6 +157,26 @@ namespace Cleaning_Scheduler_Interface
                     cmd.Parameters.AddWithValue("@qty", request.mQty);                   
                 return requestDB.AddReturnID(cmd);
             }
+        }
+
+        public DataTable GetGunParts(String gun)
+        {
+            string query;
+            switch(gun)
+            {
+                case "Tomahawk Column":
+                    query = "TomahawkQuery";
+                    break;
+                case "Sidewinder Column":
+                    query = "SidewinderQuery";
+                    break;
+                default:
+                    query = GUNPARTTABLE;
+                    break;
+            }
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandText = "SELECT * FROM " + query;
+            return requestDB.GetDataTable(cmd);
         }
 
 #endregion

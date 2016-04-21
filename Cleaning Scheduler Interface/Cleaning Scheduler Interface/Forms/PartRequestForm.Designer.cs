@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartRequestForm));
             this.btnPartCleanRequest = new System.Windows.Forms.Button();
             this.bGWorkerGetData = new System.ComponentModel.BackgroundWorker();
             this.bGWorkerAddContact = new System.ComponentModel.BackgroundWorker();
@@ -425,9 +426,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(561, 519);
-            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(577, 557);
             this.MinimizeBox = false;
@@ -436,7 +437,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Part Clean Request Form";
+            this.Text = "Part Clean Request";
             this.Load += new System.EventHandler(this.PartRequestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPartRequestForm)).EndInit();
             this.panel1.ResumeLayout(false);

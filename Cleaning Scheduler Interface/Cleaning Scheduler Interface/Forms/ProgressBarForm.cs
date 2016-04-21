@@ -11,16 +11,10 @@ using System.Windows.Forms;
 namespace Cleaning_Scheduler_Interface
 {
     public partial class ProgressBarForm : Form
-    {
-        public int ProgressValue
-        {
-            set { progressBar1.Value = value; }
-        }
-        
+    {        
         public ProgressBarForm()
         {
             InitializeComponent();
-        }
-  
+        }  
     }
 }
