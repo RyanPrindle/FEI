@@ -34,23 +34,32 @@ namespace Cleaning_Scheduler_Interface
 
         private void AdminForm_Load(object sender, EventArgs e)
         {
-            int pad = 10;
-            pnlButtons.Width = pnlControl.Width = (splitContainer1.Panel1.Width - pad) / 2;
-            pnlControl.Location = new Point(pnlButtons.Width + 2 * pad, pnlButtons.Location.Y);
-            int btnWidth = (pnlButtons.Width - 3 * pad) / 2;
-            btnEditRequests.Location = new Point(pad - 1, pad);
-            btnEditRequests.Width = btnWidth;
-            btnHistory.Location = new Point(btnWidth + 2 * pad - 1, pad);
-            btnHistory.Width = btnWidth;
-            btnHistory.Visible = true;
-            btnReturn.Location = new Point(pad - 1, pad);
-            btnReturn.Width = btnWidth;
-            btnReturn.DialogResult = DialogResult.OK;
-            btnQuit.Location = new Point(btnWidth + 2 * pad, pad);
-            btnQuit.Width = btnWidth;
-            btnQuit.DialogResult = DialogResult.Cancel;
+            FormatLayout();
 
             RefreshTables();
+        }
+
+        private void FormatLayout()
+        {
+            int pad = 10;
+            int screenWidth = splitContainer1.Width;
+            pnlEdit.Width = (screenWidth - pad) / 4;
+            pnlEdit.Location = new Point(splitContainer1.Location.Y, splitContainer1.Height + 2 * pad);
+            pnlControl.Width = (screenWidth - pad) * 3 / 4;
+            pnlControl.Location = new Point(pnlEdit.Width + 2 * pad, pnlEdit.Location.Y);
+            int btnEditWidth = ((pnlEdit.Width - 2) - 2 * pad);
+            int btnControlWidth = ((pnlControl.Width - 2) - 4 * pad) / 3;
+            btnEditRequests.Location = new Point(pad, pad);
+            btnEditRequests.Width = btnEditWidth;
+            btnHistory.Location = new Point(pad, pad);
+            btnHistory.Width = btnControlWidth;
+            btnHistory.Visible = true;
+            btnReturnToMain.Location = new Point(btnControlWidth + 2 * pad, pad);
+            btnReturnToMain.Width = btnControlWidth;
+            btnReturnToMain.DialogResult = DialogResult.OK;
+            btnQuit.Location = new Point(2 * btnControlWidth + 3 * pad, pad);
+            btnQuit.Width = btnControlWidth;
+            btnQuit.DialogResult = DialogResult.Cancel;
         }
 
         private void LoadDGV()
@@ -351,6 +360,11 @@ namespace Cleaning_Scheduler_Interface
             mParent.FormatDGVCheckboxInfoHot(dGV);
         }
 
+        private void AdminForm_SizeChanged(object sender, EventArgs e)
+        {
+            FormatLayout();
+        }
+
         #endregion
 
         #region BackGround Workers
@@ -481,5 +495,6 @@ namespace Cleaning_Scheduler_Interface
 
 
         #endregion
+
     }
 }

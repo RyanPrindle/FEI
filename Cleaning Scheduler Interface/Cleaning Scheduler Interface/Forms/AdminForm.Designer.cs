@@ -41,11 +41,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dGVAdminInProcess = new System.Windows.Forms.DataGridView();
             this.bGWStartCleaning = new System.ComponentModel.BackgroundWorker();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.btnHistory = new System.Windows.Forms.Button();
+            this.pnlEdit = new System.Windows.Forms.Panel();
             this.btnEditRequests = new System.Windows.Forms.Button();
+            this.btnHistory = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnReturnToMain = new System.Windows.Forms.Button();
             this.bGWorkerRefreshTables = new System.ComponentModel.BackgroundWorker();
             this.bGWorkerDeleteRequest = new System.ComponentModel.BackgroundWorker();
             this.bGWorkerBackUpRequest = new System.ComponentModel.BackgroundWorker();
@@ -56,7 +56,7 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminQueue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).BeginInit();
-            this.pnlButtons.SuspendLayout();
+            this.pnlEdit.SuspendLayout();
             this.pnlControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +189,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 164);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 152);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -200,37 +200,18 @@
             this.bGWStartCleaning.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWStartCleaning_DoWork);
             this.bGWStartCleaning.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWStartCleaning_RunWorkerCompleted);
             // 
-            // pnlButtons
+            // pnlEdit
             // 
-            this.pnlButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.pnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlButtons.Controls.Add(this.btnHistory);
-            this.pnlButtons.Controls.Add(this.btnEditRequests);
-            this.pnlButtons.Location = new System.Drawing.Point(10, 540);
-            this.pnlButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlButtons.Size = new System.Drawing.Size(482, 58);
-            this.pnlButtons.TabIndex = 1;
-            // 
-            // btnHistory
-            // 
-            this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHistory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnHistory.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnHistory.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistory.ForeColor = System.Drawing.Color.Maroon;
-            this.btnHistory.Location = new System.Drawing.Point(385, 10);
-            this.btnHistory.Margin = new System.Windows.Forms.Padding(0);
-            this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(83, 35);
-            this.btnHistory.TabIndex = 23;
-            this.btnHistory.Text = "History";
-            this.btnHistory.UseVisualStyleBackColor = true;
-            this.btnHistory.Visible = false;
+            this.pnlEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pnlEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlEdit.Controls.Add(this.btnEditRequests);
+            this.pnlEdit.Location = new System.Drawing.Point(10, 540);
+            this.pnlEdit.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlEdit.Name = "pnlEdit";
+            this.pnlEdit.Size = new System.Drawing.Size(223, 58);
+            this.pnlEdit.TabIndex = 1;
             // 
             // btnEditRequests
             // 
@@ -248,6 +229,24 @@
             this.btnEditRequests.UseVisualStyleBackColor = true;
             this.btnEditRequests.Click += new System.EventHandler(this.btnEditRequests_Click);
             // 
+            // btnHistory
+            // 
+            this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHistory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnHistory.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnHistory.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistory.ForeColor = System.Drawing.Color.Maroon;
+            this.btnHistory.Location = new System.Drawing.Point(31, 10);
+            this.btnHistory.Margin = new System.Windows.Forms.Padding(0);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(161, 35);
+            this.btnHistory.TabIndex = 23;
+            this.btnHistory.Text = "History";
+            this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.Visible = false;
+            // 
             // btnQuit
             // 
             this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -256,7 +255,7 @@
             this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.Black;
-            this.btnQuit.Location = new System.Drawing.Point(255, 10);
+            this.btnQuit.Location = new System.Drawing.Point(502, 10);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(0);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(198, 35);
@@ -264,21 +263,21 @@
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = false;
             // 
-            // btnReturn
+            // btnReturnToMain
             // 
-            this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReturn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnReturn.BackColor = System.Drawing.Color.DarkGray;
-            this.btnReturn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnReturn.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.ForeColor = System.Drawing.Color.Black;
-            this.btnReturn.Location = new System.Drawing.Point(10, 10);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(0);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(230, 35);
-            this.btnReturn.TabIndex = 22;
-            this.btnReturn.Text = "Main Screen";
-            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturnToMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReturnToMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReturnToMain.BackColor = System.Drawing.Color.DarkGray;
+            this.btnReturnToMain.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnReturnToMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturnToMain.ForeColor = System.Drawing.Color.Black;
+            this.btnReturnToMain.Location = new System.Drawing.Point(257, 10);
+            this.btnReturnToMain.Margin = new System.Windows.Forms.Padding(0);
+            this.btnReturnToMain.Name = "btnReturnToMain";
+            this.btnReturnToMain.Size = new System.Drawing.Size(230, 35);
+            this.btnReturnToMain.TabIndex = 22;
+            this.btnReturnToMain.Text = "Main Screen";
+            this.btnReturnToMain.UseVisualStyleBackColor = false;
             // 
             // bGWorkerDeleteRequest
             // 
@@ -294,11 +293,13 @@
             // 
             this.pnlControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(255)))));
             this.pnlControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlControl.Controls.Add(this.btnReturn);
+            this.pnlControl.Controls.Add(this.btnHistory);
+            this.pnlControl.Controls.Add(this.btnReturnToMain);
             this.pnlControl.Controls.Add(this.btnQuit);
-            this.pnlControl.Location = new System.Drawing.Point(506, 540);
+            this.pnlControl.Location = new System.Drawing.Point(259, 540);
+            this.pnlControl.Margin = new System.Windows.Forms.Padding(0);
             this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(470, 59);
+            this.pnlControl.Size = new System.Drawing.Size(717, 59);
             this.pnlControl.TabIndex = 25;
             // 
             // AdminForm
@@ -308,17 +309,16 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(986, 608);
             this.Controls.Add(this.pnlControl);
-            this.Controls.Add(this.pnlButtons);
+            this.Controls.Add(this.pnlEdit);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AdminForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cleaning Request Control";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdminForm_Load);
+            this.SizeChanged += new System.EventHandler(this.AdminForm_SizeChanged);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -327,7 +327,7 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminQueue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).EndInit();
-            this.pnlButtons.ResumeLayout(false);
+            this.pnlEdit.ResumeLayout(false);
             this.pnlControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -341,10 +341,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dGVAdminInProcess;
         private System.ComponentModel.BackgroundWorker bGWStartCleaning;
-        private System.Windows.Forms.Panel pnlButtons;
+        private System.Windows.Forms.Panel pnlEdit;
         private System.Windows.Forms.Button btnEditRequests;
         private System.ComponentModel.BackgroundWorker bGWorkerRefreshTables;
-        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Button btnReturnToMain;
         private System.Windows.Forms.Button btnHistory;
         private System.ComponentModel.BackgroundWorker bGWorkerDeleteRequest;
         private System.ComponentModel.BackgroundWorker bGWorkerBackUpRequest;

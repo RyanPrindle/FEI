@@ -124,7 +124,7 @@
             this.groupBox1.Controls.Add(this.dTPickerRequestedTo);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 10);
+            this.groupBox1.Location = new System.Drawing.Point(361, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
@@ -156,12 +156,13 @@
             this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelFilter.Controls.Add(this.label10);
             this.panelFilter.Controls.Add(this.buttonReset);
-            this.panelFilter.Controls.Add(this.comboBoxRequestor);
             this.panelFilter.Controls.Add(this.groupBox3);
+            this.panelFilter.Controls.Add(this.label4);
+            this.panelFilter.Controls.Add(this.comboBoxRequestor);
             this.panelFilter.Controls.Add(this.groupBox2);
-            this.panelFilter.Controls.Add(this.label5);
             this.panelFilter.Controls.Add(this.comboBoxPartFilter);
             this.panelFilter.Controls.Add(this.groupBox1);
+            this.panelFilter.Controls.Add(this.label5);
             this.panelFilter.Location = new System.Drawing.Point(10, 506);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Padding = new System.Windows.Forms.Padding(10);
@@ -174,7 +175,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(779, 80);
+            this.label10.Location = new System.Drawing.Point(40, 94);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(94, 23);
             this.label10.TabIndex = 33;
@@ -210,7 +211,7 @@
             this.comboBoxRequestor.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRequestor.FormattingEnabled = true;
             this.comboBoxRequestor.IntegralHeight = false;
-            this.comboBoxRequestor.Location = new System.Drawing.Point(879, 77);
+            this.comboBoxRequestor.Location = new System.Drawing.Point(140, 91);
             this.comboBoxRequestor.Margin = new System.Windows.Forms.Padding(0);
             this.comboBoxRequestor.Name = "comboBoxRequestor";
             this.comboBoxRequestor.Size = new System.Drawing.Size(211, 31);
@@ -226,7 +227,7 @@
             this.groupBox3.Controls.Add(this.dTPickerStartedTo);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(257, 10);
+            this.groupBox3.Location = new System.Drawing.Point(608, 10);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(0);
@@ -286,7 +287,7 @@
             this.groupBox2.Controls.Add(this.dTPickerFinishedTo);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(507, 10);
+            this.groupBox2.Location = new System.Drawing.Point(858, 10);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(0);
@@ -348,7 +349,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(763, 27);
+            this.label5.Location = new System.Drawing.Point(24, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 23);
             this.label5.TabIndex = 29;
@@ -364,7 +365,7 @@
             this.comboBoxPartFilter.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxPartFilter.FormattingEnabled = true;
             this.comboBoxPartFilter.IntegralHeight = false;
-            this.comboBoxPartFilter.Location = new System.Drawing.Point(878, 24);
+            this.comboBoxPartFilter.Location = new System.Drawing.Point(139, 47);
             this.comboBoxPartFilter.Margin = new System.Windows.Forms.Padding(0);
             this.comboBoxPartFilter.Name = "comboBoxPartFilter";
             this.comboBoxPartFilter.Size = new System.Drawing.Size(212, 31);
@@ -375,10 +376,10 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 478);
+            this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 25);
+            this.label4.Size = new System.Drawing.Size(60, 24);
             this.label4.TabIndex = 24;
             this.label4.Text = "Filter";
             // 
@@ -395,8 +396,8 @@
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.dGVHistory);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.dGVHistory);
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
@@ -449,10 +450,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 25);
+            this.label3.Size = new System.Drawing.Size(221, 24);
             this.label3.TabIndex = 26;
             this.label3.Text = "Completed Requests";
             // 
@@ -497,11 +498,9 @@
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.buttonBack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HistoryForm";
             this.Padding = new System.Windows.Forms.Padding(10);
@@ -521,7 +520,6 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVHistory)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
