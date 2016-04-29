@@ -67,10 +67,11 @@
             this.panelHot = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnColumnDetails = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnlSite = new System.Windows.Forms.Panel();
-            this.btnColumnDetails = new System.Windows.Forms.Button();
+            this.bGWDetails = new System.ComponentModel.BackgroundWorker();
             this.panelProcedures.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gBoxSite.SuspendLayout();
@@ -554,6 +555,15 @@
             this.panel2.Size = new System.Drawing.Size(423, 261);
             this.panel2.TabIndex = 31;
             // 
+            // btnColumnDetails
+            // 
+            this.btnColumnDetails.Location = new System.Drawing.Point(42, 7);
+            this.btnColumnDetails.Name = "btnColumnDetails";
+            this.btnColumnDetails.Size = new System.Drawing.Size(40, 29);
+            this.btnColumnDetails.TabIndex = 28;
+            this.btnColumnDetails.UseVisualStyleBackColor = true;
+            this.btnColumnDetails.Click += new System.EventHandler(this.btnColumnDetails_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -589,14 +599,10 @@
             this.pnlSite.Size = new System.Drawing.Size(160, 183);
             this.pnlSite.TabIndex = 33;
             // 
-            // btnColumnDetails
+            // bGWDetails
             // 
-            this.btnColumnDetails.Location = new System.Drawing.Point(42, 7);
-            this.btnColumnDetails.Name = "btnColumnDetails";
-            this.btnColumnDetails.Size = new System.Drawing.Size(40, 29);
-            this.btnColumnDetails.TabIndex = 28;
-            this.btnColumnDetails.UseVisualStyleBackColor = true;
-            this.btnColumnDetails.Click += new System.EventHandler(this.btnColumnDetails_Click);
+            this.bGWDetails.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWDetails_DoWork);
+            this.bGWDetails.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWDetails_RunWorkerCompleted);
             // 
             // DetailsForm
             // 
@@ -680,5 +686,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel pnlSite;
         private System.Windows.Forms.Button btnColumnDetails;
+        private System.ComponentModel.BackgroundWorker bGWDetails;
     }
 }

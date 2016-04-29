@@ -170,6 +170,39 @@ namespace Cleaning_Scheduler_Interface
                 case "Sidewinder Column":
                     query = "SidewinderQuery";
                     break;
+                case "KLA Gun":
+                    query = "KLAQuery";
+                    break;
+                case "UC Gun":
+                    query = "UCQuery";
+                    break;
+                case "NGSEM Gun":
+                    query = "NGSEMQuery";
+                    break;
+                case "Magnum Column":
+                    query = "MagnumQuery";
+                    break;
+                case "Chamber Kit":
+                    query = "ChamberKitQuery";
+                    break;
+                case "ELEC Module":
+                    query = "SidewinderQuery";
+                    break;
+                case "Pheonix Column":
+                    query = "PheonixQuery";
+                    break;
+                case "Phi Evans Column":
+                    query = "PhiEvansQuery";
+                    break;
+                case "Plasma Column":
+                    query = "PlasmaQuery";
+                    break;
+                case "Vectra Column":
+                    query = "VectraQuery";
+                    break;
+                case "VisionaryColumn":
+                    query = "Visionary Query";
+                    break;
                 default:
                     query = GUNPARTTABLE;
                     break;
@@ -189,13 +222,13 @@ namespace Cleaning_Scheduler_Interface
                 if (request.mContactId < 1)
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CleanRoomReady], [Cage], [Bulk]) " +
+                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk]) " +
                                       "VALUES (@requestor, @requestedOn, @type, @instructions, @serial, @hot)";
                 }
                 else
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CleanRoomReady], [Cage], [Bulk]) " +
+                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk]) " +
                                       "VALUES (@contact, @requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk)";
                     cmd.Parameters.AddWithValue("@contact", request.mContactId);
                 }

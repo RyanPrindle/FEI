@@ -28,37 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tLPGun = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tLPGun.SuspendLayout();
+            this.bGWGunParts = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
-            // 
-            // tLPGun
-            // 
-            this.tLPGun.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tLPGun.AutoScroll = true;
-            this.tLPGun.ColumnCount = 3;
-            this.tLPGun.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tLPGun.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tLPGun.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 276F));
-            this.tLPGun.Controls.Add(this.lblTitle, 1, 0);
-            this.tLPGun.Controls.Add(this.label2, 0, 2);
-            this.tLPGun.Controls.Add(this.label3, 1, 2);
-            this.tLPGun.Controls.Add(this.label1, 2, 2);
-            this.tLPGun.Location = new System.Drawing.Point(12, 12);
-            this.tLPGun.Name = "tLPGun";
-            this.tLPGun.RowCount = 3;
-            this.tLPGun.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tLPGun.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tLPGun.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tLPGun.Size = new System.Drawing.Size(913, 581);
-            this.tLPGun.TabIndex = 0;
             // 
             // buttonCancel
             // 
@@ -73,67 +45,18 @@
             this.buttonCancel.Text = "OK";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // lblTitle
+            // bGWGunParts
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tLPGun.SetColumnSpan(this.lblTitle, 3);
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitle.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(3, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(907, 29);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Parts Clean";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(248, 552);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Part Number";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(257, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(376, 552);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Description";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(639, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(271, 552);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Picture / Drawing";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bGWGunParts.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWGunParts_DoWork);
+            this.bGWGunParts.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWGunParts_RunWorkerCompleted);
             // 
             // ColumnGunPartListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(937, 653);
+            this.ClientSize = new System.Drawing.Size(938, 653);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.tLPGun);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -141,19 +64,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ColumnGunPartListForm";
             this.Load += new System.EventHandler(this.ColumnGunPartListForm_Load);
-            this.tLPGun.ResumeLayout(false);
-            this.tLPGun.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tLPGun;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.ComponentModel.BackgroundWorker bGWGunParts;
     }
 }

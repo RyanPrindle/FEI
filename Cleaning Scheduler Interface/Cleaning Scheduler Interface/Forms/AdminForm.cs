@@ -13,23 +13,18 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class AdminForm : Form
     {
-        private String[] boolNames = new String[] { "Decon", "Dishwasher", "WaterPik", "Ultrasonic", "Crest10", "Crest20", "CrestLong", "CleanRoomReady", "Bulk", "Cage", "Hot" };
-        private Font dGVCheckboxSize = new System.Drawing.Font("Arial", 24.25F, System.Drawing.FontStyle.Bold);
         private DataTable mQueueTable;
         private DataTable mInProcessTable;
         private DataGridViewCellStyle dGVStyle = new DataGridViewCellStyle();
         private ProgressBarForm progressForm;
         private bool edit = false;
-        private MainForm mParent;
+        private MainForm mainForm;
         private DetailsForm detailsForm;
-        private Image infoIcon;
 
-        public AdminForm(MainForm parent)
+        public AdminForm(MainForm mF)
         {
             InitializeComponent();
-            mParent = parent;
-            //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
+            mainForm = mF;
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -74,23 +69,43 @@ namespace Cleaning_Scheduler_Interface
             dGVStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dGVStyle.ForeColor = SystemColors.ControlText;
             dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;
-            dGVStyle.Font = mParent.dGVRowFont;
+            dGVStyle.Font = mainForm.dGVRowFont;
         }
 
         private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            
-            if (e.ColumnIndex == 0 && e.RowIndex > -1)
+
+            if (e.RowIndex > -1)
             {
-                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
-                infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
+                int cellHeight = e.CellBounds.Height - 10;
+                mainForm.infoIcon = (Image)new Bitmap(mainForm.infoIcon, new Size(cellHeight, cellHeight));
+                mainForm.checkIcon = (Image)new Bitmap(mainForm.checkIcon, new Size(cellHeight, cellHeight));
                 DataGridView dGV = (DataGridView)sender;
-                e.Paint(e.CellBounds, DataGridViewPaintParts.Border); 
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
                 e.PaintContent(e.CellBounds);
-                
+
                 if (e.ColumnIndex == dGV.Columns["Info"].Index)
                 {
-                    e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2, e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
+                    e.Graphics.DrawImage(mainForm.infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - mainForm.infoIcon.Size.Width) / 2,
+                                                e.CellBounds.Location.Y + (e.CellBounds.Height - mainForm.infoIcon.Size.Height) / 2);
+                }
+
+                if (e.ColumnIndex == dGV.Columns["Decon"].Index ||
+                    e.ColumnIndex == dGV.Columns["Dishwasher"].Index ||
+                    e.ColumnIndex == dGV.Columns["WaterPik"].Index ||
+                    e.ColumnIndex == dGV.Columns["Ultrasonic"].Index ||
+                    e.ColumnIndex == dGV.Columns["Crest10"].Index ||
+                    e.ColumnIndex == dGV.Columns["Crest20"].Index ||
+                    e.ColumnIndex == dGV.Columns["CrestLong"].Index ||
+                    e.ColumnIndex == dGV.Columns["CR Ready"].Index ||
+                    e.ColumnIndex == dGV.Columns["Bulk"].Index ||
+                    e.ColumnIndex == dGV.Columns["Cage"].Index ||
+                    e.ColumnIndex == dGV.Columns["Hot"].Index)
+                {
+                    if ((bool)dGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == true)
+                        e.Graphics.DrawImage(mainForm.checkIcon, e.CellBounds.Location.X + (e.CellBounds.Width - mainForm.checkIcon.Size.Width) / 2,
+                                                e.CellBounds.Location.Y + (e.CellBounds.Height - mainForm.checkIcon.Size.Height) / 2);
                 }
                 e.Handled = true;
             }
@@ -114,7 +129,7 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
             dGVAdminQueue.DataSource = mQueueTable;
             dGVAdminQueue.DefaultCellStyle = dGVStyle;
-            dGVAdminQueue.ColumnHeadersDefaultCellStyle.Font = mParent.dGVHeaderFont;
+            dGVAdminQueue.ColumnHeadersDefaultCellStyle.Font = mainForm.dGVHeaderFont;
 
             if (edit)
             {
@@ -155,7 +170,7 @@ namespace Cleaning_Scheduler_Interface
                     row.DefaultCellStyle.SelectionBackColor = Color.Red;
                 }
             }
-            mParent.FormatDGVCheckboxInfoHot(dGVAdminQueue);
+            mainForm.FormatDGVInfoHot(dGVAdminQueue);
             dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             //dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -186,7 +201,7 @@ namespace Cleaning_Scheduler_Interface
 
             dGVAdminInProcess.DataSource = mQueueTable;
             dGVAdminInProcess.DefaultCellStyle = dGVStyle;
-            dGVAdminInProcess.ColumnHeadersDefaultCellStyle.Font = mParent.dGVHeaderFont;
+            dGVAdminInProcess.ColumnHeadersDefaultCellStyle.Font = mainForm.dGVHeaderFont;
 
 
             if (edit)
@@ -239,7 +254,7 @@ namespace Cleaning_Scheduler_Interface
                     row.DefaultCellStyle.SelectionBackColor = Color.Red;
                 }
             }
-            mParent.FormatDGVCheckboxInfoHot(dGVAdminInProcess);
+            mainForm.FormatDGVInfoHot(dGVAdminInProcess);
             dGVAdminInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             //dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -357,7 +372,7 @@ namespace Cleaning_Scheduler_Interface
         private void dGV_Sorted(object sender, EventArgs e)
         {
             DataGridView dGV = (DataGridView)sender;
-            mParent.FormatDGVCheckboxInfoHot(dGV);
+            mainForm.FormatDGVInfoHot(dGV);
         }
 
         private void AdminForm_SizeChanged(object sender, EventArgs e)

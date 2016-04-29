@@ -13,11 +13,12 @@ namespace Cleaning_Scheduler_Interface
     public partial class DetailsForm : Form
     {
         private int requestID;
-        private RequestsDB requestsDB;
         private DataTable requestTable;
-        private DataTable columnTable;
+        private DataTable gunTable;
         private Image detailIcon;
         private ColumnGunPartListForm columnGunForm;
+        private ProgressBarForm progressForm;
+
         public DetailsForm(int reqId)
         {
             InitializeComponent();
@@ -26,9 +27,45 @@ namespace Cleaning_Scheduler_Interface
 
         private void DetailsForm_Load(object sender, EventArgs e)
         {
-            requestsDB = new RequestsDB();
-            requestTable = requestsDB.GetRequest(requestID);
-            columnTable = requestsDB.GetGunTable();
+            FillDataTables();
+        }
+            
+        private void btnColumnDetails_Click(object sender, EventArgs e)
+        {
+            //Open Column/Gun Parts List Form
+            columnGunForm = new ColumnGunPartListForm(labelPart.Text);
+            columnGunForm.ShowDialog();
+        }
+
+        private void FillDataTables()
+        {
+            progressForm = new ProgressBarForm();
+            bGWDetails = new BackgroundWorker();
+            bGWDetails.DoWork += new DoWorkEventHandler(bGWDetails_DoWork);
+            bGWDetails.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWDetails_RunWorkerCompleted);
+            bGWDetails.RunWorkerAsync(requestID);
+            progressForm.ShowDialog();
+        }
+
+        private void bGWDetails_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int requestId = (int)e.Argument;            
+            RequestsDB reqDB = new RequestsDB();
+            DataTable reqTable = reqDB.GetRequest(requestID);
+            DataTable gunTable = reqDB.GetGunTable();
+            List<DataTable> tables = new List<DataTable>();
+            tables.Add(reqTable);
+            tables.Add(gunTable);
+            e.Result = tables;
+        }
+
+        private void bGWDetails_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<DataTable> dBTable = (List<DataTable>)e.Result;
+            requestTable = new DataTable();
+            requestTable = dBTable[0];
+            gunTable = dBTable[1];
+            
             labelPart.Text = requestTable.Rows[0]["PartNumber"].ToString();
             labelDescription.Text = requestTable.Rows[0]["Description"].ToString();
             labelQty.Text = requestTable.Rows[0]["Quantity"].ToString();
@@ -91,21 +128,14 @@ namespace Cleaning_Scheduler_Interface
             {
                 gBoxSite.Text = "Site: " + requestTable.Rows[0]["Site"].ToString();
             }
-            foreach(DataRow row in columnTable.Rows)
+            foreach(DataRow row in gunTable.Rows)
             {
                 if (requestTable.Rows[0]["PartNumber"].Equals(row["Type"].ToString()))
                 {
                     btnColumnDetails.Visible = true;
                 }
             }
+            progressForm.Close();
         }
-
-        private void btnColumnDetails_Click(object sender, EventArgs e)
-        {
-            //Open Column/Gun Parts List Form
-            columnGunForm = new ColumnGunPartListForm(labelPart.Text);
-            columnGunForm.ShowDialog();
-        }
-
     }
 }

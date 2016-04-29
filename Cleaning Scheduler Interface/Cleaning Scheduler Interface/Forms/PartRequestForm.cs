@@ -82,6 +82,7 @@ namespace Cleaning_Scheduler_Interface
             mPartTable = tables[0];
             mRequestsTable = tables[1];
             mContactTable = tables[2];
+            mPartTable.Columns[@"P/N"].ColumnName = "Part";
             LoadPartsComboBox();
             LoadContactsComboBox();
 
@@ -128,8 +129,11 @@ namespace Cleaning_Scheduler_Interface
         private void LoadPartsComboBox()
         {
             comboBoxPart.DataSource = mPartTable;
-            comboBoxPart.DisplayMember = @"P/N";
-            comboBoxPart.ValueMember = @"P/N";
+            comboBoxPart.DisplayMember = "Part";
+            comboBoxPart.ValueMember = "Part";
+            lblPartDescription.Text = mPartTable.Rows[0]["Description"].ToString();
+            if (lblPartDescription.Text == "")
+                lblPartDescription.Text = "No Description Found";
         }
 
         private void LoadContactsComboBox()
@@ -180,11 +184,6 @@ namespace Cleaning_Scheduler_Interface
                     comboBoxContact.SelectedIndex = 0;
                 }
             }
-        }
-
-        private void comboBoxPart_Leave(object sender, EventArgs e)
-        {
-            
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -328,5 +327,15 @@ namespace Cleaning_Scheduler_Interface
             textBoxComment.Focus();
         }
 
+        private void comboBoxPart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblPartDescription.Text = mPartTable.Rows[comboBoxPart.SelectedIndex]["Description"].ToString();
+        }
+
+        private void lblPartDescription_TextChanged(object sender, EventArgs e)
+        {
+            if (lblPartDescription.Text == "")
+                lblPartDescription.Text = "No Description Found";
+        }
     }
 }
