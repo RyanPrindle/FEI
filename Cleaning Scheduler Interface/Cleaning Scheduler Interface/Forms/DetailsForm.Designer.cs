@@ -569,9 +569,9 @@
             // btnColumnDetails
             // 
             this.btnColumnDetails.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnDetails.Location = new System.Drawing.Point(156, 45);
+            this.btnColumnDetails.Location = new System.Drawing.Point(330, 45);
             this.btnColumnDetails.Name = "btnColumnDetails";
-            this.btnColumnDetails.Size = new System.Drawing.Size(426, 29);
+            this.btnColumnDetails.Size = new System.Drawing.Size(252, 29);
             this.btnColumnDetails.TabIndex = 28;
             this.btnColumnDetails.Text = "Click For Parts List";
             this.btnColumnDetails.UseVisualStyleBackColor = true;

@@ -139,22 +139,23 @@ namespace Cleaning_Scheduler_Interface
                 OleDbCommand cmd = new OleDbCommand();
                 if (request.mContactId < 1)
                 {
-                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Instructions], [SerialNumber], [Hot], [Quantity]) " +
-                                      "VALUES (@requestor, @requestedOn, @type, @instructions, @serial, @hot, @qty)";                   
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Instructions], [SerialNumber], [Hot], [Quantity], [Description]) " +
+                                      "VALUES (@requestor, @requestedOn, @type, @instructions, @serial, @hot, @qty, @desc)";                   
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Instructions], [SerialNumber], [Hot], [Quantity]) " +
-                                      "VALUES (@contact, @requestor, @requestedOn, @type, @instructions,  @serial, @hot, @qty)";
+                    cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Instructions], [SerialNumber], [Hot], [Quantity], [Description]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @type, @instructions,  @serial, @hot, @qty, @desc)";
                     cmd.Parameters.AddWithValue("@contact", request.mContactId);
                 }
-                    cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
-                    cmd.Parameters.AddWithValue("@requestedOn", now);
-                    cmd.Parameters.AddWithValue("@type", request.mType);
-                    cmd.Parameters.AddWithValue("@instructions", request.mInstructions);
-                    cmd.Parameters.AddWithValue("@serial", request.mSerial);
-                    cmd.Parameters.AddWithValue("@hot", request.mHot);
-                    cmd.Parameters.AddWithValue("@qty", request.mQty);                   
+                cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
+                cmd.Parameters.AddWithValue("@requestedOn", now);
+                cmd.Parameters.AddWithValue("@type", request.mType);
+                cmd.Parameters.AddWithValue("@instructions", request.mInstructions);
+                cmd.Parameters.AddWithValue("@serial", request.mSerial);
+                cmd.Parameters.AddWithValue("@hot", request.mHot);
+                cmd.Parameters.AddWithValue("@qty", request.mQty);
+                cmd.Parameters.AddWithValue("@desc", request.mDescription);
                 return requestDB.AddReturnID(cmd);
             }
         }

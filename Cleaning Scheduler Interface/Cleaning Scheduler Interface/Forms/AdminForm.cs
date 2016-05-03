@@ -160,7 +160,11 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminQueue.Columns["Crest10"].Visible = false;
             dGVAdminQueue.Columns["Crest20"].Visible = false;
             dGVAdminQueue.Columns["CrestLong"].Visible = false;
-            dGVAdminQueue.Columns["Serial Number"].Visible = false;
+            dGVAdminQueue.Columns["Bulk"].Visible = false;
+            dGVAdminQueue.Columns["Cage"].Visible = false;
+            dGVAdminQueue.Columns["Site"].Visible = false;
+            dGVAdminQueue.Columns["Hot"].Visible = false;
+            dGVAdminQueue.Columns["CR Ready"].Visible = false;
             dGVAdminQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewRow row in dGVAdminQueue.Rows)
             {
@@ -229,9 +233,9 @@ namespace Cleaning_Scheduler_Interface
                 }
             }
             dGVAdminInProcess.DataSource = mInProcessTable;
-            dGVAdminInProcess.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVAdminInProcess.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVAdminInProcess.Columns["RequestID"].Visible = false;
+            dGVAdminInProcess.Columns["Requested"].Visible = false;
             dGVAdminInProcess.Columns["Finished"].Visible = false;
             dGVAdminInProcess.Columns["Decon"].Visible = false;
             dGVAdminInProcess.Columns["Dishwasher"].Visible = false;
@@ -240,10 +244,10 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminInProcess.Columns["Crest10"].Visible = false;
             dGVAdminInProcess.Columns["Crest20"].Visible = false;
             dGVAdminInProcess.Columns["CrestLong"].Visible = false;
-            dGVAdminInProcess.Columns["Serial Number"].Visible = false;
             dGVAdminInProcess.Columns["Bulk"].Visible = false;
             dGVAdminInProcess.Columns["Cage"].Visible = false;
             dGVAdminInProcess.Columns["Site"].Visible = false;
+            dGVAdminInProcess.Columns["Hot"].Visible = false;
             dGVAdminInProcess.Columns["CR Ready"].Visible = false;
             dGVAdminInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewRow row in dGVAdminInProcess.Rows)
@@ -422,9 +426,10 @@ namespace Cleaning_Scheduler_Interface
             requestTable.Columns["RequestedOn"].ColumnName = "Requested";
             requestTable.Columns["StartedOn"].ColumnName = "Started";
             requestTable.Columns["FinishedOn"].ColumnName = "Finished";
-            requestTable.Columns["SerialNumber"].ColumnName = "Serial Number";
+            requestTable.Columns["SerialNumber"].ColumnName = "Serial #";
             requestTable.Columns["PartNumber"].ColumnName = "Part Number";
             requestTable.Columns["Email"].ColumnName = "Contact";
+            requestTable.Columns["Quantity"].ColumnName = "Qty";
 
 
             mQueueTable = requestTable.Clone();

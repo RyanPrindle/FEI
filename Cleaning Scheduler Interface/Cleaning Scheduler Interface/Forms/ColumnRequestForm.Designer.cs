@@ -49,6 +49,7 @@
             this.comboBoxContact = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxColumn = new System.Windows.Forms.ComboBox();
+            this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderColumnRequestForm)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -99,7 +100,8 @@
             this.panel1.Controls.Add(this.btnColumnCleanRequest);
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 285);
+            this.panel1.Location = new System.Drawing.Point(10, 328);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(541, 62);
@@ -112,6 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lblDescription);
             this.panel2.Controls.Add(this.textBoxColumnSerial);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.textBoxRequestor);
@@ -124,17 +127,15 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.comboBoxColumn);
             this.panel2.Location = new System.Drawing.Point(10, 13);
-            this.panel2.MaximumSize = new System.Drawing.Size(541, 266);
-            this.panel2.MinimumSize = new System.Drawing.Size(541, 266);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(541, 266);
+            this.panel2.Size = new System.Drawing.Size(541, 302);
             this.panel2.TabIndex = 48;
             // 
             // textBoxColumnSerial
             // 
             this.textBoxColumnSerial.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxColumnSerial.Location = new System.Drawing.Point(209, 219);
+            this.textBoxColumnSerial.Location = new System.Drawing.Point(209, 256);
             this.textBoxColumnSerial.Name = "textBoxColumnSerial";
             this.textBoxColumnSerial.Size = new System.Drawing.Size(120, 29);
             this.textBoxColumnSerial.TabIndex = 51;
@@ -144,7 +145,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(65, 220);
+            this.label5.Location = new System.Drawing.Point(65, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 25);
             this.label5.TabIndex = 57;
@@ -166,7 +167,7 @@
             this.checkBoxColumnHot.AutoSize = true;
             this.checkBoxColumnHot.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxColumnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxColumnHot.Location = new System.Drawing.Point(381, 219);
+            this.checkBoxColumnHot.Location = new System.Drawing.Point(381, 256);
             this.checkBoxColumnHot.Name = "checkBoxColumnHot";
             this.checkBoxColumnHot.Size = new System.Drawing.Size(137, 29);
             this.checkBoxColumnHot.TabIndex = 52;
@@ -177,7 +178,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(105, 87);
+            this.label4.Location = new System.Drawing.Point(105, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 25);
             this.label4.TabIndex = 55;
@@ -186,7 +187,7 @@
             // textBoxComment
             // 
             this.textBoxComment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxComment.Location = new System.Drawing.Point(209, 87);
+            this.textBoxComment.Location = new System.Drawing.Point(209, 124);
             this.textBoxComment.Multiline = true;
             this.textBoxComment.Name = "textBoxComment";
             this.textBoxComment.Size = new System.Drawing.Size(310, 87);
@@ -196,7 +197,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 183);
+            this.label2.Location = new System.Drawing.Point(17, 220);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 25);
             this.label2.TabIndex = 54;
@@ -207,7 +208,7 @@
             this.comboBoxContact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxContact.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxContact.FormattingEnabled = true;
-            this.comboBoxContact.Location = new System.Drawing.Point(209, 180);
+            this.comboBoxContact.Location = new System.Drawing.Point(209, 217);
             this.comboBoxContact.Name = "comboBoxContact";
             this.comboBoxContact.Size = new System.Drawing.Size(310, 33);
             this.comboBoxContact.TabIndex = 50;
@@ -220,9 +221,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label1.Location = new System.Drawing.Point(73, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 25);
+            this.label1.Size = new System.Drawing.Size(133, 25);
             this.label1.TabIndex = 53;
-            this.label1.Text = "Column Type:";
+            this.label1.Text = "Gun / Column:";
             // 
             // comboBoxColumn
             // 
@@ -235,20 +236,30 @@
             this.comboBoxColumn.Name = "comboBoxColumn";
             this.comboBoxColumn.Size = new System.Drawing.Size(310, 33);
             this.comboBoxColumn.TabIndex = 48;
+            this.comboBoxColumn.SelectedIndexChanged += new System.EventHandler(this.comboBoxColumn_SelectedIndexChanged);
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDescription.Location = new System.Drawing.Point(209, 84);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(309, 37);
+            this.lblDescription.TabIndex = 58;
+            this.lblDescription.Text = "description";
+            this.lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColumnRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(561, 357);
+            this.ClientSize = new System.Drawing.Size(561, 400);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(577, 395);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(577, 395);
             this.Name = "ColumnRequestForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -284,5 +295,6 @@
         private System.Windows.Forms.ComboBox comboBoxContact;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxColumn;
+        private System.Windows.Forms.Label lblDescription;
     }
 }

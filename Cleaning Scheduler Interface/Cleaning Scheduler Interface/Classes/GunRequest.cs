@@ -16,5 +16,6 @@ namespace Cleaning_Scheduler_Interface
         public String mSerial { get; set; }
         public bool mHot { get; set; } 
         public DateTime mRequestedDate { get; set; }
+        public String mDescription { get; set; }
     }
 }

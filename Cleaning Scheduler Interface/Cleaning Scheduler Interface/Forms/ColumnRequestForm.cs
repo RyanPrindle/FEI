@@ -71,8 +71,7 @@ namespace Cleaning_Scheduler_Interface
             mRequestsTable = tables[1];
             mContactTable = tables[2];
             LoadColumnsComboBox();
-            LoadContactsComboBox();
-            
+            LoadContactsComboBox();            
             mProgress.Close();
         }
 
@@ -240,6 +239,7 @@ namespace Cleaning_Scheduler_Interface
             }
 
             mColumnRequest.mType = comboBoxColumn.SelectedValue.ToString();
+            mColumnRequest.mDescription = lblDescription.Text;
             mColumnRequest.mQty = 1;
 
             if (submittable)
@@ -247,6 +247,12 @@ namespace Cleaning_Scheduler_Interface
                 //save request
                 AddColumn(mColumnRequest);
             }
+        }
+
+        private void comboBoxColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBoxColumn.SelectedIndex;
+            lblDescription.Text = mColumnTable.Rows[index]["Description"].ToString();
         }
     }
 }
