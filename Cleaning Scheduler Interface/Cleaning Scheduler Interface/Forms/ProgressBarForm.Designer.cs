@@ -35,7 +35,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.FEI_Logo_Spinner;
+            this.pictureBox1.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.FEILogoSpinner;
             this.pictureBox1.Location = new System.Drawing.Point(23, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);

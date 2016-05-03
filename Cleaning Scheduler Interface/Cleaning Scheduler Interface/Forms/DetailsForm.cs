@@ -71,10 +71,10 @@ namespace Cleaning_Scheduler_Interface
             labelQty.Text = requestTable.Rows[0]["Quantity"].ToString();
             labelRequestedOn.Text = requestTable.Rows[0]["RequestedOn"].ToString();
 
-            detailIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.help_contents;
+            detailIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.helpContents;
             int shortSide = Math.Min(btnColumnDetails.Width, btnColumnDetails.Height) - 10;
             detailIcon = (Image)new Bitmap(detailIcon, new Size(shortSide, shortSide));
-            btnColumnDetails.Image = detailIcon;
+            //btnColumnDetails.Image = detailIcon;
             
             labelRequestor.Text = requestTable.Rows[0]["Requestor"].ToString();
             labelContact.Text = requestTable.Rows[0]["Email"].ToString();
@@ -122,7 +122,7 @@ namespace Cleaning_Scheduler_Interface
                 rBtnCRR.Checked = true;
             if (requestTable.Rows[0]["Site"].Equals(DBNull.Value) || requestTable.Rows[0]["Site"].Equals("")) 
             {
-                pnlSite.Visible = false;
+                gBoxSite.Visible = false;
             }
             else
             {
@@ -137,5 +137,6 @@ namespace Cleaning_Scheduler_Interface
             }
             progressForm.Close();
         }
+
     }
 }

@@ -224,6 +224,16 @@ namespace Cleaning_Scheduler_Interface
                 else
                 {
                     mPartRequest.mPart = comboBoxPart.SelectedValue.ToString();
+                    foreach (DataRow row in mPartTable.Rows)
+                    {
+                        if (mPartRequest.mPart == row["Part"].ToString())
+                        {
+                            if (!(row["Description"].ToString() == "" | row["Description"].Equals(null)))
+                                mPartRequest.mDescription = row["Description"].ToString();
+                            else
+                                mPartRequest.mDescription = "";
+                        }
+                    }
                 }
             }
 

@@ -62,7 +62,7 @@
             this.MinimizeBox = false;
             this.Name = "ColumnGunPartListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ColumnGunPartListForm";
+            this.Text = "Gun Parts";
             this.Load += new System.EventHandler(this.ColumnGunPartListForm_Load);
             this.ResumeLayout(false);
 

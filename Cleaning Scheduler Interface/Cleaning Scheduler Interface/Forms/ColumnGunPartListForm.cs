@@ -18,6 +18,7 @@ namespace Cleaning_Scheduler_Interface
         {
             mGun = gun;
             InitializeComponent();
+            this.Text = "Contents of " + mGun;
         }        
 
         private void ColumnGunPartListForm_Load(object sender, EventArgs e)

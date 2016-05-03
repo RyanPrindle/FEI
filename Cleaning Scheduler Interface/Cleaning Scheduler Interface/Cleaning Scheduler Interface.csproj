@@ -168,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\FEI Logo Spinner.gif" />
+    <None Include="Resources\photoicon.ico" />
+    <None Include="Resources\PhotoIcon.png" />
     <None Include="Resources\GreenCheck.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

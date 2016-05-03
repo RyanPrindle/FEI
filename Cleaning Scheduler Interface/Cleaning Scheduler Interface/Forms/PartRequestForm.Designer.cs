@@ -38,6 +38,9 @@
             this.textBoxRequestor = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblPartDescription = new System.Windows.Forms.Label();
+            this.comboBoxPart = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,18 +61,13 @@
             this.numericUpDownQty = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxContact = new System.Windows.Forms.ComboBox();
-            this.comboBoxPart = new System.Windows.Forms.ComboBox();
             this.bGWorkerAddPart = new System.ComponentModel.BackgroundWorker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblPartDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPartRequestForm)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBoxSL.SuspendLayout();
             this.groupBoxCR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQty)).BeginInit();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPartCleanRequest
@@ -110,19 +108,19 @@
             // 
             this.textBoxRequestor.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorProviderPartRequestForm.SetIconAlignment(this.textBoxRequestor, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.textBoxRequestor.Location = new System.Drawing.Point(210, 14);
+            this.textBoxRequestor.Location = new System.Drawing.Point(140, 9);
             this.textBoxRequestor.Name = "textBoxRequestor";
-            this.textBoxRequestor.Size = new System.Drawing.Size(309, 29);
+            this.textBoxRequestor.Size = new System.Drawing.Size(221, 29);
             this.textBoxRequestor.TabIndex = 26;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.btnPartCleanRequest);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 511);
+            this.panel1.Location = new System.Drawing.Point(10, 458);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
@@ -134,8 +132,11 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.lblPartDescription);
+            this.panel2.Controls.Add(this.comboBoxPart);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBoxSerialNumber);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.textBoxRequestor);
@@ -156,8 +157,45 @@
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(542, 485);
+            this.panel2.Size = new System.Drawing.Size(542, 432);
             this.panel2.TabIndex = 27;
+            // 
+            // lblPartDescription
+            // 
+            this.lblPartDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartDescription.Location = new System.Drawing.Point(18, 87);
+            this.lblPartDescription.Name = "lblPartDescription";
+            this.lblPartDescription.Size = new System.Drawing.Size(460, 38);
+            this.lblPartDescription.TabIndex = 29;
+            this.lblPartDescription.Text = "label9";
+            this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPartDescription.TextChanged += new System.EventHandler(this.lblPartDescription_TextChanged);
+            // 
+            // comboBoxPart
+            // 
+            this.comboBoxPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxPart.DropDownHeight = 506;
+            this.comboBoxPart.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxPart.FormattingEnabled = true;
+            this.comboBoxPart.IntegralHeight = false;
+            this.comboBoxPart.Location = new System.Drawing.Point(139, 44);
+            this.comboBoxPart.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.comboBoxPart.Name = "comboBoxPart";
+            this.comboBoxPart.Size = new System.Drawing.Size(222, 33);
+            this.comboBoxPart.TabIndex = 28;
+            this.comboBoxPart.SelectedIndexChanged += new System.EventHandler(this.comboBoxPart_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
+            this.label1.Location = new System.Drawing.Point(13, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 25);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Part Number:";
             // 
             // textBoxSerialNumber
             // 
@@ -182,7 +220,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Maroon;
-            this.label7.Location = new System.Drawing.Point(98, 15);
+            this.label7.Location = new System.Drawing.Point(32, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 25);
             this.label7.TabIndex = 42;
@@ -191,9 +229,8 @@
             // checkBoxHot
             // 
             this.checkBoxHot.AutoSize = true;
-            this.checkBoxHot.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHot.Location = new System.Drawing.Point(125, 350);
+            this.checkBoxHot.Location = new System.Drawing.Point(388, 48);
             this.checkBoxHot.Name = "checkBoxHot";
             this.checkBoxHot.Size = new System.Drawing.Size(137, 29);
             this.checkBoxHot.TabIndex = 37;
@@ -208,7 +245,7 @@
             this.comboBoxSite.Items.AddRange(new object[] {
             "30",
             "50"});
-            this.comboBoxSite.Location = new System.Drawing.Point(442, 346);
+            this.comboBoxSite.Location = new System.Drawing.Point(452, 309);
             this.comboBoxSite.Name = "comboBoxSite";
             this.comboBoxSite.Size = new System.Drawing.Size(73, 33);
             this.comboBoxSite.TabIndex = 34;
@@ -217,7 +254,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(386, 349);
+            this.label5.Location = new System.Drawing.Point(398, 312);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 25);
             this.label5.TabIndex = 41;
@@ -229,10 +266,10 @@
             this.groupBoxSL.Controls.Add(this.radioButtonCage);
             this.groupBoxSL.Enabled = false;
             this.groupBoxSL.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxSL.Location = new System.Drawing.Point(295, 397);
+            this.groupBoxSL.Location = new System.Drawing.Point(295, 344);
             this.groupBoxSL.Name = "groupBoxSL";
             this.groupBoxSL.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBoxSL.Size = new System.Drawing.Size(230, 71);
+            this.groupBoxSL.Size = new System.Drawing.Size(229, 71);
             this.groupBoxSL.TabIndex = 40;
             this.groupBoxSL.TabStop = false;
             this.groupBoxSL.Text = "Stock Location";
@@ -265,9 +302,9 @@
             this.groupBoxCR.Controls.Add(this.radioButtonCRYes);
             this.groupBoxCR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxCR.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBoxCR.Location = new System.Drawing.Point(13, 397);
+            this.groupBoxCR.Location = new System.Drawing.Point(12, 344);
             this.groupBoxCR.Name = "groupBoxCR";
-            this.groupBoxCR.Size = new System.Drawing.Size(230, 71);
+            this.groupBoxCR.Size = new System.Drawing.Size(231, 71);
             this.groupBoxCR.TabIndex = 35;
             this.groupBoxCR.TabStop = false;
             this.groupBoxCR.Text = "Cleanroom Ready";
@@ -301,7 +338,7 @@
             this.textBoxPO.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPO.Location = new System.Drawing.Point(206, 274);
             this.textBoxPO.Name = "textBoxPO";
-            this.textBoxPO.Size = new System.Drawing.Size(310, 29);
+            this.textBoxPO.Size = new System.Drawing.Size(318, 29);
             this.textBoxPO.TabIndex = 32;
             // 
             // label6
@@ -327,10 +364,10 @@
             // textBoxComment
             // 
             this.textBoxComment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxComment.Location = new System.Drawing.Point(207, 142);
+            this.textBoxComment.Location = new System.Drawing.Point(206, 142);
             this.textBoxComment.Multiline = true;
             this.textBoxComment.Name = "textBoxComment";
-            this.textBoxComment.Size = new System.Drawing.Size(310, 87);
+            this.textBoxComment.Size = new System.Drawing.Size(318, 87);
             this.textBoxComment.TabIndex = 29;
             // 
             // label3
@@ -338,18 +375,18 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(347, 310);
+            this.label3.Location = new System.Drawing.Point(398, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 25);
+            this.label3.Size = new System.Drawing.Size(47, 25);
             this.label3.TabIndex = 36;
-            this.label3.Text = "Quantity:";
+            this.label3.Text = "Qty:";
             // 
             // numericUpDownQty
             // 
             this.numericUpDownQty.AutoSize = true;
             this.numericUpDownQty.BackColor = System.Drawing.SystemColors.Window;
             this.numericUpDownQty.Font = new System.Drawing.Font("Arial Narrow", 15.75F);
-            this.numericUpDownQty.Location = new System.Drawing.Point(443, 308);
+            this.numericUpDownQty.Location = new System.Drawing.Point(451, 8);
             this.numericUpDownQty.Maximum = new decimal(new int[] {
             99,
             0,
@@ -387,69 +424,21 @@
             this.comboBoxContact.FormattingEnabled = true;
             this.comboBoxContact.Location = new System.Drawing.Point(207, 235);
             this.comboBoxContact.Name = "comboBoxContact";
-            this.comboBoxContact.Size = new System.Drawing.Size(310, 33);
+            this.comboBoxContact.Size = new System.Drawing.Size(317, 33);
             this.comboBoxContact.TabIndex = 31;
             this.comboBoxContact.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContact_SelectedIndexChanged);
-            // 
-            // comboBoxPart
-            // 
-            this.comboBoxPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxPart.DropDownHeight = 506;
-            this.comboBoxPart.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxPart.FormattingEnabled = true;
-            this.comboBoxPart.IntegralHeight = false;
-            this.comboBoxPart.Location = new System.Drawing.Point(194, 3);
-            this.comboBoxPart.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.comboBoxPart.Name = "comboBoxPart";
-            this.comboBoxPart.Size = new System.Drawing.Size(310, 33);
-            this.comboBoxPart.TabIndex = 28;
-            this.comboBoxPart.SelectedIndexChanged += new System.EventHandler(this.comboBoxPart_SelectedIndexChanged);
             // 
             // bGWorkerAddPart
             // 
             this.bGWorkerAddPart.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWorkerAddPart_DoWork);
             this.bGWorkerAddPart.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWorkerAddPart_RunWorkerCompleted);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(67, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 25);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Part Number:";
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.lblPartDescription);
-            this.panel3.Controls.Add(this.comboBoxPart);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(12, 49);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(512, 87);
-            this.panel3.TabIndex = 45;
-            // 
-            // lblPartDescription
-            // 
-            this.lblPartDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartDescription.Location = new System.Drawing.Point(3, 46);
-            this.lblPartDescription.Name = "lblPartDescription";
-            this.lblPartDescription.Size = new System.Drawing.Size(502, 30);
-            this.lblPartDescription.TabIndex = 29;
-            this.lblPartDescription.Text = "label9";
-            this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPartDescription.TextChanged += new System.EventHandler(this.lblPartDescription_TextChanged);
-            // 
             // PartRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(561, 583);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ClientSize = new System.Drawing.Size(561, 530);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -471,8 +460,6 @@
             this.groupBoxCR.ResumeLayout(false);
             this.groupBoxCR.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQty)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -509,7 +496,6 @@
         private System.Windows.Forms.TextBox textBoxSerialNumber;
         private System.Windows.Forms.Label label8;
         private System.ComponentModel.BackgroundWorker bGWorkerAddPart;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblPartDescription;
         private System.Windows.Forms.Label label1;
     }

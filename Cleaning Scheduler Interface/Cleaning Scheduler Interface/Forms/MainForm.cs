@@ -252,7 +252,7 @@ namespace Cleaning_Scheduler_Interface
 
         private void FormatLayout()
         {
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
             checkIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.GreenCheck;
             int padding = 10;
             int btnHeight = 80;

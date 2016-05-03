@@ -222,14 +222,14 @@ namespace Cleaning_Scheduler_Interface
                 if (request.mContactId < 1)
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk]) " +
-                                      "VALUES (@requestor, @requestedOn, @type, @instructions, @serial, @hot)";
+                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk], [Description]) " +
+                                      "VALUES (@requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk, @desc)";
                 }
                 else
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk]) " +
-                                      "VALUES (@contact, @requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk)";
+                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk], [Description]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk, @desc)";
                     cmd.Parameters.AddWithValue("@contact", request.mContactId);
                 }
                 cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
@@ -244,6 +244,7 @@ namespace Cleaning_Scheduler_Interface
                 cmd.Parameters.AddWithValue("@cr", request.mCleanroomReady);
                 cmd.Parameters.AddWithValue("@cage", request.mCage);
                 cmd.Parameters.AddWithValue("@bulk", request.mBulk);
+                cmd.Parameters.AddWithValue("@desc", request.mDescription);
                 return requestDB.AddReturnID(cmd);
             }
         }

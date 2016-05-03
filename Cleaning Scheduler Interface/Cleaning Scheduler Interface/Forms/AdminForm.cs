@@ -274,7 +274,6 @@ namespace Cleaning_Scheduler_Interface
                     if (e.ColumnIndex == dGV.Columns["Start"].Index)
                     {
                         reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                        //Start Cleaning
                         StartCleaning(reqId);
                     }
                 }
@@ -283,7 +282,6 @@ namespace Cleaning_Scheduler_Interface
                     if (e.ColumnIndex == dGV.Columns["Delete"].Index)
                     {
                         reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                        //Start Cleaning
                         DeleteRequest(reqId);
                     }
                 }
@@ -293,25 +291,15 @@ namespace Cleaning_Scheduler_Interface
                     if (e.ColumnIndex == dGV.Columns["Finish"].Index)
                     {
                         reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                        //Finish Cleaning
                         FinishCleaning(reqId);
                     }
                 }
-                if (dGV.Columns.Contains("Delete"))
-                {
-                    if (e.ColumnIndex == dGV.Columns["Delete"].Index)
-                    {
-                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());
-                        //Start Cleaning
-                        DeleteRequest(reqId);
-                    }
-                }
+
                 if (dGV.Columns.Contains("MoveToQueue"))
                 {
                     if (e.ColumnIndex == dGV.Columns["MoveToQueue"].Index)
                     {
-                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());                        
-                        //Start Cleaning
+                        reqId = Int32.Parse(dGV.Rows[e.RowIndex].Cells["RequestID"].Value.ToString());      
                         MoveToQueueRequest(reqId);
                     }
                 }

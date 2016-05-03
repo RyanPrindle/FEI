@@ -33,7 +33,7 @@ namespace Cleaning_Scheduler_Interface
             InitializeComponent();
             mMainForm = mainForm;
             //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blue_info_button_icon_24543;
+            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
             checkIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.GreenCheck;
 
             
