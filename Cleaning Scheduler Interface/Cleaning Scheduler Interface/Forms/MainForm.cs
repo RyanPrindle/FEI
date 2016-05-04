@@ -213,6 +213,8 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["CR Ready"].Visible = false;
             dGVQueue.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dGVQueue.Sort(dGVQueue.Columns["Requested"], ListSortDirection.Ascending);
+            dGVQueue.Sort(dGVQueue.Columns["Hot"], ListSortDirection.Descending);
             FormatDGVInfoHot(dGVQueue);
             //dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -239,7 +241,12 @@ namespace Cleaning_Scheduler_Interface
                 {
                     row.DefaultCellStyle.BackColor = Color.Red;
                     row.DefaultCellStyle.SelectionBackColor = Color.Red;
-                }                
+                }              
+                if ((bool)row.Cells["CR Ready"].Value == true)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Green;
+                    row.DefaultCellStyle.SelectionBackColor = Color.Green;
+                }   
             }
             foreach (DataGridViewColumn column in dGV.Columns)
             {
@@ -312,8 +319,8 @@ namespace Cleaning_Scheduler_Interface
         private void btnPartRequest_Click(object sender, EventArgs e)
         { 
             requestPartForm = new PartRequestForm();
-            requestPartForm.ShowDialog();
-            FillDataTables();
+            if(requestPartForm.ShowDialog() == DialogResult.OK)
+                FillDataTables();
         }
         
         private void buttonColumnRequest_Click(object sender, EventArgs e)

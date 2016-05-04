@@ -77,14 +77,14 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.dGVAdminQueue);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.PaleGreen;
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.dGVAdminInProcess);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
             this.splitContainer1.Size = new System.Drawing.Size(966, 520);
             this.splitContainer1.SplitterDistance = 246;
             this.splitContainer1.SplitterWidth = 10;
@@ -93,9 +93,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 10);
+            this.label2.Location = new System.Drawing.Point(13, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 24);
             this.label2.TabIndex = 5;
@@ -109,9 +108,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
             this.dGVAdminQueue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGVAdminQueue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVAdminQueue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dGVAdminQueue.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dGVAdminQueue.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -125,8 +121,9 @@
             this.dGVAdminQueue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVAdminQueue.ColumnHeadersHeight = 40;
             this.dGVAdminQueue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dGVAdminQueue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dGVAdminQueue.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dGVAdminQueue.Location = new System.Drawing.Point(13, 38);
+            this.dGVAdminQueue.Location = new System.Drawing.Point(10, 40);
             this.dGVAdminQueue.Margin = new System.Windows.Forms.Padding(0);
             this.dGVAdminQueue.Name = "dGVAdminQueue";
             this.dGVAdminQueue.RowHeadersVisible = false;
@@ -136,7 +133,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminQueue.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVAdminQueue.RowTemplate.Height = 40;
-            this.dGVAdminQueue.Size = new System.Drawing.Size(936, 191);
+            this.dGVAdminQueue.Size = new System.Drawing.Size(942, 192);
             this.dGVAdminQueue.TabIndex = 0;
             this.dGVAdminQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -145,9 +142,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Location = new System.Drawing.Point(13, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 24);
             this.label1.TabIndex = 6;
@@ -162,9 +158,6 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dGVAdminInProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVAdminInProcess.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dGVAdminInProcess.BackgroundColor = System.Drawing.Color.PaleGreen;
             this.dGVAdminInProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -178,8 +171,9 @@
             this.dGVAdminInProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVAdminInProcess.ColumnHeadersHeight = 40;
             this.dGVAdminInProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dGVAdminInProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dGVAdminInProcess.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dGVAdminInProcess.Location = new System.Drawing.Point(13, 38);
+            this.dGVAdminInProcess.Location = new System.Drawing.Point(10, 40);
             this.dGVAdminInProcess.Margin = new System.Windows.Forms.Padding(0);
             this.dGVAdminInProcess.Name = "dGVAdminInProcess";
             this.dGVAdminInProcess.RowHeadersVisible = false;
@@ -189,7 +183,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(936, 110);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(942, 210);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);

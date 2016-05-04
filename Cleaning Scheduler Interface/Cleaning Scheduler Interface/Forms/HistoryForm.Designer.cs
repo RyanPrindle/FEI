@@ -416,7 +416,7 @@
             this.panel2.Controls.Add(this.dGVHistory);
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
             this.panel2.Size = new System.Drawing.Size(1571, 480);
             this.panel2.TabIndex = 25;
             // 
@@ -424,7 +424,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Location = new System.Drawing.Point(13, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 24);
             this.label3.TabIndex = 26;
@@ -438,9 +438,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
             this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGVHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dGVHistory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dGVHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -454,8 +451,9 @@
             this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVHistory.ColumnHeadersHeight = 40;
             this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dGVHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dGVHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dGVHistory.Location = new System.Drawing.Point(12, 37);
+            this.dGVHistory.Location = new System.Drawing.Point(10, 40);
             this.dGVHistory.Margin = new System.Windows.Forms.Padding(0);
             this.dGVHistory.Name = "dGVHistory";
             this.dGVHistory.RowHeadersVisible = false;
@@ -466,7 +464,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVHistory.RowTemplate.Height = 40;
-            this.dGVHistory.Size = new System.Drawing.Size(1542, 426);
+            this.dGVHistory.Size = new System.Drawing.Size(1547, 426);
             this.dGVHistory.TabIndex = 27;
             this.dGVHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVHistory.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);

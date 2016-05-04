@@ -39,6 +39,7 @@
             this.bGWorkerAddColumn = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.textBoxColumnSerial = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.comboBoxContact = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxColumn = new System.Windows.Forms.ComboBox();
-            this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderColumnRequestForm)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -132,6 +132,17 @@
             this.panel2.Size = new System.Drawing.Size(541, 302);
             this.panel2.TabIndex = 48;
             // 
+            // lblDescription
+            // 
+            this.lblDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDescription.Location = new System.Drawing.Point(209, 84);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(309, 37);
+            this.lblDescription.TabIndex = 58;
+            this.lblDescription.Text = "description";
+            this.lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // textBoxColumnSerial
             // 
             this.textBoxColumnSerial.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -178,11 +189,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(105, 124);
+            this.label4.Location = new System.Drawing.Point(15, 122);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 25);
+            this.label4.Size = new System.Drawing.Size(188, 25);
             this.label4.TabIndex = 55;
-            this.label4.Text = "Comment:";
+            this.label4.Text = "Special Instructions:";
             // 
             // textBoxComment
             // 
@@ -237,17 +248,6 @@
             this.comboBoxColumn.Size = new System.Drawing.Size(310, 33);
             this.comboBoxColumn.TabIndex = 48;
             this.comboBoxColumn.SelectedIndexChanged += new System.EventHandler(this.comboBoxColumn_SelectedIndexChanged);
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDescription.Location = new System.Drawing.Point(209, 84);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(309, 37);
-            this.lblDescription.TabIndex = 58;
-            this.lblDescription.Text = "description";
-            this.lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ColumnRequestForm
             // 

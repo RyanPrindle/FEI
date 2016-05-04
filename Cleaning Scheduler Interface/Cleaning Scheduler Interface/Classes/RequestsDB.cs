@@ -223,14 +223,14 @@ namespace Cleaning_Scheduler_Interface
                 if (request.mContactId < 1)
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk], [Description]) " +
-                                      "VALUES (@requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk, @desc)";
+                                      "[Quantity], [Hot], [CR Ready], [Cage], [Bulk], [Description]) " +
+                                      "VALUES (@requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @cr, @cage, @bulk, @desc)";
                 }
                 else
                 {
                     cmd.CommandText = "INSERT INTO " + REQUESTTABLE + " ([Contact], [Requestor], [RequestedOn], [PartNumber], [Instructions], [PO], [SerialNumber], " +
-                                      "[Quantity], [Hot], [Site], [CR Ready], [Cage], [Bulk], [Description]) " +
-                                      "VALUES (@contact, @requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @site, @cr, @cage, @bulk, @desc)";
+                                      "[Quantity], [Hot],  [CR Ready], [Cage], [Bulk], [Description]) " +
+                                      "VALUES (@contact, @requestor, @requestedOn, @part, @instructions, @po,  @serial, @qty, @hot, @cr, @cage, @bulk, @desc)";
                     cmd.Parameters.AddWithValue("@contact", request.mContactId);
                 }
                 cmd.Parameters.AddWithValue("@requestor", request.mRequestor);
@@ -241,7 +241,6 @@ namespace Cleaning_Scheduler_Interface
                 cmd.Parameters.AddWithValue("@serial", request.mSerial);
                 cmd.Parameters.AddWithValue("@qty", request.mQty);
                 cmd.Parameters.AddWithValue("@hot", request.mHot);
-                cmd.Parameters.AddWithValue("@site", request.mSite);
                 cmd.Parameters.AddWithValue("@cr", request.mCleanroomReady);
                 cmd.Parameters.AddWithValue("@cage", request.mCage);
                 cmd.Parameters.AddWithValue("@bulk", request.mBulk);

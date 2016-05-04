@@ -30,7 +30,6 @@ namespace Cleaning_Scheduler_Interface
         private void PartRequestForm_Load(object sender, EventArgs e)
         {
             GetDataTables();
-            comboBoxSite.SelectedIndex = 0;
         }
 
         private void GetDataTables()
@@ -120,8 +119,10 @@ namespace Cleaning_Scheduler_Interface
             if (result == 0)
             {
                 MessageBox.Show("Request not created.");
+                this.DialogResult = DialogResult.Abort;
             }
-            this.Close();
+            else
+                this.DialogResult = DialogResult.OK;
         }
 
         #endregion
@@ -131,6 +132,7 @@ namespace Cleaning_Scheduler_Interface
             comboBoxPart.DataSource = mPartTable;
             comboBoxPart.DisplayMember = "Part";
             comboBoxPart.ValueMember = "Part";
+            comboBoxPart.SelectedIndex = -1;
             lblPartDescription.Text = mPartTable.Rows[0]["Description"].ToString();
             if (lblPartDescription.Text == "")
                 lblPartDescription.Text = "No Description Found";
@@ -197,53 +199,72 @@ namespace Cleaning_Scheduler_Interface
             mPartRequest = new PartRequest();
             bool submittable = true;
 
+            // Requestor Empty
             if (textBoxRequestor.Text == "" || textBoxRequestor.Text == null)
             {
                 errorProviderPartRequestForm.SetError(textBoxRequestor, "Enter Your Name");
                 textBoxRequestor.Focus();
                 submittable = false;
             }
+            // Requestor Not empty
             else
             {
                 mPartRequest.mRequestor = textBoxRequestor.Text.Trim().ToString();
             }
-
-            if (comboBoxPart.SelectedIndex == 0)
+            // Standard
+            if (rBtnStandard.Checked)
             {
-                errorProviderPartRequestForm.SetError(comboBoxPart, "Enter Part Number");
-                submittable = false;
-            }
-            else
-            {
-                int index = comboBoxPart.FindString(comboBoxPart.Text);
-                if (index < 0)
+                //No Part Selected
+                if (comboBoxPart.SelectedIndex == -1)
                 {
-                    errorProviderPartRequestForm.SetError(comboBoxPart, "Part Number Not Found");
+                    errorProviderPartRequestForm.SetError(comboBoxPart, "Enter Part Number");
                     submittable = false;
                 }
+                //Part Selected
                 else
                 {
-                    mPartRequest.mPart = comboBoxPart.SelectedValue.ToString();
-                    foreach (DataRow row in mPartTable.Rows)
+                    int index = comboBoxPart.FindString(comboBoxPart.Text);
+                    if (index < 0)
                     {
-                        if (mPartRequest.mPart == row["Part"].ToString())
+                        errorProviderPartRequestForm.SetError(comboBoxPart, "Part Number Not Found");
+                        submittable = false;
+                    }
+                    else
+                    {
+                        mPartRequest.mPart = comboBoxPart.SelectedValue.ToString();
+                        foreach (DataRow row in mPartTable.Rows)
                         {
-                            if (!(row["Description"].ToString() == "" | row["Description"].Equals(null)))
-                                mPartRequest.mDescription = row["Description"].ToString();
-                            else
-                                mPartRequest.mDescription = "";
+                            if (mPartRequest.mPart == row["Part"].ToString())
+                            {
+                                if (!(row["Description"].ToString() == "" | row["Description"].Equals(null)))
+                                    mPartRequest.mDescription = row["Description"].ToString();
+                                else
+                                    mPartRequest.mDescription = "";
+                            }
                         }
                     }
                 }
             }
-
-            if (!(textBoxComment.Text.ToString() == "" || textBoxComment.Text.ToString() == null))
+            //Non Standard
+            else
             {
-                mPartRequest.mInstructions = textBoxComment.Text.Trim().ToString();
+                mPartRequest.mPart = "Non - Standard";
+                mPartRequest.mDescription = "";
+            }
+
+            if (!(textBoxInstructions.Text.ToString() == "" || textBoxInstructions.Text.ToString() == null))
+            {
+                mPartRequest.mInstructions = textBoxInstructions.Text.Trim().ToString();
             }
             else
             {
-                mPartRequest.mInstructions = "";
+                if (rBtnNonStandard.Checked)
+                {
+                    errorProviderPartRequestForm.SetError(textBoxInstructions, "Instructions required for Non-Standard Part");
+                    submittable = false;
+                }
+                else
+                    mPartRequest.mInstructions = "";
             }
 
             if (comboBoxContact.SelectedIndex == 0)
@@ -283,8 +304,6 @@ namespace Cleaning_Scheduler_Interface
                 mPartRequest.mHot = false;
             }
 
-            mPartRequest.mSite = comboBoxSite.SelectedItem.ToString();
-
             if (radioButtonCRYes.Checked == true || radioButtonCRNo.Checked == true)
             {
                 if (radioButtonCRYes.Checked == true)
@@ -303,7 +322,7 @@ namespace Cleaning_Scheduler_Interface
                     }
                     else
                     {
-                        errorProviderPartRequestForm.SetError(groupBoxSL, "Cage or Bulk");
+                        errorProviderPartRequestForm.SetError(gBoxStockLocation, "Cage or Bulk");
                         submittable = false;
                     }
                 }
@@ -326,26 +345,37 @@ namespace Cleaning_Scheduler_Interface
 
         private void radioButtonCRYes_Click(object sender, EventArgs e)
         {
-            groupBoxSL.Enabled = true;
-            groupBoxSL.Focus();
+            gBoxStockLocation.Visible = true;
+            gBoxStockLocation.Focus();
         }
 
         private void radioButtonCRNo_Click(object sender, EventArgs e)
         {
-            groupBoxSL.Enabled = false;
-            MessageBox.Show("Please put cleaning requirements in the comment section.");
-            textBoxComment.Focus();
+            gBoxStockLocation.Visible = false;
         }
 
         private void comboBoxPart_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblPartDescription.Text = mPartTable.Rows[comboBoxPart.SelectedIndex]["Description"].ToString();
+            int index = comboBoxPart.SelectedIndex;
+            if (index >= 0)
+                lblPartDescription.Text = mPartTable.Rows[comboBoxPart.SelectedIndex]["Description"].ToString();
+            else
+                lblPartDescription.Text = "";
         }
 
-        private void lblPartDescription_TextChanged(object sender, EventArgs e)
+
+        private void rBtnStandard_CheckedChanged(object sender, EventArgs e)
         {
-            if (lblPartDescription.Text == "")
-                lblPartDescription.Text = "No Description Found";
+            if (rBtnStandard.Checked)
+            {
+                pnlPartNumber.Visible = true;
+                labelInstructions.ForeColor = Color.Black;
+            }
+            else
+            {
+                pnlPartNumber.Visible = false;
+                labelInstructions.ForeColor = Color.Maroon;
+            }
         }
     }
 }

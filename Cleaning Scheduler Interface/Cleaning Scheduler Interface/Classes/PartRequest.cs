@@ -15,7 +15,6 @@ namespace Cleaning_Scheduler_Interface
         public String mDescription { get; set; }
         public String mInstructions { get; set; }
         public String mSerial { get; set; }
-        public String mSite { get; set; }
         public String mPO { get; set; }
         public bool mHot { get; set; }
         public String mStockLocation { get; set; }
