@@ -167,7 +167,9 @@
     <None Include="Resources\help-contents.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\details.png" />
     <Content Include="Resources\FEI Logo Spinner.gif" />
+    <None Include="Resources\refresh.png" />
     <None Include="Resources\photoicon.ico" />
     <None Include="Resources\PhotoIcon.png" />
     <None Include="Resources\GreenCheck.png" />

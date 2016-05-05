@@ -33,7 +33,7 @@ namespace Cleaning_Scheduler_Interface
             InitializeComponent();
             mMainForm = mainForm;
             //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
-            infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
+            infoIcon = Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
             checkIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.GreenCheck;
 
             
@@ -201,7 +201,6 @@ namespace Cleaning_Scheduler_Interface
             LoadPartComboBox();
             LoadRequestorComboBox();
         }
-
        
         private void InitHistoryDGV()
         {
@@ -253,17 +252,6 @@ namespace Cleaning_Scheduler_Interface
             int rowCount = mFilteredTable.Rows.Count;
             for (int row = 0; row < rowCount; row++)
             {
-            //    if (mFilteredTable.Rows[row].Field<DateTime>("Requested") < dTPickerRequestedFrom.Value.Date ||
-            //        mFilteredTable.Rows[row].Field<DateTime>("Requested") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-            //        mFilteredTable.Rows[row].Field<DateTime>("Started") < dTPickerStartedFrom.Value.Date ||
-            //        mFilteredTable.Rows[row].Field<DateTime>("Started") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-            //        mFilteredTable.Rows[row].Field<DateTime>("Finished") < dTPickerFinishedFrom.Value.Date ||
-            //        mFilteredTable.Rows[row].Field<DateTime>("Finished") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
-            //    {
-            //        mFilteredTable.Rows.RemoveAt(row);
-            //        row--;
-            //        rowCount--;
-            //    }
                 if (!(comboBoxPartFilter.SelectedItem.ToString() == ("All")) && row >= 0)
                 {
                     if (!(mFilteredTable.Rows[row].Field<string>("Part #").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
@@ -329,14 +317,6 @@ namespace Cleaning_Scheduler_Interface
                 comboBoxPartFilter.SelectedItem = item;
             comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
         }
-
-        //private void FilterDate_ValueChanged(object sender, EventArgs e)
-        //{
-        //    InitHistoryDGV();
-        //    FilterTableDate();
-        //    LoadRequestorComboBox();
-        //    LoadPartComboBox();            
-        //}
 
         private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
