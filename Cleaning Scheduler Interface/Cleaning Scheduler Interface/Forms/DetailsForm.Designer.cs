@@ -191,7 +191,7 @@
             // 
             // panelProcedures
             // 
-            this.panelProcedures.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panelProcedures.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panelProcedures.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelProcedures.Controls.Add(this.rBtnCLong);
             this.panelProcedures.Controls.Add(this.rBtnC20);
@@ -500,7 +500,7 @@
             // 
             // panelHot
             // 
-            this.panelHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panelHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panelHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelHot.Controls.Add(this.rBtnHot);
             this.panelHot.Location = new System.Drawing.Point(447, 489);
@@ -512,7 +512,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.gBoxSite);
             this.panel1.Controls.Add(this.label11);
@@ -533,7 +533,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.label10);

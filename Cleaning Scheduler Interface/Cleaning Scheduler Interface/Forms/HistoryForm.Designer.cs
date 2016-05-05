@@ -158,7 +158,7 @@
             // panelFilter
             // 
             this.panelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(255)))));
+            this.panelFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelFilter.Controls.Add(this.label10);
             this.panelFilter.Controls.Add(this.buttonReset);
@@ -211,7 +211,6 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
             this.groupBox3.Controls.Add(this.dTPickerStartedFrom);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.dTPickerStartedTo);
@@ -508,7 +507,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1594, 655);
             this.Controls.Add(this.btnMain);
             this.Controls.Add(this.buttonQuit);

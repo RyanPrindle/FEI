@@ -162,7 +162,6 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminQueue.Columns["CrestLong"].Visible = false;
             dGVAdminQueue.Columns["Bulk"].Visible = false;
             dGVAdminQueue.Columns["Cage"].Visible = false;
-            dGVAdminQueue.Columns["Site"].Visible = false;
             dGVAdminQueue.Columns["Hot"].Visible = false;
             dGVAdminQueue.Columns["CR Ready"].Visible = false;
             dGVAdminQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -246,7 +245,6 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminInProcess.Columns["CrestLong"].Visible = false;
             dGVAdminInProcess.Columns["Bulk"].Visible = false;
             dGVAdminInProcess.Columns["Cage"].Visible = false;
-            dGVAdminInProcess.Columns["Site"].Visible = false;
             dGVAdminInProcess.Columns["Hot"].Visible = false;
             dGVAdminInProcess.Columns["CR Ready"].Visible = false;
             dGVAdminInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

@@ -52,6 +52,9 @@
             this.dGVCompleted = new System.Windows.Forms.DataGridView();
             this.btnHistory = new System.Windows.Forms.Button();
             this.panelHot = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -61,9 +64,6 @@
             this.btnCleaning = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,20 +96,20 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.splitContainer1.Panel2.Controls.Add(this.btnHistory);
             this.splitContainer1.Panel2.Controls.Add(this.panelHot);
             this.splitContainer1.Panel2.Controls.Add(this.pnlButtons);
             this.splitContainer1.Panel2.Controls.Add(this.btnCleaning);
             this.splitContainer1.Panel2.Controls.Add(this.btnQuit);
-            this.splitContainer1.Size = new System.Drawing.Size(929, 635);
-            this.splitContainer1.SplitterDistance = 653;
+            this.splitContainer1.Size = new System.Drawing.Size(1199, 639);
+            this.splitContainer1.SplitterDistance = 917;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
@@ -128,8 +128,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(142)))));
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(653, 635);
-            this.splitContainer2.SplitterDistance = 160;
+            this.splitContainer2.Size = new System.Drawing.Size(917, 639);
+            this.splitContainer2.SplitterDistance = 161;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -183,7 +183,7 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(202)))));
             this.dGVQueue.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVQueue.RowTemplate.Height = 40;
-            this.dGVQueue.Size = new System.Drawing.Size(629, 106);
+            this.dGVQueue.Size = new System.Drawing.Size(893, 107);
             this.dGVQueue.TabIndex = 0;
             this.dGVQueue.TabStop = false;
             this.dGVQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -193,7 +193,7 @@
             // 
             // splitContainer3
             // 
-            this.splitContainer3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.splitContainer3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
@@ -213,8 +213,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.label3);
             this.splitContainer3.Panel2.Controls.Add(this.dGVCompleted);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
-            this.splitContainer3.Size = new System.Drawing.Size(653, 465);
-            this.splitContainer3.SplitterDistance = 172;
+            this.splitContainer3.Size = new System.Drawing.Size(917, 468);
+            this.splitContainer3.SplitterDistance = 173;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -267,7 +267,7 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
             this.dGVInProcess.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVInProcess.RowTemplate.Height = 40;
-            this.dGVInProcess.Size = new System.Drawing.Size(629, 118);
+            this.dGVInProcess.Size = new System.Drawing.Size(893, 119);
             this.dGVInProcess.TabIndex = 3;
             this.dGVInProcess.TabStop = false;
             this.dGVInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -325,7 +325,7 @@
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
             this.dGVCompleted.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVCompleted.RowTemplate.Height = 40;
-            this.dGVCompleted.Size = new System.Drawing.Size(629, 229);
+            this.dGVCompleted.Size = new System.Drawing.Size(893, 231);
             this.dGVCompleted.TabIndex = 3;
             this.dGVCompleted.TabStop = false;
             this.dGVCompleted.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -341,7 +341,7 @@
             this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnHistory.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistory.ForeColor = System.Drawing.Color.Maroon;
-            this.btnHistory.Location = new System.Drawing.Point(5, 391);
+            this.btnHistory.Location = new System.Drawing.Point(5, 395);
             this.btnHistory.Margin = new System.Windows.Forms.Padding(5);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(194, 60);
@@ -364,6 +364,40 @@
             this.panelHot.Name = "panelHot";
             this.panelHot.Size = new System.Drawing.Size(209, 147);
             this.panelHot.TabIndex = 25;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(98, 115);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 25);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Ready";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(98, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 25);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Cleanroom";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel2.BackColor = System.Drawing.Color.Green;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Location = new System.Drawing.Point(36, 92);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(56, 40);
+            this.panel2.TabIndex = 26;
             // 
             // label5
             // 
@@ -401,7 +435,7 @@
             // 
             // pnlButtons
             // 
-            this.pnlButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(172)))), ((int)(((byte)(255)))));
+            this.pnlButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.pnlButtons.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlButtons.Controls.Add(this.btnColumnRequest);
             this.pnlButtons.Controls.Add(this.btnPartRequest);
@@ -409,7 +443,7 @@
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(266, 233);
+            this.pnlButtons.Size = new System.Drawing.Size(272, 233);
             this.pnlButtons.TabIndex = 22;
             // 
             // btnColumnRequest
@@ -438,7 +472,7 @@
             this.btnPartRequest.Location = new System.Drawing.Point(10, 136);
             this.btnPartRequest.Margin = new System.Windows.Forms.Padding(0);
             this.btnPartRequest.Name = "btnPartRequest";
-            this.btnPartRequest.Size = new System.Drawing.Size(244, 85);
+            this.btnPartRequest.Size = new System.Drawing.Size(250, 85);
             this.btnPartRequest.TabIndex = 2;
             this.btnPartRequest.Text = "Request Part Cleaning";
             this.btnPartRequest.UseVisualStyleBackColor = true;
@@ -452,7 +486,7 @@
             this.btnCleaning.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCleaning.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCleaning.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCleaning.Location = new System.Drawing.Point(5, 452);
+            this.btnCleaning.Location = new System.Drawing.Point(5, 456);
             this.btnCleaning.Margin = new System.Windows.Forms.Padding(5);
             this.btnCleaning.Name = "btnCleaning";
             this.btnCleaning.Size = new System.Drawing.Size(194, 60);
@@ -469,7 +503,7 @@
             this.btnQuit.BackColor = System.Drawing.Color.Gray;
             this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.Black;
-            this.btnQuit.Location = new System.Drawing.Point(0, 529);
+            this.btnQuit.Location = new System.Drawing.Point(0, 533);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(5);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(194, 60);
@@ -478,46 +512,12 @@
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.buttonQuit_Click);
             // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(98, 115);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 25);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Ready";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(98, 90);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 25);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "Cleanroom";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.BackColor = System.Drawing.Color.Green;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(36, 92);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(56, 40);
-            this.panel2.TabIndex = 26;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(949, 655);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1219, 659);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;

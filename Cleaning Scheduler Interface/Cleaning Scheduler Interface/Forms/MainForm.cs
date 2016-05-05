@@ -140,7 +140,6 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["Bulk"].Visible = false;
             dGVCompleted.Columns["Cage"].Visible = false;
             dGVCompleted.Columns["CR Ready"].Visible = false;
-            dGVCompleted.Columns["Site"].Visible = false;
             dGVCompleted.Columns["PO"].Visible = false;
             dGVCompleted.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVCompleted.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;          
@@ -176,7 +175,6 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.Columns["Bulk"].Visible = false;
             dGVInProcess.Columns["Cage"].Visible = false;
             dGVInProcess.Columns["CR Ready"].Visible = false;
-            dGVInProcess.Columns["Site"].Visible = false;
             dGVInProcess.Columns["PO"].Visible = false;         
             dGVInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVInProcess.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -208,7 +206,6 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["CrestLong"].Visible = false;
             dGVQueue.Columns["Bulk"].Visible = false;
             dGVQueue.Columns["Cage"].Visible = false;
-            dGVQueue.Columns["Site"].Visible = false;
             dGVQueue.Columns["PO"].Visible = false;
             dGVQueue.Columns["CR Ready"].Visible = false;
             dGVQueue.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
