@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColumnGunPartListForm));
             this.buttonCancel = new System.Windows.Forms.Button();
             this.bGWGunParts = new System.ComponentModel.BackgroundWorker();
+            this.panelTLP = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -50,14 +52,25 @@
             this.bGWGunParts.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWGunParts_DoWork);
             this.bGWGunParts.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWGunParts_RunWorkerCompleted);
             // 
+            // panelTLP
+            // 
+            this.panelTLP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
+            this.panelTLP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelTLP.Location = new System.Drawing.Point(13, 13);
+            this.panelTLP.Name = "panelTLP";
+            this.panelTLP.Size = new System.Drawing.Size(912, 580);
+            this.panelTLP.TabIndex = 16;
+            // 
             // ColumnGunPartListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(938, 653);
+            this.Controls.Add(this.panelTLP);
             this.Controls.Add(this.buttonCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ColumnGunPartListForm";
@@ -72,5 +85,6 @@
 
         private System.Windows.Forms.Button buttonCancel;
         private System.ComponentModel.BackgroundWorker bGWGunParts;
+        private System.Windows.Forms.Panel panelTLP;
     }
 }

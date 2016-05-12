@@ -26,7 +26,7 @@ namespace Cleaning_Scheduler_Interface
         public DataTable GetRequestsTable()
         {
             OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandText = "SELECT * FROM " + REQUEST;
+            cmd.CommandText = "SELECT * FROM " + REQUEST; //+" ORDER BY 'Hot' DESC, 'CR Ready' DESC";
             return requestDB.GetDataTable(cmd);
         }
 

@@ -37,9 +37,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonBack = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.panelFilter = new System.Windows.Forms.Panel();
+            this.gBHot = new System.Windows.Forms.GroupBox();
+            this.rBHotNo = new System.Windows.Forms.RadioButton();
+            this.rBHotYes = new System.Windows.Forms.RadioButton();
+            this.rBHotBoth = new System.Windows.Forms.RadioButton();
+            this.gBCRR = new System.Windows.Forms.GroupBox();
+            this.rBCRRNo = new System.Windows.Forms.RadioButton();
+            this.rBCRRYes = new System.Windows.Forms.RadioButton();
+            this.rBCRRBoth = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dTPickerStartedFrom = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,23 +58,24 @@
             this.comboBoxRequestor = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dTPickerFinishedFrom = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             this.dTPickerFinishedTo = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.comboBoxPartFilter = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.bGWorkerHistoryLoad = new System.ComponentModel.BackgroundWorker();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelDGV = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dGVHistory = new System.Windows.Forms.DataGridView();
-            this.buttonQuit = new System.Windows.Forms.Button();
+            this.btnQuit = new System.Windows.Forms.Button();
             this.btnMain = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panelFilter.SuspendLayout();
+            this.gBHot.SuspendLayout();
+            this.gBCRR.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelDGV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVHistory)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,8 +92,7 @@
             this.dTPickerRequestedFrom.Size = new System.Drawing.Size(155, 32);
             this.dTPickerRequestedFrom.TabIndex = 1;
             this.dTPickerRequestedFrom.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
-            this.dTPickerRequestedFrom.CloseUp += new System.EventHandler(this.dTPickerRequested_CloseUp);
-            this.dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
+            this.dTPickerRequestedFrom.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerRequestedFrom.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerRequestedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
@@ -96,28 +105,28 @@
             this.dTPickerRequestedTo.Name = "dTPickerRequestedTo";
             this.dTPickerRequestedTo.Size = new System.Drawing.Size(155, 32);
             this.dTPickerRequestedTo.TabIndex = 2;
-            this.dTPickerRequestedTo.CloseUp += new System.EventHandler(this.dTPickerRequested_CloseUp);
-            this.dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
+            this.dTPickerRequestedTo.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerRequestedTo.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerRequestedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(9, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 23);
+            this.label2.Size = new System.Drawing.Size(52, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "From:";
+            this.label2.UseCompatibleTextRendering = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(28, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 23);
+            this.label1.Size = new System.Drawing.Size(35, 23);
             this.label1.TabIndex = 6;
             this.label1.Text = "To:";
             // 
@@ -127,8 +136,8 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dTPickerRequestedTo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(362, 6);
+            this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(10, 335);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
@@ -137,26 +146,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Date Requested";
             // 
-            // buttonBack
+            // btnBack
             // 
-            this.buttonBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonBack.BackColor = System.Drawing.Color.DarkGray;
-            this.buttonBack.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.buttonBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.ForeColor = System.Drawing.Color.Maroon;
-            this.buttonBack.Location = new System.Drawing.Point(1248, 557);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(200, 60);
-            this.buttonBack.TabIndex = 23;
-            this.buttonBack.Text = "Admin Control";
-            this.buttonBack.UseVisualStyleBackColor = true;
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.BackColor = System.Drawing.Color.DarkGray;
+            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.DimGray;
+            this.btnBack.Location = new System.Drawing.Point(894, 840);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(262, 60);
+            this.btnBack.TabIndex = 23;
+            this.btnBack.Text = "Admin Control";
+            this.btnBack.UseVisualStyleBackColor = true;
             // 
             // panelFilter
             // 
-            this.panelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelFilter.Controls.Add(this.gBHot);
+            this.panelFilter.Controls.Add(this.gBCRR);
             this.panelFilter.Controls.Add(this.label10);
             this.panelFilter.Controls.Add(this.buttonReset);
             this.panelFilter.Controls.Add(this.groupBox3);
@@ -166,24 +177,142 @@
             this.panelFilter.Controls.Add(this.comboBoxPartFilter);
             this.panelFilter.Controls.Add(this.groupBox1);
             this.panelFilter.Controls.Add(this.label5);
-            this.panelFilter.Location = new System.Drawing.Point(10, 524);
-            this.panelFilter.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.panelFilter.Location = new System.Drawing.Point(894, 13);
+            this.panelFilter.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Padding = new System.Windows.Forms.Padding(10);
-            this.panelFilter.Size = new System.Drawing.Size(1232, 118);
+            this.panelFilter.Size = new System.Drawing.Size(262, 752);
             this.panelFilter.TabIndex = 24;
+            // 
+            // gBHot
+            // 
+            this.gBHot.Controls.Add(this.rBHotNo);
+            this.gBHot.Controls.Add(this.rBHotYes);
+            this.gBHot.Controls.Add(this.rBHotBoth);
+            this.gBHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gBHot.Location = new System.Drawing.Point(10, 263);
+            this.gBHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.gBHot.Name = "gBHot";
+            this.gBHot.Size = new System.Drawing.Size(238, 59);
+            this.gBHot.TabIndex = 35;
+            this.gBHot.TabStop = false;
+            this.gBHot.Text = "High Priority";
+            // 
+            // rBHotNo
+            // 
+            this.rBHotNo.AutoSize = true;
+            this.rBHotNo.Location = new System.Drawing.Point(169, 26);
+            this.rBHotNo.Name = "rBHotNo";
+            this.rBHotNo.Size = new System.Drawing.Size(53, 29);
+            this.rBHotNo.TabIndex = 2;
+            this.rBHotNo.Text = "No";
+            this.rBHotNo.UseVisualStyleBackColor = true;
+            this.rBHotNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            // 
+            // rBHotYes
+            // 
+            this.rBHotYes.AutoSize = true;
+            this.rBHotYes.Location = new System.Drawing.Point(99, 26);
+            this.rBHotYes.Name = "rBHotYes";
+            this.rBHotYes.Size = new System.Drawing.Size(61, 29);
+            this.rBHotYes.TabIndex = 1;
+            this.rBHotYes.Text = "Yes";
+            this.rBHotYes.UseVisualStyleBackColor = true;
+            this.rBHotYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            // 
+            // rBHotBoth
+            // 
+            this.rBHotBoth.AutoSize = true;
+            this.rBHotBoth.Checked = true;
+            this.rBHotBoth.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBHotBoth.Location = new System.Drawing.Point(21, 26);
+            this.rBHotBoth.Name = "rBHotBoth";
+            this.rBHotBoth.Size = new System.Drawing.Size(64, 27);
+            this.rBHotBoth.TabIndex = 0;
+            this.rBHotBoth.TabStop = true;
+            this.rBHotBoth.Text = "Both";
+            this.rBHotBoth.UseVisualStyleBackColor = true;
+            this.rBHotBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            // 
+            // gBCRR
+            // 
+            this.gBCRR.Controls.Add(this.rBCRRNo);
+            this.gBCRR.Controls.Add(this.rBCRRYes);
+            this.gBCRR.Controls.Add(this.rBCRRBoth);
+            this.gBCRR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gBCRR.Location = new System.Drawing.Point(10, 191);
+            this.gBCRR.Name = "gBCRR";
+            this.gBCRR.Size = new System.Drawing.Size(238, 59);
+            this.gBCRR.TabIndex = 7;
+            this.gBCRR.TabStop = false;
+            this.gBCRR.Text = "Cleanroom Ready";
+            // 
+            // rBCRRNo
+            // 
+            this.rBCRRNo.AutoSize = true;
+            this.rBCRRNo.Location = new System.Drawing.Point(169, 26);
+            this.rBCRRNo.Name = "rBCRRNo";
+            this.rBCRRNo.Size = new System.Drawing.Size(53, 29);
+            this.rBCRRNo.TabIndex = 2;
+            this.rBCRRNo.Text = "No";
+            this.rBCRRNo.UseVisualStyleBackColor = true;
+            this.rBCRRNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            // 
+            // rBCRRYes
+            // 
+            this.rBCRRYes.AutoSize = true;
+            this.rBCRRYes.Location = new System.Drawing.Point(99, 26);
+            this.rBCRRYes.Name = "rBCRRYes";
+            this.rBCRRYes.Size = new System.Drawing.Size(61, 29);
+            this.rBCRRYes.TabIndex = 1;
+            this.rBCRRYes.Text = "Yes";
+            this.rBCRRYes.UseVisualStyleBackColor = true;
+            this.rBCRRYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            // 
+            // rBCRRBoth
+            // 
+            this.rBCRRBoth.AutoSize = true;
+            this.rBCRRBoth.Checked = true;
+            this.rBCRRBoth.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBCRRBoth.Location = new System.Drawing.Point(21, 26);
+            this.rBCRRBoth.Name = "rBCRRBoth";
+            this.rBCRRBoth.Size = new System.Drawing.Size(64, 27);
+            this.rBCRRBoth.TabIndex = 0;
+            this.rBCRRBoth.TabStop = true;
+            this.rBCRRBoth.Text = "Both";
+            this.rBCRRBoth.UseVisualStyleBackColor = true;
+            this.rBCRRBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(40, 79);
+            this.label10.Location = new System.Drawing.Point(13, 114);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 23);
+            this.label10.Size = new System.Drawing.Size(106, 25);
             this.label10.TabIndex = 33;
             this.label10.Text = "Requestor:";
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(128)))));
+            this.buttonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonReset.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReset.ForeColor = System.Drawing.Color.Navy;
+            this.buttonReset.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.refresh;
+            this.buttonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonReset.Location = new System.Drawing.Point(10, 678);
+            this.buttonReset.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Padding = new System.Windows.Forms.Padding(10);
+            this.buttonReset.Size = new System.Drawing.Size(238, 60);
+            this.buttonReset.TabIndex = 25;
+            this.buttonReset.Text = "    Reset Filters";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // groupBox3
             // 
@@ -191,9 +320,8 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.dTPickerStartedTo);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(610, 6);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(0);
+            this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(10, 450);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(0);
             this.groupBox3.Size = new System.Drawing.Size(238, 102);
@@ -210,18 +338,17 @@
             this.dTPickerStartedFrom.Size = new System.Drawing.Size(155, 32);
             this.dTPickerStartedFrom.TabIndex = 1;
             this.dTPickerStartedFrom.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
-            this.dTPickerStartedFrom.CloseUp += new System.EventHandler(this.dTPickerStarted_CloseUp);
-            this.dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
+            this.dTPickerStartedFrom.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerStartedFrom.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerStartedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(28, 68);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 23);
+            this.label8.Size = new System.Drawing.Size(35, 23);
             this.label8.TabIndex = 6;
             this.label8.Text = "To:";
             // 
@@ -234,35 +361,32 @@
             this.dTPickerStartedTo.Name = "dTPickerStartedTo";
             this.dTPickerStartedTo.Size = new System.Drawing.Size(155, 32);
             this.dTPickerStartedTo.TabIndex = 2;
-            this.dTPickerStartedTo.CloseUp += new System.EventHandler(this.dTPickerStarted_CloseUp);
-            this.dTPickerStartedTo.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
+            this.dTPickerStartedTo.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerStartedTo.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerStartedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(9, 30);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 23);
+            this.label9.Size = new System.Drawing.Size(55, 23);
             this.label9.TabIndex = 5;
             this.label9.Text = "From:";
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(13, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 24);
+            this.label4.Size = new System.Drawing.Size(73, 30);
             this.label4.TabIndex = 24;
             this.label4.Text = "Filter";
             // 
             // comboBoxRequestor
             // 
-            this.comboBoxRequestor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxRequestor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxRequestor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxRequestor.DropDownHeight = 506;
@@ -270,10 +394,10 @@
             this.comboBoxRequestor.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRequestor.FormattingEnabled = true;
             this.comboBoxRequestor.IntegralHeight = false;
-            this.comboBoxRequestor.Location = new System.Drawing.Point(141, 76);
-            this.comboBoxRequestor.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.comboBoxRequestor.Location = new System.Drawing.Point(10, 147);
+            this.comboBoxRequestor.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.comboBoxRequestor.Name = "comboBoxRequestor";
-            this.comboBoxRequestor.Size = new System.Drawing.Size(211, 31);
+            this.comboBoxRequestor.Size = new System.Drawing.Size(238, 31);
             this.comboBoxRequestor.TabIndex = 34;
             this.comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
             // 
@@ -283,8 +407,8 @@
             this.groupBox2.Controls.Add(this.dTPickerFinishedTo);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(858, 6);
+            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(10, 565);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
@@ -306,19 +430,8 @@
             this.dTPickerFinishedFrom.Size = new System.Drawing.Size(155, 32);
             this.dTPickerFinishedFrom.TabIndex = 7;
             this.dTPickerFinishedFrom.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
-            this.dTPickerFinishedFrom.CloseUp += new System.EventHandler(this.dTPickerFinished_CloseUp);
-            this.dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);
+            this.dTPickerFinishedFrom.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerFinishedFrom.DropDown += new System.EventHandler(this.dTPicker_DropDown);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 23);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "To:";
             // 
             // dTPickerFinishedTo
             // 
@@ -329,24 +442,32 @@
             this.dTPickerFinishedTo.Name = "dTPickerFinishedTo";
             this.dTPickerFinishedTo.Size = new System.Drawing.Size(155, 32);
             this.dTPickerFinishedTo.TabIndex = 2;
-            this.dTPickerFinishedTo.CloseUp += new System.EventHandler(this.dTPickerFinished_CloseUp);
-            this.dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);
+            this.dTPickerFinishedTo.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
             this.dTPickerFinishedTo.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerFinishedTo.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(9, 30);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 23);
+            this.label7.Size = new System.Drawing.Size(55, 23);
             this.label7.TabIndex = 5;
             this.label7.Text = "From:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(28, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 23);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "To:";
+            // 
             // comboBoxPartFilter
             // 
-            this.comboBoxPartFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxPartFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxPartFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxPartFilter.DropDownHeight = 506;
@@ -354,45 +475,44 @@
             this.comboBoxPartFilter.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxPartFilter.FormattingEnabled = true;
             this.comboBoxPartFilter.IntegralHeight = false;
-            this.comboBoxPartFilter.Location = new System.Drawing.Point(140, 35);
-            this.comboBoxPartFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.comboBoxPartFilter.Location = new System.Drawing.Point(10, 73);
+            this.comboBoxPartFilter.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.comboBoxPartFilter.Name = "comboBoxPartFilter";
-            this.comboBoxPartFilter.Size = new System.Drawing.Size(212, 31);
+            this.comboBoxPartFilter.Size = new System.Drawing.Size(238, 31);
             this.comboBoxPartFilter.TabIndex = 30;
             this.comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(25, 38);
+            this.label5.Location = new System.Drawing.Point(12, 40);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 23);
+            this.label5.Size = new System.Drawing.Size(67, 25);
             this.label5.TabIndex = 29;
-            this.label5.Text = "Part Number:";
+            this.label5.Text = "Part #:";
             // 
             // bGWorkerHistoryLoad
             // 
             this.bGWorkerHistoryLoad.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWorkerHistoryLoad_DoWork);
             this.bGWorkerHistoryLoad.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWorkerHistoryLoad_RunWorkerCompleted);
             // 
-            // panel2
+            // panelDGV
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.dGVHistory);
-            this.panel2.Location = new System.Drawing.Point(10, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
-            this.panel2.Size = new System.Drawing.Size(1847, 498);
-            this.panel2.TabIndex = 25;
+            this.panelDGV.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelDGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panelDGV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDGV.Controls.Add(this.label3);
+            this.panelDGV.Controls.Add(this.dGVHistory);
+            this.panelDGV.Location = new System.Drawing.Point(10, 13);
+            this.panelDGV.Name = "panelDGV";
+            this.panelDGV.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
+            this.panelDGV.Size = new System.Drawing.Size(871, 951);
+            this.panelDGV.TabIndex = 25;
             // 
             // label3
             // 
@@ -412,8 +532,11 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
             this.dGVHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dGVHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dGVHistory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dGVHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dGVHistory.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dGVHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -425,7 +548,6 @@
             this.dGVHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dGVHistory.ColumnHeadersHeight = 40;
             this.dGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dGVHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dGVHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dGVHistory.Location = new System.Drawing.Point(10, 40);
             this.dGVHistory.Margin = new System.Windows.Forms.Padding(0);
@@ -438,29 +560,30 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVHistory.RowTemplate.Height = 40;
-            this.dGVHistory.Size = new System.Drawing.Size(1823, 444);
+            this.dGVHistory.Size = new System.Drawing.Size(847, 897);
             this.dGVHistory.TabIndex = 27;
             this.dGVHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVHistory.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVHistory.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dGV_Scroll);
             this.dGVHistory.Sorted += new System.EventHandler(this.dGVHistory_Sorted);
+            this.dGVHistory.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dGVHistory_MouseDown);
             this.dGVHistory.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
-            // buttonQuit
+            // btnQuit
             // 
-            this.buttonQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonQuit.BackColor = System.Drawing.Color.Gray;
-            this.buttonQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonQuit.ForeColor = System.Drawing.Color.Black;
-            this.buttonQuit.Location = new System.Drawing.Point(1657, 557);
-            this.buttonQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.buttonQuit.Name = "buttonQuit";
-            this.buttonQuit.Size = new System.Drawing.Size(200, 60);
-            this.buttonQuit.TabIndex = 26;
-            this.buttonQuit.Text = "Quit";
-            this.buttonQuit.UseVisualStyleBackColor = false;
+            this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuit.BackColor = System.Drawing.Color.Gray;
+            this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuit.ForeColor = System.Drawing.Color.Black;
+            this.btnQuit.Location = new System.Drawing.Point(894, 904);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(262, 60);
+            this.btnQuit.TabIndex = 26;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = false;
             // 
             // btnMain
             // 
@@ -469,48 +592,25 @@
             this.btnMain.BackColor = System.Drawing.Color.DarkGray;
             this.btnMain.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMain.ForeColor = System.Drawing.Color.Maroon;
-            this.btnMain.Location = new System.Drawing.Point(1451, 557);
-            this.btnMain.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMain.ForeColor = System.Drawing.Color.DimGray;
+            this.btnMain.Location = new System.Drawing.Point(894, 774);
             this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(200, 60);
+            this.btnMain.Size = new System.Drawing.Size(262, 60);
             this.btnMain.TabIndex = 27;
             this.btnMain.Text = "Main Screen";
             this.btnMain.UseVisualStyleBackColor = true;
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonReset.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(128)))));
-            this.buttonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonReset.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReset.ForeColor = System.Drawing.Color.Navy;
-            this.buttonReset.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.refresh;
-            this.buttonReset.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonReset.Location = new System.Drawing.Point(1106, 10);
-            this.buttonReset.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Padding = new System.Windows.Forms.Padding(10);
-            this.buttonReset.Size = new System.Drawing.Size(112, 98);
-            this.buttonReset.TabIndex = 25;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // HistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1867, 655);
+            this.ClientSize = new System.Drawing.Size(1169, 974);
             this.Controls.Add(this.btnMain);
-            this.Controls.Add(this.buttonQuit);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.panelFilter);
-            this.Controls.Add(this.buttonBack);
+            this.Controls.Add(this.panelDGV);
+            this.Controls.Add(this.btnBack);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "HistoryForm";
@@ -523,12 +623,16 @@
             this.groupBox1.PerformLayout();
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
+            this.gBHot.ResumeLayout(false);
+            this.gBHot.PerformLayout();
+            this.gBCRR.ResumeLayout(false);
+            this.gBCRR.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelDGV.ResumeLayout(false);
+            this.panelDGV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVHistory)).EndInit();
             this.ResumeLayout(false);
 
@@ -541,7 +645,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -559,11 +663,19 @@
         private System.ComponentModel.BackgroundWorker bGWorkerHistoryLoad;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBoxRequestor;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelDGV;
         private System.Windows.Forms.DataGridView dGVHistory;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonQuit;
+        private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.Button btnMain;
         private System.Windows.Forms.DateTimePicker dTPickerFinishedFrom;
+        private System.Windows.Forms.GroupBox gBHot;
+        private System.Windows.Forms.RadioButton rBHotNo;
+        private System.Windows.Forms.RadioButton rBHotYes;
+        private System.Windows.Forms.RadioButton rBHotBoth;
+        private System.Windows.Forms.GroupBox gBCRR;
+        private System.Windows.Forms.RadioButton rBCRRNo;
+        private System.Windows.Forms.RadioButton rBCRRYes;
+        private System.Windows.Forms.RadioButton rBCRRBoth;
     }
 }

@@ -36,15 +36,20 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.errorProviderPartRequestForm = new System.Windows.Forms.ErrorProvider(this.components);
             this.textBoxRequestor = new System.Windows.Forms.TextBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pnlPartNumber = new System.Windows.Forms.Panel();
+            this.rBtnNonStandard = new System.Windows.Forms.RadioButton();
+            this.rBtnStandard = new System.Windows.Forms.RadioButton();
+            this.pnlStandard = new System.Windows.Forms.Panel();
             this.comboBoxPart = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPartDescription = new System.Windows.Forms.Label();
-            this.rBtnNonStandard = new System.Windows.Forms.RadioButton();
-            this.rBtnStandard = new System.Windows.Forms.RadioButton();
+            this.panelNonStandard = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblEnterDescription = new System.Windows.Forms.Label();
             this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,11 +69,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxContact = new System.Windows.Forms.ComboBox();
             this.bGWorkerAddPart = new System.ComponentModel.BackgroundWorker();
+            this.toolTipPartRequest = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPartRequestForm)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.pnlPartNumber.SuspendLayout();
+            this.pnlStandard.SuspendLayout();
+            this.panelNonStandard.SuspendLayout();
             this.groupBoxCR.SuspendLayout();
             this.gBoxStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQty)).BeginInit();
@@ -118,6 +125,19 @@
             this.textBoxRequestor.Name = "textBoxRequestor";
             this.textBoxRequestor.Size = new System.Drawing.Size(207, 29);
             this.textBoxRequestor.TabIndex = 26;
+            this.textBoxRequestor.TextChanged += new System.EventHandler(this.textBoxRequestor_TextChanged);
+            this.textBoxRequestor.MouseEnter += new System.EventHandler(this.textBoxRequestor_MouseEnter);
+            this.textBoxRequestor.MouseLeave += new System.EventHandler(this.textBoxRequestor_MouseLeave);
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorProviderPartRequestForm.SetIconAlignment(this.textBoxDescription, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.textBoxDescription.Location = new System.Drawing.Point(107, 10);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(210, 29);
+            this.textBoxDescription.TabIndex = 30;
+            this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
             // 
             // panel1
             // 
@@ -126,7 +146,7 @@
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.btnPartCleanRequest);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 508);
+            this.panel1.Location = new System.Drawing.Point(10, 526);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
@@ -139,6 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.textBoxSerialNumber);
             this.panel2.Controls.Add(this.label8);
@@ -157,14 +178,26 @@
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(519, 482);
+            this.panel2.Size = new System.Drawing.Size(519, 500);
             this.panel2.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Maroon;
+            this.label5.Location = new System.Drawing.Point(14, 472);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(491, 25);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "*  Required";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pnlPartNumber);
             this.groupBox1.Controls.Add(this.rBtnNonStandard);
             this.groupBox1.Controls.Add(this.rBtnStandard);
+            this.groupBox1.Controls.Add(this.pnlStandard);
+            this.groupBox1.Controls.Add(this.panelNonStandard);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Maroon;
             this.groupBox1.Location = new System.Drawing.Point(13, 44);
@@ -173,53 +206,6 @@
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Part Number";
-            // 
-            // pnlPartNumber
-            // 
-            this.pnlPartNumber.Controls.Add(this.comboBoxPart);
-            this.pnlPartNumber.Controls.Add(this.label1);
-            this.pnlPartNumber.Controls.Add(this.lblPartDescription);
-            this.pnlPartNumber.Location = new System.Drawing.Point(149, 19);
-            this.pnlPartNumber.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlPartNumber.Name = "pnlPartNumber";
-            this.pnlPartNumber.Size = new System.Drawing.Size(339, 78);
-            this.pnlPartNumber.TabIndex = 46;
-            // 
-            // comboBoxPart
-            // 
-            this.comboBoxPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxPart.DropDownHeight = 506;
-            this.comboBoxPart.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxPart.FormattingEnabled = true;
-            this.comboBoxPart.IntegralHeight = false;
-            this.comboBoxPart.Location = new System.Drawing.Point(118, 8);
-            this.comboBoxPart.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.comboBoxPart.Name = "comboBoxPart";
-            this.comboBoxPart.Size = new System.Drawing.Size(199, 33);
-            this.comboBoxPart.TabIndex = 28;
-            this.comboBoxPart.SelectedIndexChanged += new System.EventHandler(this.comboBoxPart_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(3, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 23);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Part Number:";
-            // 
-            // lblPartDescription
-            // 
-            this.lblPartDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartDescription.ForeColor = System.Drawing.Color.Black;
-            this.lblPartDescription.Location = new System.Drawing.Point(3, 44);
-            this.lblPartDescription.Name = "lblPartDescription";
-            this.lblPartDescription.Size = new System.Drawing.Size(333, 29);
-            this.lblPartDescription.TabIndex = 29;
-            this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rBtnNonStandard
             // 
@@ -245,6 +231,90 @@
             this.rBtnStandard.Text = "Standard";
             this.rBtnStandard.UseVisualStyleBackColor = true;
             this.rBtnStandard.CheckedChanged += new System.EventHandler(this.rBtnStandard_CheckedChanged);
+            // 
+            // pnlStandard
+            // 
+            this.pnlStandard.Controls.Add(this.comboBoxPart);
+            this.pnlStandard.Controls.Add(this.label1);
+            this.pnlStandard.Controls.Add(this.lblPartDescription);
+            this.pnlStandard.Location = new System.Drawing.Point(149, 19);
+            this.pnlStandard.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlStandard.Name = "pnlStandard";
+            this.pnlStandard.Size = new System.Drawing.Size(339, 78);
+            this.pnlStandard.TabIndex = 46;
+            // 
+            // comboBoxPart
+            // 
+            this.comboBoxPart.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxPart.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxPart.DropDownHeight = 506;
+            this.comboBoxPart.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxPart.FormattingEnabled = true;
+            this.comboBoxPart.IntegralHeight = false;
+            this.comboBoxPart.Location = new System.Drawing.Point(118, 8);
+            this.comboBoxPart.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.comboBoxPart.Name = "comboBoxPart";
+            this.comboBoxPart.Size = new System.Drawing.Size(199, 33);
+            this.comboBoxPart.TabIndex = 28;
+            this.comboBoxPart.SelectedIndexChanged += new System.EventHandler(this.comboBoxPart_SelectedIndexChanged);
+            this.comboBoxPart.MouseEnter += new System.EventHandler(this.comboBoxPart_MouseEnter);
+            this.comboBoxPart.MouseLeave += new System.EventHandler(this.comboBoxPart_MouseLeave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(3, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 23);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Part Number:";
+            // 
+            // lblPartDescription
+            // 
+            this.lblPartDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblPartDescription.Location = new System.Drawing.Point(3, 44);
+            this.lblPartDescription.Name = "lblPartDescription";
+            this.lblPartDescription.Size = new System.Drawing.Size(333, 29);
+            this.lblPartDescription.TabIndex = 29;
+            this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelNonStandard
+            // 
+            this.panelNonStandard.Controls.Add(this.textBoxDescription);
+            this.panelNonStandard.Controls.Add(this.label4);
+            this.panelNonStandard.Controls.Add(this.lblEnterDescription);
+            this.panelNonStandard.Location = new System.Drawing.Point(149, 19);
+            this.panelNonStandard.Margin = new System.Windows.Forms.Padding(0);
+            this.panelNonStandard.Name = "panelNonStandard";
+            this.panelNonStandard.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.panelNonStandard.Size = new System.Drawing.Size(339, 78);
+            this.panelNonStandard.TabIndex = 47;
+            this.panelNonStandard.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(3, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 23);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Description:";
+            // 
+            // lblEnterDescription
+            // 
+            this.lblEnterDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnterDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblEnterDescription.Location = new System.Drawing.Point(3, 44);
+            this.lblEnterDescription.Name = "lblEnterDescription";
+            this.lblEnterDescription.Size = new System.Drawing.Size(333, 29);
+            this.lblEnterDescription.TabIndex = 29;
+            this.lblEnterDescription.Text = "Enter A Short Description Above";
+            this.lblEnterDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxSerialNumber
             // 
@@ -293,9 +363,9 @@
             this.groupBoxCR.Controls.Add(this.gBoxStockLocation);
             this.groupBoxCR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxCR.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBoxCR.Location = new System.Drawing.Point(12, 361);
+            this.groupBoxCR.Location = new System.Drawing.Point(13, 361);
             this.groupBoxCR.Name = "groupBoxCR";
-            this.groupBoxCR.Size = new System.Drawing.Size(492, 108);
+            this.groupBoxCR.Size = new System.Drawing.Size(491, 108);
             this.groupBoxCR.TabIndex = 35;
             this.groupBoxCR.TabStop = false;
             this.groupBoxCR.Text = "Cleanroom Ready";
@@ -308,10 +378,9 @@
             this.radioButtonCRNo.Name = "radioButtonCRNo";
             this.radioButtonCRNo.Size = new System.Drawing.Size(53, 29);
             this.radioButtonCRNo.TabIndex = 9;
-            this.radioButtonCRNo.TabStop = true;
             this.radioButtonCRNo.Text = "No";
             this.radioButtonCRNo.UseVisualStyleBackColor = true;
-            this.radioButtonCRNo.Click += new System.EventHandler(this.radioButtonCRNo_Click);
+            this.radioButtonCRNo.CheckedChanged += new System.EventHandler(this.radioButtonCR_CheckedChanged);
             // 
             // radioButtonCRYes
             // 
@@ -321,9 +390,9 @@
             this.radioButtonCRYes.Name = "radioButtonCRYes";
             this.radioButtonCRYes.Size = new System.Drawing.Size(61, 29);
             this.radioButtonCRYes.TabIndex = 8;
-            this.radioButtonCRYes.TabStop = true;
             this.radioButtonCRYes.Text = "Yes";
             this.radioButtonCRYes.UseVisualStyleBackColor = true;
+            this.radioButtonCRYes.CheckedChanged += new System.EventHandler(this.radioButtonCR_CheckedChanged);
             this.radioButtonCRYes.Click += new System.EventHandler(this.radioButtonCRYes_Click);
             // 
             // gBoxStockLocation
@@ -340,13 +409,12 @@
             this.gBoxStockLocation.TabIndex = 40;
             this.gBoxStockLocation.TabStop = false;
             this.gBoxStockLocation.Text = "Stock Location";
-            this.gBoxStockLocation.Visible = false;
             // 
             // radioButtonBulk
             // 
             this.radioButtonBulk.AutoSize = true;
             this.radioButtonBulk.ForeColor = System.Drawing.Color.Black;
-            this.radioButtonBulk.Location = new System.Drawing.Point(164, 30);
+            this.radioButtonBulk.Location = new System.Drawing.Point(160, 30);
             this.radioButtonBulk.Name = "radioButtonBulk";
             this.radioButtonBulk.Size = new System.Drawing.Size(68, 29);
             this.radioButtonBulk.TabIndex = 11;
@@ -358,12 +426,12 @@
             // 
             this.radioButtonCage.AutoSize = true;
             this.radioButtonCage.ForeColor = System.Drawing.Color.Black;
-            this.radioButtonCage.Location = new System.Drawing.Point(28, 30);
+            this.radioButtonCage.Location = new System.Drawing.Point(32, 30);
             this.radioButtonCage.Name = "radioButtonCage";
-            this.radioButtonCage.Size = new System.Drawing.Size(121, 29);
+            this.radioButtonCage.Size = new System.Drawing.Size(78, 29);
             this.radioButtonCage.TabIndex = 10;
             this.radioButtonCage.TabStop = true;
-            this.radioButtonCage.Text = "Cage Shelf";
+            this.radioButtonCage.Text = "Cage ";
             this.radioButtonCage.UseVisualStyleBackColor = true;
             // 
             // textBoxPO
@@ -403,6 +471,8 @@
             this.textBoxInstructions.Name = "textBoxInstructions";
             this.textBoxInstructions.Size = new System.Drawing.Size(279, 87);
             this.textBoxInstructions.TabIndex = 29;
+            this.textBoxInstructions.MouseEnter += new System.EventHandler(this.textBoxInstructions_MouseEnter);
+            this.textBoxInstructions.MouseLeave += new System.EventHandler(this.textBoxInstructions_MouseLeave);
             // 
             // label3
             // 
@@ -461,6 +531,8 @@
             this.comboBoxContact.Size = new System.Drawing.Size(278, 33);
             this.comboBoxContact.TabIndex = 31;
             this.comboBoxContact.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContact_SelectedIndexChanged);
+            this.comboBoxContact.MouseEnter += new System.EventHandler(this.comboBoxContact_MouseEnter);
+            this.comboBoxContact.MouseLeave += new System.EventHandler(this.comboBoxContact_MouseLeave);
             // 
             // bGWorkerAddPart
             // 
@@ -471,10 +543,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(538, 580);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(198)))));
+            this.ClientSize = new System.Drawing.Size(538, 598);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -491,8 +564,10 @@
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.pnlPartNumber.ResumeLayout(false);
-            this.pnlPartNumber.PerformLayout();
+            this.pnlStandard.ResumeLayout(false);
+            this.pnlStandard.PerformLayout();
+            this.panelNonStandard.ResumeLayout(false);
+            this.panelNonStandard.PerformLayout();
             this.groupBoxCR.ResumeLayout(false);
             this.groupBoxCR.PerformLayout();
             this.gBoxStockLocation.ResumeLayout(false);
@@ -535,8 +610,14 @@
         private System.Windows.Forms.Label lblPartDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel pnlPartNumber;
+        private System.Windows.Forms.Panel pnlStandard;
         private System.Windows.Forms.RadioButton rBtnNonStandard;
         private System.Windows.Forms.RadioButton rBtnStandard;
+        private System.Windows.Forms.ToolTip toolTipPartRequest;
+        private System.Windows.Forms.Panel panelNonStandard;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblEnterDescription;
+        private System.Windows.Forms.Label label5;
     }
 }

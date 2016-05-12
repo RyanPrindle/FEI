@@ -200,10 +200,10 @@ namespace Cleaning_Scheduler_Interface
             bool submittable = true;
 
             // Requestor Empty
-            if (textBoxRequestor.Text == "" || textBoxRequestor.Text == null)
+            if (textBoxRequestor.Text.Trim() == "" || textBoxRequestor.Text == null)
             {
                 errorProviderPartRequestForm.SetError(textBoxRequestor, "Enter Your Name");
-                textBoxRequestor.Focus();
+                textBoxRequestor.Text = "";
                 submittable = false;
             }
             // Requestor Not empty
@@ -248,11 +248,16 @@ namespace Cleaning_Scheduler_Interface
             //Non Standard
             else
             {
-                mPartRequest.mPart = "Non - Standard";
-                mPartRequest.mDescription = "";
+                if (!(textBoxDescription.Text.Trim() == "" || textBoxDescription.Text == null))
+                {
+                    mPartRequest.mPart = "Non - Standard";
+                    mPartRequest.mDescription = textBoxDescription.Text.Trim();
+                }
+                else
+                    errorProviderPartRequestForm.SetError(textBoxDescription, "Enter Description for Non Standard Part");
             }
 
-            if (!(textBoxInstructions.Text.ToString() == "" || textBoxInstructions.Text.ToString() == null))
+            if (!(textBoxInstructions.Text.Trim() == "" || textBoxInstructions.Text.ToString() == null))
             {
                 mPartRequest.mInstructions = textBoxInstructions.Text.Trim().ToString();
             }
@@ -333,7 +338,7 @@ namespace Cleaning_Scheduler_Interface
             }
             else
             {
-                errorProviderPartRequestForm.SetError(groupBoxCR, "Yes or No");
+                errorProviderPartRequestForm.SetError(radioButtonCRNo, "Cleanroom Ready, Yes or No");
                 submittable = false;
             }
 
@@ -345,20 +350,17 @@ namespace Cleaning_Scheduler_Interface
 
         private void radioButtonCRYes_Click(object sender, EventArgs e)
         {
-            gBoxStockLocation.Visible = true;
             gBoxStockLocation.Focus();
-        }
-
-        private void radioButtonCRNo_Click(object sender, EventArgs e)
-        {
-            gBoxStockLocation.Visible = false;
         }
 
         private void comboBoxPart_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = comboBoxPart.SelectedIndex;
             if (index >= 0)
+            {
                 lblPartDescription.Text = mPartTable.Rows[comboBoxPart.SelectedIndex]["Description"].ToString();
+                errorProviderPartRequestForm.SetError(comboBoxPart, "");
+            }
             else
                 lblPartDescription.Text = "";
         }
@@ -368,14 +370,73 @@ namespace Cleaning_Scheduler_Interface
         {
             if (rBtnStandard.Checked)
             {
-                pnlPartNumber.Visible = true;
+                pnlStandard.Visible = true;
+                panelNonStandard.Visible = false;
                 labelInstructions.ForeColor = Color.Black;
             }
             else
             {
-                pnlPartNumber.Visible = false;
+                pnlStandard.Visible = false;
+                panelNonStandard.Visible = true;
                 labelInstructions.ForeColor = Color.Maroon;
             }
+        }
+
+        private void textBoxRequestor_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Show("Enter Your Name", textBoxRequestor);
+        }
+
+        private void textBoxRequestor_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Hide(textBoxRequestor);
+        }
+
+        private void comboBoxPart_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Show("Enter Part Number", comboBoxPart);
+        }
+
+        private void comboBoxPart_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Hide(comboBoxPart);
+        }
+
+        private void textBoxInstructions_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Show("Enter Instructions or Comments", textBoxInstructions);                    
+        }
+
+        private void textBoxInstructions_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Hide(textBoxInstructions);
+        }
+
+
+        private void comboBoxContact_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Show("Click to Select/Add Email to Contact When Complete", comboBoxContact);
+        
+        }
+
+        private void comboBoxContact_MouseLeave(object sender, EventArgs e)
+        {
+            toolTipPartRequest.Hide(comboBoxContact);
+        }
+
+        private void textBoxRequestor_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderPartRequestForm.SetError(textBoxRequestor, "");
+        }
+
+        private void textBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+            errorProviderPartRequestForm.SetError(textBoxDescription, "");
+        }
+
+        private void radioButtonCR_CheckedChanged(object sender, EventArgs e)
+        {
+            errorProviderPartRequestForm.SetError(radioButtonCRNo, "");
         }
     }
 }

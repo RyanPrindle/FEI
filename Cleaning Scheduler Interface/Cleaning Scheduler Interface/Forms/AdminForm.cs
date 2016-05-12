@@ -30,32 +30,32 @@ namespace Cleaning_Scheduler_Interface
         private void AdminForm_Load(object sender, EventArgs e)
         {
             FormatLayout();
-
             RefreshTables();
         }
 
         private void FormatLayout()
         {
-            int pad = 10;
-            int screenWidth = splitContainer1.Width;
-            pnlEdit.Width = (screenWidth - pad) / 4;
-            pnlEdit.Location = new Point(splitContainer1.Location.Y, splitContainer1.Height + 2 * pad);
-            pnlControl.Width = (screenWidth - pad) * 3 / 4;
-            pnlControl.Location = new Point(pnlEdit.Width + 2 * pad, pnlEdit.Location.Y);
-            int btnEditWidth = ((pnlEdit.Width - 2) - 2 * pad);
-            int btnControlWidth = ((pnlControl.Width - 2) - 4 * pad) / 3;
-            btnEditRequests.Location = new Point(pad, pad);
+            int padding = 10;
+            int btnHeight = splitContainer1.Height / 10;
+            int btnWidth = pnlEdit.Width;
+            int btnEditWidth = pnlEdit.Width - (2 * padding);
+            panelHot.BackColor = mainForm.hotColor;
+            panelCRR.BackColor = mainForm.crrColor;
+            
+            pnlEdit.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Location.Y );
+            pnlEdit.Height = btnHeight + 2 * padding;
+            pnlLegend.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Location.Y + pnlEdit.Height + padding);
+            btnReturnToMain.Width  = btnQuit.Width = btnHistory.Width = btnWidth;
             btnEditRequests.Width = btnEditWidth;
-            btnHistory.Location = new Point(pad, pad);
-            btnHistory.Width = btnControlWidth;
-            btnHistory.Visible = true;
-            btnReturnToMain.Location = new Point(btnControlWidth + 2 * pad, pad);
-            btnReturnToMain.Width = btnControlWidth;
-            btnReturnToMain.DialogResult = DialogResult.OK;
-            btnQuit.Location = new Point(2 * btnControlWidth + 3 * pad, pad);
-            btnQuit.Width = btnControlWidth;
+            btnReturnToMain.Height = btnEditRequests.Height = btnQuit.Height = btnHistory.Height = btnHeight;
+
+            btnEditRequests.Location = new Point(padding, padding);
+            btnQuit.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - btnHeight + padding);
             btnQuit.DialogResult = DialogResult.Cancel;
-        }
+            btnHistory.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - 2 * btnHeight);
+            btnReturnToMain.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - 3 * btnHeight - padding);
+            btnReturnToMain.DialogResult = DialogResult.OK;
+            }
 
         private void LoadDGV()
         {
@@ -72,45 +72,7 @@ namespace Cleaning_Scheduler_Interface
             dGVStyle.Font = mainForm.dGVRowFont;
         }
 
-        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-
-            if (e.RowIndex > -1)
-            {
-                int cellHeight = e.CellBounds.Height - 10;
-                mainForm.infoIcon = (Image)new Bitmap(mainForm.infoIcon, new Size(cellHeight, cellHeight));
-                mainForm.checkIcon = (Image)new Bitmap(mainForm.checkIcon, new Size(cellHeight, cellHeight));
-                DataGridView dGV = (DataGridView)sender;
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                e.PaintContent(e.CellBounds);
-
-                if (e.ColumnIndex == dGV.Columns["Info"].Index)
-                {
-                    e.Graphics.DrawImage(mainForm.infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - mainForm.infoIcon.Size.Width) / 2,
-                                                e.CellBounds.Location.Y + (e.CellBounds.Height - mainForm.infoIcon.Size.Height) / 2);
-                }
-
-                if (e.ColumnIndex == dGV.Columns["Decon"].Index ||
-                    e.ColumnIndex == dGV.Columns["Dishwasher"].Index ||
-                    e.ColumnIndex == dGV.Columns["WaterPik"].Index ||
-                    e.ColumnIndex == dGV.Columns["Ultrasonic"].Index ||
-                    e.ColumnIndex == dGV.Columns["Crest10"].Index ||
-                    e.ColumnIndex == dGV.Columns["Crest20"].Index ||
-                    e.ColumnIndex == dGV.Columns["CrestLong"].Index ||
-                    e.ColumnIndex == dGV.Columns["CR Ready"].Index ||
-                    e.ColumnIndex == dGV.Columns["Bulk"].Index ||
-                    e.ColumnIndex == dGV.Columns["Cage"].Index ||
-                    e.ColumnIndex == dGV.Columns["Hot"].Index)
-                {
-                    if ((bool)dGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == true)
-                        e.Graphics.DrawImage(mainForm.checkIcon, e.CellBounds.Location.X + (e.CellBounds.Width - mainForm.checkIcon.Size.Width) / 2,
-                                                e.CellBounds.Location.Y + (e.CellBounds.Height - mainForm.checkIcon.Size.Height) / 2);
-                }
-                e.Handled = true;
-            }
-        }
-
+       
         private void InitDGVAdminQueue()
         {
             DataGridViewButtonColumn btnStartColumn = new DataGridViewButtonColumn();
@@ -133,8 +95,8 @@ namespace Cleaning_Scheduler_Interface
 
             if (edit)
             {
-                if (dGVAdminQueue.Columns.Contains("Start"))
-                    dGVAdminQueue.Columns.Remove("Start");
+                //if (dGVAdminQueue.Columns.Contains("Start"))
+                //    dGVAdminQueue.Columns.Remove("Start");
 
                 if (!(dGVAdminQueue.Columns.Contains("Delete")))
                     dGVAdminQueue.Columns.Add(btnDeleteColumn);
@@ -164,6 +126,8 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminQueue.Columns["Cage"].Visible = false;
             dGVAdminQueue.Columns["Hot"].Visible = false;
             dGVAdminQueue.Columns["CR Ready"].Visible = false;
+            dGVAdminQueue.Columns["PO"].Visible = false;
+            dGVAdminQueue.Columns["Serial #"].Visible = false;
             dGVAdminQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewRow row in dGVAdminQueue.Rows)
             {
@@ -175,7 +139,6 @@ namespace Cleaning_Scheduler_Interface
             }
             mainForm.FormatDGVInfoHot(dGVAdminQueue);
             dGVAdminQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
-            //dGVAdminQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVAdminQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminQueue.ResumeLayout();
         }
@@ -194,8 +157,8 @@ namespace Cleaning_Scheduler_Interface
             btnDeleteColumn.UseColumnTextForButtonValue = true;
             DataGridViewButtonColumn btnToQueueColumn = new DataGridViewButtonColumn();
             btnToQueueColumn.Name = "MoveToQueue";
-            btnToQueueColumn.HeaderText = "Cancel Start";
-            btnToQueueColumn.Text = "Move to Queue";
+            btnToQueueColumn.HeaderText = "Cancel";
+            btnToQueueColumn.Text = "Move Back";
             btnToQueueColumn.UseColumnTextForButtonValue = true;
 
 
@@ -209,10 +172,10 @@ namespace Cleaning_Scheduler_Interface
 
             if (edit)
             {
-                if (dGVAdminInProcess.Columns.Contains("Finish"))
-                {
-                    dGVAdminInProcess.Columns.Remove("Finish");
-                }
+                //if (dGVAdminInProcess.Columns.Contains("Finish"))
+                //{
+                //    dGVAdminInProcess.Columns.Remove("Finish");
+                //}
                 if (!(dGVAdminInProcess.Columns.Contains("Delete")))
                 {
                     dGVAdminInProcess.Columns.Add(btnToQueueColumn);
@@ -247,6 +210,8 @@ namespace Cleaning_Scheduler_Interface
             dGVAdminInProcess.Columns["Cage"].Visible = false;
             dGVAdminInProcess.Columns["Hot"].Visible = false;
             dGVAdminInProcess.Columns["CR Ready"].Visible = false;
+            dGVAdminInProcess.Columns["PO"].Visible = false;
+            dGVAdminInProcess.Columns["Serial #"].Visible = false;
             dGVAdminInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             foreach (DataGridViewRow row in dGVAdminInProcess.Rows)
             {
@@ -258,12 +223,42 @@ namespace Cleaning_Scheduler_Interface
             }
             mainForm.FormatDGVInfoHot(dGVAdminInProcess);
             dGVAdminInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
-            //dGVAdminInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
+           
             dGVAdminInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVAdminInProcess.ResumeLayout();
         }
 
+        private void FinishCleaning(int reqId)
+        {
+            FinishForm finishForm = new FinishForm(reqId);
+            finishForm.ShowDialog();
+            RefreshTables();
+        }
+
         #region Event Handlers
+
+        private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+            if (e.RowIndex > -1)
+            {
+                int cellHeight = e.CellBounds.Height - 10;
+                mainForm.infoIcon = (Image)new Bitmap(mainForm.infoIcon, new Size(cellHeight, cellHeight));
+                mainForm.checkIcon = (Image)new Bitmap(mainForm.checkIcon, new Size(cellHeight, cellHeight));
+                DataGridView dGV = (DataGridView)sender;
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                e.PaintContent(e.CellBounds);
+
+                if (e.ColumnIndex == dGV.Columns["Info"].Index)
+                {
+                    e.Graphics.DrawImage(mainForm.infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - mainForm.infoIcon.Size.Width) / 2,
+                                                e.CellBounds.Location.Y + (e.CellBounds.Height - mainForm.infoIcon.Size.Height) / 2);
+                }
+
+                e.Handled = true;
+            }
+        }
 
         private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -318,12 +313,7 @@ namespace Cleaning_Scheduler_Interface
             }
         }
 
-        private void FinishCleaning(int reqId)
-        {
-            FinishForm finishForm = new FinishForm(reqId);
-            finishForm.ShowDialog();
-            RefreshTables();
-        }
+       
        
         private void btnEditRequests_Click(object sender, EventArgs e)
         {
@@ -368,6 +358,42 @@ namespace Cleaning_Scheduler_Interface
         private void AdminForm_SizeChanged(object sender, EventArgs e)
         {
             FormatLayout();
+        }
+
+        private void splitContainer_Paint(object sender, PaintEventArgs e)
+        {
+            var control = sender as SplitContainer;
+            //paint the three dots'
+            Point[] points = new Point[3];
+            var w = control.Width;
+            var h = control.Height;
+            var d = control.SplitterDistance;
+            var sW = control.SplitterWidth;
+
+            //calculate the position of the points'
+            if (control.Orientation == Orientation.Horizontal)
+            {
+                points[0] = new Point((w / 2), d + (sW / 2));
+                points[1] = new Point(points[0].X - 20, points[0].Y);
+                points[2] = new Point(points[0].X + 20, points[0].Y);
+            }
+            else
+            {
+                points[0] = new Point(d + (sW / 2), (h / 2));
+                points[1] = new Point(points[0].X, points[0].Y - 10);
+                points[2] = new Point(points[0].X, points[0].Y + 10);
+            }
+
+            foreach (Point p in points)
+            {
+                p.Offset(-2, -2);
+                e.Graphics.FillEllipse(new SolidBrush(Color.Blue),
+                    new Rectangle(p, new Size(3, 3)));
+
+                p.Offset(1, 1);
+                e.Graphics.FillEllipse(SystemBrushes.ControlLight,
+                    new Rectangle(p, new Size(3, 3)));
+            }
         }
 
         #endregion
@@ -501,6 +527,9 @@ namespace Cleaning_Scheduler_Interface
 
 
         #endregion
+
+        
+
 
     }
 }

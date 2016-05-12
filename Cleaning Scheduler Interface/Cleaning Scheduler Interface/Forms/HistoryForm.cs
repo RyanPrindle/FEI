@@ -25,8 +25,10 @@ namespace Cleaning_Scheduler_Interface
         private Image infoIcon;
         private Image checkIcon;
         private Font dTPFont = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        private Font cBFont = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private String dTPFormat = "M / dd / yyyy";
         private bool calendarDroppedDown = false;
+        private int dgvScrollOffset;
 
         public HistoryForm(MainForm mainForm)
         {
@@ -41,7 +43,19 @@ namespace Cleaning_Scheduler_Interface
 
         private void HistoryForm_Load(object sender, EventArgs e)
         {
+            FormatLayout();
             GetHistoryData();
+        }
+
+        private void FormatLayout()
+        {
+            int pad = 10;
+            int btnHeight = (panelDGV.Height - panelFilter.Height - 3 * pad) / 3;
+            btnQuit.Location = new Point(panelFilter.Location.X ,panelDGV.Height + pad - btnHeight + 3);
+            btnBack.Location = new Point(panelFilter.Location.X, panelDGV.Height - 2 * btnHeight + 3);
+            btnMain.Location = new Point(panelFilter.Location.X, panelDGV.Height - pad - 3 * btnHeight + 3);
+            btnQuit.Height = btnMain.Height = btnBack.Height = btnHeight;
+            btnQuit.Font = btnMain.Font = btnBack.Font = buttonReset.Font = mMainForm.btnFont;
         }
 
         private void GetHistoryData()
@@ -81,13 +95,7 @@ namespace Cleaning_Scheduler_Interface
         }
 
         private void InitFilters()
-        {
-            dTPickerRequestedFrom.ValueChanged -= new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerRequestedTo.ValueChanged -= new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerStartedFrom.ValueChanged -= new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerStartedTo.ValueChanged -= new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerFinishedFrom.ValueChanged -= new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            dTPickerFinishedTo.ValueChanged -= new System.EventHandler(this.dTPickerFinished_ValueChanged);                      
+        {                 
             
             dTPickerRequestedFrom.CustomFormat = dTPFormat;
             dTPickerRequestedFrom.Format = DateTimePickerFormat.Custom;
@@ -131,75 +139,22 @@ namespace Cleaning_Scheduler_Interface
             dTPickerFinishedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
             dTPickerFinishedTo.Value = DateTime.Today.Date.AddDays(1).AddTicks(-1);
 
-            dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerStartedTo.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);   
-        }
+            rBCRRBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
 
-        private void dTPickerRequested_ValueChanged(object sender, EventArgs e)
-        {
-            RequestedFilter();
-        }
-
-        private void RequestedFilter()
-        {
-            dTPickerRequestedFrom.ValueChanged -= new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerRequestedTo.ValueChanged -= new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerRequestedFrom.MinDate = dTPickerRequestedFrom.Value;
-            dTPickerRequestedFrom.MaxDate = dTPickerRequestedTo.Value;
-            dTPickerRequestedTo.MinDate = dTPickerRequestedFrom.Value;
-            dTPickerRequestedTo.MaxDate = dTPickerRequestedTo.Value;
-            dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerRequestedTo.ValueChanged += new System.EventHandler(this.dTPickerRequested_ValueChanged);
-            dTPickerStartedFrom.MinDate = dTPickerRequestedFrom.Value;
-            dTPickerFinishedFrom.MinDate = dTPickerRequestedFrom.Value;
-            FilterTableDate();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
-        }
-
-        private void dTPickerStarted_ValueChanged(object sender, EventArgs e)
-        {
-            StartedFilter();
-        }
-
-        private void StartedFilter()
-        {
-            dTPickerStartedFrom.ValueChanged -= new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerStartedTo.ValueChanged -= new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerStartedFrom.MinDate = dTPickerStartedFrom.Value;
-            dTPickerStartedFrom.MaxDate = dTPickerStartedTo.Value;
-            dTPickerStartedTo.MinDate = dTPickerStartedFrom.Value;
-            dTPickerStartedTo.MaxDate = dTPickerStartedTo.Value;
-            dTPickerStartedFrom.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerStartedTo.ValueChanged += new System.EventHandler(this.dTPickerStarted_ValueChanged);
-            dTPickerFinishedFrom.MinDate = dTPickerStartedFrom.Value;
-            FilterTableDate();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
-        }
-        
-        private void dTPickerFinished_ValueChanged(object sender, EventArgs e)
-        {
-            FinishedFilter();
-        }
-
-        private void FinishedFilter()
-        {
-            dTPickerFinishedFrom.ValueChanged -= new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            dTPickerFinishedTo.ValueChanged -= new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            dTPickerFinishedFrom.MinDate = dTPickerFinishedFrom.Value;
-            dTPickerFinishedFrom.MaxDate = dTPickerFinishedTo.Value;
-            dTPickerFinishedTo.MinDate = dTPickerFinishedFrom.Value;
-            dTPickerFinishedTo.MaxDate = dTPickerFinishedTo.Value;
-            dTPickerFinishedFrom.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            dTPickerFinishedTo.ValueChanged += new System.EventHandler(this.dTPickerFinished_ValueChanged);
-            FilterTableDate();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
+            rBCRRBoth.Checked = true;
+            rBHotBoth.Checked = true;
+            
+            rBCRRBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
         }
        
         private void InitHistoryDGV()
@@ -212,43 +167,28 @@ namespace Cleaning_Scheduler_Interface
             mFilteredTable = new DataTable();
             mFilteredTable = mHistoryTable.Copy();
             dGVHistory.DataSource = mFilteredTable;
+
+            dGVHistory.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVHistory.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVHistory.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVHistory.Columns["RequestID"].Visible = false;
             dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
             dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
             mMainForm.FormatDGVInfoHot(dGVHistory);
-            dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);            
+            dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
+            LoadPartComboBox();
+            LoadRequestorComboBox();
             dGVHistory.ResumeLayout();
         }
 
-        private void FilterTableDate()
-        {
-            if (!calendarDroppedDown)
-            {
-                dGVHistory.SuspendLayout();
-                int rowCount = mFilteredTable.Rows.Count;
-                for (int row = 0; row < rowCount; row++)
-                {
-                    if (mFilteredTable.Rows[row].Field<DateTime>("Requested") < dTPickerRequestedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Requested") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Started") < dTPickerStartedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Started") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Finished") < dTPickerFinishedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Finished") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-
-                }
-                dGVHistory.ResumeLayout();
-            }
-        }
-
-        private void FilterTableComboBox()
+        private void FilterTable()
         {
             dGVHistory.SuspendLayout();
+            dgvScrollOffset = dGVHistory.HorizontalScrollingOffset;
+            mFilteredTable = new DataTable();
+            mFilteredTable = mHistoryTable.Copy();
+            dGVHistory.DataSource = mFilteredTable;
             int rowCount = mFilteredTable.Rows.Count;
             for (int row = 0; row < rowCount; row++)
             {
@@ -261,7 +201,7 @@ namespace Cleaning_Scheduler_Interface
                         rowCount--;
                     }
                 }
-                if (!(comboBoxRequestor.SelectedItem.ToString() == "All") && row >= 0)
+                else if (!(comboBoxRequestor.SelectedItem.ToString() == "All") && row >= 0)
                 {
                     if (!(mFilteredTable.Rows[row].Field<string>("Requestor").ToString() == comboBoxRequestor.SelectedItem.ToString()))
                     {
@@ -270,9 +210,50 @@ namespace Cleaning_Scheduler_Interface
                         rowCount--;
                     }
                 }
+                else if (mFilteredTable.Rows[row].Field<Boolean>("CR Ready").Equals(false) && (rBCRRYes.Checked == true))
+                {
+                    mFilteredTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (mFilteredTable.Rows[row].Field<Boolean>("CR Ready").Equals(true) && (rBCRRNo.Checked == true))
+                {
+                    mFilteredTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (mFilteredTable.Rows[row].Field<Boolean>("Hot").Equals(false) && (rBHotYes.Checked == true))
+                {
+                    mFilteredTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (mFilteredTable.Rows[row].Field<Boolean>("Hot").Equals(true) && (rBHotNo.Checked == true))
+                {
+                    mFilteredTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+
+                else if (!calendarDroppedDown)
+                {
+                    if (mFilteredTable.Rows[row].Field<DateTime>("Requested") < dTPickerRequestedFrom.Value.Date ||
+                        mFilteredTable.Rows[row].Field<DateTime>("Requested") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
+                        mFilteredTable.Rows[row].Field<DateTime>("Started") < dTPickerStartedFrom.Value.Date ||
+                        mFilteredTable.Rows[row].Field<DateTime>("Started") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
+                        mFilteredTable.Rows[row].Field<DateTime>("Finished") < dTPickerFinishedFrom.Value.Date ||
+                        mFilteredTable.Rows[row].Field<DateTime>("Finished") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
+                    {
+                        mFilteredTable.Rows.RemoveAt(row);
+                        row--;
+                        rowCount--;
+                    }
+                }
             }
+            mMainForm.FormatDGVInfoHot(dGVHistory);
+            dGVHistory.HorizontalScrollingOffset = dgvScrollOffset;
             dGVHistory.ResumeLayout();
-        }       
+        }
 
         private void LoadRequestorComboBox()
         {
@@ -280,17 +261,18 @@ namespace Cleaning_Scheduler_Interface
             if (comboBoxRequestor.SelectedIndex >= 0)
                 item = comboBoxRequestor.SelectedItem;
             comboBoxRequestor.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-            List<String> requestorList = new List<string>();
-            requestorList.Add("All");
+            mRequestorList = new List<string>();
             foreach (DataRow row in mFilteredTable.Rows)
             {
                 {
-                    requestorList.Add(row["Requestor"].ToString());
+                    mRequestorList.Add(row["Requestor"].ToString());
                 }
             }
-            mRequestorList = requestorList.Distinct().ToList();
+            mRequestorList = mRequestorList.Distinct().ToList();
+            mRequestorList.Sort();
+            mRequestorList.Insert(0, "All");
             comboBoxRequestor.DataSource = mRequestorList;
-            comboBoxRequestor.Font = dTPFont;
+            comboBoxRequestor.Font = cBFont;
             if (item != null)
                 comboBoxRequestor.SelectedItem = item;
             comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
@@ -302,17 +284,19 @@ namespace Cleaning_Scheduler_Interface
             if (comboBoxPartFilter.SelectedIndex >= 0)
                 item = comboBoxPartFilter.SelectedItem; 
             comboBoxPartFilter.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-            List<String> partList = new List<string>();
-            partList.Add("All");
+            mPartList = new List<string>();
+            
             foreach (DataRow row in mFilteredTable.Rows)
             {
                 {
-                    partList.Add(row["Part #"].ToString());
+                    mPartList.Add(row["Part #"].ToString());
                 }
             }
-            mPartList = partList.Distinct().ToList();
+            mPartList = mPartList.Distinct().ToList();
+            mPartList.Sort();
+            mPartList.Insert(0,"All");
             comboBoxPartFilter.DataSource = mPartList;
-            comboBoxPartFilter.Font = dTPFont;
+            comboBoxPartFilter.Font = cBFont;
             if (item != null)
                 comboBoxPartFilter.SelectedItem = item;
             comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
@@ -320,10 +304,7 @@ namespace Cleaning_Scheduler_Interface
 
         private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InitHistoryDGV();
-            FilterTableComboBox();
-            LoadPartComboBox();
-            LoadRequestorComboBox();
+            FilterTable();
         } 
 
         private void buttonReset_Click(object sender, EventArgs e)
@@ -335,12 +316,7 @@ namespace Cleaning_Scheduler_Interface
             LoadPartComboBox();
             LoadRequestorComboBox();
         }
-        
-        private void dTPicker_Enter(object sender, EventArgs e)
-        {
-            buttonReset.Focus();
-        }
-
+       
         private void dGV_MouseWheel(object sender, MouseEventArgs e)
         {
             DataGridView dGV = (DataGridView)sender;
@@ -375,18 +351,20 @@ namespace Cleaning_Scheduler_Interface
                 checkIcon = (Image)new Bitmap(checkIcon, new Size(shortSide, shortSide));
                 DataGridView dGV = (DataGridView)sender;
 
-                //e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Border);
+                //e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                e.Paint(e.CellBounds, DataGridViewPaintParts.Background);
 
-                e.PaintContent(e.CellBounds);
+                
 
                 if (e.ColumnIndex == dGV.Columns["Info"].Index)
                 {
+                    e.PaintContent(e.CellBounds);
                     e.Graphics.DrawImage(infoIcon, e.CellBounds.Location.X + (e.CellBounds.Width - infoIcon.Size.Width) / 2,
                                                 e.CellBounds.Location.Y + (e.CellBounds.Height - infoIcon.Size.Height) / 2);
                 }
 
-                if (e.ColumnIndex == dGV.Columns["Decon"].Index ||
+                else if (e.ColumnIndex == dGV.Columns["Decon"].Index ||
                     e.ColumnIndex == dGV.Columns["Dishwasher"].Index ||
                     e.ColumnIndex == dGV.Columns["WaterPik"].Index ||
                     e.ColumnIndex == dGV.Columns["Ultrasonic"].Index ||
@@ -402,6 +380,8 @@ namespace Cleaning_Scheduler_Interface
                     e.Graphics.DrawImage(checkIcon, e.CellBounds.Location.X + (e.CellBounds.Width - checkIcon.Size.Width) / 2,
                                                 e.CellBounds.Location.Y + (e.CellBounds.Height - checkIcon.Size.Height) / 2);
                 }
+                else
+                    e.PaintContent(e.CellBounds);
                 e.Handled = true;
             }
         }
@@ -428,6 +408,7 @@ namespace Cleaning_Scheduler_Interface
         private void dGVHistory_Sorted(object sender, EventArgs e)
         {
             mMainForm.FormatDGVInfoHot(dGVHistory);
+            dGVHistory.HorizontalScrollingOffset = dgvScrollOffset;
         }
 
         private void dGV_Scroll(object sender, ScrollEventArgs e)
@@ -435,28 +416,33 @@ namespace Cleaning_Scheduler_Interface
             DataGridView dGV = (DataGridView)sender;
             dGV.Update();
         }
+       
+        private void dTPicker_Enter(object sender, EventArgs e)
+        {
+            buttonReset.Focus();
+        }
 
         private void dTPicker_DropDown(object sender, EventArgs e)
         {
             calendarDroppedDown = true;
         }
 
-        private void dTPickerRequested_CloseUp(object sender, EventArgs e)
+        private void dTPicker_CloseUp(object sender, EventArgs e)
         {
             calendarDroppedDown = false;
-            RequestedFilter();
+            FilterTable();
         }
 
-        private void dTPickerStarted_CloseUp(object sender, EventArgs e)
+        private void rBCRRHot_CheckedChanged(object sender, EventArgs e)
         {
-            calendarDroppedDown = false;
-            StartedFilter();
+            FilterTable();
         }
 
-        private void dTPickerFinished_CloseUp(object sender, EventArgs e)
+        private void dGVHistory_MouseDown(object sender, MouseEventArgs e)
         {
-            calendarDroppedDown = false;
-            FinishedFilter();
+            DataGridView dgv = (DataGridView)sender;
+            if (e.Location.Y < 40)
+                dgvScrollOffset = dgv.HorizontalScrollingOffset;
         }
     }
 }

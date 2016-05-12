@@ -50,6 +50,7 @@ namespace Cleaning_Scheduler_Interface
             RequestsDB requestDB = new RequestsDB();
             DataTable gunPartTable = requestDB.GetGunParts(gun);
             tLP.SuspendLayout();
+            tLP.Padding = new Padding(0, 0, 1, 0);
             tLP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -57,18 +58,18 @@ namespace Cleaning_Scheduler_Interface
             tLP.ColumnCount = 3;
             tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39F));
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             tLP.Controls.Add(lblTitle, 1, 0);
             tLP.Controls.Add(label2, 0, 2);
             tLP.Controls.Add(label3, 1, 2);
             tLP.Controls.Add(label1, 2, 2);
-            tLP.Location = new System.Drawing.Point(12, 12);
+            tLP.Location = new System.Drawing.Point( 0, 0);
             tLP.Name = "tLPGun";
             tLP.RowCount = 3;
             tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tLP.Size = new System.Drawing.Size(913, 581);
+            tLP.Size = new System.Drawing.Size(908, 576);
             tLP.TabIndex = 0;
 
             // 
@@ -135,7 +136,7 @@ namespace Cleaning_Scheduler_Interface
                 image = (Image)Cleaning_Scheduler_Interface.Properties.Resources.ResourceManager.GetObject(row["Image"].ToString());
                 pBPartDrawing.Image = image;
                 pBPartDrawing.SizeMode = PictureBoxSizeMode.Zoom;
-                pBPartDrawing.Height = 56;
+                pBPartDrawing.Height = 24;
                 pBPartDrawing.Width = 256;
                 lblPartNumber.Dock = DockStyle.Fill;
                 lblPartNumber.BorderStyle = BorderStyle.Fixed3D;
@@ -159,7 +160,7 @@ namespace Cleaning_Scheduler_Interface
             TableLayoutPanel tLP = (TableLayoutPanel)e.Result;
             this.SuspendLayout();
             tLP.MouseEnter += new System.EventHandler(tLP_MouseEnter);
-            this.Controls.Add(tLP);
+            panelTLP.Controls.Add(tLP);
             tLP.HorizontalScroll.Enabled = false;
             this.ResumeLayout();
             progressForm.Close();

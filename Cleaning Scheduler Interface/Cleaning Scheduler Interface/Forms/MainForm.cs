@@ -27,11 +27,13 @@ namespace Cleaning_Scheduler_Interface
         private DataTable finishedTable = new DataTable();
         private DataTable contactTable = new DataTable();
 
-        public Font dGVRowFont = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular);
-        public Font dGVHeaderFont = new System.Drawing.Font("Arial Narrow", 15.25F, System.Drawing.FontStyle.Bold);
-        public Font dGVCheckboxSize = new System.Drawing.Font("Arial", 24.25F, System.Drawing.FontStyle.Bold);
+        public Font dGVRowFont = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold);
+        public Font dGVHeaderFont = new System.Drawing.Font("Arial Black", 15.25F, System.Drawing.FontStyle.Bold);
+        public Font btnFont = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold);
         public Image infoIcon;
         public Image checkIcon;
+        public Color hotColor = Color.Red;
+        public Color crrColor = Color.Green;
         #endregion
 
         public MainForm()
@@ -103,7 +105,7 @@ namespace Cleaning_Scheduler_Interface
                 }
                 else
                 {
-                    if ((DateTime)row["Finished"] > DateTime.Today.AddDays(-7))
+                    if ((DateTime)row["Finished"] > DateTime.Today.AddDays(-2))
                     finishedTable.Rows.Add(row.ItemArray);                    
                 }
             }
@@ -127,6 +129,8 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.DefaultCellStyle.Font = dGVRowFont;
             dGVCompleted.ColumnHeadersDefaultCellStyle.Font = dGVHeaderFont;
             dGVCompleted.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVCompleted.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVCompleted.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";            
             dGVCompleted.Columns["Started"].Visible = false; ;
             dGVCompleted.Columns["RequestID"].Visible = false;
             dGVCompleted.Columns["Hot"].Visible = false;
@@ -140,13 +144,13 @@ namespace Cleaning_Scheduler_Interface
             dGVCompleted.Columns["Bulk"].Visible = false;
             dGVCompleted.Columns["Cage"].Visible = false;
             dGVCompleted.Columns["CR Ready"].Visible = false;
+            dGVCompleted.Columns["Serial #"].Visible = false; 
             dGVCompleted.Columns["PO"].Visible = false;
             dGVCompleted.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVCompleted.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;          
             dGVCompleted.Sort(dGVCompleted.Columns["Finished"], ListSortDirection.Descending);
 
             FormatDGVInfoHot(dGVCompleted);
-            //dGVCompleted.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVCompleted.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVCompleted.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVCompleted.ResumeLayout();
@@ -162,6 +166,7 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.DefaultCellStyle.Font = dGVRowFont;
             dGVInProcess.ColumnHeadersDefaultCellStyle.Font = dGVHeaderFont;
             dGVInProcess.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVInProcess.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";     
             dGVInProcess.Columns["RequestID"].Visible = false;
             dGVInProcess.Columns["Finished"].Visible = false;
             dGVInProcess.Columns["Hot"].Visible = false;
@@ -175,11 +180,11 @@ namespace Cleaning_Scheduler_Interface
             dGVInProcess.Columns["Bulk"].Visible = false;
             dGVInProcess.Columns["Cage"].Visible = false;
             dGVInProcess.Columns["CR Ready"].Visible = false;
+            dGVInProcess.Columns["Serial #"].Visible = false;
             dGVInProcess.Columns["PO"].Visible = false;         
             dGVInProcess.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVInProcess.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             FormatDGVInfoHot(dGVInProcess);
-            //dGVInProcess.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVInProcess.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVInProcess.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVInProcess.ResumeLayout();
@@ -189,7 +194,8 @@ namespace Cleaning_Scheduler_Interface
         {
             dGVQueue.SuspendLayout();
             dGVQueue.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
-            dGVQueue.DataSource = queueTable;
+            DataView dataView = queueTable.DefaultView;
+            dGVQueue.DataSource = dataView;
             dGVQueue.DefaultCellStyle.Font = dGVRowFont;
             dGVQueue.ColumnHeadersDefaultCellStyle.Font = dGVHeaderFont;
             dGVQueue.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
@@ -208,12 +214,10 @@ namespace Cleaning_Scheduler_Interface
             dGVQueue.Columns["Cage"].Visible = false;
             dGVQueue.Columns["PO"].Visible = false;
             dGVQueue.Columns["CR Ready"].Visible = false;
+            dGVQueue.Columns["Serial #"].Visible = false;
             dGVQueue.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGVQueue.Columns["Instructions"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dGVQueue.Sort(dGVQueue.Columns["Requested"], ListSortDirection.Ascending);
-            dGVQueue.Sort(dGVQueue.Columns["Hot"], ListSortDirection.Descending);
             FormatDGVInfoHot(dGVQueue);
-            //dGVQueue.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
             dGVQueue.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVQueue.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
             dGVQueue.ResumeLayout();
@@ -221,7 +225,9 @@ namespace Cleaning_Scheduler_Interface
 
         public void FormatDGVInfoHot(DataGridView dGV)
         {
+            dGV.SuspendLayout();
             DataGridViewButtonColumn btnInfoColumn = new DataGridViewButtonColumn();
+            
             btnInfoColumn.Name = "Info";
             btnInfoColumn.HeaderText = "Info";
             btnInfoColumn.Text = "";
@@ -236,40 +242,49 @@ namespace Cleaning_Scheduler_Interface
             {
                 if ((bool)row.Cells["Hot"].Value == true)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = hotColor;
+                    row.DefaultCellStyle.SelectionBackColor = hotColor;
+                    row.DefaultCellStyle.ForeColor = Color.White;
                 }              
-                if ((bool)row.Cells["CR Ready"].Value == true)
+                else if ((bool)row.Cells["CR Ready"].Value == true)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = crrColor;
+                    row.DefaultCellStyle.SelectionBackColor = crrColor;
+                    row.DefaultCellStyle.ForeColor = Color.White;
                 }   
             }
             foreach (DataGridViewColumn column in dGV.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
-            }            
+            }
+            dGV.ResumeLayout();
         }
 
         private void FormatLayout()
         {
             infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
             checkIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.GreenCheck;
+            btnCleaning.Font = btnHistory.Font = btnPartRequest.Font = btnQuit.Font = btnColumnRequest.Font = btnFont;
+            panelHot.BackColor = hotColor;
+            panelCRR.BackColor = crrColor;
+            
             int padding = 10;
-            int btnHeight = 80;
+            int btnHeight = splitContainer1.Height / 10;
             int btnWidth = (pnlButtons.Width - (2 * padding));
+            btnCleaning.Width = btnHistory.Width = btnQuit.Width = btnPartRequest.Width = pnlButtons.Width;
+            
+
+            pnlButtons.Height = 2 * btnHeight + 3 * padding;
+            panelLegend.Location = new Point(panelLegend.Location.X, pnlButtons.Height);
+            panelLegend.Height = splitContainer1.Height * 4 / 10;
+
             btnColumnRequest.Location = new Point(padding - 1, padding);
             btnColumnRequest.Height = btnPartRequest.Height = btnCleaning.Height = btnHistory.Height = btnQuit.Height = btnHeight;
-            btnColumnRequest.Width = btnWidth;
+            btnColumnRequest.Width = btnPartRequest.Width = btnWidth;
             btnQuit.Location = new Point(0, splitContainer1.Height - btnHeight);
             btnPartRequest.Location = new Point(padding - 1, btnHeight + 2 * padding);
-            btnPartRequest.Width = btnWidth;
-            pnlButtons.Height = btnColumnRequest.Height + btnPartRequest.Height + (3 * padding) + 4;
-            btnCleaning.Location = new Point(0, btnQuit.Location.Y - btnCleaning.Height - padding);
-            btnCleaning.Width = pnlButtons.Width;
-            btnHistory.Location = new Point(0, btnCleaning.Location.Y - btnHistory.Height - padding);
-            btnHistory.Width = pnlButtons.Width;
-            btnQuit.Width = pnlButtons.Width;
+            btnCleaning.Location = new Point(0, btnHistory.Location.Y - btnHeight - padding); 
+            btnHistory.Location = new Point(0, btnQuit.Location.Y - btnHeight - padding);
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding) / 3;
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding) / 2;                     
@@ -369,7 +384,7 @@ namespace Cleaning_Scheduler_Interface
         {
             if (e.RowIndex > -1)
             {
-                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) - 10;
+                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) *7 / 10;
                 infoIcon = (Image)new Bitmap(infoIcon, new Size(shortSide, shortSide));
                 checkIcon = (Image)new Bitmap(checkIcon, new Size(shortSide, shortSide));
                 DataGridView dGV = (DataGridView)sender;
@@ -401,6 +416,7 @@ namespace Cleaning_Scheduler_Interface
                     if ((bool)dGV.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == true)
                         e.Graphics.DrawImage(checkIcon, e.CellBounds.Location.X + (e.CellBounds.Width - checkIcon.Size.Width) / 2,
                                                     e.CellBounds.Location.Y + (e.CellBounds.Height - checkIcon.Size.Height) / 2);
+
                 }
                 e.Handled = true;
             }
@@ -437,9 +453,45 @@ namespace Cleaning_Scheduler_Interface
             FormatLayout();
         }
 
+        private void splitContainer_Paint(object sender, PaintEventArgs e)
+        {
+            var control = sender as SplitContainer;
+            //paint the three dots'
+            Point[] points = new Point[3];
+            var w = control.Width;
+            var h = control.Height;
+            var d = control.SplitterDistance;
+            var sW = control.SplitterWidth;
+
+            //calculate the position of the points'
+            if (control.Orientation == Orientation.Horizontal)
+            {
+                points[0] = new Point((w / 2), d + (sW / 2));
+                points[1] = new Point(points[0].X - 20, points[0].Y);
+                points[2] = new Point(points[0].X + 20, points[0].Y);
+            }
+            else
+            {
+                points[0] = new Point(d + (sW / 2), (h / 2));
+                points[1] = new Point(points[0].X, points[0].Y - 10);
+                points[2] = new Point(points[0].X, points[0].Y + 10);
+            }
+
+            foreach (Point p in points)
+            {
+                p.Offset(-2, -2);
+                e.Graphics.FillEllipse(new SolidBrush(Color.Blue),
+                    new Rectangle(p, new Size(3, 3)));
+
+                p.Offset(1, 1);
+                e.Graphics.FillEllipse(SystemBrushes.ControlLight,
+                    new Rectangle(p, new Size(3, 3)));
+            }
+        }
         
 #endregion
 
-        
+   
+
     }
 }

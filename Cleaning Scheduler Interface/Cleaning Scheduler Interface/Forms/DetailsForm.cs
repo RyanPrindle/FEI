@@ -16,6 +16,7 @@ namespace Cleaning_Scheduler_Interface
         private DataTable requestTable;
         private DataTable gunTable;
         private ColumnGunPartListForm columnGunForm;
+        private Image detailsIcon;
         private ProgressBarForm progressForm;
 
         public DetailsForm(int reqId)
@@ -26,13 +27,16 @@ namespace Cleaning_Scheduler_Interface
 
         private void DetailsForm_Load(object sender, EventArgs e)
         {
+            detailsIcon = Cleaning_Scheduler_Interface.Properties.Resources.details;
+            detailsIcon = ResizeImage(detailsIcon, 28, 27);
+            btnDetails.Image = detailsIcon;
             FillDataTables();
         }
-            
-        private void btnColumnDetails_Click(object sender, EventArgs e)
+
+        private Image ResizeImage(Image img, int height, int width)
         {
-            //Open Column/Gun Parts List Form
-            
+            img = (Image)new Bitmap(img, new Size(height, width));
+            return img;
         }
 
         private void FillDataTables()
@@ -67,7 +71,8 @@ namespace Cleaning_Scheduler_Interface
             labelPart.Text = requestTable.Rows[0]["PartNumber"].ToString();
             labelDescription.Text = requestTable.Rows[0]["Description"].ToString();
             labelQty.Text = requestTable.Rows[0]["Quantity"].ToString();
-            labelRequestedOn.Text = requestTable.Rows[0]["RequestedOn"].ToString();
+            DateTime reqTime = (DateTime)requestTable.Rows[0]["RequestedOn"];
+            labelRequestedOn.Text = reqTime.ToString("M/d/yyyy  @  h:mm tt");
 
             
             labelRequestor.Text = requestTable.Rows[0]["Requestor"].ToString();
@@ -75,11 +80,14 @@ namespace Cleaning_Scheduler_Interface
             labelPO.Text = requestTable.Rows[0]["PO"].ToString();
             labelInstructions.Text = requestTable.Rows[0]["Instructions"].ToString();
             if (requestTable.Rows[0]["StartedOn"].Equals(DBNull.Value) || requestTable.Rows[0]["StartedOn"].Equals(""))
-            {                
-                this.BackColor = Color.FromArgb(255, 255, 128);               
-            }   
+            {
+                this.BackColor = Color.FromArgb(255, 255, 128);
+            }
             else
-                labelStartedOn.Text = requestTable.Rows[0]["StartedOn"].ToString();
+            {
+                DateTime startTime = (DateTime)requestTable.Rows[0]["StartedOn"];
+                labelStartedOn.Text = startTime.ToString("M/d/yyyy  @  h:mm tt");
+            }
             if (requestTable.Rows[0]["FinishedOn"].Equals(DBNull.Value) || requestTable.Rows[0]["FinishedOn"].Equals(""))
             {
                 panelProcedures.Visible = false;
@@ -87,7 +95,8 @@ namespace Cleaning_Scheduler_Interface
             else
             {
                 this.BackColor = Color.FromArgb(255, 192, 128);
-                labelFinishedOn.Text = requestTable.Rows[0]["FinishedOn"].ToString();
+                DateTime finTime = (DateTime)requestTable.Rows[0]["FinishedOn"];
+                labelFinishedOn.Text = finTime.ToString("M/d/yyyy  @  h:mm tt");
                 if (requestTable.Rows[0]["Decon"].Equals(true))
                     rBtnDecon.Checked = true;
                 if (requestTable.Rows[0]["Ultrasonic"].Equals(true))
@@ -106,41 +115,45 @@ namespace Cleaning_Scheduler_Interface
             if (requestTable.Rows[0]["Hot"].Equals(true))
             {
                 rBtnHot.Checked = true;
-                panelHot.BackColor = Color.Red;
+                pnlHot.BackColor = Color.Red;
+                pnlHot.ForeColor = Color.White;
             }
-            if(requestTable.Rows[0]["Bulk"].Equals(true))            
-                rBtnBulk.Checked = true;
-            if(requestTable.Rows[0]["Cage"].Equals(true))            
-                rBtnCage.Checked = true;
+            if (requestTable.Rows[0]["Bulk"].Equals(true))
+                lblBulkCage.Text = "Bulk";
+            if (requestTable.Rows[0]["Cage"].Equals(true))
+                lblBulkCage.Text = "Cage";
             if (requestTable.Rows[0]["CR Ready"].Equals(true))
             {
                 rBtnCRR.Checked = true;
                 pnlCRReady.BackColor = Color.Green;
+                pnlCRReady.ForeColor = Color.White;
             }
             foreach(DataRow row in gunTable.Rows)
             {
                 if (requestTable.Rows[0]["PartNumber"].Equals(row["Type"].ToString()))
                 {
-                    pBDetails.Visible = true;
+                    btnDetails.Visible = true;
                 }
             }
             progressForm.Close();
         }
 
-        private void pBDetails_Click(object sender, EventArgs e)
+        private void btnDetails_Click(object sender, EventArgs e)
         {
             columnGunForm = new ColumnGunPartListForm(labelPart.Text);
             columnGunForm.ShowDialog();
         }
 
-        private void pBDetails_MouseDown(object sender, MouseEventArgs e)
+        private void btnDetails_MouseEnter(object sender, EventArgs e)
         {
-            pBDetails.BorderStyle = BorderStyle.Fixed3D;
+            if (btnDetails.Visible == true)
+                toolTipDetails.Show("Click for Detailed Parts List", btnDetails);
         }
 
-        private void pBDetails_MouseUp(object sender, MouseEventArgs e)
+        private void btnDetails_MouseLeave(object sender, EventArgs e)
         {
-            pBDetails.BorderStyle = BorderStyle.FixedSingle;
+            toolTipDetails.Hide(btnDetails);
         }
+
     }
 }

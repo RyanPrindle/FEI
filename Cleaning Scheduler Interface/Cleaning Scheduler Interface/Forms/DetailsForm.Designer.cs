@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsForm));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,26 +61,24 @@
             this.labelFinishedOn = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.rBtnHot = new System.Windows.Forms.RadioButton();
-            this.panelHot = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pBDetails = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDetails = new System.Windows.Forms.Button();
             this.bGWDetails = new System.ComponentModel.BackgroundWorker();
             this.rBtnCRR = new System.Windows.Forms.RadioButton();
-            this.rBtnCage = new System.Windows.Forms.RadioButton();
-            this.rBtnBulk = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
+            this.pnlHot = new System.Windows.Forms.Panel();
             this.pnlCRReady = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblBulkCage = new System.Windows.Forms.Label();
+            this.toolTipDetails = new System.Windows.Forms.ToolTip(this.components);
             this.panelProcedures.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panelHot.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBDetails)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.pnlHot.SuspendLayout();
             this.pnlCRReady.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -125,7 +125,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(376, 80);
+            this.label7.Location = new System.Drawing.Point(380, 45);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 25);
@@ -164,9 +164,9 @@
             this.label9.Location = new System.Drawing.Point(414, 10);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 25);
+            this.label9.Size = new System.Drawing.Size(57, 25);
             this.label9.TabIndex = 8;
-            this.label9.Text = "P.O.:";
+            this.label9.Text = "PO #:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
@@ -204,10 +204,9 @@
             this.panelProcedures.Controls.Add(this.rBtnDW);
             this.panelProcedures.Controls.Add(this.rBtnDecon);
             this.panelProcedures.Location = new System.Drawing.Point(11, 443);
-            this.panelProcedures.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.panelProcedures.Name = "panelProcedures";
             this.panelProcedures.Padding = new System.Windows.Forms.Padding(5);
-            this.panelProcedures.Size = new System.Drawing.Size(423, 119);
+            this.panelProcedures.Size = new System.Drawing.Size(482, 77);
             this.panelProcedures.TabIndex = 13;
             // 
             // rBtnCLong
@@ -215,7 +214,7 @@
             this.rBtnCLong.AutoCheck = false;
             this.rBtnCLong.AutoSize = true;
             this.rBtnCLong.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnCLong.Location = new System.Drawing.Point(301, 8);
+            this.rBtnCLong.Location = new System.Drawing.Point(360, 38);
             this.rBtnCLong.Name = "rBtnCLong";
             this.rBtnCLong.Size = new System.Drawing.Size(110, 29);
             this.rBtnCLong.TabIndex = 18;
@@ -228,7 +227,7 @@
             this.rBtnC20.AutoCheck = false;
             this.rBtnC20.AutoSize = true;
             this.rBtnC20.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnC20.Location = new System.Drawing.Point(143, 78);
+            this.rBtnC20.Location = new System.Drawing.Point(370, 8);
             this.rBtnC20.Name = "rBtnC20";
             this.rBtnC20.Size = new System.Drawing.Size(100, 29);
             this.rBtnC20.TabIndex = 17;
@@ -241,7 +240,7 @@
             this.rBtnC10.AutoCheck = false;
             this.rBtnC10.AutoSize = true;
             this.rBtnC10.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnC10.Location = new System.Drawing.Point(143, 43);
+            this.rBtnC10.Location = new System.Drawing.Point(254, 8);
             this.rBtnC10.Name = "rBtnC10";
             this.rBtnC10.Size = new System.Drawing.Size(100, 29);
             this.rBtnC10.TabIndex = 16;
@@ -254,7 +253,7 @@
             this.rBtnUltrasonic.AutoCheck = false;
             this.rBtnUltrasonic.AutoSize = true;
             this.rBtnUltrasonic.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnUltrasonic.Location = new System.Drawing.Point(8, 78);
+            this.rBtnUltrasonic.Location = new System.Drawing.Point(195, 38);
             this.rBtnUltrasonic.Name = "rBtnUltrasonic";
             this.rBtnUltrasonic.Size = new System.Drawing.Size(117, 29);
             this.rBtnUltrasonic.TabIndex = 15;
@@ -267,7 +266,7 @@
             this.rBtnWP.AutoCheck = false;
             this.rBtnWP.AutoSize = true;
             this.rBtnWP.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnWP.Location = new System.Drawing.Point(144, 8);
+            this.rBtnWP.Location = new System.Drawing.Point(124, 8);
             this.rBtnWP.Name = "rBtnWP";
             this.rBtnWP.Size = new System.Drawing.Size(105, 29);
             this.rBtnWP.TabIndex = 14;
@@ -280,7 +279,7 @@
             this.rBtnDW.AutoCheck = false;
             this.rBtnDW.AutoSize = true;
             this.rBtnDW.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnDW.Location = new System.Drawing.Point(8, 43);
+            this.rBtnDW.Location = new System.Drawing.Point(8, 38);
             this.rBtnDW.Name = "rBtnDW";
             this.rBtnDW.Size = new System.Drawing.Size(129, 29);
             this.rBtnDW.TabIndex = 13;
@@ -292,10 +291,10 @@
             // 
             this.groupBox1.Controls.Add(this.labelInstructions);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 118);
+            this.groupBox1.Location = new System.Drawing.Point(10, 85);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(572, 78);
+            this.groupBox1.Size = new System.Drawing.Size(302, 96);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Instructions:";
@@ -304,9 +303,9 @@
             // 
             this.labelInstructions.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInstructions.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.labelInstructions.Location = new System.Drawing.Point(13, 25);
+            this.labelInstructions.Location = new System.Drawing.Point(5, 25);
             this.labelInstructions.Name = "labelInstructions";
-            this.labelInstructions.Size = new System.Drawing.Size(551, 50);
+            this.labelInstructions.Size = new System.Drawing.Size(291, 65);
             this.labelInstructions.TabIndex = 0;
             // 
             // labelPart
@@ -336,7 +335,7 @@
             this.labelQty.AutoSize = true;
             this.labelQty.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelQty.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.labelQty.Location = new System.Drawing.Point(472, 81);
+            this.labelQty.Location = new System.Drawing.Point(476, 46);
             this.labelQty.Margin = new System.Windows.Forms.Padding(0);
             this.labelQty.Name = "labelQty";
             this.labelQty.Size = new System.Drawing.Size(0, 24);
@@ -355,13 +354,12 @@
             // 
             // labelSerial
             // 
-            this.labelSerial.AutoSize = true;
             this.labelSerial.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSerial.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.labelSerial.Location = new System.Drawing.Point(147, 81);
+            this.labelSerial.Location = new System.Drawing.Point(14, 28);
             this.labelSerial.Margin = new System.Windows.Forms.Padding(0);
             this.labelSerial.Name = "labelSerial";
-            this.labelSerial.Size = new System.Drawing.Size(0, 24);
+            this.labelSerial.Size = new System.Drawing.Size(232, 65);
             this.labelSerial.TabIndex = 24;
             // 
             // labelRequestedOn
@@ -418,9 +416,10 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(447, 509);
+            this.button1.Location = new System.Drawing.Point(506, 443);
+            this.button1.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 53);
+            this.button1.Size = new System.Drawing.Size(101, 77);
             this.button1.TabIndex = 27;
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = true;
@@ -430,24 +429,12 @@
             this.rBtnHot.AutoCheck = false;
             this.rBtnHot.AutoSize = true;
             this.rBtnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnHot.Location = new System.Drawing.Point(49, 10);
+            this.rBtnHot.Location = new System.Drawing.Point(13, 13);
             this.rBtnHot.Name = "rBtnHot";
             this.rBtnHot.Size = new System.Drawing.Size(59, 29);
             this.rBtnHot.TabIndex = 28;
             this.rBtnHot.Text = "Hot";
             this.rBtnHot.UseVisualStyleBackColor = true;
-            // 
-            // panelHot
-            // 
-            this.panelHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.panelHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelHot.Controls.Add(this.rBtnHot);
-            this.panelHot.Location = new System.Drawing.Point(447, 443);
-            this.panelHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.panelHot.Name = "panelHot";
-            this.panelHot.Padding = new System.Windows.Forms.Padding(10);
-            this.panelHot.Size = new System.Drawing.Size(160, 53);
-            this.panelHot.TabIndex = 29;
             // 
             // panel1
             // 
@@ -473,10 +460,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.pBDetails);
+            this.panel2.Controls.Add(this.groupBox2);
+            this.panel2.Controls.Add(this.btnDetails);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.labelSerial);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.labelPO);
@@ -489,34 +475,32 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(10);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(596, 211);
+            this.panel2.Size = new System.Drawing.Size(596, 198);
             this.panel2.TabIndex = 31;
             // 
-            // pBDetails
+            // groupBox2
             // 
-            this.pBDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pBDetails.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.details;
-            this.pBDetails.Location = new System.Drawing.Point(378, 6);
-            this.pBDetails.Name = "pBDetails";
-            this.pBDetails.Size = new System.Drawing.Size(32, 33);
-            this.pBDetails.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBDetails.TabIndex = 30;
-            this.pBDetails.TabStop = false;
-            this.pBDetails.Click += new System.EventHandler(this.pBDetails_Click);
-            this.pBDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBDetails_MouseDown);
-            this.pBDetails.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pBDetails_MouseUp);
+            this.groupBox2.Controls.Add(this.labelSerial);
+            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(325, 85);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(254, 96);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Serial Numbers";
             // 
-            // label10
+            // btnDetails
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(16, 80);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(137, 25);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "Serial Number:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDetails.Location = new System.Drawing.Point(301, 37);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(32, 33);
+            this.btnDetails.TabIndex = 30;
+            this.btnDetails.UseVisualStyleBackColor = false;
+            this.btnDetails.Visible = false;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            this.btnDetails.MouseEnter += new System.EventHandler(this.btnDetails_MouseEnter);
+            this.btnDetails.MouseLeave += new System.EventHandler(this.btnDetails_MouseLeave);
             // 
             // bGWDetails
             // 
@@ -528,7 +512,7 @@
             this.rBtnCRR.AutoCheck = false;
             this.rBtnCRR.AutoSize = true;
             this.rBtnCRR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnCRR.Location = new System.Drawing.Point(17, 15);
+            this.rBtnCRR.Location = new System.Drawing.Point(13, 13);
             this.rBtnCRR.Name = "rBtnCRR";
             this.rBtnCRR.Size = new System.Drawing.Size(122, 29);
             this.rBtnCRR.TabIndex = 31;
@@ -536,100 +520,83 @@
             this.rBtnCRR.Text = "Cleanroom";
             this.rBtnCRR.UseVisualStyleBackColor = true;
             // 
-            // rBtnCage
-            // 
-            this.rBtnCage.AutoCheck = false;
-            this.rBtnCage.AutoSize = true;
-            this.rBtnCage.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnCage.Location = new System.Drawing.Point(42, 46);
-            this.rBtnCage.Name = "rBtnCage";
-            this.rBtnCage.Size = new System.Drawing.Size(73, 29);
-            this.rBtnCage.TabIndex = 30;
-            this.rBtnCage.TabStop = true;
-            this.rBtnCage.Text = "Cage";
-            this.rBtnCage.UseVisualStyleBackColor = true;
-            // 
-            // rBtnBulk
-            // 
-            this.rBtnBulk.AutoCheck = false;
-            this.rBtnBulk.AutoSize = true;
-            this.rBtnBulk.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnBulk.Location = new System.Drawing.Point(42, 11);
-            this.rBtnBulk.Name = "rBtnBulk";
-            this.rBtnBulk.Size = new System.Drawing.Size(68, 29);
-            this.rBtnBulk.TabIndex = 29;
-            this.rBtnBulk.Text = "Bulk";
-            this.rBtnBulk.UseVisualStyleBackColor = true;
-            // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(56, 47);
+            this.label6.Location = new System.Drawing.Point(13, 45);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 25);
+            this.label6.Size = new System.Drawing.Size(130, 25);
             this.label6.TabIndex = 32;
             this.label6.Text = "Ready";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnlHot
+            // 
+            this.pnlHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.pnlHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlHot.Controls.Add(this.rBtnHot);
+            this.pnlHot.Location = new System.Drawing.Point(447, 13);
+            this.pnlHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.pnlHot.Name = "pnlHot";
+            this.pnlHot.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlHot.Size = new System.Drawing.Size(160, 61);
+            this.pnlHot.TabIndex = 32;
             // 
             // pnlCRReady
             // 
             this.pnlCRReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.pnlCRReady.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlCRReady.Controls.Add(this.lblBulkCage);
             this.pnlCRReady.Controls.Add(this.label6);
             this.pnlCRReady.Controls.Add(this.rBtnCRR);
-            this.pnlCRReady.Location = new System.Drawing.Point(447, 13);
-            this.pnlCRReady.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.pnlCRReady.Location = new System.Drawing.Point(447, 87);
             this.pnlCRReady.Name = "pnlCRReady";
             this.pnlCRReady.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlCRReady.Size = new System.Drawing.Size(160, 90);
-            this.pnlCRReady.TabIndex = 32;
+            this.pnlCRReady.Size = new System.Drawing.Size(160, 119);
+            this.pnlCRReady.TabIndex = 33;
             // 
-            // panel3
+            // lblBulkCage
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.rBtnCage);
-            this.panel3.Controls.Add(this.rBtnBulk);
-            this.panel3.Location = new System.Drawing.Point(447, 116);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(160, 90);
-            this.panel3.TabIndex = 33;
+            this.lblBulkCage.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBulkCage.Location = new System.Drawing.Point(13, 78);
+            this.lblBulkCage.Name = "lblBulkCage";
+            this.lblBulkCage.Size = new System.Drawing.Size(130, 25);
+            this.lblBulkCage.TabIndex = 33;
+            this.lblBulkCage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(617, 574);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(617, 533);
             this.Controls.Add(this.pnlCRReady);
+            this.Controls.Add(this.pnlHot);
             this.Controls.Add(this.panelProcedures);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelHot);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DetailsForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DetailsForm";
+            this.Text = "Request Details";
             this.Load += new System.EventHandler(this.DetailsForm_Load);
             this.panelProcedures.ResumeLayout(false);
             this.panelProcedures.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.panelHot.ResumeLayout(false);
-            this.panelHot.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBDetails)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.pnlHot.ResumeLayout(false);
+            this.pnlHot.PerformLayout();
             this.pnlCRReady.ResumeLayout(false);
             this.pnlCRReady.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -667,17 +634,16 @@
         private System.Windows.Forms.Label labelFinishedOn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton rBtnHot;
-        private System.Windows.Forms.Panel panelHot;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.ComponentModel.BackgroundWorker bGWDetails;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RadioButton rBtnCRR;
-        private System.Windows.Forms.RadioButton rBtnCage;
-        private System.Windows.Forms.RadioButton rBtnBulk;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnlHot;
         private System.Windows.Forms.Panel pnlCRReady;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox pBDetails;
+        private System.Windows.Forms.Button btnDetails;
+        private System.Windows.Forms.ToolTip toolTipDetails;
+        private System.Windows.Forms.Label lblBulkCage;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
