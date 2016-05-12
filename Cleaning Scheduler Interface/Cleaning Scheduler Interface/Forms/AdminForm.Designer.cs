@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +42,6 @@
             this.dGVAdminInProcess = new System.Windows.Forms.DataGridView();
             this.bGWStartCleaning = new System.ComponentModel.BackgroundWorker();
             this.pnlEdit = new System.Windows.Forms.Panel();
-            this.btnEditRequests = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.btnReturnToMain = new System.Windows.Forms.Button();
@@ -54,6 +53,8 @@
             this.panelCRR = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panelHot = new System.Windows.Forms.Panel();
+            this.btnEditRequests = new System.Windows.Forms.Button();
+            this.pBLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).BeginInit();
             this.pnlEdit.SuspendLayout();
             this.pnlLegend.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -110,20 +112,20 @@
             this.dGVAdminQueue.AllowUserToAddRows = false;
             this.dGVAdminQueue.AllowUserToDeleteRows = false;
             this.dGVAdminQueue.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
-            this.dGVAdminQueue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(222)))));
+            this.dGVAdminQueue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dGVAdminQueue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dGVAdminQueue.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(198)))));
             this.dGVAdminQueue.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVAdminQueue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVAdminQueue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVAdminQueue.ColumnHeadersHeight = 40;
             this.dGVAdminQueue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dGVAdminQueue.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -132,11 +134,11 @@
             this.dGVAdminQueue.Margin = new System.Windows.Forms.Padding(0);
             this.dGVAdminQueue.Name = "dGVAdminQueue";
             this.dGVAdminQueue.RowHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dGVAdminQueue.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dGVAdminQueue.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dGVAdminQueue.RowTemplate.Height = 40;
             this.dGVAdminQueue.Size = new System.Drawing.Size(929, 241);
             this.dGVAdminQueue.TabIndex = 0;
@@ -159,21 +161,21 @@
             this.dGVAdminInProcess.AllowUserToAddRows = false;
             this.dGVAdminInProcess.AllowUserToDeleteRows = false;
             this.dGVAdminInProcess.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dGVAdminInProcess.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dGVAdminInProcess.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dGVAdminInProcess.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dGVAdminInProcess.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dGVAdminInProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dGVAdminInProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGVAdminInProcess.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dGVAdminInProcess.ColumnHeadersHeight = 40;
             this.dGVAdminInProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dGVAdminInProcess.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -182,11 +184,11 @@
             this.dGVAdminInProcess.Margin = new System.Windows.Forms.Padding(0);
             this.dGVAdminInProcess.Name = "dGVAdminInProcess";
             this.dGVAdminInProcess.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
             this.dGVAdminInProcess.Size = new System.Drawing.Size(929, 270);
             this.dGVAdminInProcess.TabIndex = 1;
@@ -212,24 +214,6 @@
             this.pnlEdit.Size = new System.Drawing.Size(262, 83);
             this.pnlEdit.TabIndex = 1;
             // 
-            // btnEditRequests
-            // 
-            this.btnEditRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditRequests.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnEditRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(188)))));
-            this.btnEditRequests.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRequests.ForeColor = System.Drawing.Color.Navy;
-            this.btnEditRequests.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequests.Image")));
-            this.btnEditRequests.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditRequests.Location = new System.Drawing.Point(13, 10);
-            this.btnEditRequests.Name = "btnEditRequests";
-            this.btnEditRequests.Padding = new System.Windows.Forms.Padding(10);
-            this.btnEditRequests.Size = new System.Drawing.Size(232, 60);
-            this.btnEditRequests.TabIndex = 21;
-            this.btnEditRequests.Text = "Edit Requests";
-            this.btnEditRequests.UseVisualStyleBackColor = true;
-            this.btnEditRequests.Click += new System.EventHandler(this.btnEditRequests_Click);
-            // 
             // btnHistory
             // 
             this.btnHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -238,7 +222,7 @@
             this.btnHistory.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.btnHistory.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistory.ForeColor = System.Drawing.Color.DimGray;
-            this.btnHistory.Location = new System.Drawing.Point(975, 439);
+            this.btnHistory.Location = new System.Drawing.Point(975, 509);
             this.btnHistory.Margin = new System.Windows.Forms.Padding(0);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(262, 60);
@@ -271,7 +255,7 @@
             this.btnReturnToMain.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReturnToMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturnToMain.ForeColor = System.Drawing.Color.DimGray;
-            this.btnReturnToMain.Location = new System.Drawing.Point(975, 509);
+            this.btnReturnToMain.Location = new System.Drawing.Point(975, 439);
             this.btnReturnToMain.Margin = new System.Windows.Forms.Padding(10);
             this.btnReturnToMain.Name = "btnReturnToMain";
             this.btnReturnToMain.Size = new System.Drawing.Size(262, 60);
@@ -300,7 +284,7 @@
             this.pnlLegend.Location = new System.Drawing.Point(975, 96);
             this.pnlLegend.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlLegend.Name = "pnlLegend";
-            this.pnlLegend.Size = new System.Drawing.Size(262, 286);
+            this.pnlLegend.Size = new System.Drawing.Size(262, 234);
             this.pnlLegend.TabIndex = 26;
             // 
             // label7
@@ -345,12 +329,43 @@
             this.panelHot.Size = new System.Drawing.Size(94, 70);
             this.panelHot.TabIndex = 23;
             // 
+            // btnEditRequests
+            // 
+            this.btnEditRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditRequests.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(188)))));
+            this.btnEditRequests.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditRequests.ForeColor = System.Drawing.Color.Navy;
+            this.btnEditRequests.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequests.Image")));
+            this.btnEditRequests.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEditRequests.Location = new System.Drawing.Point(13, 10);
+            this.btnEditRequests.Name = "btnEditRequests";
+            this.btnEditRequests.Padding = new System.Windows.Forms.Padding(10);
+            this.btnEditRequests.Size = new System.Drawing.Size(232, 60);
+            this.btnEditRequests.TabIndex = 21;
+            this.btnEditRequests.Text = "Edit Requests";
+            this.btnEditRequests.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEditRequests.UseVisualStyleBackColor = true;
+            this.btnEditRequests.Click += new System.EventHandler(this.btnEditRequests_Click);
+            // 
+            // pBLogo
+            // 
+            this.pBLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBLogo.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.fei_company_logo;
+            this.pBLogo.Location = new System.Drawing.Point(985, 346);
+            this.pBLogo.Name = "pBLogo";
+            this.pBLogo.Size = new System.Drawing.Size(240, 80);
+            this.pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBLogo.TabIndex = 29;
+            this.pBLogo.TabStop = false;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1247, 652);
+            this.Controls.Add(this.pBLogo);
             this.Controls.Add(this.pnlLegend);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnReturnToMain);
@@ -375,6 +390,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlLegend.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -400,6 +416,7 @@
         private System.Windows.Forms.Panel panelCRR;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panelHot;
+        private System.Windows.Forms.PictureBox pBLogo;
 
     }
 }

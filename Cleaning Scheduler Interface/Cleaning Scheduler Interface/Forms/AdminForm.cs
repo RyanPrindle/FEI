@@ -41,6 +41,8 @@ namespace Cleaning_Scheduler_Interface
             int btnEditWidth = pnlEdit.Width - (2 * padding);
             panelHot.BackColor = mainForm.hotColor;
             panelCRR.BackColor = mainForm.crrColor;
+
+            btnEditRequests.Font = btnReturnToMain.Font = btnQuit.Font = btnHistory.Font = mainForm.btnFont;
             
             pnlEdit.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Location.Y );
             pnlEdit.Height = btnHeight + 2 * padding;
@@ -55,6 +57,7 @@ namespace Cleaning_Scheduler_Interface
             btnHistory.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - 2 * btnHeight);
             btnReturnToMain.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - 3 * btnHeight - padding);
             btnReturnToMain.DialogResult = DialogResult.OK;
+            pBLogo.Location = new Point(splitContainer1.Width + 2 * padding, splitContainer1.Height - 3 * btnHeight - padding - 154);
             }
 
         private void LoadDGV()

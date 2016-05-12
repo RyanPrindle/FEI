@@ -351,6 +351,12 @@ namespace Cleaning_Scheduler_Interface
         private void radioButtonCRYes_Click(object sender, EventArgs e)
         {
             gBoxStockLocation.Focus();
+            gBoxStockLocation.ForeColor = Color.Maroon;
+        }
+
+        private void radioButtonCRNo_Click(object sender, EventArgs e)
+        {
+            gBoxStockLocation.ForeColor = Color.Black;
         }
 
         private void comboBoxPart_SelectedIndexChanged(object sender, EventArgs e)
@@ -364,7 +370,6 @@ namespace Cleaning_Scheduler_Interface
             else
                 lblPartDescription.Text = "";
         }
-
 
         private void rBtnStandard_CheckedChanged(object sender, EventArgs e)
         {
@@ -438,5 +443,7 @@ namespace Cleaning_Scheduler_Interface
         {
             errorProviderPartRequestForm.SetError(radioButtonCRNo, "");
         }
+
+        
     }
 }

@@ -245,12 +245,14 @@ namespace Cleaning_Scheduler_Interface
                     row.DefaultCellStyle.BackColor = hotColor;
                     row.DefaultCellStyle.SelectionBackColor = hotColor;
                     row.DefaultCellStyle.ForeColor = Color.White;
+                    row.DefaultCellStyle.SelectionForeColor = Color.White;
                 }              
                 else if ((bool)row.Cells["CR Ready"].Value == true)
                 {
                     row.DefaultCellStyle.BackColor = crrColor;
                     row.DefaultCellStyle.SelectionBackColor = crrColor;
                     row.DefaultCellStyle.ForeColor = Color.White;
+                    row.DefaultCellStyle.SelectionForeColor = Color.White;
                 }   
             }
             foreach (DataGridViewColumn column in dGV.Columns)
@@ -287,7 +289,8 @@ namespace Cleaning_Scheduler_Interface
             btnHistory.Location = new Point(0, btnQuit.Location.Y - btnHeight - padding);
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding) / 3;
-            splitContainer3.SplitterDistance = (splitContainer3.Height - padding) / 2;                     
+            splitContainer3.SplitterDistance = (splitContainer3.Height - padding) / 2;      
+            pBLogo.Location = new Point(0, btnHistory.Location.Y - btnHeight - padding - 157);   
         }
 
         private void OpenAdminForm()

@@ -39,6 +39,7 @@
             this.bGWorkerAddColumn = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.textBoxColumnSerial = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -100,7 +101,7 @@
             this.panel1.Controls.Add(this.btnColumnCleanRequest);
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(10, 328);
+            this.panel1.Location = new System.Drawing.Point(10, 346);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
@@ -114,6 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lblDescription);
             this.panel2.Controls.Add(this.textBoxColumnSerial);
             this.panel2.Controls.Add(this.label5);
@@ -129,8 +131,20 @@
             this.panel2.Location = new System.Drawing.Point(10, 13);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(541, 302);
+            this.panel2.Size = new System.Drawing.Size(541, 320);
             this.panel2.TabIndex = 48;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Maroon;
+            this.label3.Location = new System.Drawing.Point(1, 291);
+            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(535, 25);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "*  Required";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblDescription
             // 
@@ -156,7 +170,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(65, 257);
+            this.label5.Location = new System.Drawing.Point(69, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 25);
             this.label5.TabIndex = 57;
@@ -167,7 +181,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Maroon;
-            this.label7.Location = new System.Drawing.Point(97, 14);
+            this.label7.Location = new System.Drawing.Point(100, 14);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 25);
             this.label7.TabIndex = 56;
@@ -178,7 +192,7 @@
             this.checkBoxColumnHot.AutoSize = true;
             this.checkBoxColumnHot.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBoxColumnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxColumnHot.Location = new System.Drawing.Point(381, 256);
+            this.checkBoxColumnHot.Location = new System.Drawing.Point(382, 256);
             this.checkBoxColumnHot.Name = "checkBoxColumnHot";
             this.checkBoxColumnHot.Size = new System.Drawing.Size(137, 29);
             this.checkBoxColumnHot.TabIndex = 52;
@@ -189,7 +203,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 122);
+            this.label4.Location = new System.Drawing.Point(18, 122);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(188, 25);
             this.label4.TabIndex = 55;
@@ -208,7 +222,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 220);
+            this.label2.Location = new System.Drawing.Point(20, 220);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(186, 25);
             this.label2.TabIndex = 54;
@@ -229,7 +243,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
             this.label1.Location = new System.Drawing.Point(73, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 25);
@@ -254,7 +268,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(198)))));
-            this.ClientSize = new System.Drawing.Size(561, 400);
+            this.ClientSize = new System.Drawing.Size(561, 418);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -297,5 +311,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxColumn;
         private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label label3;
     }
 }

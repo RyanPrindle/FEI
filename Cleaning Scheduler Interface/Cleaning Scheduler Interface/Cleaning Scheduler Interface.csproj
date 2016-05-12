@@ -167,9 +167,13 @@
     <None Include="Resources\help-contents.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\fei-company-logo.png" />
+    <None Include="Resources\Fire.gif" />
+    <None Include="Resources\HighPriority.gif.gif" />
     <None Include="Resources\details.png" />
     <None Include="Resources\editIcon.png" />
     <None Include="Resources\editIcon1.png" />
+    <None Include="Resources\FEI Logo 2.ico" />
     <Content Include="Resources\FEI Logo Spinner.gif" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\photoicon.ico" />

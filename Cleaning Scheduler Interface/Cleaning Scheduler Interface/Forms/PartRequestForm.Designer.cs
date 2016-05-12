@@ -264,7 +264,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
             this.label1.Location = new System.Drawing.Point(3, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 23);
@@ -279,6 +279,7 @@
             this.lblPartDescription.Name = "lblPartDescription";
             this.lblPartDescription.Size = new System.Drawing.Size(333, 29);
             this.lblPartDescription.TabIndex = 29;
+            this.lblPartDescription.Text = "Enter A Part Number Above";
             this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelNonStandard
@@ -298,7 +299,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.ForeColor = System.Drawing.Color.Maroon;
             this.label4.Location = new System.Drawing.Point(3, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 23);
@@ -381,6 +382,7 @@
             this.radioButtonCRNo.Text = "No";
             this.radioButtonCRNo.UseVisualStyleBackColor = true;
             this.radioButtonCRNo.CheckedChanged += new System.EventHandler(this.radioButtonCR_CheckedChanged);
+            this.radioButtonCRNo.Click += new System.EventHandler(this.radioButtonCRNo_Click);
             // 
             // radioButtonCRYes
             // 
@@ -400,7 +402,7 @@
             this.gBoxStockLocation.Controls.Add(this.radioButtonBulk);
             this.gBoxStockLocation.Controls.Add(this.radioButtonCage);
             this.gBoxStockLocation.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gBoxStockLocation.ForeColor = System.Drawing.Color.Maroon;
+            this.gBoxStockLocation.ForeColor = System.Drawing.Color.Black;
             this.gBoxStockLocation.Location = new System.Drawing.Point(206, 21);
             this.gBoxStockLocation.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.gBoxStockLocation.Name = "gBoxStockLocation";

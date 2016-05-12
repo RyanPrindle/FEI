@@ -64,6 +64,7 @@
             this.btnPartRequest = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
             this.toolTipMain = new System.Windows.Forms.ToolTip(this.components);
+            this.pBLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVCompleted)).BeginInit();
             this.panelLegend.SuspendLayout();
             this.pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -99,13 +101,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.splitContainer1.Panel2.Controls.Add(this.pBLogo);
             this.splitContainer1.Panel2.Controls.Add(this.btnQuit);
             this.splitContainer1.Panel2.Controls.Add(this.btnCleaning);
             this.splitContainer1.Panel2.Controls.Add(this.panelLegend);
             this.splitContainer1.Panel2.Controls.Add(this.btnHistory);
             this.splitContainer1.Panel2.Controls.Add(this.pnlButtons);
             this.splitContainer1.Size = new System.Drawing.Size(1199, 764);
-            this.splitContainer1.SplitterDistance = 857;
+            this.splitContainer1.SplitterDistance = 927;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -131,7 +134,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(142)))));
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(857, 764);
+            this.splitContainer2.Size = new System.Drawing.Size(927, 764);
             this.splitContainer2.SplitterDistance = 192;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
@@ -189,7 +192,7 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(202)))));
             this.dGVQueue.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVQueue.RowTemplate.Height = 40;
-            this.dGVQueue.Size = new System.Drawing.Size(833, 138);
+            this.dGVQueue.Size = new System.Drawing.Size(903, 138);
             this.dGVQueue.TabIndex = 0;
             this.dGVQueue.TabStop = false;
             this.dGVQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -220,7 +223,7 @@
             this.splitContainer3.Panel2.Controls.Add(this.label3);
             this.splitContainer3.Panel2.Controls.Add(this.dGVCompleted);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
-            this.splitContainer3.Size = new System.Drawing.Size(857, 562);
+            this.splitContainer3.Size = new System.Drawing.Size(927, 562);
             this.splitContainer3.SplitterDistance = 207;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
@@ -277,7 +280,7 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
             this.dGVInProcess.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVInProcess.RowTemplate.Height = 40;
-            this.dGVInProcess.Size = new System.Drawing.Size(833, 153);
+            this.dGVInProcess.Size = new System.Drawing.Size(903, 153);
             this.dGVInProcess.TabIndex = 3;
             this.dGVInProcess.TabStop = false;
             this.dGVInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -337,7 +340,7 @@
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
             this.dGVCompleted.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVCompleted.RowTemplate.Height = 40;
-            this.dGVCompleted.Size = new System.Drawing.Size(833, 291);
+            this.dGVCompleted.Size = new System.Drawing.Size(903, 291);
             this.dGVCompleted.TabIndex = 3;
             this.dGVCompleted.TabStop = false;
             this.dGVCompleted.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -356,7 +359,7 @@
             this.btnQuit.Location = new System.Drawing.Point(31, 694);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(5);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(137, 60);
+            this.btnQuit.Size = new System.Drawing.Size(61, 60);
             this.btnQuit.TabIndex = 5;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = false;
@@ -373,7 +376,7 @@
             this.btnCleaning.Location = new System.Drawing.Point(36, 617);
             this.btnCleaning.Margin = new System.Windows.Forms.Padding(5);
             this.btnCleaning.Name = "btnCleaning";
-            this.btnCleaning.Size = new System.Drawing.Size(137, 60);
+            this.btnCleaning.Size = new System.Drawing.Size(61, 60);
             this.btnCleaning.TabIndex = 4;
             this.btnCleaning.Text = "Admin Control";
             this.btnCleaning.UseVisualStyleBackColor = true;
@@ -388,10 +391,10 @@
             this.panelLegend.Controls.Add(this.label4);
             this.panelLegend.Controls.Add(this.panelHot);
             this.panelLegend.ForeColor = System.Drawing.Color.Black;
-            this.panelLegend.Location = new System.Drawing.Point(2, 247);
+            this.panelLegend.Location = new System.Drawing.Point(0, 247);
             this.panelLegend.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelLegend.Name = "panelLegend";
-            this.panelLegend.Size = new System.Drawing.Size(324, 252);
+            this.panelLegend.Size = new System.Drawing.Size(262, 243);
             this.panelLegend.TabIndex = 25;
             // 
             // label7
@@ -447,7 +450,7 @@
             this.btnHistory.Location = new System.Drawing.Point(36, 556);
             this.btnHistory.Margin = new System.Windows.Forms.Padding(5);
             this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(137, 60);
+            this.btnHistory.Size = new System.Drawing.Size(61, 60);
             this.btnHistory.TabIndex = 3;
             this.btnHistory.Text = "History";
             this.btnHistory.UseVisualStyleBackColor = true;
@@ -463,7 +466,7 @@
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(332, 233);
+            this.pnlButtons.Size = new System.Drawing.Size(262, 233);
             this.pnlButtons.TabIndex = 22;
             // 
             // btnColumnRequest
@@ -492,11 +495,21 @@
             this.btnPartRequest.Location = new System.Drawing.Point(10, 136);
             this.btnPartRequest.Margin = new System.Windows.Forms.Padding(0);
             this.btnPartRequest.Name = "btnPartRequest";
-            this.btnPartRequest.Size = new System.Drawing.Size(310, 85);
+            this.btnPartRequest.Size = new System.Drawing.Size(240, 85);
             this.btnPartRequest.TabIndex = 2;
             this.btnPartRequest.Text = "Request Part Cleaning";
             this.btnPartRequest.UseVisualStyleBackColor = true;
             this.btnPartRequest.Click += new System.EventHandler(this.btnPartRequest_Click);
+            // 
+            // pBLogo
+            // 
+            this.pBLogo.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.fei_company_logo;
+            this.pBLogo.Location = new System.Drawing.Point(12, 496);
+            this.pBLogo.Name = "pBLogo";
+            this.pBLogo.Size = new System.Drawing.Size(240, 80);
+            this.pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBLogo.TabIndex = 28;
+            this.pBLogo.TabStop = false;
             // 
             // MainForm
             // 
@@ -535,6 +548,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVCompleted)).EndInit();
             this.panelLegend.ResumeLayout(false);
             this.pnlButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -563,6 +577,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelCRR;
         private System.Windows.Forms.ToolTip toolTipMain;
+        private System.Windows.Forms.PictureBox pBLogo;
     }
 }
 

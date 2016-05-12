@@ -117,6 +117,8 @@ namespace Cleaning_Scheduler_Interface
                 rBtnHot.Checked = true;
                 pnlHot.BackColor = Color.Red;
                 pnlHot.ForeColor = Color.White;
+                pBFire.Visible = true;
+                this.BackColor = Color.Black;
             }
             if (requestTable.Rows[0]["Bulk"].Equals(true))
                 lblBulkCage.Text = "Bulk";

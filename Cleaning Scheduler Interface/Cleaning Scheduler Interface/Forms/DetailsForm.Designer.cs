@@ -60,7 +60,6 @@
             this.labelStartedOn = new System.Windows.Forms.Label();
             this.labelFinishedOn = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.rBtnHot = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -68,17 +67,20 @@
             this.bGWDetails = new System.ComponentModel.BackgroundWorker();
             this.rBtnCRR = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
-            this.pnlHot = new System.Windows.Forms.Panel();
             this.pnlCRReady = new System.Windows.Forms.Panel();
             this.lblBulkCage = new System.Windows.Forms.Label();
             this.toolTipDetails = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlHot = new System.Windows.Forms.Panel();
+            this.rBtnHot = new System.Windows.Forms.RadioButton();
+            this.pBFire = new System.Windows.Forms.PictureBox();
             this.panelProcedures.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.pnlHot.SuspendLayout();
             this.pnlCRReady.SuspendLayout();
+            this.pnlHot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBFire)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -424,18 +426,6 @@
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // rBtnHot
-            // 
-            this.rBtnHot.AutoCheck = false;
-            this.rBtnHot.AutoSize = true;
-            this.rBtnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnHot.Location = new System.Drawing.Point(13, 13);
-            this.rBtnHot.Name = "rBtnHot";
-            this.rBtnHot.Size = new System.Drawing.Size(59, 29);
-            this.rBtnHot.TabIndex = 28;
-            this.rBtnHot.Text = "Hot";
-            this.rBtnHot.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
@@ -530,18 +520,6 @@
             this.label6.Text = "Ready";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlHot
-            // 
-            this.pnlHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.pnlHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlHot.Controls.Add(this.rBtnHot);
-            this.pnlHot.Location = new System.Drawing.Point(447, 13);
-            this.pnlHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
-            this.pnlHot.Name = "pnlHot";
-            this.pnlHot.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlHot.Size = new System.Drawing.Size(160, 61);
-            this.pnlHot.TabIndex = 32;
-            // 
             // pnlCRReady
             // 
             this.pnlCRReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
@@ -564,6 +542,43 @@
             this.lblBulkCage.TabIndex = 33;
             this.lblBulkCage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnlHot
+            // 
+            this.pnlHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.pnlHot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pnlHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlHot.Controls.Add(this.rBtnHot);
+            this.pnlHot.Location = new System.Drawing.Point(447, 13);
+            this.pnlHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.pnlHot.Name = "pnlHot";
+            this.pnlHot.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlHot.Size = new System.Drawing.Size(160, 61);
+            this.pnlHot.TabIndex = 32;
+            // 
+            // rBtnHot
+            // 
+            this.rBtnHot.AutoCheck = false;
+            this.rBtnHot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rBtnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rBtnHot.Location = new System.Drawing.Point(13, 13);
+            this.rBtnHot.Name = "rBtnHot";
+            this.rBtnHot.Size = new System.Drawing.Size(130, 31);
+            this.rBtnHot.TabIndex = 28;
+            this.rBtnHot.Text = "Hot";
+            this.rBtnHot.UseVisualStyleBackColor = true;
+            // 
+            // pBFire
+            // 
+            this.pBFire.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pBFire.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.Fire;
+            this.pBFire.Location = new System.Drawing.Point(0, 0);
+            this.pBFire.Name = "pBFire";
+            this.pBFire.Size = new System.Drawing.Size(617, 533);
+            this.pBFire.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBFire.TabIndex = 34;
+            this.pBFire.TabStop = false;
+            this.pBFire.Visible = false;
+            // 
             // DetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,12 +591,12 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pBFire);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DetailsForm";
-            this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Request Details";
             this.Load += new System.EventHandler(this.DetailsForm_Load);
@@ -593,10 +608,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.pnlHot.ResumeLayout(false);
-            this.pnlHot.PerformLayout();
             this.pnlCRReady.ResumeLayout(false);
             this.pnlCRReady.PerformLayout();
+            this.pnlHot.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBFire)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -645,5 +660,6 @@
         private System.Windows.Forms.ToolTip toolTipDetails;
         private System.Windows.Forms.Label lblBulkCage;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pBFire;
     }
 }
