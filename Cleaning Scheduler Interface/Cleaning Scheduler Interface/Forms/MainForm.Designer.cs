@@ -51,6 +51,7 @@
             this.dGVInProcess = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.dGVCompleted = new System.Windows.Forms.DataGridView();
+            this.pBLogo = new System.Windows.Forms.PictureBox();
             this.btnQuit = new System.Windows.Forms.Button();
             this.btnCleaning = new System.Windows.Forms.Button();
             this.panelLegend = new System.Windows.Forms.Panel();
@@ -64,7 +65,6 @@
             this.btnPartRequest = new System.Windows.Forms.Button();
             this.bGWorkerFillTables = new System.ComponentModel.BackgroundWorker();
             this.toolTipMain = new System.Windows.Forms.ToolTip(this.components);
-            this.pBLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,9 +80,9 @@
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVInProcess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVCompleted)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).BeginInit();
             this.panelLegend.SuspendLayout();
             this.pnlButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -108,7 +108,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnHistory);
             this.splitContainer1.Panel2.Controls.Add(this.pnlButtons);
             this.splitContainer1.Size = new System.Drawing.Size(1199, 764);
-            this.splitContainer1.SplitterDistance = 927;
+            this.splitContainer1.SplitterDistance = 921;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -128,13 +128,13 @@
             this.splitContainer2.Panel1.Controls.Add(this.label2);
             this.splitContainer2.Panel1.Controls.Add(this.dGVQueue);
             this.splitContainer2.Panel1.ForeColor = System.Drawing.Color.Black;
-            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(142)))));
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(927, 764);
+            this.splitContainer2.Size = new System.Drawing.Size(921, 764);
             this.splitContainer2.SplitterDistance = 192;
             this.splitContainer2.SplitterWidth = 10;
             this.splitContainer2.TabIndex = 0;
@@ -144,7 +144,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 4);
+            this.label2.Location = new System.Drawing.Point(2, 4);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 33);
@@ -160,7 +160,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(228)))));
             this.dGVQueue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dGVQueue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dGVQueue.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(198)))));
+            this.dGVQueue.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.dGVQueue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dGVQueue.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -182,7 +182,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dGVQueue.DefaultCellStyle = dataGridViewCellStyle3;
             this.dGVQueue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGVQueue.Location = new System.Drawing.Point(10, 40);
+            this.dGVQueue.Location = new System.Drawing.Point(0, 40);
             this.dGVQueue.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dGVQueue.Name = "dGVQueue";
             this.dGVQueue.ReadOnly = true;
@@ -192,7 +192,7 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(202)))));
             this.dGVQueue.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dGVQueue.RowTemplate.Height = 40;
-            this.dGVQueue.Size = new System.Drawing.Size(903, 138);
+            this.dGVQueue.Size = new System.Drawing.Size(917, 148);
             this.dGVQueue.TabIndex = 0;
             this.dGVQueue.TabStop = false;
             this.dGVQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -215,15 +215,15 @@
             this.splitContainer3.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.dGVInProcess);
-            this.splitContainer3.Panel1.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
+            this.splitContainer3.Panel1.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.splitContainer3.Panel2.Controls.Add(this.label3);
             this.splitContainer3.Panel2.Controls.Add(this.dGVCompleted);
-            this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(10, 40, 10, 10);
-            this.splitContainer3.Size = new System.Drawing.Size(927, 562);
+            this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
+            this.splitContainer3.Size = new System.Drawing.Size(921, 562);
             this.splitContainer3.SplitterDistance = 207;
             this.splitContainer3.SplitterWidth = 10;
             this.splitContainer3.TabIndex = 0;
@@ -233,7 +233,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 4);
+            this.label1.Location = new System.Drawing.Point(2, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 33);
@@ -250,7 +250,7 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(255)))), ((int)(((byte)(238)))));
             this.dGVInProcess.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dGVInProcess.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dGVInProcess.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dGVInProcess.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.dGVInProcess.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dGVInProcess.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -272,7 +272,7 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dGVInProcess.DefaultCellStyle = dataGridViewCellStyle7;
             this.dGVInProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGVInProcess.Location = new System.Drawing.Point(10, 40);
+            this.dGVInProcess.Location = new System.Drawing.Point(0, 40);
             this.dGVInProcess.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dGVInProcess.Name = "dGVInProcess";
             this.dGVInProcess.RowHeadersVisible = false;
@@ -280,7 +280,7 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
             this.dGVInProcess.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dGVInProcess.RowTemplate.Height = 40;
-            this.dGVInProcess.Size = new System.Drawing.Size(903, 153);
+            this.dGVInProcess.Size = new System.Drawing.Size(917, 163);
             this.dGVInProcess.TabIndex = 3;
             this.dGVInProcess.TabStop = false;
             this.dGVInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
@@ -292,7 +292,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 4);
+            this.label3.Location = new System.Drawing.Point(2, 4);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(353, 33);
@@ -305,11 +305,11 @@
             this.dGVCompleted.AllowUserToDeleteRows = false;
             this.dGVCompleted.AllowUserToResizeColumns = false;
             this.dGVCompleted.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(202)))));
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(215)))));
             this.dGVCompleted.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dGVCompleted.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dGVCompleted.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dGVCompleted.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.dGVCompleted.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dGVCompleted.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -331,22 +331,32 @@
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dGVCompleted.DefaultCellStyle = dataGridViewCellStyle11;
             this.dGVCompleted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGVCompleted.Location = new System.Drawing.Point(10, 40);
+            this.dGVCompleted.Location = new System.Drawing.Point(0, 40);
             this.dGVCompleted.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dGVCompleted.Name = "dGVCompleted";
             this.dGVCompleted.ReadOnly = true;
             this.dGVCompleted.RowHeadersVisible = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(232)))), ((int)(((byte)(168)))));
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dGVCompleted.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dGVCompleted.RowTemplate.Height = 40;
-            this.dGVCompleted.Size = new System.Drawing.Size(903, 291);
+            this.dGVCompleted.Size = new System.Drawing.Size(917, 301);
             this.dGVCompleted.TabIndex = 3;
             this.dGVCompleted.TabStop = false;
             this.dGVCompleted.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVCompleted.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
             this.dGVCompleted.Sorted += new System.EventHandler(this.dGV_Sorted);
             this.dGVCompleted.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
+            // 
+            // pBLogo
+            // 
+            this.pBLogo.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.fei_company_logo;
+            this.pBLogo.Location = new System.Drawing.Point(12, 496);
+            this.pBLogo.Name = "pBLogo";
+            this.pBLogo.Size = new System.Drawing.Size(240, 80);
+            this.pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBLogo.TabIndex = 28;
+            this.pBLogo.TabStop = false;
             // 
             // btnQuit
             // 
@@ -466,7 +476,7 @@
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(0);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(262, 233);
+            this.pnlButtons.Size = new System.Drawing.Size(268, 233);
             this.pnlButtons.TabIndex = 22;
             // 
             // btnColumnRequest
@@ -495,21 +505,11 @@
             this.btnPartRequest.Location = new System.Drawing.Point(10, 136);
             this.btnPartRequest.Margin = new System.Windows.Forms.Padding(0);
             this.btnPartRequest.Name = "btnPartRequest";
-            this.btnPartRequest.Size = new System.Drawing.Size(240, 85);
+            this.btnPartRequest.Size = new System.Drawing.Size(246, 85);
             this.btnPartRequest.TabIndex = 2;
             this.btnPartRequest.Text = "Request Part Cleaning";
             this.btnPartRequest.UseVisualStyleBackColor = true;
             this.btnPartRequest.Click += new System.EventHandler(this.btnPartRequest_Click);
-            // 
-            // pBLogo
-            // 
-            this.pBLogo.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.fei_company_logo;
-            this.pBLogo.Location = new System.Drawing.Point(12, 496);
-            this.pBLogo.Name = "pBLogo";
-            this.pBLogo.Size = new System.Drawing.Size(240, 80);
-            this.pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBLogo.TabIndex = 28;
-            this.pBLogo.TabStop = false;
             // 
             // MainForm
             // 
@@ -546,9 +546,9 @@
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGVInProcess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVCompleted)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).EndInit();
             this.panelLegend.ResumeLayout(false);
             this.pnlButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

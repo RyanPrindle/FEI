@@ -81,7 +81,7 @@ namespace Cleaning_Scheduler_Interface
             labelInstructions.Text = requestTable.Rows[0]["Instructions"].ToString();
             if (requestTable.Rows[0]["StartedOn"].Equals(DBNull.Value) || requestTable.Rows[0]["StartedOn"].Equals(""))
             {
-                this.BackColor = Color.FromArgb(255, 255, 128);
+                this.BackColor = Color.FromArgb(255, 255, 192);
             }
             else
             {
@@ -94,7 +94,7 @@ namespace Cleaning_Scheduler_Interface
             }
             else
             {
-                this.BackColor = Color.FromArgb(255, 192, 128);
+                this.BackColor = Color.FromArgb(255, 224, 192);
                 DateTime finTime = (DateTime)requestTable.Rows[0]["FinishedOn"];
                 labelFinishedOn.Text = finTime.ToString("M/d/yyyy  @  h:mm tt");
                 if (requestTable.Rows[0]["Decon"].Equals(true))
@@ -114,19 +114,19 @@ namespace Cleaning_Scheduler_Interface
             }
             if (requestTable.Rows[0]["Hot"].Equals(true))
             {
-                rBtnHot.Checked = true;
+                lblHot.Text = "High Priority";
                 pnlHot.BackColor = Color.Red;
                 pnlHot.ForeColor = Color.White;
                 pBFire.Visible = true;
                 this.BackColor = Color.Black;
             }
-            if (requestTable.Rows[0]["Bulk"].Equals(true))
-                lblBulkCage.Text = "Bulk";
-            if (requestTable.Rows[0]["Cage"].Equals(true))
-                lblBulkCage.Text = "Cage";
+            
             if (requestTable.Rows[0]["CR Ready"].Equals(true))
             {
-                rBtnCRR.Checked = true;
+                if (requestTable.Rows[0]["Bulk"].Equals(true))
+                    lblCRR.Text = "Cleanroom Ready -Bulk-";
+                else
+                    lblCRR.Text = "Cleanroom Ready -Cage-";
                 pnlCRReady.BackColor = Color.Green;
                 pnlCRReady.ForeColor = Color.White;
             }
@@ -156,6 +156,7 @@ namespace Cleaning_Scheduler_Interface
         {
             toolTipDetails.Hide(btnDetails);
         }
+
 
     }
 }

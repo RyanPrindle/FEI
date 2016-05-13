@@ -14,6 +14,7 @@ namespace Cleaning_Scheduler_Interface
     {
         private String mGun;
         private ProgressBarForm progressForm;
+
         public ColumnGunPartListForm(String gun)
         {
             mGun = gun;
@@ -44,6 +45,7 @@ namespace Cleaning_Scheduler_Interface
             Label label2 = new Label();
             Label label3 = new Label();
             Label label1 = new Label();
+            Label lblCount = new Label();
             
             String gun = (String)e.Argument;
             lblTitle.Text = gun + " Parts";
@@ -55,14 +57,16 @@ namespace Cleaning_Scheduler_Interface
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             tLP.AutoScroll = true;
-            tLP.ColumnCount = 3;
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            tLP.ColumnCount = 4;
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));            
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
             tLP.Controls.Add(lblTitle, 1, 0);
-            tLP.Controls.Add(label2, 0, 2);
-            tLP.Controls.Add(label3, 1, 2);
-            tLP.Controls.Add(label1, 2, 2);
+            tLP.Controls.Add(lblCount, 0, 2);
+            tLP.Controls.Add(label2, 1, 2);
+            tLP.Controls.Add(label3, 2, 2);
+            tLP.Controls.Add(label1, 3, 2);
             tLP.Location = new System.Drawing.Point( 0, 0);
             tLP.Name = "tLPGun";
             tLP.RowCount = 3;
@@ -73,11 +77,23 @@ namespace Cleaning_Scheduler_Interface
             tLP.TabIndex = 0;
 
             // 
+            // lblCount
+            // 
+            lblCount.AutoSize = true;
+            lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            lblCount.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblCount.Location = new System.Drawing.Point(3, 0);
+            lblCount.Name = "lblCount";
+            lblCount.TabIndex = 0;
+            lblCount.Text = "#";
+            lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            tLP.SetColumnSpan(lblTitle, 3);
+            tLP.SetColumnSpan(lblTitle, 4);
             lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             lblTitle.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTitle.Location = new System.Drawing.Point(3, 0);
@@ -132,6 +148,8 @@ namespace Cleaning_Scheduler_Interface
                 int index;
                 Label lblPartNumber = new Label();
                 Label lblDescription = new Label();
+                Label lblNumber = new Label();
+                LinkLabel lblPic = new LinkLabel();
                 PictureBox pBPartDrawing = new PictureBox();
                 image = (Image)Cleaning_Scheduler_Interface.Properties.Resources.ResourceManager.GetObject(row["Image"].ToString());
                 pBPartDrawing.Image = image;
@@ -145,11 +163,19 @@ namespace Cleaning_Scheduler_Interface
                 lblDescription.BorderStyle = BorderStyle.Fixed3D;
                 lblDescription.TextAlign = ContentAlignment.MiddleCenter;
                 index = gunPartTable.Rows.IndexOf(row) + 3;
+                lblNumber.Dock = DockStyle.Fill;
+                lblNumber.BorderStyle = BorderStyle.Fixed3D;
+                lblNumber.TextAlign = ContentAlignment.MiddleCenter;
+                lblNumber.Text = gunPartTable.Rows.IndexOf(row) + 1 + "";
+                lblPic.Dock = DockStyle.Fill;
+                lblPic.BorderStyle = BorderStyle.Fixed3D;
+                lblPic.TextAlign = ContentAlignment.MiddleCenter;
                 lblPartNumber.Text = row["PartNumber"].ToString();
                 lblDescription.Text = row["Description"].ToString();
-                tLP.Controls.Add(lblPartNumber, 0, index);
-                tLP.Controls.Add(lblDescription, 1, index);
-                tLP.Controls.Add(pBPartDrawing, 2, index);
+                tLP.Controls.Add(lblNumber, 0, index);
+                tLP.Controls.Add(lblPartNumber, 1, index);
+                tLP.Controls.Add(lblDescription, 2, index);
+                tLP.Controls.Add(lblPic, 3, index);
             }
             tLP.ResumeLayout();
             e.Result = tLP;
@@ -170,9 +196,7 @@ namespace Cleaning_Scheduler_Interface
         private void tLP_MouseEnter(object sender, EventArgs e)
         {
             TableLayoutPanel tLP = (TableLayoutPanel)sender;
-            tLP.Focus();
+            tLP.Focus();            
         }
-
-
     }
 }

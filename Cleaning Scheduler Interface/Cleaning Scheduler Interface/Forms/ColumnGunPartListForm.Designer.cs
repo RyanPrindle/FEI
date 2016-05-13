@@ -54,12 +54,14 @@
             // 
             // panelTLP
             // 
+            this.panelTLP.AutoScroll = true;
             this.panelTLP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.panelTLP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelTLP.Location = new System.Drawing.Point(13, 13);
             this.panelTLP.Name = "panelTLP";
             this.panelTLP.Size = new System.Drawing.Size(912, 580);
             this.panelTLP.TabIndex = 16;
+            this.panelTLP.MouseEnter += new System.EventHandler(this.tLP_MouseEnter);
             // 
             // ColumnGunPartListForm
             // 

@@ -65,13 +65,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDetails = new System.Windows.Forms.Button();
             this.bGWDetails = new System.ComponentModel.BackgroundWorker();
-            this.rBtnCRR = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblCRR = new System.Windows.Forms.Label();
             this.pnlCRReady = new System.Windows.Forms.Panel();
-            this.lblBulkCage = new System.Windows.Forms.Label();
             this.toolTipDetails = new System.Windows.Forms.ToolTip(this.components);
             this.pnlHot = new System.Windows.Forms.Panel();
-            this.rBtnHot = new System.Windows.Forms.RadioButton();
+            this.lblHot = new System.Windows.Forms.Label();
             this.pBFire = new System.Windows.Forms.PictureBox();
             this.panelProcedures.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -205,7 +203,7 @@
             this.panelProcedures.Controls.Add(this.rBtnWP);
             this.panelProcedures.Controls.Add(this.rBtnDW);
             this.panelProcedures.Controls.Add(this.rBtnDecon);
-            this.panelProcedures.Location = new System.Drawing.Point(11, 443);
+            this.panelProcedures.Location = new System.Drawing.Point(11, 430);
             this.panelProcedures.Name = "panelProcedures";
             this.panelProcedures.Padding = new System.Windows.Forms.Padding(5);
             this.panelProcedures.Size = new System.Drawing.Size(482, 77);
@@ -418,7 +416,7 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(506, 443);
+            this.button1.Location = new System.Drawing.Point(506, 430);
             this.button1.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 77);
@@ -477,7 +475,7 @@
             this.groupBox2.Size = new System.Drawing.Size(254, 96);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Serial Numbers";
+            this.groupBox2.Text = "Serial Number(s)";
             // 
             // btnDetails
             // 
@@ -497,75 +495,51 @@
             this.bGWDetails.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWDetails_DoWork);
             this.bGWDetails.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWDetails_RunWorkerCompleted);
             // 
-            // rBtnCRR
+            // lblCRR
             // 
-            this.rBtnCRR.AutoCheck = false;
-            this.rBtnCRR.AutoSize = true;
-            this.rBtnCRR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnCRR.Location = new System.Drawing.Point(13, 13);
-            this.rBtnCRR.Name = "rBtnCRR";
-            this.rBtnCRR.Size = new System.Drawing.Size(122, 29);
-            this.rBtnCRR.TabIndex = 31;
-            this.rBtnCRR.TabStop = true;
-            this.rBtnCRR.Text = "Cleanroom";
-            this.rBtnCRR.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 25);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Ready";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCRR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCRR.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCRR.Location = new System.Drawing.Point(25, 10);
+            this.lblCRR.Name = "lblCRR";
+            this.lblCRR.Size = new System.Drawing.Size(106, 84);
+            this.lblCRR.TabIndex = 32;
+            this.lblCRR.Text = "Not Cleanroom Ready";
+            this.lblCRR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlCRReady
             // 
             this.pnlCRReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.pnlCRReady.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlCRReady.Controls.Add(this.lblBulkCage);
-            this.pnlCRReady.Controls.Add(this.label6);
-            this.pnlCRReady.Controls.Add(this.rBtnCRR);
-            this.pnlCRReady.Location = new System.Drawing.Point(447, 87);
+            this.pnlCRReady.Controls.Add(this.lblCRR);
+            this.pnlCRReady.Location = new System.Drawing.Point(447, 98);
             this.pnlCRReady.Name = "pnlCRReady";
-            this.pnlCRReady.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlCRReady.Size = new System.Drawing.Size(160, 119);
+            this.pnlCRReady.Padding = new System.Windows.Forms.Padding(25, 10, 25, 10);
+            this.pnlCRReady.Size = new System.Drawing.Size(160, 108);
             this.pnlCRReady.TabIndex = 33;
-            // 
-            // lblBulkCage
-            // 
-            this.lblBulkCage.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBulkCage.Location = new System.Drawing.Point(13, 78);
-            this.lblBulkCage.Name = "lblBulkCage";
-            this.lblBulkCage.Size = new System.Drawing.Size(130, 25);
-            this.lblBulkCage.TabIndex = 33;
-            this.lblBulkCage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlHot
             // 
             this.pnlHot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.pnlHot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnlHot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlHot.Controls.Add(this.rBtnHot);
+            this.pnlHot.Controls.Add(this.lblHot);
             this.pnlHot.Location = new System.Drawing.Point(447, 13);
             this.pnlHot.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.pnlHot.Name = "pnlHot";
-            this.pnlHot.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlHot.Size = new System.Drawing.Size(160, 61);
+            this.pnlHot.Padding = new System.Windows.Forms.Padding(3);
+            this.pnlHot.Size = new System.Drawing.Size(160, 72);
             this.pnlHot.TabIndex = 32;
             // 
-            // rBtnHot
+            // lblHot
             // 
-            this.rBtnHot.AutoCheck = false;
-            this.rBtnHot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rBtnHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rBtnHot.Location = new System.Drawing.Point(13, 13);
-            this.rBtnHot.Name = "rBtnHot";
-            this.rBtnHot.Size = new System.Drawing.Size(130, 31);
-            this.rBtnHot.TabIndex = 28;
-            this.rBtnHot.Text = "Hot";
-            this.rBtnHot.UseVisualStyleBackColor = true;
+            this.lblHot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblHot.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHot.Location = new System.Drawing.Point(3, 3);
+            this.lblHot.Name = "lblHot";
+            this.lblHot.Size = new System.Drawing.Size(150, 62);
+            this.lblHot.TabIndex = 33;
+            this.lblHot.Text = "Not High Priority";
+            this.lblHot.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pBFire
             // 
@@ -573,7 +547,7 @@
             this.pBFire.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.Fire;
             this.pBFire.Location = new System.Drawing.Point(0, 0);
             this.pBFire.Name = "pBFire";
-            this.pBFire.Size = new System.Drawing.Size(617, 533);
+            this.pBFire.Size = new System.Drawing.Size(617, 518);
             this.pBFire.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBFire.TabIndex = 34;
             this.pBFire.TabStop = false;
@@ -583,8 +557,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(617, 533);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(617, 518);
             this.Controls.Add(this.pnlCRReady);
             this.Controls.Add(this.pnlHot);
             this.Controls.Add(this.panelProcedures);
@@ -609,7 +583,6 @@
             this.panel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.pnlCRReady.ResumeLayout(false);
-            this.pnlCRReady.PerformLayout();
             this.pnlHot.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBFire)).EndInit();
             this.ResumeLayout(false);
@@ -648,18 +621,16 @@
         private System.Windows.Forms.Label labelStartedOn;
         private System.Windows.Forms.Label labelFinishedOn;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton rBtnHot;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.ComponentModel.BackgroundWorker bGWDetails;
-        private System.Windows.Forms.RadioButton rBtnCRR;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblCRR;
         private System.Windows.Forms.Panel pnlHot;
         private System.Windows.Forms.Panel pnlCRReady;
         private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.ToolTip toolTipDetails;
-        private System.Windows.Forms.Label lblBulkCage;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pBFire;
+        private System.Windows.Forms.Label lblHot;
     }
 }
