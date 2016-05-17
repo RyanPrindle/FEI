@@ -110,6 +110,7 @@
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\TableFilter.cs" />
     <EmbeddedResource Include="Forms\ColumnGunPartListForm.resx">
       <DependentUpon>ColumnGunPartListForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +168,12 @@
     <None Include="Resources\help-contents.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\request_32.png" />
+    <None Include="Resources\home_32.png" />
+    <None Include="Resources\history_322.png" />
+    <None Include="Resources\history_321.png" />
+    <None Include="Resources\history_32.png" />
+    <None Include="Resources\quit-32.png" />
     <None Include="Resources\fei-company-logo.png" />
     <None Include="Resources\Fire.gif" />
     <None Include="Resources\HighPriority.gif.gif" />
@@ -174,6 +181,9 @@
     <None Include="Resources\editIcon.png" />
     <None Include="Resources\editIcon1.png" />
     <None Include="Resources\FEI Logo 2.ico" />
+    <None Include="Resources\exit-32.png" />
+    <None Include="Resources\exit-321.png" />
+    <None Include="Resources\control_32.png" />
     <Content Include="Resources\FEI Logo Spinner.gif" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\photoicon.ico" />

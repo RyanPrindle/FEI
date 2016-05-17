@@ -73,6 +73,16 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap control_32 {
+            get {
+                object obj = ResourceManager.GetObject("control_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap details {
             get {
                 object obj = ResourceManager.GetObject("details", resourceCulture);
@@ -93,9 +103,9 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fei_company_logo {
+        internal static System.Drawing.Bitmap fe_logo {
             get {
-                object obj = ResourceManager.GetObject("fei-company-logo", resourceCulture);
+                object obj = ResourceManager.GetObject("fe_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +115,7 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap FEI_Logo_2 {
             get {
-                object obj = ResourceManager.GetObject("FEI Logo 2", resourceCulture);
+                object obj = ResourceManager.GetObject("FEI_Logo_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +173,59 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap history_32 {
+            get {
+                object obj = ResourceManager.GetObject("history_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap history_321 {
+            get {
+                object obj = ResourceManager.GetObject("history_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_32 {
+            get {
+                object obj = ResourceManager.GetObject("home_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quit_32 {
+            get {
+                object obj = ResourceManager.GetObject("quit_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap refresh {
             get {
                 object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap request_32 {
+            get {
+                object obj = ResourceManager.GetObject("request_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

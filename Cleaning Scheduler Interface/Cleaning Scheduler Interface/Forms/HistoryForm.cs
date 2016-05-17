@@ -29,6 +29,7 @@ namespace Cleaning_Scheduler_Interface
         private String dTPFormat = "M / dd / yyyy";
         private bool calendarDroppedDown = false;
         private int dgvScrollOffset;
+        private TableFilter filter;
 
         public HistoryForm(MainForm mainForm)
         {
@@ -37,8 +38,7 @@ namespace Cleaning_Scheduler_Interface
             //infoIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.info_icon_53629;
             infoIcon = Cleaning_Scheduler_Interface.Properties.Resources.blueInfoButtonIcon;
             checkIcon = global::Cleaning_Scheduler_Interface.Properties.Resources.GreenCheck;
-
-            
+                    
         }
 
         private void HistoryForm_Load(object sender, EventArgs e)
@@ -87,6 +87,8 @@ namespace Cleaning_Scheduler_Interface
         {
             mHistoryTable = new DataTable();
             mHistoryTable = (DataTable)e.Result;
+            mFilteredTable = new DataTable();
+            mFilteredTable = mHistoryTable.Copy();
             InitFilters();
             InitHistoryDGV();
             LoadPartComboBox();
@@ -94,50 +96,166 @@ namespace Cleaning_Scheduler_Interface
             mProgress.Close();
         }
 
+
+        private void FilterTable()
+        {
+            dgvScrollOffset = dGVHistory.HorizontalScrollingOffset;
+            mFilteredTable = new DataTable();
+            mFilteredTable = mHistoryTable.Copy();
+            filter = new TableFilter(mFilteredTable);
+            if (rBCRRBoth.Checked == true)
+                filter.mCRR = 0;
+            else if (rBCRRYes.Checked == true)
+                filter.mCRR = 1;
+            else
+                filter.mCRR = -1;
+            if (rBHotBoth.Checked == true)
+                filter.mHot = 0;
+            else if (rBHotYes.Checked == true)
+                filter.mHot = 1;
+            else
+                filter.mHot = -1;
+            filter.mPart = comboBoxPartFilter.SelectedItem.ToString();
+            filter.mRequestor = comboBoxRequestor.SelectedItem.ToString();
+            filter.mReqStart = dTPickerRequestedFrom.Value;
+            filter.mReqStop = dTPickerRequestedTo.Value;
+            filter.mInProcStart = dTPickerStartedFrom.Value;
+            filter.mInProcStop = dTPickerStartedTo.Value;
+            filter.mFinStart = dTPickerFinishedFrom.Value;
+            filter.mFinStop = dTPickerFinishedTo.Value;
+
+            mProgress = new ProgressBarForm();
+            bGWFilter = new BackgroundWorker();
+            bGWFilter.DoWork += new DoWorkEventHandler(bGWFilter_DoWork);
+            bGWFilter.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWFilter_RunWorkerCompleted);
+            bGWFilter.RunWorkerAsync(filter);
+            mProgress.ShowDialog();           
+        }
+
+        private void bGWFilter_DoWork(object sender, DoWorkEventArgs e)
+        {
+            TableFilter filter = (TableFilter)e.Argument;
+            int rowCount = filter.mDTable.Rows.Count;
+            for (int row = 0; row < rowCount; row++)
+            {
+                if (!(filter.mPart == ("All")) && row >= 0)
+                {
+                    if (!(filter.mDTable.Rows[row].Field<string>("Part #").ToString() == filter.mPart))
+                    {
+                        filter.mDTable.Rows.RemoveAt(row);
+                        row--;
+                        rowCount--;
+                    }
+                }
+                else if (!(filter.mRequestor == "All") && row >= 0)
+                {
+                    if (!(filter.mDTable.Rows[row].Field<string>("Requestor").ToString() == filter.mRequestor))
+                    {
+                        filter.mDTable.Rows.RemoveAt(row);
+                        row--;
+                        rowCount--;
+                    }
+                }
+                else if (filter.mDTable.Rows[row].Field<Boolean>("CR Ready").Equals(false) && (filter.mCRR == 1))
+                {
+                    filter.mDTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (filter.mDTable.Rows[row].Field<Boolean>("CR Ready").Equals(true) && (filter.mCRR == -1))
+                {
+                    filter.mDTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (filter.mDTable.Rows[row].Field<Boolean>("Hot").Equals(false) && (filter.mHot == 1))
+                {
+                    filter.mDTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+                else if (filter.mDTable.Rows[row].Field<Boolean>("Hot").Equals(true) && (filter.mHot == -1))
+                {
+                    filter.mDTable.Rows.RemoveAt(row);
+                    row--;
+                    rowCount--;
+                }
+
+                else if (!calendarDroppedDown)
+                {
+                    if (filter.mDTable.Rows[row].Field<DateTime>("Requested") < filter.mReqStart.Date ||
+                        filter.mDTable.Rows[row].Field<DateTime>("Requested") > filter.mReqStop.Date.AddDays(1).AddTicks(-1) ||
+                        filter.mDTable.Rows[row].Field<DateTime>("Started") < filter.mInProcStart.Date ||
+                        filter.mDTable.Rows[row].Field<DateTime>("Started") > filter.mInProcStop.Date.AddDays(1).AddTicks(-1) ||
+                        filter.mDTable.Rows[row].Field<DateTime>("Finished") < filter.mFinStart.Date ||
+                        filter.mDTable.Rows[row].Field<DateTime>("Finished") > filter.mFinStop.Date.AddDays(1).AddTicks(-1))
+                    {
+                        filter.mDTable.Rows.RemoveAt(row);
+                        row--;
+                        rowCount--;
+                    }
+                }
+            }
+            e.Result = filter.mDTable;
+        }
+
+        private void bGWFilter_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            dGVHistory.SuspendLayout();
+            dGVHistory.DataSource = (DataTable)e.Result;
+            mMainForm.FormatDGVInfoHot(dGVHistory);
+            dGVHistory.HorizontalScrollingOffset = dgvScrollOffset;
+            dGVHistory.ResumeLayout();
+            mProgress.Close();
+        }
+
         private void InitFilters()
-        {                 
-            
+        {
+            filter = new TableFilter(mFilteredTable);    
             dTPickerRequestedFrom.CustomFormat = dTPFormat;
             dTPickerRequestedFrom.Format = DateTimePickerFormat.Custom;
             dTPickerRequestedFrom.Font = dTPFont;
             dTPickerRequestedFrom.MinDate = beginDate;
             dTPickerRequestedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerRequestedFrom.Value = beginDate;
+            dTPickerRequestedFrom.Value = filter.mReqStart = beginDate;
             
             dTPickerRequestedTo.CustomFormat = dTPFormat;
             dTPickerRequestedTo.Format = DateTimePickerFormat.Custom;
             dTPickerRequestedTo.Font = dTPFont;
             dTPickerRequestedTo.MinDate = beginDate;
             dTPickerRequestedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerRequestedTo.Value = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerRequestedTo.Value = filter.mReqStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            
 
             dTPickerStartedFrom.CustomFormat = dTPFormat;
             dTPickerStartedFrom.Format = DateTimePickerFormat.Custom;
             dTPickerStartedFrom.Font = dTPFont;
             dTPickerStartedFrom.MinDate = beginDate;
             dTPickerStartedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerStartedFrom.Value = beginDate;    
+            dTPickerStartedFrom.Value = filter.mInProcStart = beginDate;
         
             dTPickerStartedTo.CustomFormat = dTPFormat;
             dTPickerStartedTo.Format = DateTimePickerFormat.Custom;
             dTPickerStartedTo.Font = dTPFont;
             dTPickerStartedTo.MinDate = beginDate;
             dTPickerStartedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerStartedTo.Value = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerStartedTo.Value = filter.mInProcStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            
 
             dTPickerFinishedFrom.CustomFormat = dTPFormat;
             dTPickerFinishedFrom.Format = DateTimePickerFormat.Custom;
             dTPickerFinishedFrom.Font = dTPFont;
             dTPickerFinishedFrom.MinDate = beginDate;
             dTPickerFinishedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerFinishedFrom.Value = beginDate;
+            dTPickerFinishedFrom.Value = filter.mFinStart = beginDate;
 
             dTPickerFinishedTo.CustomFormat = dTPFormat;
             dTPickerFinishedTo.Format = DateTimePickerFormat.Custom;
             dTPickerFinishedTo.Font = dTPFont;
             dTPickerFinishedTo.MinDate = beginDate;
             dTPickerFinishedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerFinishedTo.Value = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerFinishedTo.Value = filter.mFinStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
 
             rBCRRBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
             rBCRRYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
@@ -147,7 +265,9 @@ namespace Cleaning_Scheduler_Interface
             rBHotNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
 
             rBCRRBoth.Checked = true;
+            filter.mCRR = 0;
             rBHotBoth.Checked = true;
+            filter.mHot = 0;
             
             rBCRRBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
             rBCRRYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
@@ -182,78 +302,6 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.ResumeLayout();
         }
 
-        private void FilterTable()
-        {
-            dGVHistory.SuspendLayout();
-            dgvScrollOffset = dGVHistory.HorizontalScrollingOffset;
-            mFilteredTable = new DataTable();
-            mFilteredTable = mHistoryTable.Copy();
-            dGVHistory.DataSource = mFilteredTable;
-            int rowCount = mFilteredTable.Rows.Count;
-            for (int row = 0; row < rowCount; row++)
-            {
-                if (!(comboBoxPartFilter.SelectedItem.ToString() == ("All")) && row >= 0)
-                {
-                    if (!(mFilteredTable.Rows[row].Field<string>("Part #").ToString() == comboBoxPartFilter.SelectedItem.ToString()))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-                }
-                else if (!(comboBoxRequestor.SelectedItem.ToString() == "All") && row >= 0)
-                {
-                    if (!(mFilteredTable.Rows[row].Field<string>("Requestor").ToString() == comboBoxRequestor.SelectedItem.ToString()))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-                }
-                else if (mFilteredTable.Rows[row].Field<Boolean>("CR Ready").Equals(false) && (rBCRRYes.Checked == true))
-                {
-                    mFilteredTable.Rows.RemoveAt(row);
-                    row--;
-                    rowCount--;
-                }
-                else if (mFilteredTable.Rows[row].Field<Boolean>("CR Ready").Equals(true) && (rBCRRNo.Checked == true))
-                {
-                    mFilteredTable.Rows.RemoveAt(row);
-                    row--;
-                    rowCount--;
-                }
-                else if (mFilteredTable.Rows[row].Field<Boolean>("Hot").Equals(false) && (rBHotYes.Checked == true))
-                {
-                    mFilteredTable.Rows.RemoveAt(row);
-                    row--;
-                    rowCount--;
-                }
-                else if (mFilteredTable.Rows[row].Field<Boolean>("Hot").Equals(true) && (rBHotNo.Checked == true))
-                {
-                    mFilteredTable.Rows.RemoveAt(row);
-                    row--;
-                    rowCount--;
-                }
-
-                else if (!calendarDroppedDown)
-                {
-                    if (mFilteredTable.Rows[row].Field<DateTime>("Requested") < dTPickerRequestedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Requested") > dTPickerRequestedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Started") < dTPickerStartedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Started") > dTPickerStartedTo.Value.Date.AddDays(1).AddTicks(-1) ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Finished") < dTPickerFinishedFrom.Value.Date ||
-                        mFilteredTable.Rows[row].Field<DateTime>("Finished") > dTPickerFinishedTo.Value.Date.AddDays(1).AddTicks(-1))
-                    {
-                        mFilteredTable.Rows.RemoveAt(row);
-                        row--;
-                        rowCount--;
-                    }
-                }
-            }
-            mMainForm.FormatDGVInfoHot(dGVHistory);
-            dGVHistory.HorizontalScrollingOffset = dgvScrollOffset;
-            dGVHistory.ResumeLayout();
-        }
 
         private void LoadRequestorComboBox()
         {
@@ -444,5 +492,13 @@ namespace Cleaning_Scheduler_Interface
             if (e.Location.Y < 40)
                 dgvScrollOffset = dgv.HorizontalScrollingOffset;
         }
+
+        private void dTPicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (!calendarDroppedDown)
+                FilterTable();
+        }
+
+        
     }
 }

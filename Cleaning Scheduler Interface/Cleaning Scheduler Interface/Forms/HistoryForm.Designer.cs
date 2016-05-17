@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.PictureBox pBLogo;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HistoryForm));
             this.dTPickerRequestedFrom = new System.Windows.Forms.DateTimePicker();
             this.dTPickerRequestedTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.panelFilter = new System.Windows.Forms.Panel();
             this.gBHot = new System.Windows.Forms.GroupBox();
             this.rBHotNo = new System.Windows.Forms.RadioButton();
@@ -67,8 +67,12 @@
             this.panelDGV = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dGVHistory = new System.Windows.Forms.DataGridView();
-            this.btnQuit = new System.Windows.Forms.Button();
             this.btnMain = new System.Windows.Forms.Button();
+            this.btnQuit = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.bGWFilter = new System.ComponentModel.BackgroundWorker();
+            pBLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(pBLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelFilter.SuspendLayout();
             this.gBHot.SuspendLayout();
@@ -79,8 +83,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVHistory)).BeginInit();
             this.SuspendLayout();
             // 
+            // pBLogo
+            // 
+            pBLogo.Image = ((System.Drawing.Image)(resources.GetObject("pBLogo.Image")));
+            pBLogo.Location = new System.Drawing.Point(105, 3);
+            pBLogo.Name = "pBLogo";
+            pBLogo.Size = new System.Drawing.Size(143, 62);
+            pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pBLogo.TabIndex = 36;
+            pBLogo.TabStop = false;
+            // 
             // dTPickerRequestedFrom
             // 
+            this.dTPickerRequestedFrom.AllowDrop = true;
             this.dTPickerRequestedFrom.CalendarFont = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dTPickerRequestedFrom.CalendarForeColor = System.Drawing.Color.Navy;
             this.dTPickerRequestedFrom.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -93,6 +108,7 @@
             this.dTPickerRequestedFrom.TabIndex = 1;
             this.dTPickerRequestedFrom.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.dTPickerRequestedFrom.CloseUp += new System.EventHandler(this.dTPicker_CloseUp);
+            this.dTPickerRequestedFrom.ValueChanged += new System.EventHandler(this.dTPicker_ValueChanged);
             this.dTPickerRequestedFrom.DropDown += new System.EventHandler(this.dTPicker_DropDown);
             this.dTPickerRequestedFrom.Enter += new System.EventHandler(this.dTPicker_Enter);
             // 
@@ -146,26 +162,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Date Requested";
             // 
-            // btnBack
-            // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.BackColor = System.Drawing.Color.DarkGray;
-            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.btnBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.DimGray;
-            this.btnBack.Location = new System.Drawing.Point(894, 840);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(262, 60);
-            this.btnBack.TabIndex = 23;
-            this.btnBack.Text = "Admin Control";
-            this.btnBack.UseVisualStyleBackColor = true;
-            // 
             // panelFilter
             // 
             this.panelFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelFilter.Controls.Add(pBLogo);
             this.panelFilter.Controls.Add(this.gBHot);
             this.panelFilter.Controls.Add(this.gBCRR);
             this.panelFilter.Controls.Add(this.label10);
@@ -302,7 +304,7 @@
             this.buttonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.buttonReset.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonReset.ForeColor = System.Drawing.Color.Navy;
-            this.buttonReset.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.refresh;
+            this.buttonReset.Image = ((System.Drawing.Image)(resources.GetObject("buttonReset.Image")));
             this.buttonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonReset.Location = new System.Drawing.Point(10, 678);
             this.buttonReset.Margin = new System.Windows.Forms.Padding(0);
@@ -567,22 +569,6 @@
             this.dGVHistory.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dGVHistory_MouseDown);
             this.dGVHistory.MouseEnter += new System.EventHandler(this.dGV_MouseEnter);
             // 
-            // btnQuit
-            // 
-            this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnQuit.BackColor = System.Drawing.Color.Gray;
-            this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuit.ForeColor = System.Drawing.Color.Black;
-            this.btnQuit.Location = new System.Drawing.Point(894, 904);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(262, 60);
-            this.btnQuit.TabIndex = 26;
-            this.btnQuit.Text = "Quit";
-            this.btnQuit.UseVisualStyleBackColor = false;
-            // 
             // btnMain
             // 
             this.btnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -591,12 +577,57 @@
             this.btnMain.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMain.ForeColor = System.Drawing.Color.DimGray;
+            this.btnMain.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.home_32;
+            this.btnMain.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMain.Location = new System.Drawing.Point(894, 774);
             this.btnMain.Name = "btnMain";
+            this.btnMain.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMain.Size = new System.Drawing.Size(262, 60);
             this.btnMain.TabIndex = 27;
             this.btnMain.Text = "Main Screen";
             this.btnMain.UseVisualStyleBackColor = true;
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnQuit.BackColor = System.Drawing.Color.Gray;
+            this.btnQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuit.ForeColor = System.Drawing.Color.DimGray;
+            this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
+            this.btnQuit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnQuit.Location = new System.Drawing.Point(894, 904);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnQuit.Size = new System.Drawing.Size(262, 60);
+            this.btnQuit.TabIndex = 26;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = true;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.BackColor = System.Drawing.Color.DarkGray;
+            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnBack.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.DimGray;
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.Location = new System.Drawing.Point(894, 840);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnBack.Size = new System.Drawing.Size(262, 60);
+            this.btnBack.TabIndex = 23;
+            this.btnBack.Text = "Admin Control";
+            this.btnBack.UseVisualStyleBackColor = true;
+            // 
+            // bGWFilter
+            // 
+            this.bGWFilter.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWFilter_DoWork);
+            this.bGWFilter.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bGWFilter_RunWorkerCompleted);
             // 
             // HistoryForm
             // 
@@ -617,6 +648,7 @@
             this.Text = "Completed Clean Request History";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(pBLogo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panelFilter.ResumeLayout(false);
@@ -638,7 +670,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dTPickerRequestedFrom;
         private System.Windows.Forms.DateTimePicker dTPickerRequestedTo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -675,5 +706,7 @@
         private System.Windows.Forms.RadioButton rBCRRNo;
         private System.Windows.Forms.RadioButton rBCRRYes;
         private System.Windows.Forms.RadioButton rBCRRBoth;
+        private System.ComponentModel.BackgroundWorker bGWFilter;
+        private System.Windows.Forms.DateTimePicker dTPickerRequestedFrom;
     }
 }
