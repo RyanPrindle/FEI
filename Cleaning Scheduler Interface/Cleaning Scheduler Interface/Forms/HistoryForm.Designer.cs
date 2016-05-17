@@ -646,7 +646,7 @@
             this.Name = "HistoryForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Completed Clean Request History";
+            this.Text = "Cleaning Scheduler Interface - History";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(pBLogo)).EndInit();

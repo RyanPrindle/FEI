@@ -562,7 +562,7 @@
             this.MinimizeBox = false;
             this.Name = "DetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Request Details";
+            this.Text = "Cleaning Scheduler Interface - Request Details";
             this.Load += new System.EventHandler(this.DetailsForm_Load);
             this.panelProcedures.ResumeLayout(false);
             this.panelProcedures.PerformLayout();

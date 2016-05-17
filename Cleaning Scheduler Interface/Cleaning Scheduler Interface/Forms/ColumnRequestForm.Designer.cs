@@ -278,7 +278,7 @@
             this.Name = "ColumnRequestForm";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Column Clean Request";
+            this.Text = "Cleaning Scheduler Interface - Column Clean Request";
             this.Load += new System.EventHandler(this.ColumnRequestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderColumnRequestForm)).EndInit();
             this.panel1.ResumeLayout(false);

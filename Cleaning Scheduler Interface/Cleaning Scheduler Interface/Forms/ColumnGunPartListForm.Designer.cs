@@ -77,7 +77,7 @@
             this.MinimizeBox = false;
             this.Name = "ColumnGunPartListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Gun Parts";
+            this.Text = "Cleaning Scheduler Interface - Detailed Parts List";
             this.Load += new System.EventHandler(this.ColumnGunPartListForm_Load);
             this.ResumeLayout(false);
 

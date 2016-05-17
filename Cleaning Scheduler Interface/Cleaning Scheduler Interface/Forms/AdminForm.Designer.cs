@@ -42,6 +42,7 @@
             this.dGVAdminInProcess = new System.Windows.Forms.DataGridView();
             this.bGWStartCleaning = new System.ComponentModel.BackgroundWorker();
             this.pnlEdit = new System.Windows.Forms.Panel();
+            this.btnEditRequests = new System.Windows.Forms.Button();
             this.bGWorkerRefreshTables = new System.ComponentModel.BackgroundWorker();
             this.bGWorkerDeleteRequest = new System.ComponentModel.BackgroundWorker();
             this.bGWorkerBackUpRequest = new System.ComponentModel.BackgroundWorker();
@@ -54,7 +55,6 @@
             this.btnQuit = new System.Windows.Forms.Button();
             this.btnReturnToMain = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
-            this.btnEditRequests = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -214,6 +214,24 @@
             this.pnlEdit.Size = new System.Drawing.Size(262, 83);
             this.pnlEdit.TabIndex = 1;
             // 
+            // btnEditRequests
+            // 
+            this.btnEditRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditRequests.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEditRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(188)))));
+            this.btnEditRequests.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditRequests.ForeColor = System.Drawing.Color.Navy;
+            this.btnEditRequests.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequests.Image")));
+            this.btnEditRequests.Location = new System.Drawing.Point(13, 10);
+            this.btnEditRequests.Name = "btnEditRequests";
+            this.btnEditRequests.Padding = new System.Windows.Forms.Padding(10);
+            this.btnEditRequests.Size = new System.Drawing.Size(232, 60);
+            this.btnEditRequests.TabIndex = 21;
+            this.btnEditRequests.Text = "Edit Requests";
+            this.btnEditRequests.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditRequests.UseVisualStyleBackColor = true;
+            this.btnEditRequests.Click += new System.EventHandler(this.btnEditRequests_Click);
+            // 
             // bGWorkerDeleteRequest
             // 
             this.bGWorkerDeleteRequest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bGWorkerDeleteRequest_DoWork);
@@ -352,24 +370,6 @@
             this.btnHistory.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnHistory.UseVisualStyleBackColor = true;
             // 
-            // btnEditRequests
-            // 
-            this.btnEditRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditRequests.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnEditRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(188)))));
-            this.btnEditRequests.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditRequests.ForeColor = System.Drawing.Color.Navy;
-            this.btnEditRequests.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequests.Image")));
-            this.btnEditRequests.Location = new System.Drawing.Point(13, 10);
-            this.btnEditRequests.Name = "btnEditRequests";
-            this.btnEditRequests.Padding = new System.Windows.Forms.Padding(10);
-            this.btnEditRequests.Size = new System.Drawing.Size(232, 60);
-            this.btnEditRequests.TabIndex = 21;
-            this.btnEditRequests.Text = "Edit Requests";
-            this.btnEditRequests.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditRequests.UseVisualStyleBackColor = true;
-            this.btnEditRequests.Click += new System.EventHandler(this.btnEditRequests_Click);
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,7 +387,7 @@
             this.MinimizeBox = false;
             this.Name = "AdminForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "Cleaning Request Control";
+            this.Text = "Cleaning Scheduler Interface - Admin Control";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.SizeChanged += new System.EventHandler(this.AdminForm_SizeChanged);

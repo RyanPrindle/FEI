@@ -43,13 +43,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rBtnNonStandard = new System.Windows.Forms.RadioButton();
             this.rBtnStandard = new System.Windows.Forms.RadioButton();
+            this.panelNonStandard = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblEnterDescription = new System.Windows.Forms.Label();
             this.pnlStandard = new System.Windows.Forms.Panel();
             this.comboBoxPart = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPartDescription = new System.Windows.Forms.Label();
-            this.panelNonStandard = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblEnterDescription = new System.Windows.Forms.Label();
             this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -74,8 +74,8 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.pnlStandard.SuspendLayout();
             this.panelNonStandard.SuspendLayout();
+            this.pnlStandard.SuspendLayout();
             this.groupBoxCR.SuspendLayout();
             this.gBoxStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQty)).BeginInit();
@@ -232,6 +232,41 @@
             this.rBtnStandard.UseVisualStyleBackColor = true;
             this.rBtnStandard.CheckedChanged += new System.EventHandler(this.rBtnStandard_CheckedChanged);
             // 
+            // panelNonStandard
+            // 
+            this.panelNonStandard.Controls.Add(this.textBoxDescription);
+            this.panelNonStandard.Controls.Add(this.label4);
+            this.panelNonStandard.Controls.Add(this.lblEnterDescription);
+            this.panelNonStandard.Location = new System.Drawing.Point(149, 19);
+            this.panelNonStandard.Margin = new System.Windows.Forms.Padding(0);
+            this.panelNonStandard.Name = "panelNonStandard";
+            this.panelNonStandard.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.panelNonStandard.Size = new System.Drawing.Size(339, 78);
+            this.panelNonStandard.TabIndex = 47;
+            this.panelNonStandard.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Maroon;
+            this.label4.Location = new System.Drawing.Point(3, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 23);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Description:";
+            // 
+            // lblEnterDescription
+            // 
+            this.lblEnterDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnterDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblEnterDescription.Location = new System.Drawing.Point(3, 44);
+            this.lblEnterDescription.Name = "lblEnterDescription";
+            this.lblEnterDescription.Size = new System.Drawing.Size(333, 29);
+            this.lblEnterDescription.TabIndex = 29;
+            this.lblEnterDescription.Text = "Enter A Short Description Above";
+            this.lblEnterDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pnlStandard
             // 
             this.pnlStandard.Controls.Add(this.comboBoxPart);
@@ -281,41 +316,6 @@
             this.lblPartDescription.TabIndex = 29;
             this.lblPartDescription.Text = "Enter A Part Number Above";
             this.lblPartDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panelNonStandard
-            // 
-            this.panelNonStandard.Controls.Add(this.textBoxDescription);
-            this.panelNonStandard.Controls.Add(this.label4);
-            this.panelNonStandard.Controls.Add(this.lblEnterDescription);
-            this.panelNonStandard.Location = new System.Drawing.Point(149, 19);
-            this.panelNonStandard.Margin = new System.Windows.Forms.Padding(0);
-            this.panelNonStandard.Name = "panelNonStandard";
-            this.panelNonStandard.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.panelNonStandard.Size = new System.Drawing.Size(339, 78);
-            this.panelNonStandard.TabIndex = 47;
-            this.panelNonStandard.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Maroon;
-            this.label4.Location = new System.Drawing.Point(3, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 23);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Description:";
-            // 
-            // lblEnterDescription
-            // 
-            this.lblEnterDescription.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnterDescription.ForeColor = System.Drawing.Color.Black;
-            this.lblEnterDescription.Location = new System.Drawing.Point(3, 44);
-            this.lblEnterDescription.Name = "lblEnterDescription";
-            this.lblEnterDescription.Size = new System.Drawing.Size(333, 29);
-            this.lblEnterDescription.TabIndex = 29;
-            this.lblEnterDescription.Text = "Enter A Short Description Above";
-            this.lblEnterDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxSerialNumber
             // 
@@ -557,7 +557,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Part Clean Request";
+            this.Text = "Cleaning Scheduler Interface - Part Clean Request";
             this.Load += new System.EventHandler(this.PartRequestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPartRequestForm)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -566,10 +566,10 @@
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.pnlStandard.ResumeLayout(false);
-            this.pnlStandard.PerformLayout();
             this.panelNonStandard.ResumeLayout(false);
             this.panelNonStandard.PerformLayout();
+            this.pnlStandard.ResumeLayout(false);
+            this.pnlStandard.PerformLayout();
             this.groupBoxCR.ResumeLayout(false);
             this.groupBoxCR.PerformLayout();
             this.gBoxStockLocation.ResumeLayout(false);
