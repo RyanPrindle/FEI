@@ -96,7 +96,6 @@ namespace Cleaning_Scheduler_Interface
             mProgress.Close();
         }
 
-
         private void FilterTable()
         {
             dgvScrollOffset = dGVHistory.HorizontalScrollingOffset;
@@ -292,6 +291,36 @@ namespace Cleaning_Scheduler_Interface
             dGVHistory.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVHistory.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
             dGVHistory.Columns["RequestID"].Visible = false;
+            dGVHistory.Columns["Decon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Decon"].Width = 75;
+            dGVHistory.Columns["Decon"].HeaderText = "Dcon";
+            dGVHistory.Columns["Dishwasher"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Dishwasher"].Width = 75;
+            dGVHistory.Columns["Dishwasher"].HeaderText = "Dwsh";
+            dGVHistory.Columns["WaterPik"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["WaterPik"].Width = 75;
+            dGVHistory.Columns["WaterPik"].HeaderText = "WPik";
+            dGVHistory.Columns["Ultrasonic"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Ultrasonic"].Width = 75;
+            dGVHistory.Columns["Ultrasonic"].HeaderText = "UlSn";
+            dGVHistory.Columns["Crest10"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Crest10"].Width = 75;
+            dGVHistory.Columns["Crest10"].HeaderText = "Cr10";
+            dGVHistory.Columns["Crest20"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Crest20"].Width = 75;
+            dGVHistory.Columns["Crest20"].HeaderText = "Cr20";
+            dGVHistory.Columns["CrestLong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["CrestLong"].Width = 75;
+            dGVHistory.Columns["CrestLong"].HeaderText = "CrLg";
+            dGVHistory.Columns["Hot"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Hot"].Width = 75;
+            dGVHistory.Columns["CR Ready"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["CR Ready"].Width = 75;
+            dGVHistory.Columns["CR Ready"].HeaderText = "CRR";
+            dGVHistory.Columns["Bulk"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Bulk"].Width = 75;
+            dGVHistory.Columns["Cage"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Cage"].Width = 75;
             dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
             dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
             dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;

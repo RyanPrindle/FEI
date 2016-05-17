@@ -254,7 +254,10 @@ namespace Cleaning_Scheduler_Interface
                     mPartRequest.mDescription = textBoxDescription.Text.Trim();
                 }
                 else
+                {
                     errorProviderPartRequestForm.SetError(textBoxDescription, "Enter Description for Non Standard Part");
+                    submittable = false;
+                }
             }
 
             if (!(textBoxInstructions.Text.Trim() == "" || textBoxInstructions.Text.ToString() == null))

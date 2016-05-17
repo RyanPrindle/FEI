@@ -196,8 +196,8 @@
             // 
             this.groupBox1.Controls.Add(this.rBtnNonStandard);
             this.groupBox1.Controls.Add(this.rBtnStandard);
-            this.groupBox1.Controls.Add(this.pnlStandard);
             this.groupBox1.Controls.Add(this.panelNonStandard);
+            this.groupBox1.Controls.Add(this.pnlStandard);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Maroon;
             this.groupBox1.Location = new System.Drawing.Point(13, 44);

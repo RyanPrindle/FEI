@@ -156,7 +156,5 @@ namespace Cleaning_Scheduler_Interface
         {
             toolTipDetails.Hide(btnDetails);
         }
-
-
     }
 }
