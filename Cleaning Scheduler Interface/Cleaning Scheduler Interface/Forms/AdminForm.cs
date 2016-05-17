@@ -245,9 +245,9 @@ namespace Cleaning_Scheduler_Interface
 
             if (e.RowIndex > -1)
             {
-                int cellHeight = e.CellBounds.Height - 10;
-                mainForm.infoIcon = (Image)new Bitmap(mainForm.infoIcon, new Size(cellHeight, cellHeight));
-                mainForm.checkIcon = (Image)new Bitmap(mainForm.checkIcon, new Size(cellHeight, cellHeight));
+                int shortSide = Math.Min(e.CellBounds.Width, e.CellBounds.Height) * 7 / 10;
+                mainForm.infoIcon = (Image)new Bitmap(mainForm.infoIcon, new Size(shortSide, shortSide));
+                mainForm.checkIcon = (Image)new Bitmap(mainForm.checkIcon, new Size(shortSide, shortSide));
                 DataGridView dGV = (DataGridView)sender;
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 

@@ -232,6 +232,8 @@ namespace Cleaning_Scheduler_Interface
             btnInfoColumn.HeaderText = "Info";
             btnInfoColumn.Text = "";
             btnInfoColumn.UseColumnTextForButtonValue = true;
+            btnInfoColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            btnInfoColumn.Width = 50;
             btnInfoColumn.FlatStyle = FlatStyle.Standard;
             if(!(dGV.Columns.Contains("Info")))
             {      
