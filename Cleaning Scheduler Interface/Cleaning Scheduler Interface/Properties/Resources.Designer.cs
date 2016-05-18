@@ -153,6 +153,16 @@ namespace Cleaning_Scheduler_Interface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flames {
+            get {
+                object obj = ResourceManager.GetObject("flames", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GreenCheck {
             get {
                 object obj = ResourceManager.GetObject("GreenCheck", resourceCulture);
@@ -206,6 +216,16 @@ namespace Cleaning_Scheduler_Interface.Properties {
         internal static System.Drawing.Bitmap quit_32 {
             get {
                 object obj = ResourceManager.GetObject("quit_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Realistic_fire_animated_transparent_gif {
+            get {
+                object obj = ResourceManager.GetObject("Realistic-fire-animated-transparent-gif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

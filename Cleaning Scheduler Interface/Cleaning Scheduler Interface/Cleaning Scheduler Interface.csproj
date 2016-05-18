@@ -168,6 +168,8 @@
     <None Include="Resources\help-contents.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\flames.gif" />
+    <None Include="Resources\Realistic-fire-animated-transparent-gif.gif" />
     <None Include="Resources\request_32.png" />
     <None Include="Resources\home_32.png" />
     <None Include="Resources\history_322.png" />

@@ -421,7 +421,7 @@ namespace Cleaning_Scheduler_Interface
         {
             int reqId = (int)e.Argument;
             RequestsDB requestsDB = new RequestsDB();
-            e.Result = requestsDB.StartCleaning(reqId);
+            e.Result = requestsDB.StartRequest(reqId);
         }
 
         private void bGWStartCleaning_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

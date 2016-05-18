@@ -133,6 +133,9 @@
   <data name="quit_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quit-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="request_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\request_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FEILogoSpinner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FEI Logo Spinner.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,6 +150,9 @@
   </data>
   <data name="history_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history_322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Realistic-fire-animated-transparent-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Realistic-fire-animated-transparent-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,7 +172,7 @@
   <data name="FEILogoSpinner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FEI Logo Spinner 2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="request_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\request_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flames" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flames.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -10,6 +10,9 @@ namespace Cleaning_Scheduler_Interface
 {
     class RequestsDB
     {
+
+#region Properties
+
         private static String cleaningRequestsDBFullPath = @"\\hlsql01\Beamtech\\Cleaning Team\Cleaning Scheduler\CleaningRequestsDB.accdb";
         private DB requestDB;
         private static string REQUESTTABLE = "RequestTable";
@@ -19,10 +22,15 @@ namespace Cleaning_Scheduler_Interface
         private static string HISTORY = "HistoryQuery";
         private static string REQUEST = "RequestQuery";
 
+#endregion
+
         public RequestsDB()
         {
             requestDB = new DB(cleaningRequestsDBFullPath);
         }
+
+#region Request
+
         public DataTable GetRequestsTable()
         {
             OleDbCommand cmd = new OleDbCommand();
@@ -45,7 +53,7 @@ namespace Cleaning_Scheduler_Interface
             return requestDB.GetDataTable(cmd);
         }
 
-        public int StartCleaning(int reqId)
+        public int StartRequest(int reqId)
         {
             String now = DateTime.Now.ToString();
             OleDbCommand cmd = new OleDbCommand();
@@ -71,8 +79,8 @@ namespace Cleaning_Scheduler_Interface
             cmd.Parameters.AddWithValue("@reqID", reqId);
             return requestDB.Update(cmd);
         }
-             
 
+#endregion
 #region Contact
 
         public DataTable GetContactTable()
