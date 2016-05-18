@@ -13,6 +13,9 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class AdminForm : Form
     {
+
+#region Properties
+
         private DataTable mQueueTable;
         private DataTable mInProcessTable;
         private DataGridViewCellStyle dGVStyle = new DataGridViewCellStyle();
@@ -20,6 +23,8 @@ namespace Cleaning_Scheduler_Interface
         private bool edit = false;
         private MainForm mainForm;
         private DetailsForm detailsForm;
+
+        #endregion
 
         public AdminForm(MainForm mF)
         {
@@ -74,7 +79,6 @@ namespace Cleaning_Scheduler_Interface
             dGVStyle.SelectionForeColor = dGVStyle.SelectionBackColor;
             dGVStyle.Font = mainForm.dGVRowFont;
         }
-
        
         private void InitDGVAdminQueue()
         {
@@ -238,7 +242,7 @@ namespace Cleaning_Scheduler_Interface
             RefreshTables();
         }
 
-        #region Event Handlers
+#region Event Handlers
 
         private void dGV_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -401,7 +405,7 @@ namespace Cleaning_Scheduler_Interface
 
         #endregion
 
-        #region BackGround Workers
+#region BackGround Workers
 
         private void StartCleaning(int reqId)
         {
@@ -530,9 +534,6 @@ namespace Cleaning_Scheduler_Interface
 
 
         #endregion
-
-        
-
 
     }
 }

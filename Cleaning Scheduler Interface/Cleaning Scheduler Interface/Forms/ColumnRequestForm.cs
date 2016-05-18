@@ -12,6 +12,9 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class ColumnRequestForm : Form
     {
+
+#region Properties
+
         private static String ADDCONTACT = "Add new contact..";
         private static String OPTIONAL = "Optional...";
         private DataTable mColumnTable;
@@ -19,20 +22,16 @@ namespace Cleaning_Scheduler_Interface
         private DataTable mContactTable;
         private int mContactID;
         ProgressBarForm mProgress;
-        private GunRequest mColumnRequest; 
+        private GunRequest mColumnRequest;
+
+        #endregion
 
         public ColumnRequestForm()
         {
             InitializeComponent();
             mContactID = 0;
         }
-
-        private void ColumnRequestForm_Load(object sender, EventArgs e)
-        {
-            GetDataTables();
-           
-        }
-
+        
         private void AddContact(String email)
         {
             mProgress = new ProgressBarForm();
@@ -52,74 +51,6 @@ namespace Cleaning_Scheduler_Interface
             bGWorkerGetData.RunWorkerAsync();
             mProgress.ShowDialog();
         }
-
-        #region BackGround Workers
-
-        private void bGWorkerGetData_DoWork(object sender, DoWorkEventArgs e)
-        {
-            RequestsDB requestDB = new RequestsDB();
-            List<DataTable> tables = new List<DataTable>();
-            tables.Add(requestDB.GetGunTable());
-            tables.Add(requestDB.GetRequestsTable());
-            tables.Add(requestDB.GetContactTable());
-            e.Result = tables;
-        }
-        private void bGWorkerGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            List<DataTable> tables = (List<DataTable>)e.Result;
-            mColumnTable = tables[0];
-            mRequestsTable = tables[1];
-            mContactTable = tables[2];
-            LoadColumnsComboBox();
-            LoadContactsComboBox();            
-            mProgress.Close();
-        }
-
-
-        private void bGWorkerAddContact_DoWork(object sender, DoWorkEventArgs e)
-        {
-            String email = (String)e.Argument;
-            RequestsDB requestsDB = new RequestsDB();
-            int contactID = requestsDB.AddIfNewContact(email);
-            Tuple<String,int> result = new Tuple<string,int>(email,contactID);
-            e.Result = result;
-            
-        }
-        private void bGWorkerAddContact_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            Tuple<String, int> result = (Tuple<String, int>)e.Result;
-            String eMail = result.Item1;
-            mContactID = result.Item2;
-            mProgress.Close();
-            GetDataTables();            
-        }
-
-        private void AddColumn(GunRequest req)
-        {
-            mProgress = new ProgressBarForm();            
-            bGWorkerAddColumn = new BackgroundWorker();
-            bGWorkerAddColumn.DoWork += new DoWorkEventHandler(bGWorkerAddColumn_DoWork);
-            bGWorkerAddColumn.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerAddColumn_RunWorkerCompleted);
-            bGWorkerAddColumn.RunWorkerAsync(req);
-            mProgress.ShowDialog();
-        }
-        private void bGWorkerAddColumn_DoWork(object sender, DoWorkEventArgs e)
-        {
-            RequestsDB requestsDB = new RequestsDB();
-            e.Result = requestsDB.AddGunRequest((GunRequest)e.Argument);
-        }
-        private void bGWorkerAddColumn_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            int result = (int)e.Result;  
-            mProgress.Close();
-            if (result == 0)
-            {
-                MessageBox.Show("Request not created.");         
-            }
-            this.Close();
-        }
-        #endregion
-
 
         private void LoadColumnsComboBox()
         {
@@ -152,7 +83,74 @@ namespace Cleaning_Scheduler_Interface
             }
         }
 
+        #region BackGround Workers
 
+        private void bGWorkerGetData_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RequestsDB requestDB = new RequestsDB();
+            List<DataTable> tables = new List<DataTable>();
+            tables.Add(requestDB.GetGunTable());
+            tables.Add(requestDB.GetRequestsTable());
+            tables.Add(requestDB.GetContactTable());
+            e.Result = tables;
+        }
+        private void bGWorkerGetData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<DataTable> tables = (List<DataTable>)e.Result;
+            mColumnTable = tables[0];
+            mRequestsTable = tables[1];
+            mContactTable = tables[2];
+            LoadColumnsComboBox();
+            LoadContactsComboBox();
+            mProgress.Close();
+        }
+
+
+        private void bGWorkerAddContact_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String email = (String)e.Argument;
+            RequestsDB requestsDB = new RequestsDB();
+            int contactID = requestsDB.AddIfNewContact(email);
+            Tuple<String, int> result = new Tuple<string, int>(email, contactID);
+            e.Result = result;
+
+        }
+        private void bGWorkerAddContact_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Tuple<String, int> result = (Tuple<String, int>)e.Result;
+            String eMail = result.Item1;
+            mContactID = result.Item2;
+            mProgress.Close();
+            GetDataTables();
+        }
+
+        private void AddColumn(GunRequest req)
+        {
+            mProgress = new ProgressBarForm();
+            bGWorkerAddColumn = new BackgroundWorker();
+            bGWorkerAddColumn.DoWork += new DoWorkEventHandler(bGWorkerAddColumn_DoWork);
+            bGWorkerAddColumn.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bGWorkerAddColumn_RunWorkerCompleted);
+            bGWorkerAddColumn.RunWorkerAsync(req);
+            mProgress.ShowDialog();
+        }
+        private void bGWorkerAddColumn_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RequestsDB requestsDB = new RequestsDB();
+            e.Result = requestsDB.AddGunRequest((GunRequest)e.Argument);
+        }
+        private void bGWorkerAddColumn_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            int result = (int)e.Result;
+            mProgress.Close();
+            if (result == 0)
+            {
+                MessageBox.Show("Request not created.");
+            }
+            this.Close();
+        }
+        #endregion
+
+        #region Event Handlers
 
         private void ComboBoxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -180,7 +178,11 @@ namespace Cleaning_Scheduler_Interface
             }
         }
 
-       
+        private void ColumnRequestForm_Load(object sender, EventArgs e)
+        {
+            GetDataTables();
+
+        }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -254,5 +256,7 @@ namespace Cleaning_Scheduler_Interface
             int index = comboBoxColumn.SelectedIndex;
             lblDescription.Text = mColumnTable.Rows[index]["Description"].ToString();
         }
+
+        #endregion
     }
 }

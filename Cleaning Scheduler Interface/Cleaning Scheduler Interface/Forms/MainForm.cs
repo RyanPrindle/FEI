@@ -12,7 +12,8 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class MainForm : Form
     {
-        #region Properties
+
+#region Properties
 
         private String[] checkBoxColumns = new String[] { }; //"Decon", "Dishwasher", "WaterPik", "Ultrasonic", "Crest10", "Crest20", "CrestLong", "CR Ready", "Bulk", "Cage", "Hot" };
         private PartRequestForm requestPartForm;
@@ -58,65 +59,6 @@ namespace Cleaning_Scheduler_Interface
             progressForm.ShowDialog();
         }
 
-        #region BackGround Workers
-
-        private void bGWorkerFillTables_DoWork(object sender, DoWorkEventArgs e)
-        {
-            RequestsDB cleaningRequestsDB = new RequestsDB();
-            PartsDB partDB = new PartsDB();
-            DataTable requestTable = cleaningRequestsDB.GetRequestsTable();
-            DataTable contactTable = cleaningRequestsDB.GetContactTable();
-            List<DataTable> tables = new List<DataTable>();
-            tables.Add(requestTable);
-            tables.Add(contactTable);
-            e.Result = tables;
-        }
-
-        private void bGWorkerFillTables_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {            
-            List<DataTable> dBTable = (List<DataTable>)e.Result;
-            requestTable = new DataTable();
-            requestTable = dBTable[0];
-            contactTable = dBTable[1];
-
-            
-            requestTable.Columns["RequestedOn"].ColumnName = "Requested";
-            requestTable.Columns["StartedOn"].ColumnName = "Started";
-            requestTable.Columns["FinishedOn"].ColumnName = "Finished";
-            requestTable.Columns["SerialNumber"].ColumnName = "Serial #";
-            requestTable.Columns["PartNumber"].ColumnName = "Part #";
-            requestTable.Columns["Email"].ColumnName = "Contact";
-            requestTable.Columns["Quantity"].ColumnName = "Qty";
-            queueTable = new DataTable();
-            queueTable = requestTable.Clone();
-            inProcessTable = new DataTable();
-            inProcessTable = requestTable.Clone();
-            finishedTable = new DataTable();
-            finishedTable = requestTable.Clone();            
-            foreach (DataRow row in requestTable.Rows)
-            {
-                if (DBNull.Value.Equals(row["Started"]))
-                {                   
-                    queueTable.Rows.Add(row.ItemArray);
-                }
-                else if (DBNull.Value.Equals(row["Finished"]))
-                {
-                    inProcessTable.Rows.Add(row.ItemArray); 
-                }
-                else
-                {
-                    if ((DateTime)row["Finished"] > DateTime.Today.AddDays(-2))
-                    finishedTable.Rows.Add(row.ItemArray);                    
-                }
-            }
-            InitQueueDGV();
-            InitInProcessDGV();
-            InitCompletedDGV();                        
-            progressForm.Close();
-        }
-
-        #endregion
-        
         private void InitCompletedDGV()
         {
             
@@ -495,6 +437,65 @@ namespace Cleaning_Scheduler_Interface
         }
         
 #endregion
+
+#region BackGround Workers
+
+        private void bGWorkerFillTables_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RequestsDB cleaningRequestsDB = new RequestsDB();
+            PartsDB partDB = new PartsDB();
+            DataTable requestTable = cleaningRequestsDB.GetRequestsTable();
+            DataTable contactTable = cleaningRequestsDB.GetContactTable();
+            List<DataTable> tables = new List<DataTable>();
+            tables.Add(requestTable);
+            tables.Add(contactTable);
+            e.Result = tables;
+        }
+
+        private void bGWorkerFillTables_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<DataTable> dBTable = (List<DataTable>)e.Result;
+            requestTable = new DataTable();
+            requestTable = dBTable[0];
+            contactTable = dBTable[1];
+
+
+            requestTable.Columns["RequestedOn"].ColumnName = "Requested";
+            requestTable.Columns["StartedOn"].ColumnName = "Started";
+            requestTable.Columns["FinishedOn"].ColumnName = "Finished";
+            requestTable.Columns["SerialNumber"].ColumnName = "Serial #";
+            requestTable.Columns["PartNumber"].ColumnName = "Part #";
+            requestTable.Columns["Email"].ColumnName = "Contact";
+            requestTable.Columns["Quantity"].ColumnName = "Qty";
+            queueTable = new DataTable();
+            queueTable = requestTable.Clone();
+            inProcessTable = new DataTable();
+            inProcessTable = requestTable.Clone();
+            finishedTable = new DataTable();
+            finishedTable = requestTable.Clone();
+            foreach (DataRow row in requestTable.Rows)
+            {
+                if (DBNull.Value.Equals(row["Started"]))
+                {
+                    queueTable.Rows.Add(row.ItemArray);
+                }
+                else if (DBNull.Value.Equals(row["Finished"]))
+                {
+                    inProcessTable.Rows.Add(row.ItemArray);
+                }
+                else
+                {
+                    if ((DateTime)row["Finished"] > DateTime.Today.AddDays(-2))
+                        finishedTable.Rows.Add(row.ItemArray);
+                }
+            }
+            InitQueueDGV();
+            InitInProcessDGV();
+            InitCompletedDGV();
+            progressForm.Close();
+        }
+
+        #endregion
         
 
     }

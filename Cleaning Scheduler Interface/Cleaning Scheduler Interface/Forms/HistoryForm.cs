@@ -12,6 +12,9 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class HistoryForm : Form
     {
+
+#region Properties
+
         private String[] boolNames = new String[] { "Decon", "Dishwasher", "WaterPik", "Ultrasonic", "Crest10", "Crest20", "CrestLong", "CleanRoomReady", "Bulk", "Cage", "Hot" };
         private Font dGVCheckboxSize = new System.Drawing.Font("Arial", 24.25F, System.Drawing.FontStyle.Bold);
         private ProgressBarForm mProgress;
@@ -30,6 +33,8 @@ namespace Cleaning_Scheduler_Interface
         private bool calendarDroppedDown = false;
         private int dgvScrollOffset;
         private TableFilter filter;
+
+        #endregion
 
         public HistoryForm(MainForm mainForm)
         {
@@ -57,6 +62,177 @@ namespace Cleaning_Scheduler_Interface
             btnQuit.Height = btnMain.Height = btnBack.Height = btnHeight;
             btnQuit.Font = btnMain.Font = btnBack.Font = buttonReset.Font = mMainForm.btnFont;
         }
+
+        private void InitFilters()
+        {
+            filter = new TableFilter(mFilteredTable);
+            dTPickerRequestedFrom.CustomFormat = dTPFormat;
+            dTPickerRequestedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerRequestedFrom.Font = dTPFont;
+            dTPickerRequestedFrom.MinDate = beginDate;
+            dTPickerRequestedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerRequestedFrom.Value = filter.mReqStart = beginDate;
+
+            dTPickerRequestedTo.CustomFormat = dTPFormat;
+            dTPickerRequestedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerRequestedTo.Font = dTPFont;
+            dTPickerRequestedTo.MinDate = beginDate;
+            dTPickerRequestedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerRequestedTo.Value = filter.mReqStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+
+
+            dTPickerStartedFrom.CustomFormat = dTPFormat;
+            dTPickerStartedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerStartedFrom.Font = dTPFont;
+            dTPickerStartedFrom.MinDate = beginDate;
+            dTPickerStartedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerStartedFrom.Value = filter.mInProcStart = beginDate;
+
+            dTPickerStartedTo.CustomFormat = dTPFormat;
+            dTPickerStartedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerStartedTo.Font = dTPFont;
+            dTPickerStartedTo.MinDate = beginDate;
+            dTPickerStartedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerStartedTo.Value = filter.mInProcStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+
+
+            dTPickerFinishedFrom.CustomFormat = dTPFormat;
+            dTPickerFinishedFrom.Format = DateTimePickerFormat.Custom;
+            dTPickerFinishedFrom.Font = dTPFont;
+            dTPickerFinishedFrom.MinDate = beginDate;
+            dTPickerFinishedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerFinishedFrom.Value = filter.mFinStart = beginDate;
+
+            dTPickerFinishedTo.CustomFormat = dTPFormat;
+            dTPickerFinishedTo.Format = DateTimePickerFormat.Custom;
+            dTPickerFinishedTo.Font = dTPFont;
+            dTPickerFinishedTo.MinDate = beginDate;
+            dTPickerFinishedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+            dTPickerFinishedTo.Value = filter.mFinStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
+
+            rBCRRBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
+
+            rBCRRBoth.Checked = true;
+            filter.mCRR = 0;
+            rBHotBoth.Checked = true;
+            filter.mHot = 0;
+
+            rBCRRBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBCRRNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+            rBHotNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
+        }
+
+        private void InitHistoryDGV()
+        {
+            dGVHistory.SuspendLayout();
+            dGVHistory.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
+            dGVHistory.DataSource = null;
+            dGVHistory.Rows.Clear();
+            dGVHistory.Columns.Clear();
+            mFilteredTable = new DataTable();
+            mFilteredTable = mHistoryTable.Copy();
+            dGVHistory.DataSource = mFilteredTable;
+
+            dGVHistory.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVHistory.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVHistory.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
+            dGVHistory.Columns["RequestID"].Visible = false;
+            dGVHistory.Columns["Decon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Decon"].Width = 75;
+            dGVHistory.Columns["Decon"].HeaderText = "Dcon";
+            dGVHistory.Columns["Dishwasher"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Dishwasher"].Width = 75;
+            dGVHistory.Columns["Dishwasher"].HeaderText = "Dwsh";
+            dGVHistory.Columns["WaterPik"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["WaterPik"].Width = 75;
+            dGVHistory.Columns["WaterPik"].HeaderText = "WPik";
+            dGVHistory.Columns["Ultrasonic"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Ultrasonic"].Width = 75;
+            dGVHistory.Columns["Ultrasonic"].HeaderText = "UlSn";
+            dGVHistory.Columns["Crest10"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Crest10"].Width = 75;
+            dGVHistory.Columns["Crest10"].HeaderText = "Cr10";
+            dGVHistory.Columns["Crest20"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Crest20"].Width = 75;
+            dGVHistory.Columns["Crest20"].HeaderText = "Cr20";
+            dGVHistory.Columns["CrestLong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["CrestLong"].Width = 75;
+            dGVHistory.Columns["CrestLong"].HeaderText = "CrLg";
+            dGVHistory.Columns["Hot"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Hot"].Width = 75;
+            dGVHistory.Columns["CR Ready"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["CR Ready"].Width = 75;
+            dGVHistory.Columns["CR Ready"].HeaderText = "CRR";
+            dGVHistory.Columns["Bulk"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Bulk"].Width = 75;
+            dGVHistory.Columns["Cage"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dGVHistory.Columns["Cage"].Width = 75;
+            dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
+            dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
+            mMainForm.FormatDGVInfoHot(dGVHistory);
+            dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
+            LoadPartComboBox();
+            LoadRequestorComboBox();
+            dGVHistory.ResumeLayout();
+        }
+
+        private void LoadRequestorComboBox()
+        {
+            object item = null;
+            if (comboBoxRequestor.SelectedIndex >= 0)
+                item = comboBoxRequestor.SelectedItem;
+            comboBoxRequestor.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
+            mRequestorList = new List<string>();
+            foreach (DataRow row in mFilteredTable.Rows)
+            {
+                {
+                    mRequestorList.Add(row["Requestor"].ToString());
+                }
+            }
+            mRequestorList = mRequestorList.Distinct().ToList();
+            mRequestorList.Sort();
+            mRequestorList.Insert(0, "All");
+            comboBoxRequestor.DataSource = mRequestorList;
+            comboBoxRequestor.Font = cBFont;
+            if (item != null)
+                comboBoxRequestor.SelectedItem = item;
+            comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
+        }
+
+        private void LoadPartComboBox()
+        {
+            object item = null;
+            if (comboBoxPartFilter.SelectedIndex >= 0)
+                item = comboBoxPartFilter.SelectedItem;
+            comboBoxPartFilter.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
+            mPartList = new List<string>();
+
+            foreach (DataRow row in mFilteredTable.Rows)
+            {
+                {
+                    mPartList.Add(row["Part #"].ToString());
+                }
+            }
+            mPartList = mPartList.Distinct().ToList();
+            mPartList.Sort();
+            mPartList.Insert(0, "All");
+            comboBoxPartFilter.DataSource = mPartList;
+            comboBoxPartFilter.Font = cBFont;
+            if (item != null)
+                comboBoxPartFilter.SelectedItem = item;
+            comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
+        }
+
+# region Background Workers
 
         private void GetHistoryData()
         {
@@ -209,175 +385,9 @@ namespace Cleaning_Scheduler_Interface
             mProgress.Close();
         }
 
-        private void InitFilters()
-        {
-            filter = new TableFilter(mFilteredTable);    
-            dTPickerRequestedFrom.CustomFormat = dTPFormat;
-            dTPickerRequestedFrom.Format = DateTimePickerFormat.Custom;
-            dTPickerRequestedFrom.Font = dTPFont;
-            dTPickerRequestedFrom.MinDate = beginDate;
-            dTPickerRequestedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerRequestedFrom.Value = filter.mReqStart = beginDate;
-            
-            dTPickerRequestedTo.CustomFormat = dTPFormat;
-            dTPickerRequestedTo.Format = DateTimePickerFormat.Custom;
-            dTPickerRequestedTo.Font = dTPFont;
-            dTPickerRequestedTo.MinDate = beginDate;
-            dTPickerRequestedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerRequestedTo.Value = filter.mReqStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            
+        #endregion
 
-            dTPickerStartedFrom.CustomFormat = dTPFormat;
-            dTPickerStartedFrom.Format = DateTimePickerFormat.Custom;
-            dTPickerStartedFrom.Font = dTPFont;
-            dTPickerStartedFrom.MinDate = beginDate;
-            dTPickerStartedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerStartedFrom.Value = filter.mInProcStart = beginDate;
-        
-            dTPickerStartedTo.CustomFormat = dTPFormat;
-            dTPickerStartedTo.Format = DateTimePickerFormat.Custom;
-            dTPickerStartedTo.Font = dTPFont;
-            dTPickerStartedTo.MinDate = beginDate;
-            dTPickerStartedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerStartedTo.Value = filter.mInProcStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            
-
-            dTPickerFinishedFrom.CustomFormat = dTPFormat;
-            dTPickerFinishedFrom.Format = DateTimePickerFormat.Custom;
-            dTPickerFinishedFrom.Font = dTPFont;
-            dTPickerFinishedFrom.MinDate = beginDate;
-            dTPickerFinishedFrom.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerFinishedFrom.Value = filter.mFinStart = beginDate;
-
-            dTPickerFinishedTo.CustomFormat = dTPFormat;
-            dTPickerFinishedTo.Format = DateTimePickerFormat.Custom;
-            dTPickerFinishedTo.Font = dTPFont;
-            dTPickerFinishedTo.MinDate = beginDate;
-            dTPickerFinishedTo.MaxDate = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-            dTPickerFinishedTo.Value = filter.mFinStop = DateTime.Today.Date.AddDays(1).AddTicks(-1);
-
-            rBCRRBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBCRRYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBCRRNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotBoth.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotYes.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotNo.CheckedChanged -= new System.EventHandler(this.rBCRRHot_CheckedChanged);
-
-            rBCRRBoth.Checked = true;
-            filter.mCRR = 0;
-            rBHotBoth.Checked = true;
-            filter.mHot = 0;
-            
-            rBCRRBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBCRRYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBCRRNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotBoth.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotYes.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-            rBHotNo.CheckedChanged += new System.EventHandler(this.rBCRRHot_CheckedChanged);
-        }
-       
-        private void InitHistoryDGV()
-        {
-            dGVHistory.SuspendLayout();
-            dGVHistory.MouseWheel -= new MouseEventHandler(dGV_MouseWheel);
-            dGVHistory.DataSource = null;
-            dGVHistory.Rows.Clear();
-            dGVHistory.Columns.Clear();
-            mFilteredTable = new DataTable();
-            mFilteredTable = mHistoryTable.Copy();
-            dGVHistory.DataSource = mFilteredTable;
-
-            dGVHistory.Columns["Requested"].DefaultCellStyle.Format = "M/d/yyyy";
-            dGVHistory.Columns["Started"].DefaultCellStyle.Format = "M/d/yyyy";
-            dGVHistory.Columns["Finished"].DefaultCellStyle.Format = "M/d/yyyy";
-            dGVHistory.Columns["RequestID"].Visible = false;
-            dGVHistory.Columns["Decon"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Decon"].Width = 75;
-            dGVHistory.Columns["Decon"].HeaderText = "Dcon";
-            dGVHistory.Columns["Dishwasher"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Dishwasher"].Width = 75;
-            dGVHistory.Columns["Dishwasher"].HeaderText = "Dwsh";
-            dGVHistory.Columns["WaterPik"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["WaterPik"].Width = 75;
-            dGVHistory.Columns["WaterPik"].HeaderText = "WPik";
-            dGVHistory.Columns["Ultrasonic"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Ultrasonic"].Width = 75;
-            dGVHistory.Columns["Ultrasonic"].HeaderText = "UlSn";
-            dGVHistory.Columns["Crest10"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Crest10"].Width = 75;
-            dGVHistory.Columns["Crest10"].HeaderText = "Cr10";
-            dGVHistory.Columns["Crest20"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Crest20"].Width = 75;
-            dGVHistory.Columns["Crest20"].HeaderText = "Cr20";
-            dGVHistory.Columns["CrestLong"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["CrestLong"].Width = 75;
-            dGVHistory.Columns["CrestLong"].HeaderText = "CrLg";
-            dGVHistory.Columns["Hot"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Hot"].Width = 75;
-            dGVHistory.Columns["CR Ready"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["CR Ready"].Width = 75;
-            dGVHistory.Columns["CR Ready"].HeaderText = "CRR";
-            dGVHistory.Columns["Bulk"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Bulk"].Width = 75;
-            dGVHistory.Columns["Cage"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dGVHistory.Columns["Cage"].Width = 75;
-            dGVHistory.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dGVHistory.RowsDefaultCellStyle.Font = mMainForm.dGVRowFont;
-            dGVHistory.ColumnHeadersDefaultCellStyle.Font = mMainForm.dGVHeaderFont;
-            mMainForm.FormatDGVInfoHot(dGVHistory);
-            dGVHistory.MouseWheel += new MouseEventHandler(dGV_MouseWheel);
-            LoadPartComboBox();
-            LoadRequestorComboBox();
-            dGVHistory.ResumeLayout();
-        }
-
-
-        private void LoadRequestorComboBox()
-        {
-            object item = null;
-            if (comboBoxRequestor.SelectedIndex >= 0)
-                item = comboBoxRequestor.SelectedItem;
-            comboBoxRequestor.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-            mRequestorList = new List<string>();
-            foreach (DataRow row in mFilteredTable.Rows)
-            {
-                {
-                    mRequestorList.Add(row["Requestor"].ToString());
-                }
-            }
-            mRequestorList = mRequestorList.Distinct().ToList();
-            mRequestorList.Sort();
-            mRequestorList.Insert(0, "All");
-            comboBoxRequestor.DataSource = mRequestorList;
-            comboBoxRequestor.Font = cBFont;
-            if (item != null)
-                comboBoxRequestor.SelectedItem = item;
-            comboBoxRequestor.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-        }
-
-        private void LoadPartComboBox()
-        {
-            object item = null;
-            if (comboBoxPartFilter.SelectedIndex >= 0)
-                item = comboBoxPartFilter.SelectedItem; 
-            comboBoxPartFilter.SelectedIndexChanged -= new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-            mPartList = new List<string>();
-            
-            foreach (DataRow row in mFilteredTable.Rows)
-            {
-                {
-                    mPartList.Add(row["Part #"].ToString());
-                }
-            }
-            mPartList = mPartList.Distinct().ToList();
-            mPartList.Sort();
-            mPartList.Insert(0,"All");
-            comboBoxPartFilter.DataSource = mPartList;
-            comboBoxPartFilter.Font = cBFont;
-            if (item != null)
-                comboBoxPartFilter.SelectedItem = item;
-            comboBoxPartFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
-        }
+#region Event Handlers
 
         private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -528,6 +538,7 @@ namespace Cleaning_Scheduler_Interface
                 FilterTable();
         }
 
-        
+        #endregion
+
     }
 }

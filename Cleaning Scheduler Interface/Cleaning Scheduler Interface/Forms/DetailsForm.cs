@@ -12,12 +12,17 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class DetailsForm : Form
     {
+
+#region Properties
+
         private int requestID;
         private DataTable requestTable;
         private DataTable gunTable;
         private ColumnGunPartListForm columnGunForm;
         private Image detailsIcon;
         private ProgressBarForm progressForm;
+
+        #endregion
 
         public DetailsForm(int reqId)
         {
@@ -38,6 +43,8 @@ namespace Cleaning_Scheduler_Interface
             img = (Image)new Bitmap(img, new Size(height, width));
             return img;
         }
+
+#region Background Workers
 
         private void FillDataTables()
         {
@@ -140,6 +147,10 @@ namespace Cleaning_Scheduler_Interface
             progressForm.Close();
         }
 
+        #endregion
+
+#region Event Handlers
+
         private void btnDetails_Click(object sender, EventArgs e)
         {
             columnGunForm = new ColumnGunPartListForm(labelPart.Text);
@@ -156,5 +167,7 @@ namespace Cleaning_Scheduler_Interface
         {
             toolTipDetails.Hide(btnDetails);
         }
+
+        #endregion
     }
 }

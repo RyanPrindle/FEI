@@ -12,6 +12,9 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class PartRequestForm : Form
     {
+
+#region Properties
+
         private static String ADDCONTACT = "Add new contact...";
         private static String OPTIONAL = "Optional...";
         private PartRequest mPartRequest;
@@ -20,6 +23,8 @@ namespace Cleaning_Scheduler_Interface
         private DataTable mContactTable;
         private int mContactID;
         ProgressBarForm mProgress;
+
+        #endregion
 
         public PartRequestForm()
         {
@@ -62,7 +67,42 @@ namespace Cleaning_Scheduler_Interface
             mProgress.ShowDialog();
         }
 
-        #region BackGround Workers
+        private void LoadPartsComboBox()
+        {
+            comboBoxPart.DataSource = mPartTable;
+            comboBoxPart.DisplayMember = "Part";
+            comboBoxPart.ValueMember = "Part";
+            comboBoxPart.SelectedIndex = -1;
+            lblPartDescription.Text = mPartTable.Rows[0]["Description"].ToString();
+            if (lblPartDescription.Text == "")
+                lblPartDescription.Text = "No Description Found";
+        }
+
+        private void LoadContactsComboBox()
+        {
+            mContactTable.Rows[0].Delete();
+            DataRow promptContactRow = mContactTable.NewRow();
+            promptContactRow["Email"] = OPTIONAL;
+            promptContactRow["ContactId"] = 1;
+            mContactTable.Rows.InsertAt(promptContactRow, 0);
+            DataRow promptAddContactRow = mContactTable.NewRow();
+            promptAddContactRow["Email"] = ADDCONTACT;
+            promptAddContactRow["ContactId"] = -1;
+            mContactTable.Rows.Add(promptAddContactRow);
+            comboBoxContact.ValueMember = "ContactId";
+            comboBoxContact.DisplayMember = "Email";
+            comboBoxContact.DataSource = mContactTable;
+            if (mContactID > 1)
+            {
+                DataRow[] rows = mContactTable.Select("ContactId = '" + mContactID + "'");
+                if (rows.Length > 0)
+                {
+                    comboBoxContact.SelectedIndex = mContactTable.Rows.IndexOf(rows[0]) - 1;
+                }
+            }
+        }
+
+#region BackGround Workers
 
         private void bGWorkerGetData_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -127,40 +167,7 @@ namespace Cleaning_Scheduler_Interface
 
         #endregion
 
-        private void LoadPartsComboBox()
-        {
-            comboBoxPart.DataSource = mPartTable;
-            comboBoxPart.DisplayMember = "Part";
-            comboBoxPart.ValueMember = "Part";
-            comboBoxPart.SelectedIndex = -1;
-            lblPartDescription.Text = mPartTable.Rows[0]["Description"].ToString();
-            if (lblPartDescription.Text == "")
-                lblPartDescription.Text = "No Description Found";
-        }
-
-        private void LoadContactsComboBox()
-        {
-            mContactTable.Rows[0].Delete();
-            DataRow promptContactRow = mContactTable.NewRow();
-            promptContactRow["Email"] = OPTIONAL;
-            promptContactRow["ContactId"] = 1;
-            mContactTable.Rows.InsertAt(promptContactRow, 0);
-            DataRow promptAddContactRow = mContactTable.NewRow();
-            promptAddContactRow["Email"] = ADDCONTACT;
-            promptAddContactRow["ContactId"] = -1;
-            mContactTable.Rows.Add(promptAddContactRow);
-            comboBoxContact.ValueMember = "ContactId";
-            comboBoxContact.DisplayMember = "Email";
-            comboBoxContact.DataSource = mContactTable;
-            if (mContactID > 1)
-            {
-                DataRow[] rows = mContactTable.Select("ContactId = '" + mContactID + "'");
-                if (rows.Length > 0)
-                {
-                    comboBoxContact.SelectedIndex = mContactTable.Rows.IndexOf(rows[0]) - 1;
-                }
-            }
-        }
+#region Event Handlers
 
         private void ComboBoxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -447,6 +454,6 @@ namespace Cleaning_Scheduler_Interface
             errorProviderPartRequestForm.SetError(radioButtonCRNo, "");
         }
 
-        
+        #endregion
     }
 }

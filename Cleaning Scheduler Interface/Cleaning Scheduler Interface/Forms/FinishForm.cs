@@ -13,15 +13,50 @@ namespace Cleaning_Scheduler_Interface
 {
     public partial class FinishForm : Form
     {
+
+#region Properties
+
         private int reqId;
         private ProgressBarForm mProgress;
         private CleanProcedure cleanProcedure;
+
+        #endregion
+
         public FinishForm(int req)
         {
             InitializeComponent();
             reqId = req;
             cleanProcedure = new CleanProcedure();
         }
+
+        private void SendEmail(int reqID)
+        {
+            RequestsDB requestDB = new RequestsDB();
+            DataTable mContact = requestDB.GetRequest(reqID);
+            String contact = mContact.Rows[0]["Email"].ToString();
+            String part = mContact.Rows[0]["PartNumber"].ToString();
+            String requestor = mContact.Rows[0]["Requestor"].ToString();
+            if (contact != "none")
+            {
+                SmtpClient smtpClient = new SmtpClient("hiomail.w2k.feico.com");
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = false;
+                MailMessage mail = new MailMessage();
+
+                //Setting From , To, Subject, and Body
+                mail.From = new MailAddress("Cleaning@fei.com");
+                mail.To.Add(new MailAddress(contact));
+                mail.Subject = "Cleaning Job Finished";
+                mail.Body = "Part - " + part + ", requested by " + requestor +
+                            " has finished cleaning, and is ready to be picked up." +
+                            "\n\nPlease pick up " + part + " from cleaning." +
+                            "\n\nThank You";
+                smtpClient.Send(mail);
+            }
+        }
+
+#region Event Handlers
 
         private void checkBoxCrest_Click(object sender, EventArgs e)
         {
@@ -70,6 +105,10 @@ namespace Cleaning_Scheduler_Interface
 
         }
 
+        #endregion
+
+#region Background Workers
+
         private void bGWorkerLogFinished_DoWork(object sender, DoWorkEventArgs e)
         {
             RequestsDB requestDB = new RequestsDB();
@@ -92,31 +131,7 @@ namespace Cleaning_Scheduler_Interface
             this.Close();
         }
 
-        private void SendEmail(int reqID)
-        {
-            RequestsDB requestDB = new RequestsDB();
-            DataTable mContact = requestDB.GetRequest(reqID);
-            String contact = mContact.Rows[0]["Email"].ToString();
-            String part = mContact.Rows[0]["PartNumber"].ToString();
-            String requestor = mContact.Rows[0]["Requestor"].ToString();
-            if (contact != "none")
-            {
-                SmtpClient smtpClient = new SmtpClient("hiomail.w2k.feico.com");
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtpClient.EnableSsl = false;
-                MailMessage mail = new MailMessage();
-
-                //Setting From , To, Subject, and Body
-                mail.From = new MailAddress("Cleaning@fei.com");
-                mail.To.Add(new MailAddress(contact));
-                mail.Subject = "Cleaning Job Finished";
-                mail.Body = "Part - " + part + ", requested by " + requestor +
-                            " has finished cleaning, and is ready to be picked up." +
-                            "\n\nPlease pick up " + part + " from cleaning." +
-                            "\n\nThank You";
-                smtpClient.Send(mail);
-            }
-        }
+        #endregion
+        
     }
 }
