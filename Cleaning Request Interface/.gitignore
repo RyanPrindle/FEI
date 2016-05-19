@@ -1,0 +1,4 @@
+bin/
+obj/
+.suo
+/Cleaning Request Interface/*.suo
