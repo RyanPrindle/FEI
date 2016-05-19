@@ -534,7 +534,7 @@
             // pBFire
             // 
             this.pBFire.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pBFire.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.Realistic_fire_animated_transparent_gif;
+            this.pBFire.Image = global::Cleaning_Scheduler_Interface.Properties.Resources.Fire;
             this.pBFire.Location = new System.Drawing.Point(0, 0);
             this.pBFire.Name = "pBFire";
             this.pBFire.Size = new System.Drawing.Size(617, 518);

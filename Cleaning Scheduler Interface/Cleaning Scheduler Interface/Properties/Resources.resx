@@ -151,9 +151,6 @@
   <data name="history_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history_322.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Realistic-fire-animated-transparent-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Realistic-fire-animated-transparent-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,8 +168,5 @@
   </data>
   <data name="FEILogoSpinner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FEI Logo Spinner 2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="flames" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flames.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
