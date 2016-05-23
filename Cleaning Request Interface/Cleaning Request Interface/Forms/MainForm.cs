@@ -27,8 +27,8 @@ namespace Cleaning_Request_Interface
         private DataTable finishedTable = new DataTable();
         private DataTable contactTable = new DataTable();
 
-        public Font dGVRowFont = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold);
-        public Font dGVHeaderFont = new System.Drawing.Font("Arial Black", 15.25F, System.Drawing.FontStyle.Bold);
+        public Font dGVRowFont = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular);
+        public Font dGVHeaderFont = new System.Drawing.Font("Arial Narrow", 15.25F, System.Drawing.FontStyle.Bold);
         public Font btnFont = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold);
         public Image infoIcon;
         public Image checkIcon;
@@ -214,14 +214,13 @@ namespace Cleaning_Request_Interface
             panelCRR.BackColor = crrColor;
             
             int padding = 10;
-            int btnHeight = splitContainer1.Height / 10;
+            int btnHeight = splitContainer1.Height / 8;
             int btnWidth = (pnlButtons.Width - (2 * padding));
-            btnHistory.Width = btnQuit.Width = btnPartRequest.Width = pnlButtons.Width;
+            btnHistory.Width = btnQuit.Width = btnPartRequest.Width = panelLegend.Width = pnlButtons.Width;
             
 
             pnlButtons.Height = 2 * btnHeight + 3 * padding;
             panelLegend.Location = new Point(panelLegend.Location.X, pnlButtons.Height);
-            panelLegend.Height = splitContainer1.Height * 4 / 10;
 
             btnColumnRequest.Location = new Point(padding - 1, padding);
             btnColumnRequest.Height = btnPartRequest.Height = btnHistory.Height = btnQuit.Height = btnHeight;
@@ -232,7 +231,7 @@ namespace Cleaning_Request_Interface
             splitContainer1.SplitterWidth = splitContainer2.SplitterWidth = splitContainer3.SplitterWidth = padding;
             splitContainer2.SplitterDistance = (splitContainer1.Height - 2 * padding) / 3;
             splitContainer3.SplitterDistance = (splitContainer3.Height - padding) / 2;      
-            pBLogo.Location = new Point(0, btnHistory.Location.Y - btnHeight - padding - 157);   
+            pBLogo.Location = new Point(0, btnHistory.Location.Y - btnHeight - padding);   
         }
         
         private void OpenHistoryForm()
@@ -262,8 +261,8 @@ namespace Cleaning_Request_Interface
         private void buttonColumnRequest_Click(object sender, EventArgs e)
         {
             requestColumnForm = new ColumnRequestForm();
-            requestColumnForm.ShowDialog();
-            FillDataTables();
+            if (requestColumnForm.ShowDialog() == DialogResult.OK)
+                FillDataTables();
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
@@ -468,6 +467,7 @@ namespace Cleaning_Request_Interface
         }
 
         #endregion
+
         
 
     }

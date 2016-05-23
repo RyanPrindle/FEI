@@ -145,8 +145,10 @@ namespace Cleaning_Request_Interface
             if (result == 0)
             {
                 MessageBox.Show("Request not created.");
+                DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
-            this.Close();
+            else
+                DialogResult = System.Windows.Forms.DialogResult.OK;
         }
         #endregion
 

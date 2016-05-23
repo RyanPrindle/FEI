@@ -578,13 +578,12 @@
             this.btnMain.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMain.ForeColor = System.Drawing.Color.DimGray;
             this.btnMain.Image = global::Cleaning_Request_Interface.Properties.Resources.home_32;
-            this.btnMain.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMain.Location = new System.Drawing.Point(894, 774);
             this.btnMain.Name = "btnMain";
-            this.btnMain.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMain.Size = new System.Drawing.Size(262, 60);
             this.btnMain.TabIndex = 27;
             this.btnMain.Text = "Main Screen";
+            this.btnMain.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMain.UseVisualStyleBackColor = true;
             // 
             // btnQuit
@@ -596,14 +595,13 @@
             this.btnQuit.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.DimGray;
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnQuit.Location = new System.Drawing.Point(894, 904);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnQuit.Size = new System.Drawing.Size(262, 60);
             this.btnQuit.TabIndex = 26;
             this.btnQuit.Text = "Quit";
+            this.btnQuit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnQuit.UseVisualStyleBackColor = true;
             // 
             // bGWFilter
