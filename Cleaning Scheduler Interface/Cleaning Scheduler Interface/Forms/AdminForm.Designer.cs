@@ -63,6 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).BeginInit();
             this.pnlEdit.SuspendLayout();
             this.pnlLegend.SuspendLayout();
+            this.panelCRR.SuspendLayout();
+            this.panelHot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +93,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.dGVAdminInProcess);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
-            this.splitContainer1.Size = new System.Drawing.Size(953, 629);
+            this.splitContainer1.Size = new System.Drawing.Size(955, 629);
             this.splitContainer1.SplitterDistance = 295;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
@@ -140,7 +142,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminQueue.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVAdminQueue.RowTemplate.Height = 40;
-            this.dGVAdminQueue.Size = new System.Drawing.Size(949, 251);
+            this.dGVAdminQueue.Size = new System.Drawing.Size(951, 251);
             this.dGVAdminQueue.TabIndex = 0;
             this.dGVAdminQueue.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -190,7 +192,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVAdminInProcess.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dGVAdminInProcess.RowTemplate.Height = 40;
-            this.dGVAdminInProcess.Size = new System.Drawing.Size(949, 280);
+            this.dGVAdminInProcess.Size = new System.Drawing.Size(951, 280);
             this.dGVAdminInProcess.TabIndex = 1;
             this.dGVAdminInProcess.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVAdminInProcess.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
@@ -245,66 +247,75 @@
             // pnlLegend
             // 
             this.pnlLegend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlLegend.Controls.Add(this.label7);
             this.pnlLegend.Controls.Add(this.panelCRR);
-            this.pnlLegend.Controls.Add(this.label4);
             this.pnlLegend.Controls.Add(this.panelHot);
             this.pnlLegend.ForeColor = System.Drawing.Color.Black;
             this.pnlLegend.Location = new System.Drawing.Point(975, 96);
             this.pnlLegend.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlLegend.Name = "pnlLegend";
+            this.pnlLegend.Padding = new System.Windows.Forms.Padding(10);
             this.pnlLegend.Size = new System.Drawing.Size(262, 234);
             this.pnlLegend.TabIndex = 26;
             // 
             // label7
             // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(119, 146);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(156, 70);
+            this.label7.Size = new System.Drawing.Size(236, 68);
             this.label7.TabIndex = 27;
             this.label7.Text = "Cleanroom Ready";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelCRR
             // 
+            this.panelCRR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCRR.BackColor = System.Drawing.Color.Green;
             this.panelCRR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelCRR.Location = new System.Drawing.Point(10, 146);
+            this.panelCRR.Controls.Add(this.label7);
+            this.panelCRR.Location = new System.Drawing.Point(12, 146);
             this.panelCRR.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelCRR.Name = "panelCRR";
-            this.panelCRR.Size = new System.Drawing.Size(94, 70);
+            this.panelCRR.Size = new System.Drawing.Size(238, 70);
             this.panelCRR.TabIndex = 26;
             // 
             // label4
             // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(119, 28);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 70);
+            this.label4.Size = new System.Drawing.Size(236, 68);
             this.label4.TabIndex = 24;
             this.label4.Text = "High Priority";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelHot
             // 
+            this.panelHot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelHot.BackColor = System.Drawing.Color.Red;
             this.panelHot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelHot.Location = new System.Drawing.Point(10, 28);
+            this.panelHot.Controls.Add(this.label4);
+            this.panelHot.Location = new System.Drawing.Point(12, 40);
             this.panelHot.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelHot.Name = "panelHot";
-            this.panelHot.Size = new System.Drawing.Size(94, 70);
+            this.panelHot.Size = new System.Drawing.Size(238, 70);
             this.panelHot.TabIndex = 23;
             // 
             // pBLogo
             // 
             this.pBLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pBLogo.Image = ((System.Drawing.Image)(resources.GetObject("pBLogo.Image")));
-            this.pBLogo.Location = new System.Drawing.Point(985, 346);
+            this.pBLogo.Location = new System.Drawing.Point(975, 346);
             this.pBLogo.Name = "pBLogo";
-            this.pBLogo.Size = new System.Drawing.Size(240, 80);
+            this.pBLogo.Size = new System.Drawing.Size(262, 80);
             this.pBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pBLogo.TabIndex = 29;
             this.pBLogo.TabStop = false;
@@ -401,6 +412,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVAdminInProcess)).EndInit();
             this.pnlEdit.ResumeLayout(false);
             this.pnlLegend.ResumeLayout(false);
+            this.panelCRR.ResumeLayout(false);
+            this.panelHot.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBLogo)).EndInit();
             this.ResumeLayout(false);
 

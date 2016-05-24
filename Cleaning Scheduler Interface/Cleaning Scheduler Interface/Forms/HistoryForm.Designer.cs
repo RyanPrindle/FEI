@@ -511,9 +511,10 @@
             this.panelDGV.Controls.Add(this.label3);
             this.panelDGV.Controls.Add(this.dGVHistory);
             this.panelDGV.Location = new System.Drawing.Point(10, 13);
+            this.panelDGV.Margin = new System.Windows.Forms.Padding(0);
             this.panelDGV.Name = "panelDGV";
             this.panelDGV.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
-            this.panelDGV.Size = new System.Drawing.Size(871, 951);
+            this.panelDGV.Size = new System.Drawing.Size(874, 951);
             this.panelDGV.TabIndex = 25;
             // 
             // label3
@@ -561,7 +562,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             this.dGVHistory.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dGVHistory.RowTemplate.Height = 40;
-            this.dGVHistory.Size = new System.Drawing.Size(867, 907);
+            this.dGVHistory.Size = new System.Drawing.Size(870, 907);
             this.dGVHistory.TabIndex = 27;
             this.dGVHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             this.dGVHistory.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dGV_CellPainting);
