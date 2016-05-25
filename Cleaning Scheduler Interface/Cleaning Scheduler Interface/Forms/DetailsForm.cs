@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,9 @@ namespace Cleaning_Scheduler_Interface
         private DataTable gunTable;
         private ColumnGunPartListForm columnGunForm;
         private Image detailsIcon;
+        private Image imageIcon;
         private ProgressBarForm progressForm;
+        private String imagePath;
 
         #endregion
 
@@ -33,8 +36,11 @@ namespace Cleaning_Scheduler_Interface
         private void DetailsForm_Load(object sender, EventArgs e)
         {
             detailsIcon = Cleaning_Scheduler_Interface.Properties.Resources.details;
+            imageIcon = Cleaning_Scheduler_Interface.Properties.Resources.image_32;
             detailsIcon = ResizeImage(detailsIcon, 28, 27);
+            imageIcon = ResizeImage(imageIcon, 28, 27);
             btnDetails.Image = detailsIcon;
+            btnImage.Image = imageIcon;
             FillDataTables();
         }
 
@@ -141,9 +147,13 @@ namespace Cleaning_Scheduler_Interface
             {
                 if (requestTable.Rows[0]["PartNumber"].Equals(row["Type"].ToString()))
                 {
-                    btnDetails.Visible = true;
+                    btnDetails.Enabled = true;
+                    btnImage.Enabled = false;
                 }
             }
+            imagePath = @"\\hlsql01\Beamtech\Summit\FE_Cleaning\JT\" + labelPart.Text + ".jt";
+            if (File.Exists(imagePath))
+                btnImage.Enabled = true;
             progressForm.Close();
         }
 
@@ -157,17 +167,18 @@ namespace Cleaning_Scheduler_Interface
             columnGunForm.ShowDialog();
         }
 
-        private void btnDetails_MouseEnter(object sender, EventArgs e)
-        {
-            if (btnDetails.Visible == true)
-                toolTipDetails.Show("Click for Detailed Parts List", btnDetails);
-        }
 
-        private void btnDetails_MouseLeave(object sender, EventArgs e)
+        private void btnImage_Click(object sender, EventArgs e)
         {
-            toolTipDetails.Hide(btnDetails);
+            try
+            {
+                System.Diagnostics.Process.Start(imagePath);
+            }
+            catch (Win32Exception)
+            {
+                MessageBox.Show("Error opening image file.");
+            }
         }
-
-        #endregion
+#endregion
     }
 }

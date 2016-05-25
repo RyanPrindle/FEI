@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,16 @@ namespace Cleaning_Scheduler_Interface
     {
         private String mGun;
         private ProgressBarForm progressForm;
+        private String imagePath;
+        private Image imageIcon;
 
         public ColumnGunPartListForm(String gun)
         {
             mGun = gun;
             InitializeComponent();
             this.Text = "Contents of " + mGun;
+            imageIcon = Cleaning_Scheduler_Interface.Properties.Resources.image_32;
+            imageIcon = (Image)new Bitmap(imageIcon, new Size(28, 27));
         }        
 
         private void ColumnGunPartListForm_Load(object sender, EventArgs e)
@@ -42,9 +47,9 @@ namespace Cleaning_Scheduler_Interface
         {
             TableLayoutPanel tLP = new TableLayoutPanel();
             Label lblTitle = new Label();
-            Label label2 = new Label();
-            Label label3 = new Label();
-            Label label1 = new Label();
+            Label labelPN = new Label();
+            Label labelDesc = new Label();
+            Label labelPic = new Label();
             Label lblCount = new Label();
             
             String gun = (String)e.Argument;
@@ -53,129 +58,128 @@ namespace Cleaning_Scheduler_Interface
             DataTable gunPartTable = requestDB.GetGunParts(gun);
             tLP.SuspendLayout();
             tLP.Padding = new Padding(0, 0, 1, 0);
-            tLP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
             tLP.AutoScroll = true;
-            tLP.ColumnCount = 4;
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));            
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
-            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32F));
-            tLP.Controls.Add(lblTitle, 1, 0);
-            tLP.Controls.Add(lblCount, 0, 2);
-            tLP.Controls.Add(label2, 1, 2);
-            tLP.Controls.Add(label3, 2, 2);
-            tLP.Controls.Add(label1, 3, 2);
+            tLP.AutoSize = true;
+            tLP.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            tLP.ColumnCount = 3;           
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300f));
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400f));
+            tLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90f));
+            tLP.Controls.Add(lblTitle, 0, 0);
+            tLP.Controls.Add(labelPN, 0, 1);
+            tLP.Controls.Add(labelDesc, 1, 1);
+            tLP.Controls.Add(labelPic, 2, 1);
             tLP.Location = new System.Drawing.Point( 0, 0);
             tLP.Name = "tLPGun";
-            tLP.RowCount = 3;
+            tLP.RowCount = 2;
             tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tLP.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tLP.Size = new System.Drawing.Size(908, 576);
             tLP.TabIndex = 0;
-
+            tLP.MouseEnter += new System.EventHandler(tLP_MouseEnter);
+            // 
+            TableLayoutRowStyleCollection styles = tLP.RowStyles;
+            foreach (RowStyle style in styles)
+            {
+                style.SizeType = SizeType.Absolute;
+                style.Height = 50;
+            }
             // 
             // lblCount
             // 
-            lblCount.AutoSize = true;
-            lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            lblCount.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblCount.Location = new System.Drawing.Point(3, 0);
-            lblCount.Name = "lblCount";
-            lblCount.TabIndex = 0;
-            lblCount.Text = "#";
-            lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //lblCount.AutoSize = true;
+            //lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            //lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            //lblCount.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //lblCount.Location = new System.Drawing.Point(3, 0);
+            //lblCount.Name = "lblCount";
+            //lblCount.TabIndex = 0;
+            //lblCount.Text = "#";
+            //lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            tLP.SetColumnSpan(lblTitle, 4);
+            tLP.SetColumnSpan(lblTitle, 3);
             lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            lblTitle.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTitle.Font = new System.Drawing.Font("Arial Black", 15.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTitle.Location = new System.Drawing.Point(3, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new System.Drawing.Size(907, 29);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Parts Clean";
             lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // labelPN
             // 
-            label2.AutoSize = true;
-            label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(3, 29);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(248, 552);
-            label2.TabIndex = 1;
-            label2.Text = "Part Number";
-            label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelPN.AutoSize = true;
+            labelPN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            labelPN.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelPN.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelPN.Location = new System.Drawing.Point(3, 29);
+            labelPN.Name = "label2";
+            //labelPN.Size = new System.Drawing.Size(248, 552);
+            labelPN.TabIndex = 1;
+            labelPN.Text = "Part Number";
+            labelPN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // labelDesc
             // 
-            label3.AutoSize = true;
-            label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(257, 29);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(375, 552);
-            label3.TabIndex = 2;
-            label3.Text = "Description";
-            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelDesc.AutoSize = true;
+            labelDesc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            labelDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelDesc.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelDesc.Location = new System.Drawing.Point(257, 29);
+            labelDesc.Name = "label3";
+            labelDesc.Size = new System.Drawing.Size(375, 552);
+            labelDesc.TabIndex = 2;
+            labelDesc.Text = "Description";
+            labelDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // labelPic
             // 
-            label1.AutoSize = true;
-            label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(638, 29);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(272, 552);
-            label1.TabIndex = 3;
-            label1.Text = "Picture / Drawing";
-            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelPic.AutoSize = true;
+            labelPic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            labelPic.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelPic.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelPic.Location = new System.Drawing.Point(638, 29);
+            labelPic.Name = "label1";
+            labelPic.Size = new System.Drawing.Size(272, 552);
+            labelPic.TabIndex = 3;
+            labelPic.Text = "3D Image";
+            labelPic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-            Image image;
             foreach (DataRow row in gunPartTable.Rows)
             {
                 int index;
                 Label lblPartNumber = new Label();
                 Label lblDescription = new Label();
-                Label lblNumber = new Label();
-                LinkLabel lblPic = new LinkLabel();
-                PictureBox pBPartDrawing = new PictureBox();
-                image = (Image)Cleaning_Scheduler_Interface.Properties.Resources.ResourceManager.GetObject(row["Image"].ToString());
-                pBPartDrawing.Image = image;
-                pBPartDrawing.SizeMode = PictureBoxSizeMode.Zoom;
-                pBPartDrawing.Height = 24;
-                pBPartDrawing.Width = 256;
-                lblPartNumber.Dock = DockStyle.Fill;
-                lblPartNumber.BorderStyle = BorderStyle.Fixed3D;
-                lblPartNumber.TextAlign = ContentAlignment.MiddleCenter;
-                lblDescription.Dock = DockStyle.Fill;
-                lblDescription.BorderStyle = BorderStyle.Fixed3D;
-                lblDescription.TextAlign = ContentAlignment.MiddleCenter;
-                index = gunPartTable.Rows.IndexOf(row) + 3;
-                lblNumber.Dock = DockStyle.Fill;
-                lblNumber.BorderStyle = BorderStyle.Fixed3D;
-                lblNumber.TextAlign = ContentAlignment.MiddleCenter;
-                lblNumber.Text = gunPartTable.Rows.IndexOf(row) + 1 + "";
-                lblPic.Dock = DockStyle.Fill;
-                lblPic.BorderStyle = BorderStyle.Fixed3D;
-                lblPic.TextAlign = ContentAlignment.MiddleCenter;
+                Panel pnlPN = new Panel();
+                Panel pnlDesc = new Panel();
+                Panel pnlBtn = new Panel();
+                Button btnPic = new Button();
+                index = gunPartTable.Rows.IndexOf(row) + 3;   
+                lblDescription.Font = lblPartNumber.Font = btnPic.Font =  new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+                lblPartNumber.Dock = btnPic.Dock = pnlBtn.Dock = pnlPN.Dock = pnlDesc.Dock = lblDescription.Dock = DockStyle.Fill;
+                lblPartNumber.TextAlign = lblDescription.TextAlign = ContentAlignment.MiddleCenter;
+                btnPic.UseVisualStyleBackColor = true;
+                btnPic.Name = row["PartNumber"].ToString();
+                btnPic.Image = imageIcon;
+                toolTipPartsList.SetToolTip(btnPic, "3D Image of Part");
                 lblPartNumber.Text = row["PartNumber"].ToString();
+                imagePath = @"\\hlsql01\Beamtech\Summit\FE_Cleaning\JT\" + lblPartNumber.Text + ".jt";
+                if (File.Exists(imagePath))
+                    btnPic.Enabled = true;
+                else
+                    btnPic.Enabled = false;
                 lblDescription.Text = row["Description"].ToString();
-                tLP.Controls.Add(lblNumber, 0, index);
-                tLP.Controls.Add(lblPartNumber, 1, index);
-                tLP.Controls.Add(lblDescription, 2, index);
-                tLP.Controls.Add(lblPic, 3, index);
+                btnPic.Click += new System.EventHandler(btnPic_Click);
+                pnlBtn.Height = pnlDesc.Height = pnlPN.Height = 50;
+                pnlBtn.BorderStyle = pnlDesc.BorderStyle = pnlPN.BorderStyle = BorderStyle.Fixed3D;
+                pnlPN.Controls.Add(lblPartNumber);
+                pnlDesc.Controls.Add(lblDescription);
+                pnlBtn.Controls.Add(btnPic);
+                tLP.Controls.Add(pnlPN, 0, index);
+                tLP.Controls.Add(pnlDesc, 1, index);
+                tLP.Controls.Add(pnlBtn, 2, index);
             }
             tLP.ResumeLayout();
             e.Result = tLP;
@@ -197,6 +201,21 @@ namespace Cleaning_Scheduler_Interface
         {
             TableLayoutPanel tLP = (TableLayoutPanel)sender;
             tLP.Focus();            
+        }
+
+        private void btnPic_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            String name = btn.Name.ToString();
+            string filePath = @"\\hlsql01\Beamtech\Summit\FE_Cleaning\JT\" + name + ".jt";
+            try
+            {
+                System.Diagnostics.Process.Start(filePath);
+            }
+            catch (Win32Exception)
+            {
+                MessageBox.Show("No Image Available for this Part");
+            }
         }
     }
 }

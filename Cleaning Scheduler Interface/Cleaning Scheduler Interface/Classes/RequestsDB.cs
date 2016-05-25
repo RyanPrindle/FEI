@@ -13,7 +13,7 @@ namespace Cleaning_Scheduler_Interface
 
 #region Properties
 
-        private static String cleaningRequestsDBFullPath = @"\\hlsql01\Beamtech\\Cleaning Team\Cleaning Scheduler\CleaningRequestsDB.accdb";
+        private static String cleaningRequestsDBFullPath = @"\\hlsql01\Beamtech\Cleaning Team\Cleaning Scheduler\CleaningRequestsDB.accdb";
         private DB requestDB;
         private static string REQUESTTABLE = "RequestTable";
         private static string CONTACTTABLE = "ContactTable";
@@ -206,11 +206,8 @@ namespace Cleaning_Scheduler_Interface
                 case "Plasma Column":
                     query = "PlasmaQuery";
                     break;
-                case "Vectra Column":
-                    query = "VectraQuery";
-                    break;
-                case "VisionaryColumn":
-                    query = "Visionary Query";
+                case "Visionary Column":
+                    query = "VisionaryQuery";
                     break;
                 default:
                     query = GUNPARTTABLE;

@@ -62,6 +62,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnImage = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDetails = new System.Windows.Forms.Button();
             this.bGWDetails = new System.ComponentModel.BackgroundWorker();
@@ -439,6 +440,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnImage);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.btnDetails);
             this.panel2.Controls.Add(this.groupBox1);
@@ -457,6 +459,18 @@
             this.panel2.Size = new System.Drawing.Size(596, 198);
             this.panel2.TabIndex = 31;
             // 
+            // btnImage
+            // 
+            this.btnImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnImage.Enabled = false;
+            this.btnImage.Location = new System.Drawing.Point(8, 8);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(32, 33);
+            this.btnImage.TabIndex = 32;
+            this.toolTipDetails.SetToolTip(this.btnImage, "3D Image of Part");
+            this.btnImage.UseVisualStyleBackColor = false;
+            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.labelSerial);
@@ -471,15 +485,14 @@
             // btnDetails
             // 
             this.btnDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnDetails.Location = new System.Drawing.Point(301, 37);
+            this.btnDetails.Enabled = false;
+            this.btnDetails.Location = new System.Drawing.Point(46, 8);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(32, 33);
             this.btnDetails.TabIndex = 30;
+            this.toolTipDetails.SetToolTip(this.btnDetails, "Parts List");
             this.btnDetails.UseVisualStyleBackColor = false;
-            this.btnDetails.Visible = false;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
-            this.btnDetails.MouseEnter += new System.EventHandler(this.btnDetails_MouseEnter);
-            this.btnDetails.MouseLeave += new System.EventHandler(this.btnDetails_MouseLeave);
             // 
             // bGWDetails
             // 
@@ -622,5 +635,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pBFire;
         private System.Windows.Forms.Label lblHot;
+        private System.Windows.Forms.Button btnImage;
     }
 }

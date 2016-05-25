@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColumnGunPartListForm));
             this.buttonCancel = new System.Windows.Forms.Button();
             this.bGWGunParts = new System.ComponentModel.BackgroundWorker();
             this.panelTLP = new System.Windows.Forms.Panel();
+            this.toolTipPartsList = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonCancel.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancel.Location = new System.Drawing.Point(804, 606);
+            this.buttonCancel.Location = new System.Drawing.Point(704, 698);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(121, 35);
@@ -54,27 +57,31 @@
             // 
             // panelTLP
             // 
+            this.panelTLP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTLP.AutoScroll = true;
+            this.panelTLP.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelTLP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(215)))), ((int)(((byte)(255)))));
             this.panelTLP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelTLP.Location = new System.Drawing.Point(13, 13);
+            this.panelTLP.Location = new System.Drawing.Point(12, 12);
             this.panelTLP.Name = "panelTLP";
-            this.panelTLP.Size = new System.Drawing.Size(912, 580);
+            this.panelTLP.Size = new System.Drawing.Size(812, 672);
             this.panelTLP.TabIndex = 16;
-            this.panelTLP.MouseEnter += new System.EventHandler(this.tLP_MouseEnter);
             // 
             // ColumnGunPartListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(938, 653);
+            this.ClientSize = new System.Drawing.Size(838, 745);
             this.Controls.Add(this.panelTLP);
             this.Controls.Add(this.buttonCancel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(854, 1000);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(854, 400);
             this.Name = "ColumnGunPartListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cleaning Scheduler Interface - Detailed Parts List";
@@ -88,5 +95,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.ComponentModel.BackgroundWorker bGWGunParts;
         private System.Windows.Forms.Panel panelTLP;
+        private System.Windows.Forms.ToolTip toolTipPartsList;
     }
 }
